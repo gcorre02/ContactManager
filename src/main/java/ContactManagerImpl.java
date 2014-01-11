@@ -7,7 +7,7 @@ import java.util.Set;
 /**
 * A class to manage your contacts and meetings.
 */
-public interface ContactManager {
+public class ContactManagerImpl {
 
 /**
 * Add a new meeting to be held in the future.
@@ -18,7 +18,10 @@ public interface ContactManager {
 * @throws IllegalArgumentException if the meeting is set for a time in the past,
 * of if any contact is unknown / non-existent
 */
-int addFutureMeeting(Set<Contact> contacts, Calendar date);
+public int addFutureMeeting(Set<Contact> contacts, Calendar date){
+	int stub = 0;
+	return stub;
+}
 
 /**
 * Returns the PAST meeting with the requested ID, or null if it there is none.
@@ -27,7 +30,10 @@ int addFutureMeeting(Set<Contact> contacts, Calendar date);
 * @return the meeting with the requested ID, or null if it there is none.
 * @throws IllegalArgumentException if there is a meeting with that ID happening in the future
 */
-PastMeeting getPastMeeting(int id);
+public PastMeeting getPastMeeting(int id){
+	PastMeeting stub = new PastMeetingImpl();
+	return stub;
+}
 
 /**
 * Returns the FUTURE meeting with the requested ID, or null if there is none.
@@ -36,7 +42,10 @@ PastMeeting getPastMeeting(int id);
 * @return the meeting with the requested ID, or null if it there is none.
 * @throws IllegalArgumentException if there is a meeting with that ID happening in the past
 */
-FutureMeeting getFutureMeeting(int id);
+public FutureMeeting getFutureMeeting(int id){
+	FutureMeeting stub = new FutureMeetingImpl();
+	return stub;
+}
 
 /**
 * Returns the meeting with the requested ID, or null if it there is none.
@@ -44,7 +53,10 @@ FutureMeeting getFutureMeeting(int id);
 * @param id the ID for the meeting
 * @return the meeting with the requested ID, or null if it there is none.
 */
-Meeting getMeeting(int id);
+public Meeting getMeeting(int id){
+	Meeting stub = new MeetingImpl();
+	return stub;
+}
 
 /**
 * Returns the list of future meetings scheduled with this contact.
@@ -57,7 +69,10 @@ Meeting getMeeting(int id);
 * @return the list of future meeting(s) scheduled with this contact (maybe empty).
 * @throws IllegalArgumentException if the contact does not exist
 */
-List<Meeting> getFutureMeetingList(Contact contact);
+public List<Meeting> getFutureMeetingList(Contact contact){
+	List<Meeting> stub;
+	return stub;
+}
 
 /**
 * Returns the list of meetings that are scheduled for, or that took
@@ -70,7 +85,10 @@ List<Meeting> getFutureMeetingList(Contact contact);
 * @param date the date
 * @return the list of meetings
 */
-List<Meeting> getFutureMeetingList(Calendar date);
+public List<Meeting> getFutureMeetingList(Calendar date){
+	List<Meeting> stub;
+	return stub;
+}
 
 /**
 * Returns the list of past meetings in which this contact has participated.
@@ -83,7 +101,10 @@ List<Meeting> getFutureMeetingList(Calendar date);
 * @return the list of future meeting(s) scheduled with this contact (maybe empty).
 * @throws IllegalArgumentException if the contact does not exist
 */
-List<PastMeeting> getPastMeetingList(Contact contact);
+public List<PastMeeting> getPastMeetingList(Contact contact){
+	List<PastMeeting> stub;
+	return stub;
+}
 
 /**
 * Create a new record for a meeting that took place in the past.
@@ -95,7 +116,9 @@ List<PastMeeting> getPastMeetingList(Contact contact);
 * empty, or any of the contacts does not exist
 * @throws NullPointerException if any of the arguments is null
 */
-void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text);
+public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text){
+
+}
 
 /**
 * Add notes to a meeting.
@@ -111,7 +134,7 @@ void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text);
 * @throws IllegalStateException if the meeting is set for a date in the future
 * @throws NullPointerException if the notes are null
 */
-void addMeetingNotes(int id, String text);
+public void addMeetingNotes(int id, String text){}
 
 /**
 * Create a new contact with the specified name and notes.
@@ -120,7 +143,7 @@ void addMeetingNotes(int id, String text);
 * @param notes notes to be added about the contact.
 * @throws NullPointerException if the name or the notes are null
 */
-void addNewContact(String name, String notes);
+public void addNewContact(String name, String notes){}
 
 /**
 * Returns a list containing the contacts that correspond to the IDs.
@@ -129,7 +152,10 @@ void addNewContact(String name, String notes);
 * @return a list containing the contacts that correspond to the IDs.
 * @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
 */
-Set<Contact> getContacts(int... ids);
+public Set<Contact> getContacts(int... ids){
+	Set<Contact> stub;
+	return stub;
+}
 
 /**
 * Returns a list with the contacts whose name contains that string.
@@ -138,7 +164,10 @@ Set<Contact> getContacts(int... ids);
 * @return a list with the contacts whose name contains that string.
 * @throws NullPointerException if the parameter is null
 */
-Set<Contact> getContacts(String name);
+public Set<Contact> getContacts(String name){
+	Set<Contact> stub;
+	return stub;
+}
 
 /**
 * Save all data to disk.
@@ -146,5 +175,6 @@ Set<Contact> getContacts(String name);
 * This method must be executed when the program is
 * closed and when/if the user requests it.
 */
-void flush();
+public void flush(){}
+
 }
