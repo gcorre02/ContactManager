@@ -3,6 +3,7 @@ package contactmgmt;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -15,15 +16,19 @@ public class ContactManagerImpl implements ContactManager {
 	
 	private Set<Contact> contacts;
 	private Set<Meeting> meetings;
-	private int[] contactIDs;
-	private int[] meetingIDs;
-	private String[] contactNames;
+	private List<Integer> contactIDs;
+	private List<Integer> meetingIDs;
+	private List<String> contactNames;
 	private List<String> csvRows;  //for the test accessability
 	private String csvPath = "."+ File.pathSeparator +"contacts.txt";
 	
 	public ContactManagerImpl(){
 		readCSV(csvPath);
 	}
+
+	public String[] getCsvRows(){
+		return csvRows.toArray(new String[csvRows.size()]);
+	} 
 
 	/**
 	*	private method that is called once everytime program is run
@@ -32,10 +37,6 @@ public class ContactManagerImpl implements ContactManager {
 	*	written as a separate method for potential future use if needed for update / testing;
 	*	@param csvPath the path to the csv source file, each row within the file is set up in the format "Line, type((C)ontact or (M)eeting), DATA(comma separated)"
 	*/
-	public String[] getCsvRows(){
-		return csvRows.toArray(new String[csvRows.size()]);
-	} 
-
 	private void readCSV(String csvPath){
 		//needs to check file exists and handle it (by creating a new file);
 		
@@ -54,13 +55,39 @@ public class ContactManagerImpl implements ContactManager {
 		try{
 			csvRows = Files.readAllLines(csv.toPath(), StandardCharsets.US_ASCII);
 			if(csvRows.isEmpty()){
-				System.out.println("read all lines is returning empty");
+				System.out.println("File is empty");
+			} else {
+				populateIndexArrays();
 			}
+			
 		} catch(IOException e){
 			System.out.println("file not found error!!");
 		}
 	}
 
+	private void populateIndexArrays(){
+		contactIDs = new ArrayList<Integer>();
+		meetingIDs = new ArrayList<Integer>();
+		String[] rows = getCsvRows();
+		try{
+			for(int i = 0; i<rows.length; i++){		
+				for(int t =0; t<rows[i].length(); t++){
+					if(rows[i].charAt(t) == ','){
+						if(rows[i].charAt(t+1) == 'C'){
+							contactIDs.add(Integer.parseInt(rows[i].substring(0,t)));
+							t = rows[i].length()-1;
+						} else if(rows[i].charAt(t+1) == 'M'){
+							meetingIDs.add(Integer.parseInt(rows[i].substring(0,t)));
+							t = rows[i].length()-1;
+						}
+					}
+				}
+				//System.out.println("contactIDs size is" + contactIDs.size()+" meetingIDs size is " + meetingIDs.size());
+			}
+		} catch(NullPointerException e){
+			System.out.println("nothing in the row");
+		}
+	}
 	/**
 	* Add a new meeting to be held in the future.
 	*

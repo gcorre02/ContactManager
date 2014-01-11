@@ -42,7 +42,13 @@ public class TestContactManagerImpl{
 			File csv = new File(fileDir);
 			FileWriter fw = new FileWriter(csv.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write("0,C,Sherlock BadBury, 079555768");
+			bw.write("0,M, Merlock Shant, 023555123");
+			bw.newLine();
+			bw.write("1,C, Sherlock Shant, 079555768");
+			bw.newLine();
+			bw.write("2,M, Merlock BadBury, 023555123");
+			bw.newLine();
+			bw.write("3,C, Sherlock BadBury, 079555768");
 			bw.close();
 		} catch(IOException e){
 			fail("file doesnt exist");
@@ -50,7 +56,7 @@ public class TestContactManagerImpl{
 		cm = null;
 		cm = new ContactManagerImpl();
 		//need to check if csvRows is populated;
-		assertEquals(cm.getCsvRows()[0],"0,C,Sherlock BadBury, 079555768");
+		assertEquals(cm.getCsvRows()[3],"3,C, Sherlock BadBury, 079555768");
 	}
 
 	/**
