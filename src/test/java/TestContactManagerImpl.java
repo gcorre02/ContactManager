@@ -6,9 +6,6 @@ import static org.mockito.Mockito.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import java.io.*;
-import java.net.*;
-import java.util.*;
-
 
 public class TestContactManagerImpl{
 	

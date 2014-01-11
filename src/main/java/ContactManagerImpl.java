@@ -4,16 +4,19 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 
+import java.io.*;
+
 /**
 * A class to manage your contacts and meetings.
 */
 public class ContactManagerImpl implements ContactManager {
 	
-	private set<contacts> contacts;
-	private set<meetings> meetings;
+	private Set<Contact> contacts;
+	private Set<Meeting> meetings;
 	private int[] contactIDs;
 	private int[] meetingIDs;
 	private String[] contactNames;
+	private String[] csvRows;  //for the test accessability
 	private String csvPath = "."+ File.pathSeparator +"contacts.txt";
 	
 	public ContactManagerImpl(){
@@ -27,6 +30,11 @@ public class ContactManagerImpl implements ContactManager {
 	*	written as a separate method for potential future use if needed for update / testing;
 	*	@param csvPath the path to the csv source file, each row within the file is set up in the format "Line, type((C)ontact or (M)eeting), DATA(comma separated)"
 	*/
+
+	public String[] getCsvRows(){
+		return csvRows;
+	} 
+
 	private void readCSV(String csvPath){
 		//needs to check file exists and handle it (by creating a new file);
 	}
