@@ -26,8 +26,8 @@ public class TestContactManagerImpl{
 
 	@Test
 	public void testAddFutureMeeting(){
-		//fail("Test Not Written yet");
-		assertEquals(1,1);
+		fail("Test Not Written yet");
+		//assertEquals(1,1);
 	}
 
 
