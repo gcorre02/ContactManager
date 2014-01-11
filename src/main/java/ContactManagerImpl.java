@@ -8,6 +8,25 @@ import java.util.Set;
 * A class to manage your contacts and meetings.
 */
 public class ContactManagerImpl implements ContactManager {
+	
+	//indexes:
+	private int[] contactIDs;
+	private int[] contactNames;
+	private int[] meetingIDs;
+
+	public ContactManagerImpl(){
+		mapCSV();
+	}
+
+	/**
+	*	private method that is called once everytime program is run
+	*	populates all Contacts ID, Name and All Meetings ID indexes so they can be easily accessible on the csv file. 
+	*	is called by constructor method
+	*	written as a separate method for potential future use if needed for update / testing;
+	*/
+	private void mapCSV(){
+
+	}
 
 	/**
 	* Add a new meeting to be held in the future.

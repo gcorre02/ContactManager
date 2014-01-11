@@ -10,8 +10,8 @@ import java.net.*;
 import java.util.*;
 
 
-//5. commit : doing research into mockito so i can test and program the whole ContactManagerImpl class without having to program the implementations of other classes first
 public class TestContactManagerImpl{
+	
 	ContactManager cm;
 
 	@Before
@@ -25,10 +25,23 @@ public class TestContactManagerImpl{
 	}
 
 	@Test
-	public void testAddFutureMeeting(){
+	public void testCSVIndexisLoaded(){
 		fail("Test Not Written yet");
-		//assertEquals(1,1);
 	}
 
-
+	/**
+	* need to mock : @param contacts a list of contacts that will participate in the meeting
+	* need to mock : @param date the date on which the meeting will take place
+	* need to mock : meetings(field)
+	* need to test : @return the ID for the meeting
+	* need to test : @throws IllegalArgumentException if the meeting is set for a time in the past,
+	* of if any contact is unknown / non-existent
+	* need to test : check meeting has been added to the (schedule) meetings(field)
+	**/
+	@Test
+	public void testAddFutureMeeting(){
+		fail("Test Not Written yet");
+		//write mock for args input
+		//write test
+	}
 }
