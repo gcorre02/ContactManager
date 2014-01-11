@@ -68,14 +68,27 @@ public class ContactManagerImpl implements ContactManager {
 	private void populateIndexArrays(){
 		contactIDs = new ArrayList<Integer>();
 		meetingIDs = new ArrayList<Integer>();
+		contactNames = new ArrayList<String>();
 		String[] rows = getCsvRows();
 		try{
 			for(int i = 0; i<rows.length; i++){		
 				for(int t =0; t<rows[i].length(); t++){
 					if(rows[i].charAt(t) == ','){
 						if(rows[i].charAt(t+1) == 'C'){
+							
 							contactIDs.add(Integer.parseInt(rows[i].substring(0,t)));
+							int n = t+4;
+							String name = "";
+							
+							while(rows[i].charAt(n) != ','){
+								name = name + rows[i].charAt(n);
+								n++;
+							}
+
+							System.out.println(name);
+							contactNames.add(name);
 							t = rows[i].length()-1;
+						
 						} else if(rows[i].charAt(t+1) == 'M'){
 							meetingIDs.add(Integer.parseInt(rows[i].substring(0,t)));
 							t = rows[i].length()-1;
