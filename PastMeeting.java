@@ -1,3 +1,5 @@
+package contactmgmt;
+
 /**
 * A meeting that was held in the past.
 *
