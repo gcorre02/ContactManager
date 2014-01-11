@@ -21,12 +21,24 @@ public class TestContactManagerImpl{
 		cm = null;
 	}
 
+	@AfterClass
+	public static void afterTestIsRun(){
+		String fileDir = "."+ File.separator +"contacts.txt";
+		File csv = new File(fileDir);
+		csv.delete();
+	}
+
 	@Test
-	public void testCSVIndexisLoaded(){
-		//adapt test to check for the exception handling, not just the existence of the file
-		String fileDir = "."+ File.pathSeparator +"contacts.txt";
+	public void testCsvTXTisCreated(){
+		String fileDir = "."+ File.separator +"contacts.txt";
 		File csv = new File(fileDir);
 		assertTrue(csv.isFile());
+	}
+
+	@Test
+	public void testCSVIndexisLoaded(){		
+		//need to check if csvRows is populated;
+		assertEquals(cm.getCsvRows()[0],"0,C,Sherlock BadBury, 079555768");
 	}
 
 	/**

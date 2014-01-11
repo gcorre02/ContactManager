@@ -37,6 +37,18 @@ public class ContactManagerImpl implements ContactManager {
 
 	private void readCSV(String csvPath){
 		//needs to check file exists and handle it (by creating a new file);
+		
+		String fileDir = "."+ File.separator +"contacts.txt";
+		File csv = new File(fileDir);
+		
+		if(!csv.isFile()){
+			try{
+				csv.createNewFile();
+			} catch(IOException e){
+				System.out.println("File already exists");
+			}
+		}
+		
 	}
 
 	/**
