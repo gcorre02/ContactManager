@@ -26,7 +26,9 @@ public class TestContactManagerImpl{
 
 	@Test
 	public void testCSVIndexisLoaded(){
-		fail("Test Not Written yet");
+		String fileDir = "."+ File.pathSeparator +"contacts.txt";
+		File csv = new File(fileDir);
+		assertTrue(csv.isFile());
 	}
 
 	/**

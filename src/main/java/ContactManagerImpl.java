@@ -10,8 +10,8 @@ import java.util.Set;
 public class ContactManagerImpl implements ContactManager {
 	
 	//indexes:
-	private int[] contactIDs;
-	private int[] contactNames;
+	private int[] contactIDs; 
+	private String[] contactNames;
 	private int[] meetingIDs;
 
 	public ContactManagerImpl(){
@@ -25,7 +25,7 @@ public class ContactManagerImpl implements ContactManager {
 	*	written as a separate method for potential future use if needed for update / testing;
 	*/
 	private void mapCSV(){
-
+		//line index could be done as hex, later.
 	}
 
 	/**
@@ -41,5 +41,4 @@ public class ContactManagerImpl implements ContactManager {
 		int stub = 0;
 		return stub;
 	}
-
 }
