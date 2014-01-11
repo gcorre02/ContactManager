@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.charset.StandardCharsets;
 
 /**
 * A class to manage your contacts and meetings.
@@ -16,7 +18,7 @@ public class ContactManagerImpl implements ContactManager {
 	private int[] contactIDs;
 	private int[] meetingIDs;
 	private String[] contactNames;
-	private String[] csvRows;  //for the test accessability
+	private List<String> csvRows;  //for the test accessability
 	private String csvPath = "."+ File.pathSeparator +"contacts.txt";
 	
 	public ContactManagerImpl(){
@@ -30,9 +32,8 @@ public class ContactManagerImpl implements ContactManager {
 	*	written as a separate method for potential future use if needed for update / testing;
 	*	@param csvPath the path to the csv source file, each row within the file is set up in the format "Line, type((C)ontact or (M)eeting), DATA(comma separated)"
 	*/
-
 	public String[] getCsvRows(){
-		return csvRows;
+		return csvRows.toArray(new String[csvRows.size()]);
 	} 
 
 	private void readCSV(String csvPath){
@@ -49,6 +50,15 @@ public class ContactManagerImpl implements ContactManager {
 			}
 		}
 		
+		//populate csvRows
+		try{
+			csvRows = Files.readAllLines(csv.toPath(), StandardCharsets.US_ASCII);
+			if(csvRows.isEmpty()){
+				System.out.println("read all lines is returning empty");
+			}
+		} catch(IOException e){
+			System.out.println("file not found error!!");
+		}
 	}
 
 	/**

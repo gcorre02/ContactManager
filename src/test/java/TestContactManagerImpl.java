@@ -37,6 +37,18 @@ public class TestContactManagerImpl{
 
 	@Test
 	public void testCSVIndexisLoaded(){		
+		try{
+			String fileDir = "."+ File.separator +"contacts.txt";
+			File csv = new File(fileDir);
+			FileWriter fw = new FileWriter(csv.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write("0,C,Sherlock BadBury, 079555768");
+			bw.close();
+		} catch(IOException e){
+			fail("file doesnt exist");
+		}
+		cm = null;
+		cm = new ContactManagerImpl();
 		//need to check if csvRows is populated;
 		assertEquals(cm.getCsvRows()[0],"0,C,Sherlock BadBury, 079555768");
 	}
