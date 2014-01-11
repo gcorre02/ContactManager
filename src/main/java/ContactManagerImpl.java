@@ -9,23 +9,26 @@ import java.util.Set;
 */
 public class ContactManagerImpl implements ContactManager {
 	
-	//indexes:
-	private int[] contactIDs; 
-	private String[] contactNames;
+	private set<contacts> contacts;
+	private set<meetings> meetings;
+	private int[] contactIDs;
 	private int[] meetingIDs;
-
+	private String[] contactNames;
+	private String csvPath = "."+ File.pathSeparator +"contacts.txt";
+	
 	public ContactManagerImpl(){
-		mapCSV();
+		readCSV(csvPath);
 	}
 
 	/**
 	*	private method that is called once everytime program is run
-	*	populates all Contacts ID, Name and All Meetings ID indexes so they can be easily accessible on the csv file. 
+	*	populates all Contacts and Meetings sets and associated indexes. 
 	*	is called by constructor method
 	*	written as a separate method for potential future use if needed for update / testing;
+	*	@param csvPath the path to the csv source file, each row within the file is set up in the format "Line, type((C)ontact or (M)eeting), DATA(comma separated)"
 	*/
-	private void mapCSV(){
-		//line index could be done as hex, later.
+	private void readCSV(String csvPath){
+		//needs to check file exists and handle it (by creating a new file);
 	}
 
 	/**

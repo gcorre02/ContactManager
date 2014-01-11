@@ -26,6 +26,7 @@ public class TestContactManagerImpl{
 
 	@Test
 	public void testCSVIndexisLoaded(){
+		//adapt test to check for the exception handling, not just the existence of the file
 		String fileDir = "."+ File.pathSeparator +"contacts.txt";
 		File csv = new File(fileDir);
 		assertTrue(csv.isFile());
