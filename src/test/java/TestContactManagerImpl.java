@@ -66,15 +66,7 @@ public class TestContactManagerImpl{
 		assertEquals(cm.getCsvRows()[3],"3,C, Sherlock BadBury, 079555768");
 	}
 
-	/**
-	* need to mock : @param contacts a list of contacts that will participate in the meeting
-	* need to mock : @param date the date on which the meeting will take place
-	* need to mock : meetings(field)
-	* need to test : @return the ID for the meeting
-	* need to test : @throws IllegalArgumentException if the meeting is set for a time in the past,
-	* of if any contact is unknown / non-existent
-	* need to test : check meeting has been added to the (schedule) meetings(array)
-	**/
+	
 	@Test
 	public void testAddFutureMeeting(){
 		int contactID = 34;
@@ -90,6 +82,7 @@ public class TestContactManagerImpl{
 		int newMeetingIndex = Integer.parseInt(cm.getCsvRows()[cm.getCsvRows().length-1].substring(0,cm.getCsvRows()[cm.getCsvRows().length-1].indexOf(',')));
 		assertTrue(newMeetingIndex == meetingID);		
 	}
+	
 	//tests whether the right exception is thrown and if it is handled propperly, one for date in the past and one for invalid contact
 	@Test
 	public void shouldThrowIllegalArgE(){

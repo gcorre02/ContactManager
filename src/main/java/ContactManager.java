@@ -12,6 +12,7 @@ public interface ContactManager {
 	
 	/**
 	* getter for csvRows field
+	* non interface method, must be privatized (how can the test access it ? maybe make the actual field protected, not private)
 	*/
 	String[] getCsvRows();
 

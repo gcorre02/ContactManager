@@ -1,9 +1,14 @@
 package contactmgmt;
 
+import java.util.Iterator;
+import java.util.HashSet;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 import java.util.ArrayList;
+
+import java.lang.IllegalArgumentException;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -113,12 +118,22 @@ public class ContactManagerImpl implements ContactManager {
 	* of if any contact is unknown / non-existent
 	*/
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) throws IllegalArgumentException{
-		int stub = 0;
-		return stub;
 		// iterate through each contact in contacts, return id and verify it against ids in contactIDs
+		Iterator<Contact> iter = contacts.iterator();
+		Set<Integer> userContactsInputID = new HashSet<Integer>();
+		while(iter.hasNext()){
+			///not sure it isn't moving the iter forward everytime .next() is called...
+			if(contactIDs.contains(iter.next().getId())){
+				userContactsInputID.add(iter.next().getId());
+			} else {
+				throw new IllegalArgumentException();
+			}
+		}
 		// check calendar date against current date (gregorian calendar not included in the interface...)
 		// return an ID for the future meeting and populate the csvRows array with the details of the meeting
-
+		int stub = 0;
+		return stub;
+	
 	}
 
 	/**
