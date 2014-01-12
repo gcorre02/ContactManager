@@ -124,12 +124,14 @@ public class ContactManagerImpl implements ContactManager {
 		
 		while(iter.hasNext()){
 			Contact current = iter.next();
-			if(contactIDs.contains(current.getId())){
-				userContactsInputID.add(current.getId());
-				meetingNames = meetingNames + " , "+ current.getName() ;
+			if(contactIDs!=null
+				&& contactIDs.contains(current.getId())){
+					userContactsInputID.add(current.getId());
+					meetingNames = meetingNames + " , "+ current.getName() ;
 			} else {
 				throw new IllegalArgumentException();
 			}
+			
 		}
 		
 		Calendar present = Calendar.getInstance();

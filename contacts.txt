@@ -1,4 +1,0 @@
-0,M, Merlock Shant, 023555123
-2457,C, Sherlock Shant, 079555768
-2,M, Merlock BadBury, 023555123
-3,C, Sherlock BadBury, 079555768

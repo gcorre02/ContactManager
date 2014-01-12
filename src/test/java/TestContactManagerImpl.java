@@ -48,7 +48,7 @@ public class TestContactManagerImpl{
 	public static void afterTestIsRun(){
 		String fileDir = "."+ File.separator +"contacts.txt";
 		File csv = new File(fileDir);
-		//csv.delete();
+		csv.delete();
 	}
 
 	@Test
