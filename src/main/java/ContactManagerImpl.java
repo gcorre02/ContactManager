@@ -130,7 +130,13 @@ public class ContactManagerImpl implements ContactManager {
 			}
 		}
 		// check calendar date against current date (gregorian calendar not included in the interface...)
-		// return an ID for the future meeting and populate the csvRows array with the details of the meeting
+		Calendar present = Calendar.getInstance();
+		if(!date.after(present)){
+			throw new IllegalArgumentException();
+			System.out.println("Date for the meeting is in the past");
+		}
+		// return an ID for the future meeting and populate the csvRows array with the details of the meeting (return comes last, but finding the ID comes first)
+		
 		int stub = 0;
 		return stub;
 	
