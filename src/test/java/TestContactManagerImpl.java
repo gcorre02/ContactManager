@@ -103,8 +103,7 @@ public class TestContactManagerImpl{
 	}
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldThrowIllegalArgEfromContact(){
-		fail("not written yet");
-		/*
+
 		///// biggest problem is make sure any aleatory number does the right thing
 		
 		
@@ -118,7 +117,7 @@ public class TestContactManagerImpl{
 
 		//test section >> testing whether id is being returned and if it is being added to the csvRows variable
 		int meetingID = cm.addFutureMeeting(inputContactList, userInputDate);
-		*/
+		
 		
 	}
 }
