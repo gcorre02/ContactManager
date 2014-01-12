@@ -14,8 +14,8 @@ import java.nio.charset.StandardCharsets;
 */
 public class ContactManagerImpl implements ContactManager {
 	
-	private Set<Contact> contacts;
-	private Set<Meeting> meetings;
+	private Set<Contact> storedContacts;
+	private Set<Meeting> storedMeetings;
 	private List<Integer> contactIDs;
 	private List<Integer> meetingIDs;
 	private List<String> contactNames;
@@ -85,7 +85,7 @@ public class ContactManagerImpl implements ContactManager {
 								n++;
 							}
 
-							//System.out.println(name);
+							
 							contactNames.add(name);
 							t = rows[i].length()-1;
 						
@@ -95,8 +95,8 @@ public class ContactManagerImpl implements ContactManager {
 						}
 					}
 				}
+				//@debug
 				printIterThroughIndexes();
-				//System.out.println("contactIDs size is" + contactIDs.size()+" meetingIDs size is " + meetingIDs.size());
 			}
 		} catch(NullPointerException e){
 			System.out.println("nothing in the row");
@@ -115,7 +115,12 @@ public class ContactManagerImpl implements ContactManager {
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) throws IllegalArgumentException{
 		int stub = 0;
 		return stub;
+		// iterate through each contact in contacts, return id and verify it against ids in contactIDs
+		// check calendar date against current date (gregorian calendar not included in the interface...)
+		// return an ID for the future meeting and populate the csvRows array with the details of the meeting
+
 	}
+
 	/**
 	*
 	* private method for debug purposes
