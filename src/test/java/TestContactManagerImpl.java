@@ -48,7 +48,7 @@ public class TestContactManagerImpl{
 	public static void afterTestIsRun(){
 		String fileDir = "."+ File.separator +"contacts.txt";
 		File csv = new File(fileDir);
-		//csv.delete();
+		csv.delete();
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class TestContactManagerImpl{
 	
 	//tests whether the right exception is thrown and if it is handled propperly, one for date in the past and one for invalid contact
 	@Test
-	public void shouldThrowIllegalArgE(){
+	public void shouldThrowIllegalArgEfromDate(){
 		fail("not written yet");
 
 		///// biggest problem is make sure any aleatory number does the right thing
@@ -100,5 +100,25 @@ public class TestContactManagerImpl{
 		//test section >> testing whether id is being returned and if it is being added to the csvRows variable
 		int meetingID = cm.addFutureMeeting(inputContactList, userInputDate);
 		*/
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowIllegalArgEfromContact(){
+		fail("not written yet");
+		/*
+		///// biggest problem is make sure any aleatory number does the right thing
+		
+		
+		int contactID = 3;
+		Calendar userInputDate = new GregorianCalendar(2014, 10, 21); //using this class because the implementation is much easier
+		//mocking section
+		Contact mockContact = mock(Contact.class);
+        when(mockContact.getId()).thenReturn(contactID);
+    	Set<Contact> inputContactList = new HashSet<Contact>();
+		inputContactList.add(mockContact);
+
+		//test section >> testing whether id is being returned and if it is being added to the csvRows variable
+		int meetingID = cm.addFutureMeeting(inputContactList, userInputDate);
+		*/
+		
 	}
 }

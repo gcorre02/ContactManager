@@ -143,9 +143,9 @@ public class ContactManagerImpl implements ContactManager {
 
 		//need to simplify the date info
 		//need to decide if hashcode is ok or if actual date data is better, refer to interface specs - how is the data supposed to be saved on the csv? should it be readable???? 
-		//into the format -> String meetingDate = year , month, day <//
+		//into the format -> String meetingDate = ,''object.date'' <need to figure out if it is a specific time'date or an interval in time// <need to look into column heading structure in CSV files//
 
-		String newMeetingString = newMeetingId + ", M ,"+ date.hashCode() + meetingNames;
+		String newMeetingString = newMeetingId + ", M ,"+ date.getTime().toString() + meetingNames;
 		csvRows.add(newMeetingString);
 		//debug
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> "+newMeetingString);
