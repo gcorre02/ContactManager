@@ -48,7 +48,7 @@ public class TestContactManagerImpl{
 	public static void afterTestIsRun(){
 		String fileDir = "."+ File.separator +"contacts.txt";
 		File csv = new File(fileDir);
-		csv.delete();
+		//csv.delete();
 	}
 
 	@Test
@@ -85,6 +85,8 @@ public class TestContactManagerImpl{
 	@Test
 	public void shouldThrowIllegalArgE(){
 		fail("not written yet");
+
+		///// biggest problem is make sure any aleatory number does the right thing
 		/////NOT WRITTEN YET, COPY PASTE ONLY!!
 		/*
 		int contactID = 34;

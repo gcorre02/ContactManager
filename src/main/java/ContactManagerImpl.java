@@ -19,7 +19,7 @@ import java.nio.charset.StandardCharsets;
 * A class to manage your contacts and meetings.
 */
 public class ContactManagerImpl implements ContactManager {
-	
+	// id value could be a hashcode for the object with all the info <//
 	private Set<Contact> storedContacts;
 	private Set<Meeting> storedMeetings;
 	private List<Integer> contactIDs;
@@ -117,40 +117,40 @@ public class ContactManagerImpl implements ContactManager {
 	* of if any contact is unknown / non-existent
 	*/
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) throws IllegalArgumentException{
-		//debug
-		printIterThroughIndexes();
-		// iterate through each contact in contacts, return id and verify it against ids in contactIDs
+
 		Iterator<Contact> iter = contacts.iterator();
 		Set<Integer> userContactsInputID = new HashSet<Integer>();
 		String meetingNames = "";
+		
 		while(iter.hasNext()){
-			///not sure it isn't moving the iter forward everytime .next() is called...
 			Contact current = iter.next();
 			if(contactIDs.contains(current.getId())){
 				userContactsInputID.add(current.getId());
-				meetingNames = meetingNames + current.getName() + " , ";
+				meetingNames = meetingNames + " , "+ current.getName() ;
 			} else {
 				throw new IllegalArgumentException();
 			}
 		}
-		// check calendar date against current date (gregorian calendar not included in the interface...)
+		
 		Calendar present = Calendar.getInstance();
 		if(!date.after(present)){
 			System.out.println("Date for the meeting is in the past");
 			throw new IllegalArgumentException();
 		}
-		// return an ID for the future meeting and populate the csvRows array with the details of the meeting (return comes last, but finding the ID comes first)
-		int newMeetingId = Collections.max(meetingIDs)+1;
-		//debug
-		System.out.println(newMeetingId + "<<<<<<< this is the new meeting ID");
-		
+
+		int newMeetingId = Collections.max(meetingIDs)+1;		
 		meetingIDs.add(newMeetingId);
-		String newMeetingString = newMeetingId + ", M ,"+ date.toString() + meetingNames;
+
+		//need to simplify the date info
+		//need to decide if hashcode is ok or if actual date data is better, refer to interface specs - how is the data supposed to be saved on the csv? should it be readable???? 
+		//into the format -> String meetingDate = year , month, day <//
+
+		String newMeetingString = newMeetingId + ", M ,"+ date.hashCode() + meetingNames;
 		csvRows.add(newMeetingString);
 		//debug
-		printIterThroughIndexes();
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> "+newMeetingString);
+
 		return newMeetingId;
-	
 	}
 
 	/**
