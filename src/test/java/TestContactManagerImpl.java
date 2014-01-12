@@ -48,7 +48,7 @@ public class TestContactManagerImpl{
 	public static void afterTestIsRun(){
 		String fileDir = "."+ File.separator +"contacts.txt";
 		File csv = new File(fileDir);
-		csv.delete();
+		//csv.delete();
 	}
 
 	@Test
@@ -112,8 +112,24 @@ public class TestContactManagerImpl{
 		inputContactList1.add(mockContact1);
 
 		//test section >> testing whether id is being returned and if it is being added to the csvRows variable
-		int meetingID = cm.addFutureMeeting(inputContactList1, userInputDate);
-		
-		
+		int meetingID = cm.addFutureMeeting(inputContactList1, userInputDate);	
+	}
+
+	/**
+	* Returns the PAST meeting with the requested ID, or null if it there is none.
+	*
+	* @param id the ID for the meeting
+	* @return the meeting with the requested ID, or null if it there is none.
+	* @throws IllegalArgumentException if there is a meeting with that ID happening in the future
+	*/
+	@Test
+	public void testIdsAndReturnsPastMeetingCorrectly(){
+		fail("test not written yet");
+		//null return tested here too
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void testPrevMeetingIdInFuture(){
+		fail("test not written yet");
+		//checks if there exists a meeting with that id in the future;
 	}
 }

@@ -141,14 +141,10 @@ public class ContactManagerImpl implements ContactManager {
 		int newMeetingId = Collections.max(meetingIDs)+1;		
 		meetingIDs.add(newMeetingId);
 
-		//need to simplify the date info
-		//need to decide if hashcode is ok or if actual date data is better, refer to interface specs - how is the data supposed to be saved on the csv? should it be readable???? 
-		//into the format -> String meetingDate = ,''object.date'' <need to figure out if it is a specific time'date or an interval in time// <need to look into column heading structure in CSV files//
+		// <need to look into column heading structure in CSV files//
 
 		String newMeetingString = newMeetingId + ", M ,"+ date.getTime().toString() + meetingNames;
 		csvRows.add(newMeetingString);
-		//debug
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> "+newMeetingString);
 
 		return newMeetingId;
 	}
@@ -179,5 +175,15 @@ public class ContactManagerImpl implements ContactManager {
 		}
 	}
 
-
+	/**
+	* Returns the PAST meeting with the requested ID, or null if it there is none.
+	*
+	* @param id the ID for the meeting
+	* @return the meeting with the requested ID, or null if it there is none.
+	* @throws IllegalArgumentException if there is a meeting with that ID happening in the future
+	*/
+	public PastMeeting getPastMeeting(int id){
+		//not written yet
+		return null; 
+	}
 }
