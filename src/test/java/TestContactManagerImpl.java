@@ -78,7 +78,7 @@ public class TestContactManagerImpl{
 		//test section >> testing whether id is being returned and if it is being added to the csvRows variable
 		int meetingID = cm.addFutureMeeting(inputContactList, userInputDate);
 		int newMeetingIndex = Integer.parseInt(cm.getCsvRows()[cm.getCsvRows().length-1].substring(0,cm.getCsvRows()[cm.getCsvRows().length-1].indexOf(',')));
-		assertTrue(newMeetingIndex == meetingID);		
+		assertEquals(newMeetingIndex, meetingID);		
 	}
 	
 	//tests whether the right exception is thrown and if it is handled propperly, one for date in the past and one for invalid contact

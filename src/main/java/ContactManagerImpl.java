@@ -122,11 +122,13 @@ public class ContactManagerImpl implements ContactManager {
 		// iterate through each contact in contacts, return id and verify it against ids in contactIDs
 		Iterator<Contact> iter = contacts.iterator();
 		Set<Integer> userContactsInputID = new HashSet<Integer>();
+		String meetingNames = "";
 		while(iter.hasNext()){
 			///not sure it isn't moving the iter forward everytime .next() is called...
 			Contact current = iter.next();
 			if(contactIDs.contains(current.getId())){
 				userContactsInputID.add(current.getId());
+				meetingNames = meetingNames + current.getName() + " , ";
 			} else {
 				throw new IllegalArgumentException();
 			}
@@ -139,12 +141,15 @@ public class ContactManagerImpl implements ContactManager {
 		}
 		// return an ID for the future meeting and populate the csvRows array with the details of the meeting (return comes last, but finding the ID comes first)
 		int newMeetingId = Collections.max(meetingIDs)+1;
-		System.out.println(newMeetingId);
-		meetingIDs.add(newMeetingId);
+		//debug
+		System.out.println(newMeetingId + "<<<<<<< this is the new meeting ID");
 		
+		meetingIDs.add(newMeetingId);
+		String newMeetingString = newMeetingId + ", M ,"+ date.toString() + meetingNames;
+		csvRows.add(newMeetingString);
 		//debug
 		printIterThroughIndexes();
-		return newMeetingId+1;
+		return newMeetingId;
 	
 	}
 
