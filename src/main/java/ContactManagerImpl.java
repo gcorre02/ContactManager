@@ -77,7 +77,7 @@ public class ContactManagerImpl implements ContactManager {
 						if(rows[i].charAt(t+1) == 'C'){
 							
 							contactIDs.add(Integer.parseInt(rows[i].substring(0,t)));
-							int n = t+4;
+							int n = t+4; //need to find the next comma (change this) -- works though, so it might actually be cleaner
 							String name = "";
 							
 							while(rows[i].charAt(n) != ','){
@@ -101,6 +101,7 @@ public class ContactManagerImpl implements ContactManager {
 			System.out.println("nothing in the row");
 		}
 	}
+
 	/**
 	* Add a new meeting to be held in the future.
 	*
@@ -111,6 +112,11 @@ public class ContactManagerImpl implements ContactManager {
 	* of if any contact is unknown / non-existent
 	*/
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) throws IllegalArgumentException{
+		int stub = 0;
+		return stub;
+	}
+
+	public int verifyContactID(Contact person){
 		int stub = 0;
 		return stub;
 	}

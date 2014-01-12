@@ -5,6 +5,13 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.hamcrest.CoreMatchers.*;
 
+import java.util.HashSet;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Set;
+import java.util.ArrayList;
+
 import java.io.*;
 
 public class TestContactManagerImpl{
@@ -13,7 +20,7 @@ public class TestContactManagerImpl{
 
 	@Before
 	public void beforeMethodTest(){
-		cm = new ContactManagerImpl();
+		cm = spy(new ContactManagerImpl());
 	}
 
 	@After
@@ -44,7 +51,7 @@ public class TestContactManagerImpl{
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write("0,M, Merlock Shant, 023555123");
 			bw.newLine();
-			bw.write("1,C, Sherlock Shant, 079555768");
+			bw.write("2457,C, Sherlock Shant, 079555768");
 			bw.newLine();
 			bw.write("2,M, Merlock BadBury, 023555123");
 			bw.newLine();
@@ -66,12 +73,39 @@ public class TestContactManagerImpl{
 	* need to test : @return the ID for the meeting
 	* need to test : @throws IllegalArgumentException if the meeting is set for a time in the past,
 	* of if any contact is unknown / non-existent
-	* need to test : check meeting has been added to the (schedule) meetings(field)
+	* need to test : check meeting has been added to the (schedule) meetings(array)
 	**/
 	@Test
 	public void testAddFutureMeeting(){
-		fail("Test Not Written yet");
-		//write mock for args input
-		//write test
+		int contactID = 34;
+		Calendar userInputDate = new GregorianCalendar(2014, 10, 21);
+		//mocking section
+		Contact mockContact = mock(Contact.class);
+        when(mockContact.getId()).thenReturn(contactID);
+    	Set<Contact> inputContactList = new HashSet<Contact>();
+		inputContactList.add(mockContact);
+
+		//test section >> testing whether id is being returned and if it is being added to the csvRows variable
+		int meetingID = cm.addFutureMeeting(inputContactList, userInputDate);
+		int newMeetingIndex = Integer.parseInt(cm.getCsvRows()[cm.getCsvRows().length-1].substring(0,cm.getCsvRows()[cm.getCsvRows().length-1].indexOf(',')));
+		assertTrue(newMeetingIndex == meetingID);		
+	}
+	//tests whether the right exception is thrown and if it is handled propperly, one for date in the past and one for invalid contact
+	@Test
+	public void shouldThrowIllegalArgE(){
+		fail("not written yet");
+		/////NOT WRITTEN YET, COPY PASTE ONLY!!
+		/*
+		int contactID = 34;
+		Calendar userInputDate = new GregorianCalendar(2014, 10, 21);
+		//mocking section
+		Contact mockContact = mock(Contact.class);
+        when(mockContact.getId()).thenReturn(contactID);
+    	Set<Contact> inputContactList = new HashSet<Contact>();
+		inputContactList.add(mockContact);
+
+		//test section >> testing whether id is being returned and if it is being added to the csvRows variable
+		int meetingID = cm.addFutureMeeting(inputContactList, userInputDate);
+		*/
 	}
 }
