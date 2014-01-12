@@ -82,24 +82,20 @@ public class TestContactManagerImpl{
 	}
 	
 	//tests whether the right exception is thrown and if it is handled propperly, one for date in the past and one for invalid contact
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void shouldThrowIllegalArgEfromDate(){
-		fail("not written yet");
-
-		///// biggest problem is make sure any aleatory number does the right thing
-		/////NOT WRITTEN YET, COPY PASTE ONLY!!
-		/*
-		int contactID = 34;
-		Calendar userInputDate = new GregorianCalendar(2014, 10, 21);
+		
+		int contactID2 = 3;
+		Calendar userInputDate = new GregorianCalendar(2013, 10, 21); //using this class because the implementation is much easier
 		//mocking section
-		Contact mockContact = mock(Contact.class);
-        when(mockContact.getId()).thenReturn(contactID);
-    	Set<Contact> inputContactList = new HashSet<Contact>();
-		inputContactList.add(mockContact);
+		Contact mockContact2 = mock(Contact.class);
+        when(mockContact2.getId()).thenReturn(contactID2);
+    	Set<Contact> inputContactList2 = new HashSet<Contact>();
+		inputContactList2.add(mockContact2);
 
 		//test section >> testing whether id is being returned and if it is being added to the csvRows variable
-		int meetingID = cm.addFutureMeeting(inputContactList, userInputDate);
-		*/
+		int meetingID = cm.addFutureMeeting(inputContactList2, userInputDate);
+
 	}
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldThrowIllegalArgEfromContact(){
@@ -107,16 +103,16 @@ public class TestContactManagerImpl{
 		///// biggest problem is make sure any aleatory number does the right thing
 		
 		
-		int contactID = 3;
+		int contactID1 = 5;
 		Calendar userInputDate = new GregorianCalendar(2014, 10, 21); //using this class because the implementation is much easier
 		//mocking section
-		Contact mockContact = mock(Contact.class);
-        when(mockContact.getId()).thenReturn(contactID);
-    	Set<Contact> inputContactList = new HashSet<Contact>();
-		inputContactList.add(mockContact);
+		Contact mockContact1 = mock(Contact.class);
+        when(mockContact1.getId()).thenReturn(contactID1);
+    	Set<Contact> inputContactList1 = new HashSet<Contact>();
+		inputContactList1.add(mockContact1);
 
 		//test section >> testing whether id is being returned and if it is being added to the csvRows variable
-		int meetingID = cm.addFutureMeeting(inputContactList, userInputDate);
+		int meetingID = cm.addFutureMeeting(inputContactList1, userInputDate);
 		
 		
 	}
