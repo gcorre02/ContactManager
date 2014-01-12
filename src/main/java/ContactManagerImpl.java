@@ -101,8 +101,6 @@ public class ContactManagerImpl implements ContactManager {
 						}
 					}
 				}
-				//@debug
-				printIterThroughIndexes();
 			}
 		} catch(NullPointerException e){
 			System.out.println("nothing in the row");
@@ -119,13 +117,16 @@ public class ContactManagerImpl implements ContactManager {
 	* of if any contact is unknown / non-existent
 	*/
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) throws IllegalArgumentException{
+		//debug
+		printIterThroughIndexes();
 		// iterate through each contact in contacts, return id and verify it against ids in contactIDs
 		Iterator<Contact> iter = contacts.iterator();
 		Set<Integer> userContactsInputID = new HashSet<Integer>();
 		while(iter.hasNext()){
 			///not sure it isn't moving the iter forward everytime .next() is called...
-			if(contactIDs.contains(iter.next().getId())){
-				userContactsInputID.add(iter.next().getId());
+			Contact current = iter.next();
+			if(contactIDs.contains(current.getId())){
+				userContactsInputID.add(current.getId());
 			} else {
 				throw new IllegalArgumentException();
 			}
@@ -139,6 +140,10 @@ public class ContactManagerImpl implements ContactManager {
 		// return an ID for the future meeting and populate the csvRows array with the details of the meeting (return comes last, but finding the ID comes first)
 		int newMeetingId = Collections.max(meetingIDs)+1;
 		System.out.println(newMeetingId);
+		meetingIDs.add(newMeetingId);
+		
+		//debug
+		printIterThroughIndexes();
 		return newMeetingId+1;
 	
 	}

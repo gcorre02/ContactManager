@@ -21,6 +21,22 @@ public class TestContactManagerImpl{
 	@Before
 	public void beforeMethodTest(){
 		cm = spy(new ContactManagerImpl());
+		try{
+			String fileDir = "."+ File.separator +"contacts.txt";
+			File csv = new File(fileDir);
+			FileWriter fw = new FileWriter(csv.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write("0,M, Merlock Shant, 023555123");
+			bw.newLine();
+			bw.write("2457,C, Sherlock Shant, 079555768");
+			bw.newLine();
+			bw.write("2,M, Merlock BadBury, 023555123");
+			bw.newLine();
+			bw.write("3,C, Sherlock BadBury, 079555768");
+			bw.close();
+		} catch(IOException e){
+			fail("file doesnt exist");
+		}
 	}
 
 	@After
@@ -44,24 +60,6 @@ public class TestContactManagerImpl{
 
 	@Test
 	public void testCSVIndexisLoaded(){		
-		try{
-			String fileDir = "."+ File.separator +"contacts.txt";
-			File csv = new File(fileDir);
-			FileWriter fw = new FileWriter(csv.getAbsoluteFile());
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write("0,M, Merlock Shant, 023555123");
-			bw.newLine();
-			bw.write("2457,C, Sherlock Shant, 079555768");
-			bw.newLine();
-			bw.write("2,M, Merlock BadBury, 023555123");
-			bw.newLine();
-			bw.write("3,C, Sherlock BadBury, 079555768");
-			bw.close();
-		} catch(IOException e){
-			fail("file doesnt exist");
-		}
-		cm = null;
-		cm = new ContactManagerImpl();
 		//need to check if csvRows is populated;
 		assertEquals(cm.getCsvRows()[3],"3,C, Sherlock BadBury, 079555768");
 	}
