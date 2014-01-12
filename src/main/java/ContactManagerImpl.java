@@ -85,7 +85,7 @@ public class ContactManagerImpl implements ContactManager {
 								n++;
 							}
 
-							System.out.println(name);
+							//System.out.println(name);
 							contactNames.add(name);
 							t = rows[i].length()-1;
 						
@@ -95,6 +95,7 @@ public class ContactManagerImpl implements ContactManager {
 						}
 					}
 				}
+				printIterThroughIndexes();
 				//System.out.println("contactIDs size is" + contactIDs.size()+" meetingIDs size is " + meetingIDs.size());
 			}
 		} catch(NullPointerException e){
@@ -115,9 +116,31 @@ public class ContactManagerImpl implements ContactManager {
 		int stub = 0;
 		return stub;
 	}
-
-	public int verifyContactID(Contact person){
-		int stub = 0;
-		return stub;
+	/**
+	*
+	* private method for debug purposes
+	*
+	*
+	*
+	*/
+	private void printIterThroughIndexes(){
+		System.out.println("<<<<<CONTENTS OF contactIDS >>>>>>>>>> :");
+		for( Integer id : contactIDs){
+			System.out.println(id);
+		}
+		System.out.println("<<<<<CONTENTS OF meetingIDs >>>>>>>>>> :");
+		for( Integer id : meetingIDs){
+			System.out.println(id);
+		}
+		System.out.println("<<<<<CONTENTS OF contactNames >>>>>>>>>> :");
+		for( String str : contactNames){
+			System.out.println(str);
+		}
+		System.out.println("<<<<<CONTENTS OF csvRows >>>>>>>>>> :");
+		for( String str : csvRows){
+			System.out.println(str);
+		}
 	}
+
+
 }
