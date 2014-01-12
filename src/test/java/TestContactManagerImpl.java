@@ -69,8 +69,8 @@ public class TestContactManagerImpl{
 	
 	@Test
 	public void testAddFutureMeeting(){
-		int contactID = 34;
-		Calendar userInputDate = new GregorianCalendar(2014, 10, 21);
+		int contactID = 3;
+		Calendar userInputDate = new GregorianCalendar(2014, 10, 21); //using this class because the implementation is much easier
 		//mocking section
 		Contact mockContact = mock(Contact.class);
         when(mockContact.getId()).thenReturn(contactID);

@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import java.lang.IllegalArgumentException;
 
@@ -132,13 +133,13 @@ public class ContactManagerImpl implements ContactManager {
 		// check calendar date against current date (gregorian calendar not included in the interface...)
 		Calendar present = Calendar.getInstance();
 		if(!date.after(present)){
-			throw new IllegalArgumentException();
 			System.out.println("Date for the meeting is in the past");
+			throw new IllegalArgumentException();
 		}
 		// return an ID for the future meeting and populate the csvRows array with the details of the meeting (return comes last, but finding the ID comes first)
-		
-		int stub = 0;
-		return stub;
+		int newMeetingId = Collections.max(meetingIDs)+1;
+		System.out.println(newMeetingId);
+		return newMeetingId+1;
 	
 	}
 
