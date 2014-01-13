@@ -17,6 +17,14 @@ public interface ContactManager {
 	String[] getCsvRows();
 
 	/**
+	* 
+	* temporarely public for testing purposes, until powermock.
+	* method used to convert any meeting row in csvRows into a Meeting object, stubbed until impl 
+	*
+	*/
+	public Meeting convertToMeeting(int id);
+
+	/**
 	* Add a new meeting to be held in the future.
 	*
 	* @param contacts a list of contacts that will participate in the meeting
