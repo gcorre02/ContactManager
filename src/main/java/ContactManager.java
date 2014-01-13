@@ -11,20 +11,6 @@ import java.util.Set;
 public interface ContactManager {
 	
 	/**
-	* getter for csvRows field
-	* non interface method, must be privatized (how can the test access it ? maybe make the actual field protected, not private)
-	*/
-	String[] getCsvRows();
-
-	/**
-	* 
-	* temporarely public for testing purposes, until powermock.
-	* method used to convert any meeting row in csvRows into a Meeting object, stubbed until impl 
-	*
-	*/
-	public PastMeeting convertToPastMeeting(int id);
-
-	/**
 	* Add a new meeting to be held in the future.
 	*
 	* @param contacts a list of contacts that will participate in the meeting
@@ -51,7 +37,7 @@ public interface ContactManager {
 	* @return the meeting with the requested ID, or null if it there is none.
 	* @throws IllegalArgumentException if there is a meeting with that ID happening in the PastMeeting
 	*/
-	//FutureMeeting getFutureMeeting(int id);
+	FutureMeeting getFutureMeeting(int id);
 
 	/**
 	* Returns the meeting with the requested ID, or null if it there is none.
@@ -59,7 +45,7 @@ public interface ContactManager {
 	* @param id the ID for the meeting
 	* @return the meeting with the requested ID, or null if it there is none.
 	*/
-	//Meeting getMeeting(int id);
+	Meeting getMeeting(int id);
 
 	/**
 	* Returns the list of future meetings scheduled with this contact.
@@ -72,7 +58,7 @@ public interface ContactManager {
 	* @return the list of future meeting(s) scheduled with this contact (maybe empty).
 	* @throws IllegalArgumentException if the contact does not exist
 	*/
-	//List<Meeting> getFutureMeetingList(Contact contact);
+	List<Meeting> getFutureMeetingList(Contact contact);
 
 	/**
 	* Returns the list of meetings that are scheduled for, or that took
@@ -85,7 +71,7 @@ public interface ContactManager {
 	* @param date the date
 	* @return the list of meetings
 	*/
-	//List<Meeting> getFutureMeetingList(Calendar date);
+	List<Meeting> getFutureMeetingList(Calendar date);
 
 	/**
 	* Returns the list of past meetings in which this contact has participated.
@@ -98,7 +84,7 @@ public interface ContactManager {
 	* @return the list of future meeting(s) scheduled with this contact (maybe empty).
 	* @throws IllegalArgumentException if the contact does not exist
 	*/
-	//List<PastMeeting> getPastMeetingList(Contact contact);
+	List<PastMeeting> getPastMeetingList(Contact contact);
 
 	/**
 	* Create a new record for a meeting that took place in the past.
@@ -110,7 +96,7 @@ public interface ContactManager {
 	* empty, or any of the contacts does not exist
 	* @throws NullPointerException if any of the arguments is null
 	*/
-	//void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text);
+	void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text);
 
 	/**
 	* Add notes to a meeting.
@@ -126,7 +112,7 @@ public interface ContactManager {
 	* @throws IllegalStateException if the meeting is set for a date in the future
 	* @throws NullPointerException if the notes are null
 	*/
-	//void addMeetingNotes(int id, String text);
+	void addMeetingNotes(int id, String text);
 
 	/**
 	* Create a new contact with the specified name and notes.
@@ -135,7 +121,7 @@ public interface ContactManager {
 	* @param notes notes to be added about the contact.
 	* @throws NullPointerException if the name or the notes are null
 	*/
-	//void addNewContact(String name, String notes);
+	void addNewContact(String name, String notes);
 
 	/**
 	* Returns a list containing the contacts that correspond to the IDs.
@@ -144,7 +130,7 @@ public interface ContactManager {
 	* @return a list containing the contacts that correspond to the IDs.
 	* @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
 	*/
-	//Set<Contact> getContacts(int... ids);
+	Set<Contact> getContacts(int... ids);
 
 	/**
 	* Returns a list with the contacts whose name contains that string.
@@ -153,7 +139,7 @@ public interface ContactManager {
 	* @return a list with the contacts whose name contains that string.
 	* @throws NullPointerException if the parameter is null
 	*/
-	//Set<Contact> getContacts(String name);
+	Set<Contact> getContacts(String name);
 
 	/**
 	* Save all data to disk.
@@ -161,5 +147,5 @@ public interface ContactManager {
 	* This method must be executed when the program is
 	* closed and when/if the user requests it.
 	*/
-	//void flush();
+	void flush();
 	}
