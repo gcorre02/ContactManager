@@ -1,3 +1,4 @@
+
 package contactmgmt;
 
 import java.util.Calendar;
@@ -9,7 +10,29 @@ import java.util.Set;
 * A class to manage your contacts and meetings.
 */
 public interface ContactManager {
-	
+
+	private boolean setsAreEmpty;
+	private Set<Contact> allContacts;
+	private Set<Meeting> allMeetings;
+	private List<int> contactIndexes;
+	private List<int> meetingIndexes;
+	private List<String> csvRows;
+
+	/**
+	* <<<<<<<<<<< LIST OF PRIVATE METHODS I AM GOING TO NEED  >>>>>>>>>>>
+	*
+	*	//populates csvRows and updates setsAreEmpty;
+	*	private void readFile(){}
+	*
+	*	private void populateIndexes(){}
+	*	private void populateSets(){}
+	*	private Contact getContactFromSet(int Id){}
+	*	private Meeting getMeetingFromSet(int Id){}
+	*	private boolean meetingIsInThePast(Meeting candidateMeeting){}
+	*	private boolean meetingIsInTheFuture(Meeting candidateMeeting){}
+	*/
+
+
 	/**
 	* Add a new meeting to be held in the future.
 	*
@@ -22,7 +45,7 @@ public interface ContactManager {
 	int addFutureMeeting(Set<Contact> contacts, Calendar date);
 
 	/**
-	* Returns the PAST meeting with the requested ID, or null if it there is none.
+	* Returns the PAST meeting with the requested ID, or null if there is none.
 	*
 	* @param id the ID for the meeting
 	* @return the meeting with the requested ID, or null if it there is none.
@@ -148,4 +171,4 @@ public interface ContactManager {
 	* closed and when/if the user requests it.
 	*/
 	void flush();
-}
+	}
