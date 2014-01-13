@@ -22,7 +22,7 @@ public interface ContactManager {
 	* method used to convert any meeting row in csvRows into a Meeting object, stubbed until impl 
 	*
 	*/
-	public Meeting convertToMeeting(int id);
+	public PastMeeting convertToPastMeeting(int id);
 
 	/**
 	* Add a new meeting to be held in the future.

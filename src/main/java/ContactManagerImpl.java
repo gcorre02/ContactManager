@@ -2,9 +2,9 @@ package contactmgmt;
 
 import java.util.Iterator;
 import java.util.HashSet;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Calendar;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -133,7 +133,7 @@ public class ContactManagerImpl implements ContactManager {
 			}
 			
 		}
-		
+		// make this a private method so it doesn't need to be repeated
 		Calendar present = Calendar.getInstance();
 		if(!date.after(present)){
 			System.out.println("Date for the meeting is in the past");
@@ -184,33 +184,46 @@ public class ContactManagerImpl implements ContactManager {
 	* @return the meeting with the requested ID, or null if it there is none.
 	* @throws IllegalArgumentException if there is a meeting with that ID happening in the future
 	*/
-	public PastMeeting getPastMeeting(int id){
+	public PastMeeting getPastMeeting(int id) throws IllegalArgumentException{
 		//not written yet
 		/*
 		* quick way of asserting if past meeting is in the future is by associating the present with an ID ? 
 		* this implicates there being an int value associated with date, is this necessary ? 
 		* maybe later, it's a performance concern, not ffor now
 		*/
+		
+		
+		// checks id exists and returns PastMeeting 
 		int t = 0;
+		
 		for(Integer it : meetingIDs){
 			if(t==meetingIDs.size()-1
 				&& it != id ){
 				return null;
-			} else{ ///so not testing for the future yet
-				return convertToMeeting(id);
+			} else{
+				t++;		
 			}
 		}
-
-		return null; 
+		PastMeeting returnableMeeting = convertToPastMeeting(id);
+		if(returnableMeeting == null){
+			throw new IllegalArgumentException();
+		}
+		return convertToPastMeeting(id);
 	}
-	public PastMeeting convertToMeeting(int id){
+	public PastMeeting convertToPastMeeting(int id){
 		//.convertToMeeting() only needs stubbing until impl is actually there//
-		PastMeeting stub = null;
-		return stub;
+		// returns null if meeting is the future
+		//still a stub
+		if(id!=0){
+			return null;
+		}else {
+			PastMeeting stub = new PastMeetingImpl();// = new PastMeetingImpl();
+			return stub;
+		}
 	}
-	public Meeting convertToMeeting(int id, String typeOfMeeting){
+	public FutureMeeting convertToFutureMeeting(int id){
 		//.convertToMeeting() only needs stubbing until impl is actually there//
-		Meeting stub = null;
+		FutureMeeting stub = null;
 		return stub;
 	}
 }
