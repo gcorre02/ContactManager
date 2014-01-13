@@ -141,7 +141,7 @@ public class TestContactManagerImpl{
 	@Test
 	public void testGetPastMeetingNull(){
 		//null return tested here too
-		fail("test not written yet");
-//		assertEquals(null, cm.getPastMeeting(1));
+		//fail("test not written yet");
+		assertEquals(null, cm.getPastMeeting(1));
 	}
 }

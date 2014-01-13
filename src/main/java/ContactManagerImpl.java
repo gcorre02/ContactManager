@@ -191,9 +191,19 @@ public class ContactManagerImpl implements ContactManager {
 		* this implicates there being an int value associated with date, is this necessary ? 
 		* maybe later, it's a performance concern, not ffor now
 		*/
+		int t = 0;
+		for(Integer it : meetingIDs){
+			if(t==meetingIDs.size()-1
+				&& it != id ){
+				return null;
+			} else{ ///so not testing for the future yet
+				return convertToMeeting(id);
+			}
+		}
+
 		return null; 
 	}
-	public Meeting convertToMeeting(int id){
+	public PastMeeting convertToMeeting(int id){
 		//.convertToMeeting() only needs stubbing until impl is actually there//
 		PastMeeting stub = null;
 		return stub;
