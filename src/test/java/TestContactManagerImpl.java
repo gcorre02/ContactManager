@@ -124,8 +124,16 @@ public class TestContactManagerImpl{
 	*/
 	@Test
 	public void testIdsAndReturnsPastMeetingCorrectly(){
-		fail("test not written yet");
+		//mocking section
+		Meeting pastMeetingMock = mock(PastMeeting.class);
+		when(pastMeetingMock.getId()).thenReturn(0);
+		//cm must have a method that converts the Strings in csvRows into meeting objects >> private Meeting convertToMeeting(int id), should be private
+		//.convertToMeeting() is a method that can be called inside the populate index arrays method, should be PRIVATE!! - Use PowerMock to do it//
+		when(cm.convertToMeeting(0)).thenReturn(pastMeetingMock);
+		//this test makes sure that the pastMeeting in the meetings set<Meetings> that corresponds to the int id is being retrieved//  
+		assertEquals(0, cm.getPastMeeting(0).getId());
 		//null return tested here too
+		assertEquals(null, cm.getPastMeeting(1));
 	}
 	@Test(expected = IllegalArgumentException.class)
 	public void testPrevMeetingIdInFuture(){

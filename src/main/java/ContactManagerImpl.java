@@ -186,6 +186,13 @@ public class ContactManagerImpl implements ContactManager {
 	*/
 	public PastMeeting getPastMeeting(int id){
 		//not written yet
+		/*
+		* quick way of asserting if past meeting is in the future is by associating the present with an ID ? 
+		* this implicates there being an int value associated with date, is this necessary ? 
+		* maybe later, it's a performance concern, not ffor now
+		*/
+
+
 		return null; 
 	}
 }
