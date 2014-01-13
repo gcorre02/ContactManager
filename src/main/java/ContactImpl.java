@@ -5,21 +5,30 @@ package contactmgmt;
 * Contacts have an ID (unique), a name (probably unique, but maybe
 * not), and notes that the user may want to save about them.
 */
-public interface Contact {
+public class ContactImpl implements Contact {
+	String notes;
+	String name;
+	int id;
 
 /**
 * Returns the ID of the contact.
 *
 * @return the ID of the contact.
 */
-int getId();
+public int getId(){
+	int stub = id;
+	return stub;
+}
 
 /**
 * Returns the name of the contact.
 *
 * @return the name of the contact.
 */
-String getName();
+public String getName(){
+	String stub = name;
+	return name;
+}
 
 /**
 * Returns our notes about the contact, if any.
@@ -29,12 +38,15 @@ String getName();
 *
 * @return a string with notes about the contact, maybe empty.
 */
-String getNotes();
+public String getNotes(){
+	String stub = notes;
+	return stub;
+}
 
 /**
 * Add notes about the contact.
 *
 * @param note the notes to be added
 */
-void addNotes(String note);
+public void addNotes(String note){}
 }
