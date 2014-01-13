@@ -16,14 +16,20 @@ public class PastMeetingImpl implements PastMeeting {
 *
 * @return the id of the meeting.
 */
-public int getId(){}
+	public int getId(){
+		int stub = 0;
+		return stub;
+	}
 
 /**
 * Return the date of the meeting.
 *
 * @return the date of the meeting.
 */
-public Calendar getDate(){}
+	public Calendar getDate(){
+		Calendar stub = null;
+		return stub;
+	}
 
 /**
 * Return the details of people that attended the meeting.
@@ -34,7 +40,10 @@ public Calendar getDate(){}
 *
 * @return the details of people that attended the meeting.
 */
-public Set<Contact> getContacts(){}
+	public Set<Contact> getContacts(){
+		Set<Contact> stub = null;
+		return stub;
+	}
 
 /**
 * Returns the notes from the meeting.
@@ -43,6 +52,9 @@ public Set<Contact> getContacts(){}
 *
 * @return the notes from the meeting.
 */
-public String getNotes(){}
+	public String getNotes(){
+		String stub = null;
+		return stub;
+	}
 
 }

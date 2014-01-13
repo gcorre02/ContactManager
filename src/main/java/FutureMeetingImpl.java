@@ -17,7 +17,8 @@ public class FutureMeetingImpl implements FutureMeeting{
 * @return the id of the meeting.
 */
 public int getId(){
-
+	int stub = 0;
+	return stub;
 }
 
 /**
@@ -25,7 +26,10 @@ public int getId(){
 *
 * @return the date of the meeting.
 */
-public Calendar getDate(){}
+public Calendar getDate(){
+	Calendar date = null;
+	return date;
+}
 
 /**
 * Return the details of people that attended the meeting.
@@ -36,6 +40,9 @@ public Calendar getDate(){}
 *
 * @return the details of people that attended the meeting.
 */
-public Set<Contact> getContacts(){}
+public Set<Contact> getContacts(){
+	Set<Contact> stub = null;
+	return null;
+}
 
 }

@@ -91,7 +91,10 @@ public class ContactManagerImpl implements ContactManager {
 	* @throws IllegalArgumentException if the meeting is set for a time in the past,
 	* of if any contact is unknown / non-existent
 	*/
-	public int addFutureMeeting(Set<Contact> contacts, Calendar date){}
+	public int addFutureMeeting(Set<Contact> contacts, Calendar date){
+		int stub= 0;
+		return stub;
+	}
 
 	/**
 	* Returns the PAST meeting with the requested ID, or null if there is none.
@@ -100,7 +103,10 @@ public class ContactManagerImpl implements ContactManager {
 	* @return the meeting with the requested ID, or null if it there is none.
 	* @throws IllegalArgumentException if there is a meeting with that ID happening in the future
 	*/
-	public PastMeeting getPastMeeting(int id){}
+	public PastMeeting getPastMeeting(int id){
+		PastMeeting stub= null;
+		return stub;
+	}
 
 	/**
 	* Returns the FUTURE meeting with the requested ID, or null if there is none.
@@ -109,7 +115,10 @@ public class ContactManagerImpl implements ContactManager {
 	* @return the meeting with the requested ID, or null if it there is none.
 	* @throws IllegalArgumentException if there is a meeting with that ID happening in the PastMeeting
 	*/
-	public FutureMeeting getFutureMeeting(int id){}
+	public FutureMeeting getFutureMeeting(int id){
+		FutureMeeting stub= null;
+		return stub;
+	}
 
 	/**
 	* Returns the meeting with the requested ID, or null if it there is none.
@@ -117,7 +126,10 @@ public class ContactManagerImpl implements ContactManager {
 	* @param id the ID for the meeting
 	* @return the meeting with the requested ID, or null if it there is none.
 	*/
-	public Meeting getMeeting(int id){}
+	public Meeting getMeeting(int id){
+		Meeting stub= null;
+		return stub;
+	}
 
 	/**
 	* Returns the list of future meetings scheduled with this contact.
@@ -130,7 +142,10 @@ public class ContactManagerImpl implements ContactManager {
 	* @return the list of future meeting(s) scheduled with this contact (maybe empty).
 	* @throws IllegalArgumentException if the contact does not exist
 	*/
-	public List<Meeting> getFutureMeetingList(Contact contact){}
+	public List<Meeting> getFutureMeetingList(Contact contact){
+		List<Meeting> stub= null;
+		return stub;
+	}
 
 	/**
 	* Returns the list of meetings that are scheduled for, or that took
@@ -143,7 +158,10 @@ public class ContactManagerImpl implements ContactManager {
 	* @param date the date
 	* @return the list of meetings
 	*/
-	public List<Meeting> getFutureMeetingList(Calendar date){}
+	public List<Meeting> getFutureMeetingList(Calendar date){
+		List<Meeting> stub= null;
+		return stub;
+	}
 
 	/**
 	* Returns the list of past meetings in which this contact has participated.
@@ -156,7 +174,10 @@ public class ContactManagerImpl implements ContactManager {
 	* @return the list of future meeting(s) scheduled with this contact (maybe empty).
 	* @throws IllegalArgumentException if the contact does not exist
 	*/
-	public List<PastMeeting> getPastMeetingList(Contact contact){}
+	public List<PastMeeting> getPastMeetingList(Contact contact){
+		List<PastMeeting> stub= null;
+		return stub;
+	}
 
 	/**
 	* Create a new record for a meeting that took place in the past.
@@ -202,7 +223,10 @@ public class ContactManagerImpl implements ContactManager {
 	* @return a list containing the contacts that correspond to the IDs.
 	* @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
 	*/
-	public Set<Contact> getContacts(int... ids){}
+	public Set<Contact> getContacts(int... ids){
+		Set<Contact> stub = null;
+		return stub;
+	}
 
 	/**
 	* Returns a list with the contacts whose name contains that string.
@@ -211,7 +235,10 @@ public class ContactManagerImpl implements ContactManager {
 	* @return a list with the contacts whose name contains that string.
 	* @throws NullPointerException if the parameter is null
 	*/
-	public Set<Contact> getContacts(String name){}
+	public Set<Contact> getContacts(String name){
+		Set<Contact> stub = null;
+		return stub;
+	}
 
 	/**
 	* Save all data to disk.
