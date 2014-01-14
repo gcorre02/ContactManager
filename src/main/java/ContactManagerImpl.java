@@ -23,8 +23,8 @@ public class ContactManagerImpl implements ContactManager {
 	private boolean setsAreEmpty;
 	private Set<Contact> allContacts;
 	private Set<Meeting> allMeetings;
-	private List<Integer> contactIndexes;
-	private List<Integer> meetingIndexes;
+	private List<Integer> contactIndex;
+	private List<Integer> meetingIndex;
 	private List<String> csvRows;
 
 	
@@ -60,7 +60,7 @@ public class ContactManagerImpl implements ContactManager {
 		
 		//populate csvRows
 		try{
-			csvRows = Files.readAllLines(csv.toPath(), StandardCharsets.US_ASCII);
+			csvRows = Files.readAllLines(csv.toPath(), StandardCharsets.US_ASCII); //look into encoding of this file at fulsh to match <<<///
 			if(csvRows.isEmpty()){
 				System.out.println("File is empty");
 			} else {
@@ -74,12 +74,50 @@ public class ContactManagerImpl implements ContactManager {
 	}
 
 	private void populateIndexes(){
+		for(String row : csvRows){
+
+			String[] elementsOfRow = row.split(",");
+			
+			if(elementsOfRow[1].equals("C")){
+			
+				contactIndex.add(elementsOfRow[0]);
+				populateSets(row,'C');
+			
+			} else {  //   <<<<<<<<<OPORTUNITY TO INDEX PAST AND FUTURE MEETINGS!
+			
+				meetingIndex.add(elementsOfRow[0]);
+				populateSets(row,'M');
+			
+			}
+
+		}
+	}
+
+	private void populateSets(String row, char typeOfRow) throws IllegalArgumentException{
+	//>>>>constructors instantiate fields<<<
+	//>>>>write all constructors <<<<<<<<<<<
+		switch(typeOfRow){
+			case 'M':
+			populateMeetings(row);
+			break;
+
+			case'C':
+			populateContacts(row);
+			break;
+
+			default:
+			throw new IllegalArgumentException();
+		}
+	}
+
+	private void populateMeetings(String row){
 
 	}
 
-	private void populateSets(){
-	//constructors instantiate fields<<<
+	private void populateContacts(String row){
+		
 	}
+
 
 
 	/**
