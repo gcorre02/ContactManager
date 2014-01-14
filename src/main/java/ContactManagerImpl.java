@@ -65,7 +65,6 @@ public class ContactManagerImpl implements ContactManager {
 				System.out.println("File is empty");
 			} else {
 				populateIndexes();
-				populateSets();
 			}
 			
 		} catch(IOException e){
@@ -75,46 +74,26 @@ public class ContactManagerImpl implements ContactManager {
 
 	private void populateIndexes(){
 		for(String row : csvRows){
-
 			String[] elementsOfRow = row.split(",");
-			
 			if(elementsOfRow[1].equals("C")){
-			
-				contactIndex.add(elementsOfRow[0]);
-				populateSets(row,'C');
-			
+				contactIndex.add(Integer.parseInt(elementsOfRow[0]));
+				populateContacts(row);
 			} else {  //   <<<<<<<<<OPORTUNITY TO INDEX PAST AND FUTURE MEETINGS!
-			
-				meetingIndex.add(elementsOfRow[0]);
-				populateSets(row,'M');
-			
+				meetingIndex.add(Integer.parseInt(elementsOfRow[0]));
+				populateMeetings(row);		
 			}
 
 		}
 	}
-	//unnecessary : popMeet and popCont can be called directly above!!!
-	private void populateSets(String row, char typeOfRow) throws IllegalArgumentException{
+	
 	//>>>>constructors instantiate fields<<<
 	//>>>>write all constructors <<<<<<<<<<<
-		switch(typeOfRow){
-			case 'M':
-			populateMeetings(row);
-			break;
 
-			case'C':
-			populateContacts(row);
-			break;
-
-			default:
-			throw new IllegalArgumentException();
-		}
-	}
-
-	private void populateMeetings(String row){
+	private void populateMeetings(String row) throws IllegalArgumentException{
 
 	}
 
-	private void populateContacts(String row){
+	private void populateContacts(String row) throws IllegalArgumentException{
 		
 	}
 
