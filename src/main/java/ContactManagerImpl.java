@@ -35,7 +35,8 @@ public class ContactManagerImpl implements ContactManager {
 	*	private void readFile(){}
 	*
 	*	private void populateIndexes(){}
-	*	private void populateSets(){}
+	*	private void populateMeetings(){}
+	*	private void populateContacts(){}
 	*	private Contact getContactFromSet(int Id){}
 	*	private Meeting getMeetingFromSet(int Id){}
 	*	private boolean meetingIsInThePast(Meeting candidateMeeting){}
@@ -63,22 +64,27 @@ public class ContactManagerImpl implements ContactManager {
 			csvRows = Files.readAllLines(csv.toPath(), StandardCharsets.US_ASCII); //look into encoding of this file at fulsh to match <<<///
 			if(csvRows.isEmpty()){
 				System.out.println("File is empty");
+				setsAreEmpty = true;
 			} else {
 				populateIndexes();
 			}
 			
 		} catch(IOException e){
 			System.out.println("file not found error!!");
+			setsAreEmpty = true;
 		}
 	}
 
 	private void populateIndexes(){
+		if(setsAreEmpty){
+			return;
+		}
 		for(String row : csvRows){
 			String[] elementsOfRow = row.split(",");
 			if(elementsOfRow[1].equals("C")){
 				contactIndex.add(Integer.parseInt(elementsOfRow[0]));
 				populateContacts(row);
-			} else {  //   <<<<<<<<<OPORTUNITY TO INDEX PAST AND FUTURE MEETINGS!
+			} else {  //   <<<<<<<<<OPORTUNITY TO INDEX PAST AND FUTURE MEETINGS!  /// Maybe have all of them to be safe////
 				meetingIndex.add(Integer.parseInt(elementsOfRow[0]));
 				populateMeetings(row);		
 			}
@@ -109,6 +115,7 @@ public class ContactManagerImpl implements ContactManager {
 	* of if any contact is unknown / non-existent
 	*/
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date){
+		// don't forget to change setsareempty - wouldnt work anyway because it needs contacts to be verified, so breaks straight away
 		int stub= 0;
 		return stub;
 	}
@@ -206,8 +213,10 @@ public class ContactManagerImpl implements ContactManager {
 	* empty, or any of the contacts does not exist
 	* @throws NullPointerException if any of the arguments is null
 	*/
-	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text){}
-
+	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text){	
+	// don't forget to change setsareempty 
+	}
+	
 	/**
 	* Add notes to a meeting.
 	*
@@ -222,7 +231,9 @@ public class ContactManagerImpl implements ContactManager {
 	* @throws IllegalStateException if the meeting is set for a date in the future
 	* @throws NullPointerException if the notes are null
 	*/
-	public void addMeetingNotes(int id, String text){}
+	public void addMeetingNotes(int id, String text){
+
+	}
 
 	/**
 	* Create a new contact with the specified name and notes.
@@ -231,7 +242,9 @@ public class ContactManagerImpl implements ContactManager {
 	* @param notes notes to be added about the contact.
 	* @throws NullPointerException if the name or the notes are null
 	*/
-	public void addNewContact(String name, String notes){}
+	public void addNewContact(String name, String notes){
+	// don't forget to change setsareempty 
+	}
 
 	/**
 	* Returns a list containing the contacts that correspond to the IDs.
