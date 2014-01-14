@@ -40,6 +40,7 @@ public class ContactManagerImpl implements ContactManager {
 	*	private Contact getContactFromSet(int Id){}
 	*	private Meeting getMeetingFromSet(int Id){}
 	*	private boolean meetingIsInThePast(Meeting candidateMeeting){}
+	*	private boolean meetingIsInThePast(Calendar date){}
 	*	private boolean meetingIsInTheFuture(Meeting candidateMeeting){}
 	*//////////////////////////////////////////////////////////////////////////
 	
@@ -80,7 +81,7 @@ public class ContactManagerImpl implements ContactManager {
 			return;
 		}
 		for(String row : csvRows){
-			String[] elementsOfRow = row.split(",");
+			String[] elementsOfRow = row.split(",");    //<<< need to look into how csv differentiates between context comma and strucutre comma
 			if(elementsOfRow[1].equals("C")){
 				contactIndex.add(Integer.parseInt(elementsOfRow[0]));
 				populateContacts(row);
@@ -97,8 +98,25 @@ public class ContactManagerImpl implements ContactManager {
 
 	private void populateMeetings(String row) throws IllegalArgumentException{
 		String[] elementsOfRow = row.split(",");
-		//format of Meetings > "ID, DATE, CONTACTS[], %notes%:NOTES"
-		String notes = //needs to find the ref for notes and loop through adding them into the same string
+		//format of Meetings.Row > "ID,M,DATE, CONTACTS[], %notes%:NOTES"  <<< need to look into how csv differentiates between context comma and strucutre comma
+		int id = Integer.parseInt(elementsOfRow[0]);
+		int year = Integer.parseInt(elementsOfRow[2].substring(0,4)); 
+		int month = Integer.parseInt(elementsOfRow[2].substring(4,6));
+		int day = Integer.parseInt(elementsOfRow[2].substring(6,8));
+		Calendar date = new GregorianCalendar(year,month,day);
+		String[] namesInTheMeeting = elementsOfRow[3].split(";");//<<<<assumes contact names are separated by ";";
+		List<Contact> meetingContacts = new ArrayList<Contact>();
+		for(String str : names){
+			meetingContacts.add(getContacts(str));  // problem with this is that allContacts must be populated first<<<<< to do this maybe flush puts all meetings at the end of the file !!! >>>>>
+		}
+		allMeetings.add(new Meeting(id, date,meetingContacts));
+		if(meetingIsInThePast(date)){
+			String notes = elementsOfRow[4]; //needs to find the ref for notes and loop through adding them into the same string
+			pastMeetings.add(new PastMeeting(id, date, meetingContacts, notes));
+		} else {
+			futureMeetings.add(new FutureMeeting(id, date, meetingContacts));
+		}
+	
 		//contacts ?? <<need to decide how they are read back from the row into the impl of meeting : better to write the constructor now
 	}
 
