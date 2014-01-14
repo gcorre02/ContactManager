@@ -96,7 +96,10 @@ public class ContactManagerImpl implements ContactManager {
 	//>>>>write all constructors <<<<<<<<<<<
 
 	private void populateMeetings(String row) throws IllegalArgumentException{
-
+		String[] elementsOfRow = row.split(",");
+		//format of Meetings > "ID, DATE, CONTACTS[], %notes%:NOTES"
+		String notes = //needs to find the ref for notes and loop through adding them into the same string
+		//contacts ?? <<need to decide how they are read back from the row into the impl of meeting : better to write the constructor now
 	}
 
 	private void populateContacts(String row) throws IllegalArgumentException{
