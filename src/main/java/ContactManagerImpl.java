@@ -111,8 +111,13 @@ public class ContactManagerImpl implements ContactManager {
 		}
 		allMeetings.add(new Meeting(id, date,meetingContacts));
 		if(meetingIsInThePast(date)){
-			String notes = elementsOfRow[4]; //needs to find the ref for notes and loop through adding them into the same string
-			pastMeetings.add(new PastMeeting(id, date, meetingContacts, notes));
+			try{
+				String notes = elementsOfRow[4]; //needs to find the ref for notes and loop through adding them into the same string
+				pastMeetings.add(new PastMeeting(id, date, meetingContacts, notes));
+			} catch (NullPointerException e){
+				System.out.println("no notes found for this meeting");
+				pastMeetings.add(new PastMeeting(id, date, meetingContacts));
+			}
 		} else {
 			futureMeetings.add(new FutureMeeting(id, date, meetingContacts));
 		}
