@@ -92,7 +92,7 @@ public class ContactManagerImpl implements ContactManager {
 
 		}
 	}
-
+	//unnecessary : popMeet and popCont can be called directly above!!!
 	private void populateSets(String row, char typeOfRow) throws IllegalArgumentException{
 	//>>>>constructors instantiate fields<<<
 	//>>>>write all constructors <<<<<<<<<<<
