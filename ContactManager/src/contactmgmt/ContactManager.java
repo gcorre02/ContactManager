@@ -14,16 +14,16 @@ public interface ContactManager {
 	 * @param date the date on which the meeting will take place
 	 * @return the ID for the meeting
 	 * @throws IllegalArgumentException if the meeting is set for a time in the past,
-	 * of if any contact is unknown / non-existent
+	 * or if any contact is unknown / non-existent
 	 */
 	int addFutureMeeting(Set<Contact> contacts, Calendar date);
 	/**
-	 * Returns the PAST meeting with the requested ID, or null if it there is none.
+	 * Returns the PAST meeting with the requested ID, or null if there is none.
 	 *
 	 * @param id the ID for the meeting
 	 * @return the meeting with the requested ID, or null if it there is none.
 	 * @throws IllegalArgumentException if there is a meeting with that ID happening in the future
-1*/
+	 */
 	PastMeeting getPastMeeting(int id);
 	/**
 	 * Returns the FUTURE meeting with the requested ID, or null if there is none.
@@ -74,7 +74,7 @@ public interface ContactManager {
 	 * @param contact one of the user’s contacts
 	 * @return the list of future meeting(s) scheduled with this contact (maybe empty).
 	 * @throws IllegalArgumentException if the contact does not exist
-2*/
+	 */
 	List<PastMeeting> getPastMeetingList(Contact contact);
 	/**
 	 * Create a new record for a meeting that took place in the past.

@@ -42,14 +42,53 @@ public class ContactManagerImplTest {
 		assertTrue(cm instanceof ContactManagerImpl);
 	}
 	//TODO need a battery of tests for each process the Constructor implements!!
-	//changed someting
+	
+	@Test
+	public final void testContactManagerImplPopulatesSetsAndIndexes() {
+		fail("not written yet");
+		//TODO implement call to myTools.PopulateSetsAndIndexes(String pathToFile), for each list/set = PopulateSetsandIndexes.gettersAndSetters()
+		//TODO > mock interface for the test
+	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
 	 */
 	@Test
-	public final void testAddFutureMeeting() {
+	public final void testVerifyAddFutureMeetingIdIsUnique() {
 		fail("Not yet implemented"); // TODO
+		
+		/*
+		 * @return the ID for the meeting
+		 * TODO implement myTools.checkIdExistsInList(int id, List<Integer> anyIntegerList)> mock interface for the test
+		 */
 	}
+	
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testVerifyAIllegalArgumentIsThrownAddFuture() {
+		fail("Not yet implemented"); // TODO
+		
+		/*
+		 * @throws IllegalArgumentException if the meeting is set for a time in the past,
+		 * or if any contact is unknown / non-existent
+		 * TODO implement myTools.checkDateIsInThePast(Calendar date)> mock interface for the test
+		 * TODO implement myTools.checkIdExistsInList(int id, List<Integer> anyIntegerList)> mock interface for the test
+		 */
+	}
+	
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
+	 */
+	@Test
+	public final void testAddFutureMeetingIsAdded() {
+		fail("Not yet implemented"); // TODO
+		
+		/*
+		 * TODO implement myTools.checkIdExistsInList(int id, List<Integer> anyIntegerList) > mock interface for the test
+		 */
+	}
+
 
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getPastMeeting(int)}.

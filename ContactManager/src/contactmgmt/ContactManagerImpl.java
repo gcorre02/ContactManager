@@ -17,7 +17,8 @@ public class ContactManagerImpl implements ContactManager {
 	 * Researched the idea of declaring whole independent classes that would take care of handling the inner workings, which in turn would be easier to test, for example :
 	 * TODO write myTool checkContactNameIsUnique(Set<String> names)
 	 * TODO write myTool for id generation
-	 *
+	 * TODO checkDateInThePast(Calendar date)
+	 * TODO checkIdIsInIntList(int id, List<Integer> ListOfIds)
 	 */
 	
 	
