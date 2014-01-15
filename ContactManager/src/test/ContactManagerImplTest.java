@@ -9,17 +9,21 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import contactmgmt.ContactManager;
+import contactmgmt.ContactManagerImpl;
+
 /**
  * @author Guilherme
  *
  */
 public class ContactManagerImplTest {
-
+	ContactManager cm;
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		cm = new ContactManagerImpl();
 	}
 
 	/**
@@ -27,15 +31,17 @@ public class ContactManagerImplTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		cm = null;
 	}
 
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#ContactManagerImpl()}.
 	 */
 	@Test
-	public final void testContactManagerImpl() {
-		fail("Not yet implemented"); // TODO
+	public final void testContactManagerImplIsInstantiatedCorrectly() {
+		assertTrue(cm instanceof ContactManagerImpl);
 	}
+	//TODO need a battery of tests for each process the Constructor implements!!
 
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
