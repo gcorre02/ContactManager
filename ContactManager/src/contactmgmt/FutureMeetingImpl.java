@@ -41,8 +41,7 @@ public class FutureMeetingImpl implements Meeting{
 	 */
 	@Override
 	public Calendar getDate() {
-		// TODO Auto-generated method stub
-		return null;
+		return date;
 	}
 
 	/* (non-Javadoc)
@@ -51,7 +50,7 @@ public class FutureMeetingImpl implements Meeting{
 	@Override
 	public Set<Contact> getContacts() {
 		// TODO Auto-generated method stub
-		return null;
+		return contacts;
 	}
 
 }

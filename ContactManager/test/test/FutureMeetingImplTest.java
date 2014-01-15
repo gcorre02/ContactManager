@@ -32,7 +32,7 @@ public class FutureMeetingImplTest {
 	private Set<Contact> inputContacts = new HashSet<Contact>();
 	private Calendar inputDate = new GregorianCalendar(2014,02,15);
 	Contact bruce = new ContactImpl(1, "Bruce Willis");
-
+	//inputContacts.add(bruce);
 	
 	private int expectedId = inputId;
 	private Set<Contact> expectedContacts = inputContacts;
@@ -77,7 +77,7 @@ public class FutureMeetingImplTest {
 	 */
 	@Test
 	public final void testGetDate() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("FutureMeeting not returning date set-up",expectedDate, fm.getDate());
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class FutureMeetingImplTest {
 	 */
 	@Test
 	public final void testGetContacts() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("future meetings is not returning contacts propperly", expectedContacts, fm.getContacts());
 	}
 
 }
