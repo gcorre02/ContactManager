@@ -6,9 +6,7 @@ package test;
 import static org.junit.Assert.*;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import contactmgmt.Contact;
@@ -20,26 +18,15 @@ import contactmgmt.ContactImpl;
  */
 public class ContactImplTest {
 	Contact ci;
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+	int inputId = 1;
+	int expectedId = 1;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		ci = new ContactImpl(1,"John McClane");
+		ci = new ContactImpl(inputId,"John McClane");
 	}
 
 	/**
@@ -65,7 +52,7 @@ public class ContactImplTest {
 	@Test
 	public final void testGetId() {
 		// also tests if values have been passed to the object through constructor
-		fail("Not yet implemented"); // TODO
+		assertTrue("ContactImpl not returning ID",ci.getId() == expectedId);
 	}
 
 	/**

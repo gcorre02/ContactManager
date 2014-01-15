@@ -28,8 +28,7 @@ public class ContactImpl implements Contact {
 	 */
 	@Override
 	public int getId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.id;
 	}
 
 	/* (non-Javadoc)
