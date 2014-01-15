@@ -1,1 +1,14 @@
-/bin
+*.class
+*[#]*
+*.idea
+*.iml
+gen
+out
+build
+*.ipr
+*.iml
+*.iws
+*gradle*
+*.lock
+*.bin
+wrapper
