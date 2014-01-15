@@ -10,13 +10,22 @@ import java.util.Set;
  * @author Guilherme
  *
  */
-public class PastMeetingImpl implements PastMeeting {
+public class PastMeetingImpl implements PastMeeting{
+
+	private int id;
+	private Calendar date;
+	private Set<Contact> contacts;
 
 	/**
+	 * @param contacts 
+	 * @param date 
+	 * @param inputId 
 	 * 
 	 */
-	public PastMeetingImpl() {
-		// TODO Auto-generated constructor stub
+	public PastMeetingImpl(int inputId, Calendar date, Set<Contact> contacts) {
+		this.id = inputId;
+		this.date = date;
+		this.contacts = contacts;
 	}
 
 	/* (non-Javadoc)
@@ -24,8 +33,7 @@ public class PastMeetingImpl implements PastMeeting {
 	 */
 	@Override
 	public int getId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.id;
 	}
 
 	/* (non-Javadoc)
@@ -33,8 +41,7 @@ public class PastMeetingImpl implements PastMeeting {
 	 */
 	@Override
 	public Calendar getDate() {
-		// TODO Auto-generated method stub
-		return null;
+		return date;
 	}
 
 	/* (non-Javadoc)
@@ -43,8 +50,9 @@ public class PastMeetingImpl implements PastMeeting {
 	@Override
 	public Set<Contact> getContacts() {
 		// TODO Auto-generated method stub
-		return null;
+		return contacts;
 	}
+
 
 	/* (non-Javadoc)
 	 * @see contactmgmt.PastMeeting#getNotes()
@@ -54,5 +62,6 @@ public class PastMeetingImpl implements PastMeeting {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

@@ -10,7 +10,7 @@ import java.util.Set;
  * @author Guilherme
  *
  */
-public class FutureMeetingImpl implements Meeting{
+public class FutureMeetingImpl implements FutureMeeting{
 
 	private int id;
 	private Calendar date;

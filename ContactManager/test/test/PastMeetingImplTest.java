@@ -5,9 +5,19 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import contactmgmt.Contact;
+import contactmgmt.ContactImpl;
+import contactmgmt.PastMeetingImpl;
+import contactmgmt.Meeting;
 
 /**
  * @author Guilherme
@@ -15,11 +25,25 @@ import org.junit.Test;
  */
 public class PastMeetingImplTest {
 
+	
+	private Meeting fm;
+	private int inputId = 1;
+	private Set<Contact> inputContacts = new HashSet<Contact>();
+	private Calendar inputDate = new GregorianCalendar(2014,02,15);
+	Contact bruce = new ContactImpl(1, "Bruce Willis");
+	//inputContacts.add(bruce);
+	
+	private int expectedId = inputId;
+	private Set<Contact> expectedContacts = inputContacts;
+	private Calendar expectedDate = inputDate;
+	
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		fm = new PastMeetingImpl(inputId, inputDate, inputContacts);
 	}
 
 	/**
@@ -27,14 +51,16 @@ public class PastMeetingImplTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		fm = null;
 	}
+
 
 	/**
 	 * Test method for {@link contactmgmt.PastMeetingImpl#PastMeetingImpl()}.
 	 */
 	@Test
-	public final void testPastMeetingImpl() {
-		fail("Not yet implemented"); // TODO
+	public final void testFutureMeetingImpl() {
+		assertTrue( fm instanceof PastMeetingImpl);
 	}
 
 	/**
@@ -42,7 +68,7 @@ public class PastMeetingImplTest {
 	 */
 	@Test
 	public final void testGetId() {
-		fail("Not yet implemented"); // TODO
+		assertTrue("Id is not getting returned",expectedId == fm.getId());
 	}
 
 	/**
@@ -50,7 +76,7 @@ public class PastMeetingImplTest {
 	 */
 	@Test
 	public final void testGetDate() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("FutureMeeting not returning date set-up",expectedDate, fm.getDate());
 	}
 
 	/**
@@ -58,8 +84,9 @@ public class PastMeetingImplTest {
 	 */
 	@Test
 	public final void testGetContacts() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("future meetings is not returning contacts propperly", expectedContacts, fm.getContacts());
 	}
+
 
 	/**
 	 * Test method for {@link contactmgmt.PastMeetingImpl#getNotes()}.
@@ -68,5 +95,6 @@ public class PastMeetingImplTest {
 	public final void testGetNotes() {
 		fail("Not yet implemented"); // TODO
 	}
-
+	
 }
+
