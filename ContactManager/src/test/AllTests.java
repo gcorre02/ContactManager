@@ -5,9 +5,9 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ContactImplTest.class,
+@SuiteClasses({ ContactImplTest.class, ContactManagerImplTest.class,
 		FutureMeetingImplTest.class, MeetingImplTest.class,
-		PastMeetingImplTest.class, ContactManagerImplTest.class })
+		PastMeetingImplTest.class })
 public class AllTests {
 
 }
