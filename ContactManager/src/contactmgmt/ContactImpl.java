@@ -11,6 +11,7 @@ public class ContactImpl implements Contact {
 
 	private int id;
 	private String name;
+	private String notes;
 
 	/**
 	 * @param name name of the contact <<< not unique
@@ -36,8 +37,7 @@ public class ContactImpl implements Contact {
 	 */
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.name;
 	}
 
 	/* (non-Javadoc)

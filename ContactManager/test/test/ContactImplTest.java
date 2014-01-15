@@ -17,16 +17,19 @@ import contactmgmt.ContactImpl;
  *
  */
 public class ContactImplTest {
-	Contact ci;
-	int inputId = 1;
-	int expectedId = 1;
+	private Contact ci;
+	private int inputId = 1;
+	private	int expectedId = 1;
+	private String inputName = "John McClane";
+	private String expectedName = inputName;
+	private String expectedNotes = "YepeeKyay MF";
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		ci = new ContactImpl(inputId,"John McClane");
+		ci = new ContactImpl(inputId,inputName);
 	}
 
 	/**
@@ -60,7 +63,7 @@ public class ContactImplTest {
 	 */
 	@Test
 	public final void testGetName() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("ContactImpl not returning name", expectedName, ci.getName());
 	}
 
 	/**
@@ -68,7 +71,7 @@ public class ContactImplTest {
 	 */
 	@Test
 	public final void testGetNotes() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("ContactImpl not returning notes", expectedNotes , ci.getNotes());
 	}
 
 	/**
