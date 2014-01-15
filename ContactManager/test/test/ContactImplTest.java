@@ -23,6 +23,7 @@ public class ContactImplTest {
 	private String inputName = "John McClane";
 	private String expectedName = inputName;
 	private String expectedNotes = "YepeeKyay MF";
+	private String inputNotes = expectedNotes ;
 
 	/**
 	 * @throws java.lang.Exception
@@ -30,6 +31,7 @@ public class ContactImplTest {
 	@Before
 	public void setUp() throws Exception {
 		ci = new ContactImpl(inputId,inputName);
+		ci.addNotes(inputNotes );
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class ContactImplTest {
 	 */
 	@Test
 	public final void testAddNotes() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("ContactImpl not returning notes", expectedNotes , ci.getNotes());
 	}
 
 }

@@ -29,7 +29,7 @@ public class ContactImpl implements Contact {
 	 */
 	@Override
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	/* (non-Javadoc)
@@ -37,7 +37,7 @@ public class ContactImpl implements Contact {
 	 */
 	@Override
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	/* (non-Javadoc)
@@ -45,8 +45,7 @@ public class ContactImpl implements Contact {
 	 */
 	@Override
 	public String getNotes() {
-		// TODO Auto-generated method stub
-		return null;
+		return notes;
 	}
 
 	/* (non-Javadoc)
@@ -54,8 +53,7 @@ public class ContactImpl implements Contact {
 	 */
 	@Override
 	public void addNotes(String note) {
-		// TODO Auto-generated method stub
-
+		this.notes = note;
 	}
 
 }
