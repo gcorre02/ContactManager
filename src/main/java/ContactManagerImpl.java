@@ -114,7 +114,7 @@ public class ContactManagerImpl implements ContactManager {
 			try{
 				String notes = elementsOfRow[4]; //needs to find the ref for notes and loop through adding them into the same string
 				pastMeetings.add(new PastMeeting(id, date, meetingContacts, notes));
-			} catch (NullPointerException e){
+			} catch (NullPointerException e){ ///<<<< Probably ArrayOutOfBounds Exception, not this. need the internet>>>
 				System.out.println("no notes found for this meeting");
 				pastMeetings.add(new PastMeeting(id, date, meetingContacts));
 			}
