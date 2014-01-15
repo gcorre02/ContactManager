@@ -31,7 +31,6 @@ public class PastMeetingImplTest {
 	private Set<Contact> inputContacts = new HashSet<Contact>();
 	private Calendar inputDate = new GregorianCalendar(2014,02,15);
 	private String inputNotes = new String("talked about how to tackle nakatomi plaza");
-	//inputContacts.add(bruce);
 	
 	private int expectedId = inputId;
 	private String expectedNotes = inputNotes;
@@ -59,10 +58,21 @@ public class PastMeetingImplTest {
 	 * Test method for {@link contactmgmt.PastMeetingImpl#PastMeetingImpl()}.
 	 */
 	@Test
-	public final void testFutureMeetingImpl() {
+	public final void testPastMeetingImpl() {
 		assertTrue( pm instanceof PastMeetingImpl);
 	}
-
+	
+	/**
+	 * Test method for {@link contactmgmt.PastMeetingImpl#PastMeetingImpl()}.
+	 */
+	@Test
+	public final void testPastMeetingImplWoutNotes() {
+		pm= null;
+		pm = new PastMeetingImpl(inputId, inputDate, inputContacts);
+		assertTrue( pm instanceof PastMeetingImpl);
+		assertEquals("PastMeetingImpl Constructor not not passing notes as empty string", pm.getNotes(), "");
+	}
+	
 	/**
 	 * Test method for {@link contactmgmt.PastMeetingImpl#getId()}.
 	 */
