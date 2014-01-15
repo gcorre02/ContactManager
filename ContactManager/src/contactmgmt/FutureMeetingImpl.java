@@ -33,8 +33,7 @@ public class FutureMeetingImpl implements Meeting{
 	 */
 	@Override
 	public int getId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.id;
 	}
 
 	/* (non-Javadoc)

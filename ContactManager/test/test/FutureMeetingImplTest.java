@@ -69,7 +69,7 @@ public class FutureMeetingImplTest {
 	 */
 	@Test
 	public final void testGetId() {
-		fail("Not yet implemented"); // TODO
+		assertTrue("Id is not getting returned",expectedId == fm.getId());
 	}
 
 	/**
