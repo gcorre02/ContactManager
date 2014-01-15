@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import contactmgmt.Contact;
+import contactmgmt.Meeting;
 import contactmgmt.PastMeeting;
 import contactmgmt.PastMeetingImpl;
 
@@ -26,7 +27,7 @@ import contactmgmt.PastMeetingImpl;
 public class PastMeetingImplTest {
 
 	
-	private PastMeeting pm;
+	private PastMeeting pm ;
 	private int inputId = 1;
 	private Set<Contact> inputContacts = new HashSet<Contact>();
 	private Calendar inputDate = new GregorianCalendar(2014,02,15);
@@ -106,5 +107,18 @@ public class PastMeetingImplTest {
 		assertEquals("PastMeeting not returning notes", expectedNotes, pm.getNotes()); 
 	}
 	
+	/**
+	 * Tests whether a method with return type Meeting returns PastMeeting.
+	 * (tests the implementation and extension are working as expected)
+	 */
+	public final void testMeetingReturnsPastMeeting(){
+		assertTrue( returnFinalMeeting() instanceof PastMeetingImpl);
+		// TODO : understand better why this isn't working:		<<<if PastMeetingImpl implements PastMeeting, why won't it work?
+		//assertEquals("PastMeetingImpl Constructor not not passing notes as empty string", returnFinalMeeting().getNotes(), "");
+	}
+	
+	public Meeting returnFinalMeeting(){
+		return pm;
+	}
 }
 

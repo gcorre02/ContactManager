@@ -12,7 +12,12 @@ import java.util.Set;
  *
  */
 public class ContactManagerImpl implements ContactManager {
-
+	/*
+	 * Need the following classes to be called to help with the inner workings of this class
+	 * TODO write myTool checkContactNameIsUnique(Set<String> names)
+	 */
+	
+	
 	/**
 	 * 
 	 */
@@ -107,7 +112,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void addNewContact(String name, String notes) {
-		// TODO Auto-generated method stub
+		// TODO need to check if name is unique at this level
 
 	}
 

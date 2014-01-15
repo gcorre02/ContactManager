@@ -13,6 +13,7 @@ package contactmgmt;
  * It includes your notes about what happened and what was agreed.
  */
 public interface PastMeeting extends Meeting {
+	
 	/**
 	 * Returns the notes from the meeting.
 	 *
