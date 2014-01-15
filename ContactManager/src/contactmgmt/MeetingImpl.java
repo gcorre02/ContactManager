@@ -12,6 +12,10 @@ import java.util.Set;
  */
 public class MeetingImpl implements Meeting {
 
+	private int id;
+	private Calendar date;
+	private Set<Contact> contacts;
+
 	/**
 	 * @param contacts 
 	 * @param date 
@@ -19,7 +23,9 @@ public class MeetingImpl implements Meeting {
 	 * 
 	 */
 	public MeetingImpl(int inputId, Calendar date, Set<Contact> contacts) {
-		// TODO Auto-generated constructor stub
+		this.id = inputId;
+		this.date = date;
+		this.contacts = contacts;
 	}
 
 	/* (non-Javadoc)
@@ -27,8 +33,7 @@ public class MeetingImpl implements Meeting {
 	 */
 	@Override
 	public int getId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.id;
 	}
 
 	/* (non-Javadoc)
@@ -36,8 +41,7 @@ public class MeetingImpl implements Meeting {
 	 */
 	@Override
 	public Calendar getDate() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.date;
 	}
 
 	/* (non-Javadoc)

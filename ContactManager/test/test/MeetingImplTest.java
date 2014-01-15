@@ -30,12 +30,12 @@ public class MeetingImplTest {
 	private Set<Contact> inputContacts = new HashSet<Contact>();
 	private Calendar inputDate = new GregorianCalendar(2014,02,15);
 	Contact bruce = new ContactImpl(1, "Bruce Willis");
-	inputContacts.add(bruce);
-	/*
+
+	
 	private int expectedId = inputId;
 	private Set<Contact> expectedContacts = inputContacts;
 	private Calendar expectedDate = inputDate;
-	*/
+	
 	
 	
 	
@@ -69,7 +69,7 @@ public class MeetingImplTest {
 	 */
 	@Test
 	public void testGetId() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("Meeting not returning ID", expectedId, m.getId());
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class MeetingImplTest {
 	 */
 	@Test
 	public void testGetDate() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("Meeting not returning date/ or constructor not setting up date",inputDate, m.getDate());
 	}
 
 	/**
