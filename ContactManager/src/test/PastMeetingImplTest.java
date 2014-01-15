@@ -111,13 +111,15 @@ public class PastMeetingImplTest {
 	 * Tests whether a method with return type Meeting returns PastMeeting.
 	 * (tests the implementation and extension are working as expected)
 	 */
+	@Test
 	public final void testMeetingReturnsPastMeeting(){
-		assertTrue( returnFinalMeeting() instanceof PastMeetingImpl);
-		// TODO : understand better why this isn't working:		<<<if PastMeetingImpl implements PastMeeting, why won't it work?
-		//assertEquals("PastMeetingImpl Constructor not not passing notes as empty string", returnFinalMeeting().getNotes(), "");
+		assertTrue( returnPastMeeting() instanceof PastMeetingImpl);
+		PastMeetingImpl meetingUnderTest = (PastMeetingImpl) returnPastMeeting();
+		// TODO : understand better why this isn't working:		<<<if PastMeetingImpl implements PastMeeting, why won't it work?  >>>> answer is : it needs casting. which makes sense.
+		assertEquals("PastMeetingImpl Constructor not passing notes as empty string", meetingUnderTest.getNotes(), inputNotes);
 	}
 	
-	public Meeting returnFinalMeeting(){
+	public Meeting returnPastMeeting(){
 		return pm;
 	}
 }
