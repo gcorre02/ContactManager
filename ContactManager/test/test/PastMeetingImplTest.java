@@ -15,9 +15,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import contactmgmt.Contact;
-import contactmgmt.ContactImpl;
+import contactmgmt.PastMeeting;
 import contactmgmt.PastMeetingImpl;
-import contactmgmt.Meeting;
+
 
 /**
  * @author Guilherme
@@ -26,24 +26,24 @@ import contactmgmt.Meeting;
 public class PastMeetingImplTest {
 
 	
-	private Meeting fm;
+	private PastMeeting pm;
 	private int inputId = 1;
 	private Set<Contact> inputContacts = new HashSet<Contact>();
 	private Calendar inputDate = new GregorianCalendar(2014,02,15);
-	Contact bruce = new ContactImpl(1, "Bruce Willis");
+	private String inputNotes = new String("talked about how to tackle nakatomi plaza");
 	//inputContacts.add(bruce);
 	
 	private int expectedId = inputId;
+	private String expectedNotes = inputNotes;
 	private Set<Contact> expectedContacts = inputContacts;
 	private Calendar expectedDate = inputDate;
-	
 	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		fm = new PastMeetingImpl(inputId, inputDate, inputContacts);
+		pm = new PastMeetingImpl(inputId, inputDate, inputContacts, inputNotes);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class PastMeetingImplTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		fm = null;
+		pm = null;
 	}
 
 
@@ -60,7 +60,7 @@ public class PastMeetingImplTest {
 	 */
 	@Test
 	public final void testFutureMeetingImpl() {
-		assertTrue( fm instanceof PastMeetingImpl);
+		assertTrue( pm instanceof PastMeetingImpl);
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class PastMeetingImplTest {
 	 */
 	@Test
 	public final void testGetId() {
-		assertTrue("Id is not getting returned",expectedId == fm.getId());
+		assertTrue("Id is not getting returned",expectedId == pm.getId());
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class PastMeetingImplTest {
 	 */
 	@Test
 	public final void testGetDate() {
-		assertEquals("FutureMeeting not returning date set-up",expectedDate, fm.getDate());
+		assertEquals("FutureMeeting not returning date set-up",expectedDate, pm.getDate());
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class PastMeetingImplTest {
 	 */
 	@Test
 	public final void testGetContacts() {
-		assertEquals("future meetings is not returning contacts propperly", expectedContacts, fm.getContacts());
+		assertEquals("future meetings is not returning contacts propperly", expectedContacts, pm.getContacts());
 	}
 
 
@@ -93,7 +93,7 @@ public class PastMeetingImplTest {
 	 */
 	@Test
 	public final void testGetNotes() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("PastMeeting not returning notes", expectedNotes, pm.getNotes()); 
 	}
 	
 }

@@ -15,6 +15,7 @@ public class PastMeetingImpl implements PastMeeting{
 	private int id;
 	private Calendar date;
 	private Set<Contact> contacts;
+	private String notes;
 
 	/**
 	 * @param contacts 
@@ -22,10 +23,11 @@ public class PastMeetingImpl implements PastMeeting{
 	 * @param inputId 
 	 * 
 	 */
-	public PastMeetingImpl(int inputId, Calendar date, Set<Contact> contacts) {
+	public PastMeetingImpl(int inputId, Calendar date, Set<Contact> contacts, String notes) {
 		this.id = inputId;
 		this.date = date;
 		this.contacts = contacts;
+		this.notes = notes;
 	}
 
 	/* (non-Javadoc)
@@ -33,7 +35,7 @@ public class PastMeetingImpl implements PastMeeting{
 	 */
 	@Override
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	/* (non-Javadoc)
@@ -60,7 +62,7 @@ public class PastMeetingImpl implements PastMeeting{
 	@Override
 	public String getNotes() {
 		// TODO Auto-generated method stub
-		return null;
+		return notes;
 	}
 
 
