@@ -18,7 +18,6 @@ import contactmgmt.Contact;
 import contactmgmt.ContactImpl;
 import contactmgmt.FutureMeetingImpl;
 import contactmgmt.Meeting;
-import contactmgmt.MeetingImpl;
 
 /**
  * @author Guilherme
