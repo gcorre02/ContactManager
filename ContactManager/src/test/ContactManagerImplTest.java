@@ -42,7 +42,7 @@ public class ContactManagerImplTest {
 		assertTrue(cm instanceof ContactManagerImpl);
 	}
 	//TODO need a battery of tests for each process the Constructor implements!!
-
+	//changed someting
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
 	 */
