@@ -14,7 +14,10 @@ import java.util.Set;
 public class ContactManagerImpl implements ContactManager {
 	/*
 	 * Need the following classes to be called to help with the inner workings of this class
+	 * Researched the idea of declaring whole independent classes that would take care of handling the inner workings, which in turn would be easier to test, for example :
 	 * TODO write myTool checkContactNameIsUnique(Set<String> names)
+	 * TODO write myTool for id generation
+	 *
 	 */
 	
 	
