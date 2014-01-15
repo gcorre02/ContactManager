@@ -9,17 +9,22 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import contactmgmt.Meeting;
+import contactmgmt.MeetingImpl;
+
 /**
  * @author Guilherme
  *
  */
 public class MeetingImplTest {
-
+	Meeting m;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		m = new MeetingImpl();
 	}
 
 	/**
@@ -34,7 +39,7 @@ public class MeetingImplTest {
 	 */
 	@Test
 	public final void testMeetingImpl() {
-		fail("Not yet implemented"); // TODO
+		assertTrue( m instanceof MeetingImpl);
 	}
 
 	/**
