@@ -11,12 +11,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import contactmgmt.Contact;
+import contactmgmt.ContactImpl;
+
 /**
  * @author Guilherme
  *
  */
 public class ContactImplTest {
-
+	Contact ci;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -36,6 +39,7 @@ public class ContactImplTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		ci = new ContactImpl(1,"John McClane");
 	}
 
 	/**
@@ -43,22 +47,24 @@ public class ContactImplTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		ci = null;
 	}
 
 	/**
 	 * Test method for {@link contactmgmt.ContactImpl#ContactImpl()}.
 	 */
 	@Test
-	public final void testContactImpl() {
-		
-		fail("Not yet implemented"); // TODO
+	public final void testConstructor() {
+		assertTrue(ci instanceof ContactImpl);	
 	}
+	
 
 	/**
 	 * Test method for {@link contactmgmt.ContactImpl#getId()}.
 	 */
 	@Test
 	public final void testGetId() {
+		// also tests if values have been passed to the object through constructor
 		fail("Not yet implemented"); // TODO
 	}
 

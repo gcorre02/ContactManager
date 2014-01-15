@@ -9,10 +9,17 @@ package contactmgmt;
  */
 public class ContactImpl implements Contact {
 
+	private int id;
+	private String name;
+
 	/**
-	 * 
+	 * @param name name of the contact <<< not unique
+	 * @param id id of the object
+	 * construts the object ContactImpl
 	 */
-	public ContactImpl() {
+	public ContactImpl(int id, String name) {
+		this.id = id;
+		this.name = name;
 		// TODO Auto-generated constructor stub
 	}
 
