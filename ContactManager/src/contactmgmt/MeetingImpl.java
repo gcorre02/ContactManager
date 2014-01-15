@@ -13,9 +13,12 @@ import java.util.Set;
 public class MeetingImpl implements Meeting {
 
 	/**
+	 * @param contacts 
+	 * @param date 
+	 * @param inputId 
 	 * 
 	 */
-	public MeetingImpl() {
+	public MeetingImpl(int inputId, Calendar date, Set<Contact> contacts) {
 		// TODO Auto-generated constructor stub
 	}
 
