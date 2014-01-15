@@ -77,7 +77,7 @@ public class MeetingImplTest {
 	 */
 	@Test
 	public void testGetDate() {
-		assertEquals("Meeting not returning date/ or constructor not setting up date",inputDate, m.getDate());
+		assertEquals("Meeting not returning date/ or constructor not setting up date",expectedDate, m.getDate());
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class MeetingImplTest {
 	 */
 	@Test
 	public void testGetContacts() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("Meeting not returning contacts or Contructor not instantiating them", expectedContacts, m.getContacts());
 	}
 
 }
