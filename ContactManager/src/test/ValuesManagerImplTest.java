@@ -121,7 +121,7 @@ public class ValuesManagerImplTest {
 		inputIntegerList.add(2);
 		inputIntegerList.add(9);
 		inputIntegerList.add(3);
-		inputIntegerList.add(7);
+		inputIntegerList.add(10);
 		inputIntegerList.add(5);
 		inputIntegerList.add(1);
 		List<Integer> expectedIntegerList = new ArrayList<Integer>();
@@ -132,9 +132,9 @@ public class ValuesManagerImplTest {
 		expectedIntegerList.add(4);
 		expectedIntegerList.add(5);
 		expectedIntegerList.add(6);
-		expectedIntegerList.add(7);
 		expectedIntegerList.add(8);
 		expectedIntegerList.add(9);
+		expectedIntegerList.add(10);
 		
 		assertEquals("organization doesnt match", expectedIntegerList, vm.reorganiseList(inputIntegerList) );
 		
