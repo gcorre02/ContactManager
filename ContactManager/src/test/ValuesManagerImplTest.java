@@ -106,5 +106,35 @@ public class ValuesManagerImplTest {
 		assertEquals("doesn't work if it is not organized, need to solve this problem : reorganise list and try again", secondExpectedInt, vm.newIdGenerator(inputIntegerList));
 		
 	}
+	
+	/**
+	 * Test method for {@link myTools.ValuesManagerImpl#reorganiseList(java.util.List)}.
+	 */
+	@Test
+	public final void checkListIsReorganised(){
+		List<Integer> inputIntegerList = new ArrayList<Integer>();
+		inputIntegerList.add(0);
+		inputIntegerList.add(8);
+		inputIntegerList.add(6);
+		inputIntegerList.add(4);
+		inputIntegerList.add(2);
+		inputIntegerList.add(9);
+		inputIntegerList.add(3);
+		inputIntegerList.add(7);
+		inputIntegerList.add(5);
+		inputIntegerList.add(1);
+		List<Integer> expectedIntegerList = new ArrayList<Integer>();
+		expectedIntegerList.add(0);
+		expectedIntegerList.add(1);
+		expectedIntegerList.add(2);
+		expectedIntegerList.add(3);
+		expectedIntegerList.add(4);
+		expectedIntegerList.add(5);
+		expectedIntegerList.add(6);
+		expectedIntegerList.add(7);
+		expectedIntegerList.add(8);
+		expectedIntegerList.add(9);
+		assertEquals("", vm.reorganiseList(inputIntegerList), expectedIntegerList );
+	}
 
 }

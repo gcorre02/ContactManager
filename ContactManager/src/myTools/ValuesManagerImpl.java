@@ -61,13 +61,11 @@ public class ValuesManagerImpl implements ValuesManager {
 		return newIdGenerator(reorganiseList(anyIntegerList));
 	}
 	
-	/**
-	 * 
-	 * @param anyIntegerList input array to reorganise 
-	 * @return this list reorganized
-	 * 
+	/* (non-Javadoc)
+	 * @see myTools.ValuesManager#reorganiseList(java.util.List)
 	 */
-	private List<Integer> reorganiseList(List<Integer> anyIntegerList) {
+	@Override
+	public List<Integer> reorganiseList(List<Integer> anyIntegerList) {
 		List<Integer> newList = new ArrayList<Integer>();
 		for(int i : anyIntegerList){
 			int counter = 0;

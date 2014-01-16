@@ -51,6 +51,14 @@ public interface ValuesManager {
 	 * @return goes through the list and returns outstanding ids
 	 */
 	int newIdGenerator (List<Integer> anyIntegerList );
+	
+	/**
+	 * 
+	 * @param anyIntegerList input array to reorganise 
+	 * @return this list reorganized
+	 * 
+	 */
+	List<Integer> reorganiseList(List<Integer> inputIntegerList);
 
 
 }
