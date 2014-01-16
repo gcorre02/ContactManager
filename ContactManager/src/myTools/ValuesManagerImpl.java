@@ -67,20 +67,17 @@ public class ValuesManagerImpl implements ValuesManager {
 	@Override
 	public List<Integer> reorganiseList(List<Integer> anyIntegerList) {
 		List<Integer> newList = new ArrayList<Integer>();
-		for(int i : anyIntegerList){
-			int counter = 0;
-			for(int t : anyIntegerList){
-				if (i<=t){
-					counter++;
-				}
-			}
-			if(counter == (anyIntegerList.size())){
-				newList.add(i);
-				anyIntegerList.remove(i);
+		int minimum = 0;
+		for (int i : anyIntegerList){
+			if(i> minimum){
+				minimum = i;
 			}
 		}
-		
-		
+		anyIntegerList.remove(anyIntegerList.indexOf(minimum));
+		if(anyIntegerList.size()>0){
+			newList.addAll(reorganiseList(anyIntegerList));
+		}
+		newList.add(minimum);
 		return newList;
 	}
 

@@ -112,6 +112,7 @@ public class ValuesManagerImplTest {
 	 */
 	@Test
 	public final void checkListIsReorganised(){
+		
 		List<Integer> inputIntegerList = new ArrayList<Integer>();
 		inputIntegerList.add(0);
 		inputIntegerList.add(8);
@@ -134,7 +135,9 @@ public class ValuesManagerImplTest {
 		expectedIntegerList.add(7);
 		expectedIntegerList.add(8);
 		expectedIntegerList.add(9);
-		assertEquals("", vm.reorganiseList(inputIntegerList), expectedIntegerList );
+		
+		assertEquals("organization doesnt match", expectedIntegerList, vm.reorganiseList(inputIntegerList) );
+		
 	}
 
 }
