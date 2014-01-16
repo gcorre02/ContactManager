@@ -93,7 +93,18 @@ public class ValuesManagerImplTest {
 		 * @return goes through the list and returns outstanding ids
 		 */
 		
-		fail("Not yet implemented"); // TODO
+		List<Integer> inputIntegerList = new ArrayList<Integer>();
+		for(int i = 0; i < 100; i++){
+			inputIntegerList.add(i);
+		}
+		
+		int expectedInt = 100;
+		int secondExpectedInt = 35;
+		
+		assertEquals("newIdGenerator() not returning a number", expectedInt, vm.newIdGenerator(inputIntegerList));
+		inputIntegerList.remove(secondExpectedInt);
+		assertEquals("newIdGenerator() not returning a number", secondExpectedInt, vm.newIdGenerator(inputIntegerList));
+		assertTrue("make sure it is unique", !vm.checkIdExistsInList(vm.newIdGenerator(inputIntegerList), inputIntegerList) );
 	}
 
 }

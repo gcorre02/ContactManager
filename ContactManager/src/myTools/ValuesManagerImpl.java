@@ -43,6 +43,17 @@ public class ValuesManagerImpl implements ValuesManager {
 	 */
 	@Override
 	public int newIdGenerator(List<Integer> anyIntegerList) {
+		
+		/**
+		 * expects the last digit of the list to be the highest one, 
+		 * iterates through the list to be sure using checkIdExistsInList() 
+		 * using an increment of one from that value
+		 * returns that unique value
+		 * 
+		 * @param anyIntegerList 
+		 * @return goes through the list and returns outstanding ids
+		 */
+		
 		// TODO Auto-generated method stub
 		return 0;
 	}
