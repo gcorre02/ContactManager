@@ -93,12 +93,18 @@ public class ValuesManagerImplTest {
 		int expectedInt = 100;
 		int secondExpectedInt = 35;
 		
-		assertEquals("newIdGenerator() not returning a number", expectedInt, vm.newIdGenerator(inputIntegerList));
+		assertEquals("newIdGenerator() not returning a number 1", expectedInt, vm.newIdGenerator(inputIntegerList));
 		
 		inputIntegerList.remove(secondExpectedInt);
-		assertEquals("newIdGenerator() not returning a number", secondExpectedInt, vm.newIdGenerator(inputIntegerList));
+		assertEquals("newIdGenerator() not returning a number 1", secondExpectedInt, vm.newIdGenerator(inputIntegerList));
 		
 		assertTrue("make sure it is unique", !vm.checkIdExistsInList(vm.newIdGenerator(inputIntegerList), inputIntegerList) );
+		inputIntegerList.add(vm.newIdGenerator(inputIntegerList));
+		
+		secondExpectedInt = 45; 
+		inputIntegerList.remove(secondExpectedInt);
+		assertEquals("doesn't work if it is not organized, need to solve this problem : reorganise list and try again", secondExpectedInt, vm.newIdGenerator(inputIntegerList));
+		
 	}
 
 }

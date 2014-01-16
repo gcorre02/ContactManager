@@ -50,14 +50,25 @@ public class ValuesManagerImpl implements ValuesManager {
 				if(!checkIdExistsInList(previous+1, anyIntegerList)){
 					return previous+1;
 				}
-					return -1;
+					return newIdGenerator(reorganiseList(anyIntegerList));
 			}
 			previous ++;
 		}
 		if(!checkIdExistsInList(previous+1, anyIntegerList)){
 			return previous+1;
 		}
-		return -1;
+		return newIdGenerator(reorganiseList(anyIntegerList));
+	}
+	
+	/**
+	 * 
+	 * @param anyIntegerList input array to reorganise 
+	 * @return this list reorganized
+	 * 
+	 */
+	private List<Integer> reorganiseList(List<Integer> anyIntegerList) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
