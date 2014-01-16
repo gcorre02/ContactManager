@@ -45,6 +45,8 @@ public interface ValuesManager {
 	 * using an increment of one from that value
 	 * returns that unique value
 	 * 
+	 * returns -1 if the id generated is not unique; <<<< Should just get the highest value an increment
+	 * 
 	 * @param anyIntegerList 
 	 * @return goes through the list and returns outstanding ids
 	 */

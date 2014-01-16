@@ -72,7 +72,9 @@ public class ValuesManagerImplTest {
 		inputCandidateSet.add("Casper Vanderbilt");
 		inputCandidateSet.add("Lars Mikkelsen");
 		inputCandidateSet.add("Gunther ShaterHeanne");
+		
 		assertTrue("Checkcontactnameisunique() is checking the set string", !vm.checkContactNameIsUnique(inputCandidateSet, inputCandidateName));
+		
 		inputCandidateSet.remove(inputCandidateName);
 		assertTrue("Checkcontactnameisunique() is checking the set string", vm.checkContactNameIsUnique(inputCandidateSet, inputCandidateName));
 	}
@@ -82,17 +84,7 @@ public class ValuesManagerImplTest {
 	 */
 	@Test
 	public final void testNewIdGenerator() {
-		
-		/**
-		 * expects the last digit of the list to be the highest one, 
-		 * iterates through the list to be sure using checkIdExistsInList() 
-		 * using an increment of one from that value
-		 * returns that unique value
-		 * 
-		 * @param anyIntegerList 
-		 * @return goes through the list and returns outstanding ids
-		 */
-		
+		//TODO if there is time should separate the tests.
 		List<Integer> inputIntegerList = new ArrayList<Integer>();
 		for(int i = 0; i < 100; i++){
 			inputIntegerList.add(i);
@@ -102,8 +94,10 @@ public class ValuesManagerImplTest {
 		int secondExpectedInt = 35;
 		
 		assertEquals("newIdGenerator() not returning a number", expectedInt, vm.newIdGenerator(inputIntegerList));
+		
 		inputIntegerList.remove(secondExpectedInt);
 		assertEquals("newIdGenerator() not returning a number", secondExpectedInt, vm.newIdGenerator(inputIntegerList));
+		
 		assertTrue("make sure it is unique", !vm.checkIdExistsInList(vm.newIdGenerator(inputIntegerList), inputIntegerList) );
 	}
 
