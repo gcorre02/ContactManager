@@ -25,8 +25,7 @@ public class ValuesManagerImpl implements ValuesManager {
 	 * @see myTools.ValuesManager#checkContactNameIsUnique(java.util.Set, java.lang.String)
 	 */
 	@Override
-	public boolean checkContactNameIsUnique(Set<String> names,
-			String candidateName) {
+	public boolean checkContactNameIsUnique(Set<String> names, String candidateName) {
 		// TODO Auto-generated method stub
 		return false;
 	}
