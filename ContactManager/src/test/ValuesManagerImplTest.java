@@ -46,11 +46,13 @@ public class ValuesManagerImplTest {
 	@Test
 	public final void testCheckIdExistsInList() {
 		int inputId = 10;
+		int secondInput = 1;
 		List<Integer> inputIntegerList = new ArrayList<Integer>();
 		for(int t = 5; t<20; t++){
 			inputIntegerList.add(t);
 		}
 		assertTrue("list checker is not working",vm.checkIdExistsInList(inputId, inputIntegerList));
+		assertTrue("list checker is not working",!vm.checkIdExistsInList(secondInput, inputIntegerList));
 	}
 
 	/**

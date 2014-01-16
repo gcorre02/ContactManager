@@ -3,6 +3,7 @@
  */
 package myTools;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +18,11 @@ public class ValuesManagerImpl implements ValuesManager {
 	 */
 	@Override
 	public boolean checkIdExistsInList(int id, List<Integer> anyIntegerList) {
-		// TODO Auto-generated method stub
+		for(int t : anyIntegerList){
+			if(t == id){
+				return true;
+			}
+		}
 		return false;
 	}
 
