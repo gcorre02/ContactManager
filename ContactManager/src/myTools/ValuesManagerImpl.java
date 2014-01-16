@@ -3,6 +3,7 @@
  */
 package myTools;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -67,8 +68,22 @@ public class ValuesManagerImpl implements ValuesManager {
 	 * 
 	 */
 	private List<Integer> reorganiseList(List<Integer> anyIntegerList) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Integer> newList = new ArrayList<Integer>();
+		for(int i : anyIntegerList){
+			int counter = 0;
+			for(int t : anyIntegerList){
+				if (i<=t){
+					counter++;
+				}
+			}
+			if(counter == (anyIntegerList.size())){
+				newList.add(i);
+				anyIntegerList.remove(i);
+			}
+		}
+		
+		
+		return newList;
 	}
 
 }
