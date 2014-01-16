@@ -6,7 +6,9 @@ package test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import myTools.ValuesManager;
 import myTools.ValuesManagerImpl;
@@ -60,7 +62,19 @@ public class ValuesManagerImplTest {
 	 */
 	@Test
 	public final void testCheckContactNameIsUnique() {
-		fail("Not yet implemented"); // TODO
+		
+		String inputCandidateName = "Hans Gruber";
+		Set<String> inputCandidateSet= new HashSet<String>();
+		inputCandidateSet.add(inputCandidateName);
+		inputCandidateSet.add("John McClane");
+		inputCandidateSet.add("Simon Gruber");
+		inputCandidateSet.add("Marylin Genero");
+		inputCandidateSet.add("Casper Vanderbilt");
+		inputCandidateSet.add("Lars Mikkelsen");
+		inputCandidateSet.add("Gunther ShaterHeanne");
+		assertTrue("Checkcontactnameisunique() is checking the set string", !vm.checkContactNameIsUnique(inputCandidateSet, inputCandidateName));
+		inputCandidateSet.remove(inputCandidateName);
+		assertTrue("Checkcontactnameisunique() is checking the set string", vm.checkContactNameIsUnique(inputCandidateSet, inputCandidateName));
 	}
 
 	/**
@@ -68,6 +82,17 @@ public class ValuesManagerImplTest {
 	 */
 	@Test
 	public final void testNewIdGenerator() {
+		
+		/**
+		 * expects the last digit of the list to be the highest one, 
+		 * iterates through the list to be sure using checkIdExistsInList() 
+		 * using an increment of one from that value
+		 * returns that unique value
+		 * 
+		 * @param anyIntegerList 
+		 * @return goes through the list and returns outstanding ids
+		 */
+		
 		fail("Not yet implemented"); // TODO
 	}
 

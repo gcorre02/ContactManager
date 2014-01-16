@@ -3,7 +3,6 @@
  */
 package myTools;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -31,8 +30,12 @@ public class ValuesManagerImpl implements ValuesManager {
 	 */
 	@Override
 	public boolean checkContactNameIsUnique(Set<String> names, String candidateName) {
-		// TODO Auto-generated method stub
-		return false;
+		for(String str : names){
+			if(str.equals(candidateName)){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/* (non-Javadoc)
