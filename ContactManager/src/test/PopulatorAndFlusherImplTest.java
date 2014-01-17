@@ -8,7 +8,8 @@ import myTools.PopulatorAndFlusher;
 import myTools.PopulatorAndFlusherImpl;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -45,19 +46,19 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testReadFromFileReturnsAllRowsToCsvRows(){
-		String[] expectedCsvRows = new String[10];
-		expectedCsvRows[0]= "Nakatomi Plaza at 9pm";
-		expectedCsvRows[1]= "Hans Gruber";
-		expectedCsvRows[2]= "John McClane";
-		expectedCsvRows[3]= "Tony";
-		expectedCsvRows[4]= "Fritz";
-		expectedCsvRows[5]= "Harry Ellis";
-		expectedCsvRows[6]= "Theo theDriver";
-		expectedCsvRows[7]= "Holly Genero";
-		expectedCsvRows[8]= "Karl";
-		expectedCsvRows[9]= "Klaus";
-		String[] returnedCsvRows = paf.readFromFile(pathToFile);
-		assertEquals("read from file not populating csvRows propperly", expectedCsvRows[4], returnedCsvRows[4]);
+		List<String> expectedCsvRows = new ArrayList<String>();
+		expectedCsvRows.add("Nakatomi Plaza at 9pm");
+		expectedCsvRows.add("Hans Gruber");
+		expectedCsvRows.add("John McClane");
+		expectedCsvRows.add("Tony");
+		expectedCsvRows.add("Fritz");
+		expectedCsvRows.add("Harry Ellis");
+		expectedCsvRows.add("Theo theDriver");
+		expectedCsvRows.add("Holly Genero");
+		expectedCsvRows.add("Karl");
+		expectedCsvRows.add("Klaus");
+		List<String> returnedCsvRows = paf.readFromFile(pathToFile);
+		assertEquals("read from file not populating csvRows propperly", expectedCsvRows, returnedCsvRows);
 	}
 
 	/**

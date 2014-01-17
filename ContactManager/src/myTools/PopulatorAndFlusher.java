@@ -4,6 +4,7 @@
 package myTools;
 
 
+import java.util.List;
 import java.util.Set;
 
 import contactmgmt.Contact;
@@ -27,7 +28,7 @@ public interface PopulatorAndFlusher {
 	 * @param pathToFile
 	 * @return all lines from file in an array
 	 */
-	String[] readFromFile(String pathToFile);
+	List<String> readFromFile(String pathToFile);
 	/**
 	 * called at set-up by ContactManager
 	 * populates all Sets and Indexes

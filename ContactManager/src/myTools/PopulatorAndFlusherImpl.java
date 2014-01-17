@@ -3,6 +3,10 @@
  */
 package myTools;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -167,9 +171,22 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	}
 
 	@Override
-	public String[] readFromFile(String pathToFile) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> readFromFile(String pathToFile) {
+		List<String> rows = new ArrayList<String>();
+		
+	
+		File inputFile = new File(pathToFile);
+		if(inputFile.isFile()){
+			try{
+				rows = Files.readAllLines(inputFile.toPath(), Charset.defaultCharset());
+			} catch (IOException e){
+				System.out.println("file doesn't read right");
+				rows.add("");
+			}
+		} else {
+			rows.add("");
+		}
+		return rows;
 	}
 
 	@Override
