@@ -60,5 +60,12 @@ public interface ValuesManager {
 	 */
 	List<Integer> reorganiseList(List<Integer> inputIntegerList);
 
+	/**
+	 * debugging method, prints contents of the list
+	 * @param inputIntegerList list to be printed
+	 * @param listName list identifier for debug
+	 */
+	void printList(List<Integer> inputIntegerList, String listName);
+
 
 }

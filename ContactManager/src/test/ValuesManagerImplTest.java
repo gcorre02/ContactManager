@@ -107,7 +107,7 @@ public class ValuesManagerImplTest {
 	 * Test method for {@link myTools.ValuesManagerImpl#newIdGenerator(java.util.List)}.
 	 */
 	@Test
-	public final void testIdGeneratorAddsIDToTheEndOFTheList() {
+	public final void testIdGeneratorReturnsIDForTheEndOFTheList() {
 		//TODO if there is time should separate the tests.
 		List<Integer> inputIntegerList = new ArrayList<Integer>();
 		inputIntegerList.add(0);
@@ -148,9 +148,9 @@ public class ValuesManagerImplTest {
 		for(int i = 0; i <=10; i++){
 			expectedIntegerList.add(i);
 		}
-		//.add is completely rewriting the list!
+		
 		inputIntegerList.add(vm.newIdGenerator(inputIntegerList));
-
+		
 		assertEquals("organization doesnt match", expectedIntegerList, vm.reorganiseList(inputIntegerList) );
 
 	}
