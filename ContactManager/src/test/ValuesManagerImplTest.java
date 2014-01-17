@@ -83,31 +83,79 @@ public class ValuesManagerImplTest {
 	 * Test method for {@link myTools.ValuesManagerImpl#newIdGenerator(java.util.List)}.
 	 */
 	@Test
-	public final void testNewIdGenerator() {
+	public final void testNewIdGeneratorFindsAMissingIdInTheMiddleOfTheList() {
 		//TODO if there is time should separate the tests.
 		List<Integer> inputIntegerList = new ArrayList<Integer>();
-		for(int i = 0; i < 100; i++){
-			inputIntegerList.add(i);
-		}
+		inputIntegerList.add(0);
+		inputIntegerList.add(8);
+		inputIntegerList.add(6);
+		inputIntegerList.add(4);
+		inputIntegerList.add(2);
+		inputIntegerList.add(10);
+		inputIntegerList.add(3);
+		inputIntegerList.add(7);
+		inputIntegerList.add(5);
+		inputIntegerList.add(1);
 
-		int expectedInt = 100;
-		int secondExpectedInt = 35;
+		int expectedInt = 9;
 
 		assertEquals("newIdGenerator() not returning a number 1", expectedInt, vm.newIdGenerator(inputIntegerList));
-
-		/*
-		 * inputIntegerList.remove(inputIntegerList.indexOf(secondExpectedInt));
-		 *
-		 *	assertEquals("newIdGenerator() not returning a number 1", secondExpectedInt, vm.newIdGenerator(inputIntegerList));
-
-		 *	assertTrue("make sure it is unique", !vm.checkIdExistsInList(vm.newIdGenerator(inputIntegerList), inputIntegerList) );
-		 *	inputIntegerList.add(vm.newIdGenerator(inputIntegerList));
-		 *
-		 *		secondExpectedInt = 45; 
-		 *		inputIntegerList.remove(inputIntegerList.indexOf(secondExpectedInt));
-		 *		assertEquals("doesn't work if it is not organized, need to solve this problem : reorganise list and try again", secondExpectedInt, vm.newIdGenerator(inputIntegerList));
-		 */
+		
 	}
+	
+	/**
+	 * Test method for {@link myTools.ValuesManagerImpl#newIdGenerator(java.util.List)}.
+	 */
+	@Test
+	public final void testIdGeneratorAddsIDToTheEndOFTheList() {
+		//TODO if there is time should separate the tests.
+		List<Integer> inputIntegerList = new ArrayList<Integer>();
+		inputIntegerList.add(0);
+		inputIntegerList.add(8);
+		inputIntegerList.add(6);
+		inputIntegerList.add(4);
+		inputIntegerList.add(2);
+		inputIntegerList.add(9);
+		inputIntegerList.add(3);
+		inputIntegerList.add(7);
+		inputIntegerList.add(5);
+		inputIntegerList.add(1);
+
+		int expectedInt = 10;
+
+		assertEquals("newIdGenerator() not returning a number 1", expectedInt, vm.newIdGenerator(inputIntegerList));
+		
+	}
+	
+	/**
+	 * Test method for {@link myTools.ValuesManagerImpl#reorganiseList(java.util.List)}.
+	 */
+	@Test
+	public final void testListIsReorganizedAfterAddingANewId(){
+
+		List<Integer> inputIntegerList = new ArrayList<Integer>();
+		inputIntegerList.add(0);
+		inputIntegerList.add(8);
+		inputIntegerList.add(6);
+		inputIntegerList.add(4);
+		inputIntegerList.add(2);
+		inputIntegerList.add(9);
+		inputIntegerList.add(3);
+		inputIntegerList.add(10);
+		inputIntegerList.add(5);
+		inputIntegerList.add(1);
+		List<Integer> expectedIntegerList = new ArrayList<Integer>();
+		for(int i = 0; i <=10; i++){
+			expectedIntegerList.add(i);
+		}
+		//.add is completely rewriting the list!
+		inputIntegerList.add(vm.newIdGenerator(inputIntegerList));
+
+		assertEquals("organization doesnt match", expectedIntegerList, vm.reorganiseList(inputIntegerList) );
+
+	}
+
+
 
 	/**
 	 * Test method for {@link myTools.ValuesManagerImpl#reorganiseList(java.util.List)}.

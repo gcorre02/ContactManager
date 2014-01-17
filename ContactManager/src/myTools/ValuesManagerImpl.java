@@ -45,7 +45,7 @@ public class ValuesManagerImpl implements ValuesManager {
 	@Override
 	public int newIdGenerator(List<Integer> anyIntegerList) {
 		anyIntegerList = reorganiseList(anyIntegerList);
-		int i = 0;
+		int i = 0; //< find the minimum, 0 might not be it, but 0 is where it should start <fine>
 		do{
 			i++;
 		}while(anyIntegerList.contains(i));
@@ -57,6 +57,7 @@ public class ValuesManagerImpl implements ValuesManager {
 	 */
 	@Override
 	public List<Integer> reorganiseList(List<Integer> anyIntegerList) {
+		
 		List<Integer> newList = new ArrayList<Integer>();
 		int minimum = 0;
 		for (int i : anyIntegerList){
