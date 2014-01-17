@@ -20,7 +20,7 @@ import contactmgmt.Meeting;
  *
  */
 public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
-	
+	// TODO try to make this a generic populator, where constructor inputs the type, to be done when everything is coded//
 	private List<Integer> meetingsIdIndex= new ArrayList<Integer>();
 	private List<Integer> pastMeetingsIdIndex= new ArrayList<Integer>();
 	private List<Integer> futureMeetingsIdIndex= new ArrayList<Integer>();
@@ -30,9 +30,9 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	private Set<Meeting> allMeetings = new HashSet<Meeting>();
 	private Set<Meeting> allPastMeetings = new HashSet<Meeting>();
 	private Set<Meeting> allFutureMeetings = new HashSet<Meeting>();
-	private String[] csvRows;
+	private List<String> csvRows;
 	
-	
+	//TODO write constructor that calls all the populators
 
 	/* (non-Javadoc)
 	 * @see myTools.PopulatorAndFlusher#WriteToFile(java.util.Set, java.util.Set, java.lang.String)
@@ -186,6 +186,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		} else {
 			rows.add("");
 		}
+		setCsvRows(rows);
 		return rows;
 	}
 
@@ -194,12 +195,13 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		// TODO Auto-generated method stub
 		
 	}
-
-	public String[] getCsvRows() {
+	
+	@Override
+	public List<String> getCsvRows() {
 		return csvRows;
 	}
 
-	public void setCsvRows(String[] csvRows) {
+	private void setCsvRows(List<String> csvRows) {
 		this.csvRows = csvRows;
 	}
 

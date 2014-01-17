@@ -44,5 +44,16 @@ public interface PopulatorAndFlusher {
 	 * @param pathToFile location of the file
 	 */
 	void  WriteToFile(Set<Meeting> allMeetings, Set<Contact> allContacts, String pathToFile);
+	
+	/**
+	 * 
+	 * @return csvRows list of rows in the textFile
+	 */
+	List<String> getCsvRows();
+	/**
+	 * 
+	 * @return
+	 */
+	List<Integer> getContactsIdIndex();
 
 }
