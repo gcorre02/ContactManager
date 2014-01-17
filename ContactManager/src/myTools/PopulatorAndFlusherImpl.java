@@ -26,15 +26,9 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	private Set<Meeting> allMeetings = new HashSet<Meeting>();
 	private Set<Meeting> allPastMeetings = new HashSet<Meeting>();
 	private Set<Meeting> allFutureMeetings = new HashSet<Meeting>();
+	private String[] csvRows;
 	
-	/* (non-Javadoc)
-	 * @see myTools.PopulatorAndFlusher#PopulateSetsAndIndexes(java.lang.String)
-	 */
-	@Override
-	public void PopulateSetsAndIndexes(String pathToFile) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 	/* (non-Javadoc)
 	 * @see myTools.PopulatorAndFlusher#WriteToFile(java.util.Set, java.util.Set, java.lang.String)
@@ -170,6 +164,26 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	 */
 	public void setAllFutureMeetings(Set<Meeting> allFutureMeetings) {
 		this.allFutureMeetings = allFutureMeetings;
+	}
+
+	@Override
+	public String[] readFromFile(String pathToFile) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void PopulateSetsAndIndexes(String[] csvRows) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String[] getCsvRows() {
+		return csvRows;
+	}
+
+	public void setCsvRows(String[] csvRows) {
+		this.csvRows = csvRows;
 	}
 
 }

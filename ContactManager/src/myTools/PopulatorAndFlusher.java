@@ -22,15 +22,19 @@ public interface PopulatorAndFlusher {
 	 * WriteToFile(Meetings and COntacts sets overriden, pathToFile) *2
 	 */
 	
-	
-	
+	/**
+	 * 
+	 * @param pathToFile
+	 * @return all lines from file in an array
+	 */
+	String[] readFromFile(String pathToFile);
 	/**
 	 * called at set-up by ContactManager
 	 * populates all Sets and Indexes
 	 * @param pathToFile
 	 * 
 	 */
-	void PopulateSetsAndIndexes(String pathToFile);
+	void PopulateSetsAndIndexes(String[] csvRows);
 
 	/**
 	 * 

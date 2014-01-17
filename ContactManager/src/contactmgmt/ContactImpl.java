@@ -12,7 +12,9 @@ public class ContactImpl implements Contact {
 	private int id;
 	private String name;
 	private String notes;
-
+	
+	//TODO Override toString() 
+	
 	/**
 	 * @param name name of the contact <<< not unique
 	 * @param id id of the object

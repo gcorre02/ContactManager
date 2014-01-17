@@ -16,6 +16,7 @@ public class MeetingImpl implements Meeting {
 	private Calendar date;
 	private Set<Contact> contacts;
 
+	//TODO Override toString() 
 	/**
 	 * @param contacts 
 	 * @param date 

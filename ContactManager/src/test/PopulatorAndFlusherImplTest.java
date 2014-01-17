@@ -1,12 +1,13 @@
 /**
  * 
  */
-package tests;
+package test;
 
 import static org.junit.Assert.*;
 import myTools.PopulatorAndFlusher;
 import myTools.PopulatorAndFlusherImpl;
 
+import java.io.File;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,11 +18,13 @@ import org.junit.Test;
  */
 public class PopulatorAndFlusherImplTest {
 	PopulatorAndFlusher paf;
+	String pathToFile;
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		pathToFile = "."+ File.separator +"contacts.txt";
 		paf = new PopulatorAndFlusherImpl();
 	}
 
@@ -33,14 +36,26 @@ public class PopulatorAndFlusherImplTest {
 		paf = null;
 	}
 
+	
+	
 	/**
-	 * Test method for {@link myTools.PopulatorAndFlusherImpl#PopulateSetsAndIndexes(java.lang.String)}.
+	 * Test method for {@link myTools.PopulatorAndFlusherImpl#readFromFile(java.lang.String)}.
+	 */
+	@Test
+	public final void testReadFromFileReturnsAllRowsToCsvRows(){
+		
+		String[] expectedCsvRows = new String[10];
+		String[] returnedCsvRows = paf.readFromFile(pathToFile);
+		assertEquals("read from file not populating csvRows propperly", expectedCsvRows[4], returnedCsvRows[4]);
+	}
+	
+	/**
+	 * Test method for {@link myTools.PopulatorAndFlusherImpl#PopulateSetsAndIndexes(java.lang.String[])}.
 	 */
 	@Test
 	public final void testPopulateSetsAndIndexes() {
 		fail("Not yet implemented"); // TODO
 	}
-
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#WriteToFile(java.util.Set, java.util.Set, java.lang.String)}.
 	 */
