@@ -57,7 +57,7 @@ public class ValuesManagerImpl implements ValuesManager {
 	 */
 	@Override
 	public List<Integer> reorganiseList(List<Integer> anyIntegerList) {
-		//need to intanciate a new list that is a copy of anyIntegerList to iterate through, otherwise anyIntegerList gets erased
+		//need to instanciate a new list that is a copy of anyIntegerList to iterate through, otherwise anyIntegerList gets erased
 		List<Integer> stubList = new ArrayList<Integer>();
 		for(int i : anyIntegerList){
 			stubList.add(i);
@@ -77,7 +77,10 @@ public class ValuesManagerImpl implements ValuesManager {
 		newList.add(minimum);
 		return newList;
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see myTools.ValuesManager#printList(java.util.List, java.lang.String)
+	 */
 	@Override
 	public void printList(List<Integer> inputIntegerList, String listName) {
 		System.out.println("Begginning printing of list: " + listName);
