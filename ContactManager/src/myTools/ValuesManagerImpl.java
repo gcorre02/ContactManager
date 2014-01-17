@@ -45,20 +45,11 @@ public class ValuesManagerImpl implements ValuesManager {
 	@Override
 	public int newIdGenerator(List<Integer> anyIntegerList) {
 		anyIntegerList = reorganiseList(anyIntegerList);
-		int previous = -1;
-		for(int i : anyIntegerList){
-			if(i != previous+1){
-				if(!checkIdExistsInList(previous+1, anyIntegerList)){
-					return previous+1;
-				}
-				return newIdGenerator(reorganiseList(anyIntegerList));
-			}
-			previous ++;
-		}
-		if(!checkIdExistsInList(previous+1, anyIntegerList)){
-			return previous+1;
-		}
-		return newIdGenerator(reorganiseList(anyIntegerList));
+		int i = 0;
+		do{
+			i++;
+		}while(anyIntegerList.contains(i));
+		return i;
 	}
 	
 	/* (non-Javadoc)
