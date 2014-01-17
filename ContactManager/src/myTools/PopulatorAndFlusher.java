@@ -3,6 +3,7 @@
  */
 package myTools;
 
+
 import java.util.Set;
 
 import contactmgmt.Contact;
@@ -20,6 +21,9 @@ public interface PopulatorAndFlusher {
 	 * 
 	 * WriteToFile(Meetings and COntacts sets overriden, pathToFile) *2
 	 */
+	
+	
+	
 	/**
 	 * called at set-up by ContactManager
 	 * populates all Sets and Indexes
