@@ -8,6 +8,8 @@ import myTools.PopulatorAndFlusher;
 import myTools.PopulatorAndFlusherImpl;
 
 import java.io.File;
+import java.io.IOException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +26,7 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		pathToFile = "."+ File.separator +"contacts.txt";
+		pathToFile = "."+ File.separator +"contactsTest.txt";
 		paf = new PopulatorAndFlusherImpl();
 	}
 
@@ -36,19 +38,28 @@ public class PopulatorAndFlusherImplTest {
 		paf = null;
 	}
 
-	
-	
+
+
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#readFromFile(java.lang.String)}.
 	 */
 	@Test
 	public final void testReadFromFileReturnsAllRowsToCsvRows(){
-		
 		String[] expectedCsvRows = new String[10];
+		expectedCsvRows[0]= "Nakatomi Plaza at 9pm";
+		expectedCsvRows[1]= "Hans Gruber";
+		expectedCsvRows[2]= "John McClane";
+		expectedCsvRows[3]= "Tony";
+		expectedCsvRows[4]= "Fritz";
+		expectedCsvRows[5]= "Harry Ellis";
+		expectedCsvRows[6]= "Theo theDriver";
+		expectedCsvRows[7]= "Holly Genero";
+		expectedCsvRows[8]= "Karl";
+		expectedCsvRows[9]= "Klaus";
 		String[] returnedCsvRows = paf.readFromFile(pathToFile);
 		assertEquals("read from file not populating csvRows propperly", expectedCsvRows[4], returnedCsvRows[4]);
 	}
-	
+
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#PopulateSetsAndIndexes(java.lang.String[])}.
 	 */
