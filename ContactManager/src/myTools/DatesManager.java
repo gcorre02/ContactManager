@@ -4,7 +4,6 @@
 package myTools;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  * @author Guilherme
@@ -33,6 +32,6 @@ public interface DatesManager {
 	 * @param day the day to add to the Calendar object
 	 * @return a date(GregorianCalendar) object
 	 */
-	GregorianCalendar generateCalendarItem(int year, int month, int day);
+	Calendar generateCalendarItem(int year, int month, int day);
 
 }

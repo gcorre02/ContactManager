@@ -17,7 +17,10 @@ public class DatesManagerImpl implements DatesManager {
 	 */
 	@Override
 	public boolean checkDateIsInThePast(Calendar date) {
-		// TODO Auto-generated method stub
+		Calendar present = Calendar.getInstance();
+		if(present.compareTo(date)>=0){
+			return true;
+		}
 		return false;
 	}
 
@@ -25,9 +28,9 @@ public class DatesManagerImpl implements DatesManager {
 	 * @see myTools.DatesManager#generateCalendarItem(int, int, int)
 	 */
 	@Override
-	public GregorianCalendar generateCalendarItem(int year, int month, int day) {
-		// TODO Auto-generated method stub
-		return null;
+	public Calendar generateCalendarItem(int year, int month, int day) {
+		Calendar date = new GregorianCalendar(year,month,day);
+		return date;
 	}
 
 }
