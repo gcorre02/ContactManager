@@ -8,6 +8,10 @@ import myTools.PopulatorAndFlusher;
 import myTools.PopulatorAndFlusherImpl;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +31,6 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		pathToFile = "."+ File.separator +"contactsTest.txt";
 		paf = new PopulatorAndFlusherImpl();
 	}
 
@@ -46,6 +49,29 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testReadFromFileReturnsAllRowsToCsvRows(){
+		pathToFile = "."+ File.separator +"contactsTest.txt";
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());//"UTF-8"); //
+			writer.println("Nakatomi Plaza at 9pm");
+			writer.println("Hans Gruber");
+			writer.println("John McClane");
+			writer.println("Tony");
+			writer.println("Fritz");
+			writer.println("Harry Ellis");
+			writer.println("Theo theDriver");
+			writer.println("Holly Genero");
+			writer.println("Karl");
+			writer.println("Klaus");
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		List<String> expectedCsvRows = new ArrayList<String>();
 		expectedCsvRows.add("Nakatomi Plaza at 9pm");
 		expectedCsvRows.add("Hans Gruber");
@@ -58,6 +84,8 @@ public class PopulatorAndFlusherImplTest {
 		expectedCsvRows.add("Karl");
 		expectedCsvRows.add("Klaus");
 		List<String> returnedCsvRows = paf.readFromFile(pathToFile);
+		File file = new File(pathToFile);
+		file.delete();
 		assertEquals("read from file not populating csvRows propperly", expectedCsvRows, returnedCsvRows);
 	}
 
