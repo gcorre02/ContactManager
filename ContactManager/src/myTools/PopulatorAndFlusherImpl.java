@@ -363,21 +363,30 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		}
 		this.contactsNameIndex = contactsNameIndex;
 	}
-	
-	public <T> void updateSet(T element, Set<T> elementCollection, List<T> index){
+	/**
+	 * 
+	 * @param element
+	 * @param elementCollection
+	 * @param index
+	 * @return boolean that indicates whether it's been added or removed
+	 */
+	public <T> boolean updateSet(T element, Set<T> elementCollection){
 		if(elementCollection.contains(element)){
 			elementCollection.remove(element);
+			return false;
 		} else{
 			elementCollection.add(element);
+			return true;
 		}
+		
 	}
-	public boolean updateIndex(int id, List<Integer> anyList){
+	public <T>boolean updateIndex(T id,List<T> anyList){
 		//returns a bool that indicates whether it's been added or removed
 		if(anyList.contains(id)){
-			anyList.remove((Integer)id);			
+			anyList.remove((T)id);			
 			return false;
 		} else {
-			anyList.add((Integer)id);
+			anyList.add((T)id);
 			return true;
 		}
 	}

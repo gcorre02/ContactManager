@@ -71,6 +71,7 @@ public class PopulatorAndFlusherImplTest {
 		paf.setAllFutureMeetings(paf.getAllMeetings());
 		paf.setPastMeetingsIdIndex(paf.getAllPastMeetings());
 		paf.setFutureMeetingsIdIndex(paf.getAllFutureMeetings());
+		paf.setContactsIdIndex(paf.getCsvRows());
 
 	}
 
@@ -330,14 +331,16 @@ public class PopulatorAndFlusherImplTest {
 	
 	@Test 
 	public final void testUpdateIndex(){
-		paf.setContactsIdIndex(paf.getCsvRows());
 		int inputId = 13;
 		paf.updateIndex(inputId,paf.getContactsIdIndex());
 		assertTrue("index updater not working", paf.getContactsIdIndex().contains(inputId));
 		paf.updateIndex(inputId,paf.getContactsIdIndex());
 		assertTrue("index updater removal not working", !paf.getContactsIdIndex().contains(inputId));
 	}
+	@Test
 	public final void testUpdateSet(){
+		Contact inputContact = new ContactImpl(23,"John McClane");
+		paf.updateSet(inputContact, paf.getAllContacts());
 		
 	}
 }
