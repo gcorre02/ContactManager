@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 import contactmgmt.Contact;
+import contactmgmt.ContactImpl;
 import contactmgmt.Meeting;
 
 /**
@@ -145,6 +146,13 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	 */
 	public void setAllContacts(List<String> csvRows) {
 		Set<Contact> allContacts = new HashSet<Contact>();
+		for(String str : csvRows){
+			String rowSplit[] = str.split(",");
+			if(rowSplit[1].equals("C")){
+				allContacts.add(new ContactImpl((Integer.parseInt(rowSplit[0])),rowSplit[2]));
+			}
+		}
+		//populate set
 		this.allContacts = allContacts;
 	}
 

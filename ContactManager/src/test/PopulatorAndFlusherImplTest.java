@@ -15,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -167,19 +168,26 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetAllContacts() {
-		Set<Contact> expectedContacts = new HashSet<Contact>();
-		expectedContacts.add(new ContactImpl(0,"Hans Gruber"));
-		expectedContacts.add(new ContactImpl(1,"John McClane"));
-		expectedContacts.add(new ContactImpl(2,"Tony"));
-		expectedContacts.add(new ContactImpl(3,"Fritz"));
-		expectedContacts.add(new ContactImpl(4,"Harry Ellis"));
-		expectedContacts.add(new ContactImpl(5,"Theo theDriver"));
-		expectedContacts.add(new ContactImpl(6,"Holly Genero"));
-		expectedContacts.add(new ContactImpl(7,"Karl"));
-		expectedContacts.add(new ContactImpl(8,"Klaus"));
+		Set<Contact> inputContacts = paf.getAllContacts();
+		String[] expectedContacts = new String[9];
+		expectedContacts[0]="Hans Gruber";
+		expectedContacts[0]="John McClane";
+		expectedContacts[0]="Tony";
+		expectedContacts[0]="Fritz";
+		expectedContacts[0]="Harry Ellis";
+		expectedContacts[0]="Theo theDriver";
+		expectedContacts[0]="Holly Genero";
+		expectedContacts[0]="Karl";
+		expectedContacts[0]="Klaus";
 		paf.setAllContacts(paf.getCsvRows());
 		
-		assertEquals("Set contacts is not importing them propperly", expectedContacts,paf.getAllContacts());
+		Iterator<Contact> iter = inputContacts.iterator();
+		int i = 0;
+		while(iter.hasNext()){
+			assertEquals("Set contacts is not importing them propperly", expectedContacts[i],iter.next().getName());
+			i++;
+		}
+		
 		
 	}
 
