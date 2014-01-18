@@ -150,7 +150,8 @@ public class PopulatorAndFlusherImplTest {
 		paf.writeToFile(pathToFile);
 		
 		//populate array with file elements
-		List<String> inputRows = paf.readFromFile(pathToFile); 
+		paf.readFromFile(pathToFile);
+		List<String> inputRows = paf.getCsvRows();
 		
 		//Assert write works
 		assertEquals("Write operation not working : ", expectedCsvRows, inputRows);

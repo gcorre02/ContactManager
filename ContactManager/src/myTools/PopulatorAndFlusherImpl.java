@@ -4,7 +4,10 @@
 package myTools;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -57,6 +60,38 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		//pass the info to the file using a future, past, contact strucure
 		// TODO need to override toString in all the printable methods (dont need to pass Meeting, because all meetings are either future or past.)
 		// TODO need to add functionality for adding notes to contacts
+		//start the writer
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
+			
+			//iterate through each FM and write it in
+			Iterator<FutureMeeting> iterFm = allFutureMeetings.iterator();
+			while(iterFm.hasNext()){
+				FutureMeeting current = iterFm.next();
+				writer.println(current.toString());
+			}
+			//iterate through each PM and write it in
+			Iterator<PastMeeting> iterPm = allPastMeetings.iterator();
+			while(iterPm.hasNext()){
+				PastMeeting current = iterPm.next();
+				writer.println(current.toString());
+			}
+			//iterate through each Contact and write it in
+			Iterator<Contact> iterC = allContacts.iterator();
+			while(iterC.hasNext()){
+				Contact current = iterC.next();
+				writer.println(current.toString());
+			}
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
