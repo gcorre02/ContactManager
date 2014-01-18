@@ -87,5 +87,6 @@ public interface PopulatorAndFlusher {
 	List<Integer> getFutureMeetingsIdIndex();
 	void setContactsNameIndex(Set<Contact> allContacts);
 	List<String> getContactsNameIndex();
+	boolean updateIndex(int inputId, List<Integer> contactsIdIndex);
 
 }

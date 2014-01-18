@@ -371,11 +371,14 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 			elementCollection.add(element);
 		}
 	}
-	public void updateIndex(int id, List<Integer> anyList){
+	public boolean updateIndex(int id, List<Integer> anyList){
+		//returns a bool that indicates whether it's been added or removed
 		if(anyList.contains(id)){
-			anyList.remove(id);			
+			anyList.remove((Integer)id);			
+			return false;
 		} else {
-			anyList.add(id);
+			anyList.add((Integer)id);
+			return true;
 		}
 	}
 	

@@ -328,11 +328,16 @@ public class PopulatorAndFlusherImplTest {
 		assertEquals("getNtes() is not returning the notes from the assigned id meeting", expectedNotes, inputNotes);
 	}
 	
-	
-	public final void testUpdateIndexAndSet(){
-		/*
-		 * takes the id and the item as arguments and updates accordingly. for now just overload the methods, but later i can write one method that updates them all
-		 */
-		fail("test not written yet");
+	@Test 
+	public final void testUpdateIndex(){
+		paf.setContactsIdIndex(paf.getCsvRows());
+		int inputId = 13;
+		paf.updateIndex(inputId,paf.getContactsIdIndex());
+		assertTrue("index updater not working", paf.getContactsIdIndex().contains(inputId));
+		paf.updateIndex(inputId,paf.getContactsIdIndex());
+		assertTrue("index updater removal not working", !paf.getContactsIdIndex().contains(inputId));
+	}
+	public final void testUpdateSet(){
+		
 	}
 }
