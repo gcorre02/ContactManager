@@ -110,8 +110,13 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	/**
 	 * @param pastMeetingsIdIndex the pastMeetingsIdIndex to set
 	 */
-	public void setPastMeetingsIdIndex(List<Integer> pastMeetingsIdIndex) {
-		//TODO >needs to figure out if the meeting is in the past, easier if the objects are already created. so it just .getsId() !!
+	public void setPastMeetingsIdIndex(Set<PastMeeting> allPastMeetings) {
+		List<Integer> pastMeetingsIdIndex = new ArrayList<Integer>();
+		Iterator<PastMeeting> iter = allPastMeetings.iterator();
+		while(iter.hasNext()){
+			PastMeeting current = iter.next();
+			pastMeetingsIdIndex.add(current.getId());
+		}		
 		this.pastMeetingsIdIndex = pastMeetingsIdIndex;
 	}
 
@@ -228,12 +233,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		return allFutureMeetings;
 	}
 
-	/**
-	 * @param allFutureMeetings the allFutureMeetings to set
-	 */
-	public void setAllFutureMeetings(Set<FutureMeeting> allFutureMeetings) {
-		this.allFutureMeetings = allFutureMeetings;
-	}
+	
 
 	@Override
 	public List<String> readFromFile(String pathToFile) {
@@ -327,6 +327,12 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void setAllFutureMeetings(Set<Meeting> allMeetings) {
+		Set<FutureMeeting> futureMeetings = new HashSet<FutureMeeting>();
+		this.allFutureMeetings = futureMeetings;
 	}
 
 }

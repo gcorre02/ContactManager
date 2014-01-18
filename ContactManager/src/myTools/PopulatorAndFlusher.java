@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import contactmgmt.Contact;
+import contactmgmt.FutureMeeting;
 import contactmgmt.Meeting;
 import contactmgmt.PastMeeting;
 
@@ -78,5 +79,9 @@ public interface PopulatorAndFlusher {
 	Set<Meeting> getAllMeetings();
 	void setAllPastMeetings(Set<Meeting> allMeetings);
 	Set<PastMeeting> getAllPastMeetings();
+	void setPastMeetingsIdIndex(Set<PastMeeting> allPastMeetings);
+	List<Integer> getPastMeetingsIdIndex();
+	void setAllFutureMeetings(Set<Meeting> allMeetings);
+	Set<FutureMeeting> getAllFutureMeetings();
 
 }

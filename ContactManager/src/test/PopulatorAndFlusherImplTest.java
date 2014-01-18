@@ -17,6 +17,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -64,9 +65,10 @@ public class PopulatorAndFlusherImplTest {
 		paf.readFromFile(pathToFile);
 		paf.setAllContacts(paf.getCsvRows());
 		paf.setAllMeetings(paf.getCsvRows());
-	
+
 		paf.setMeetingsIdIndex(paf.getCsvRows());
 		paf.setAllPastMeetings(paf.getAllMeetings()); //TODO : investigate why this methid must be called after setMeetings IdIndex(kind of makes sense)
+		paf.setAllFutureMeetings(paf.getAllMeetings());
 	}
 
 	/**
@@ -89,8 +91,8 @@ public class PopulatorAndFlusherImplTest {
 	public final void testReadFromFileReturnsAllRowsToCsvRows(){
 		//TODO pass this to before() and change to the right format
 
-		
-		
+
+
 		List<String> expectedCsvRows = new ArrayList<String>();
 		expectedCsvRows.add("0,M,HansGruber JohnMcClane,20140513");
 		expectedCsvRows.add("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
@@ -159,7 +161,11 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetPastMeetingsIdIndex() {
-		fail("Not yet implemented"); // TODO
+		List<Integer> expectedIdIndex = new ArrayList<Integer>();
+		expectedIdIndex.add(1);
+		expectedIdIndex.add(2);
+		paf.setPastMeetingsIdIndex(paf.getAllPastMeetings());
+		assertEquals("Meeting IDs not being populated", expectedIdIndex , paf.getPastMeetingsIdIndex());
 	}
 
 	/**
@@ -218,23 +224,23 @@ public class PopulatorAndFlusherImplTest {
 		String[] expectedMeetings = new String[2];
 		expectedMeetings[0]="Hans Gruber";
 		expectedMeetings[1]="John Mc Clane";
-		
+
 		Set<Meeting> inputMeetings = paf.getAllMeetings();
 
 		Iterator<Meeting> iter = inputMeetings.iterator();
 		String contactName = "";
-		
+
 		while(iter.hasNext()){
 			Meeting current = iter.next();
 			Iterator<Contact> contactIter = current.getContacts().iterator();
 			while(contactIter.hasNext()){
 				Contact currentContact = contactIter.next();
 				contactName = currentContact.getName();
-				
+
 				assertEquals("Set Meetings is not importing them propperly", expectedMeetings[currentContact.getId()], contactName);
-				
+
 			}
-			
+
 		} 
 
 
@@ -246,13 +252,13 @@ public class PopulatorAndFlusherImplTest {
 	@Test
 	public final void testSetAllPastMeetings() {
 
-		
+
 		Set<PastMeeting> inputMeetings = paf.getAllPastMeetings();
 
 		Iterator<PastMeeting> iter = inputMeetings.iterator();
 		Calendar inputDate;
 		DatesManager dm = new DatesManagerImpl();
-		
+
 		while(iter.hasNext()){
 			Meeting current = iter.next();
 			inputDate = current.getDate();
@@ -265,13 +271,31 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetAllFutureMeetings() {
-		fail("Not yet implemented"); // TODO
+
+		Set<FutureMeeting> inputMeetings = paf.getAllFutureMeetings();
+
+		Iterator<FutureMeeting> iter = inputMeetings.iterator();
+
+		Calendar date = new GregorianCalendar(2014,05,13);
+		if(iter.hasNext()){
+			while(iter.hasNext()){
+				FutureMeeting current = iter.next();
+				if(current.getId()== 0){
+					assertEquals("Set FutureMeeting is not importing them propperly", date,current.getDate());
+				} else {
+					fail("future meeting array not populated with index 0");
+				}
+			} 
+		}  else {
+			fail("future meeting array not populated");
+		}
+
 	}
-	
+
 	@Test 
 	public final void checkThatNotesHaveBeenAddedToThePastMeeting(){
-	
-		
+
+
 		String expectedNotes = "Nakatomi Plaza at 9pm";
 		Set<PastMeeting> inputMeetings = paf.getAllPastMeetings();
 		String inputNotes="";
@@ -282,7 +306,7 @@ public class PopulatorAndFlusherImplTest {
 				inputNotes = current.getNotes();
 			}
 		}
-		
+
 		assertEquals("getNtes() is not returning the notes from the assigned id meeting", expectedNotes, inputNotes);
 	}
 }
