@@ -38,7 +38,7 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		paf = new PopulatorAndFlusherImpl();
+
 		pathToFile = "."+ File.separator +"contactsTest.txt";
 		PrintWriter writer;
 		try {
@@ -62,17 +62,21 @@ public class PopulatorAndFlusherImplTest {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		paf.readFromFile(pathToFile);
-		paf.setAllContacts(paf.getCsvRows());
-		paf.setAllMeetings(paf.getCsvRows());
+		paf = new PopulatorAndFlusherImpl(pathToFile);
 
-		paf.setMeetingsIdIndex(paf.getCsvRows());
-		paf.setAllPastMeetings(paf.getAllMeetings()); //TODO : investigate why this methid must be called after setMeetings IdIndex(kind of makes sense)
-		paf.setAllFutureMeetings(paf.getAllMeetings());
-		paf.setPastMeetingsIdIndex(paf.getAllPastMeetings());
-		paf.setFutureMeetingsIdIndex(paf.getAllFutureMeetings());
-		paf.setContactsIdIndex(paf.getCsvRows());
-
+		/*		not having to write these methods at setup is the test for the constructor's behaviour
+		 * 	
+		 *		paf.setAllContacts(paf.getCsvRows());
+		 *		paf.setAllMeetings(paf.getCsvRows());
+		 *
+		 *		paf.setMeetingsIdIndex(paf.getCsvRows());
+		 *		paf.setAllPastMeetings(paf.getAllMeetings()); 
+		 *		paf.setAllFutureMeetings(paf.getAllMeetings());
+		 *		paf.setPastMeetingsIdIndex(paf.getAllPastMeetings());
+		 *		paf.setFutureMeetingsIdIndex(paf.getAllFutureMeetings());
+		 *		paf.setContactsIdIndex(paf.getCsvRows());
+		 *
+		 */
 	}
 
 	/**
@@ -117,13 +121,6 @@ public class PopulatorAndFlusherImplTest {
 	}
 
 	//TODO last tests
-	/**
-	 * Test method for {@link myTools.PopulatorAndFlusherImpl#PopulateSetsAndIndexes(java.lang.String[])}.
-	 */
-	@Test
-	public final void testPopulateSetsAndIndexes() {
-		fail("Not yet implemented"); // TODO
-	}
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#WriteToFile(java.util.Set, java.util.Set, java.lang.String)}.
 	 */
@@ -200,7 +197,7 @@ public class PopulatorAndFlusherImplTest {
 		paf.setContactsNameIndex(paf.getAllContacts());
 		List<String> inputContacts = paf.getContactsNameIndex();
 		assertTrue("Setcontacts name index not passing the names into index", inputContacts.contains(expectedContacts[5]));
-		
+
 	}
 
 	/**1
@@ -328,7 +325,7 @@ public class PopulatorAndFlusherImplTest {
 
 		assertEquals("getNtes() is not returning the notes from the assigned id meeting", expectedNotes, inputNotes);
 	}
-	
+
 	@Test 
 	public final void testUpdateIndex(){
 		int inputId = 13;
@@ -341,6 +338,6 @@ public class PopulatorAndFlusherImplTest {
 	public final void testUpdateSet(){
 		Contact inputContact = new ContactImpl(23,"John McClane");
 		paf.updateSet(inputContact, paf.getAllContacts());
-		
+
 	}
 }

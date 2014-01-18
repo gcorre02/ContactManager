@@ -42,6 +42,12 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	private List<Integer> pastMeetingsWithNotesIndex = new ArrayList<Integer>();
 	//TODO need to write updaters! but this can be done just by calling the indexing and populating methods from outside the class 
 	//TODO write constructor that calls all the populators
+	
+	public PopulatorAndFlusherImpl(String path){
+		csvRows = readFromFile(path);
+		populateSetsAndIndexes();
+	}
+	
 
 	/* (non-Javadoc)
 	 * @see myTools.PopulatorAndFlusher#WriteToFile(java.util.Set, java.util.Set, java.lang.String)
@@ -257,9 +263,21 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		return rows;
 	}
 
-	@Override
-	public void PopulateSetsAndIndexes(String[] csvRows) {
-		// TODO Auto-generated method stub
+	
+	private void populateSetsAndIndexes() {
+		// TODO called with constructor
+		
+		//calls all the methods charged with populating the fields
+		
+		setAllContacts(getCsvRows());
+		setAllMeetings(getCsvRows());
+		setMeetingsIdIndex(getCsvRows());
+		setAllPastMeetings(getAllMeetings()); //TODO : investigate why this methid must be called after setMeetings IdIndex(kind of makes sense)
+		setAllFutureMeetings(getAllMeetings());
+		setPastMeetingsIdIndex(getAllPastMeetings());
+		setFutureMeetingsIdIndex(getAllFutureMeetings());
+		setContactsIdIndex(getCsvRows());
+		setContactsNameIndex(getAllContacts());
 		
 	}
 	

@@ -31,13 +31,7 @@ public interface PopulatorAndFlusher {
 	 * @return all lines from file in an array
 	 */
 	List<String> readFromFile(String pathToFile);
-	/**
-	 * called at set-up by ContactManager
-	 * populates all Sets and Indexes
-	 * @param pathToFile
-	 * 
-	 */
-	void PopulateSetsAndIndexes(String[] csvRows);
+	
 
 	/**
 	 * 
