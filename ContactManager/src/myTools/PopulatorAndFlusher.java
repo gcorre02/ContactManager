@@ -61,5 +61,15 @@ public interface PopulatorAndFlusher {
 	 * @param csvRows
 	 */
 	void setContactsIdIndex(List<String> csvRows);
+	/**
+	 * 
+	 * @param csvRows
+	 */
+	void setMeetingsIdIndex(List<String> csvRows);
+	/**
+	 * 
+	 * @return
+	 */
+	List<Integer> getMeetingsIdIndex();
 
 }

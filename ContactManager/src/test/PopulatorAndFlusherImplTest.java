@@ -37,7 +37,7 @@ public class PopulatorAndFlusherImplTest {
 		try {
 			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
 			//TODO write it all in the right format:
-			writer.println("0, M, HansGruber, Nakatomi Plaza at 9pm");
+			writer.println("0,M,HansGruber,Nakatomi Plaza at 9pm");
 			writer.println("0,C,Hans Gruber");
 			writer.println("1,C,John McClane");
 			writer.println("2,C,Tony");
@@ -115,7 +115,7 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetContactsIdIndex() {
-		//TODO extablish the txt file in before() to populate csvRows so these methods can access it :
+		
 		List<Integer> expectedIdIndex = new ArrayList<Integer>();
 		for(int i = 0; i < 9; i++){
 			expectedIdIndex.add(i);
@@ -129,7 +129,10 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetMeetingsIdIndex() {
-		fail("Not yet implemented"); // TODO
+		List<Integer> expectedIdIndex = new ArrayList<Integer>();
+		expectedIdIndex.add(0);
+		paf.setMeetingsIdIndex(paf.getCsvRows());
+		assertEquals("Meeting IDs not being populated", expectedIdIndex , paf.getMeetingsIdIndex());
 	}
 
 	/**

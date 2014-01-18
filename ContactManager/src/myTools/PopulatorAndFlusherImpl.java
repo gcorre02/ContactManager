@@ -76,7 +76,16 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	/**
 	 * @param meetingsIdIndex the meetingsIdIndex to set
 	 */
-	public void setMeetingsIdIndex(List<Integer> meetingsIdIndex) {
+	@Override
+	public void setMeetingsIdIndex(List<String> csvRows) {
+		List<Integer> meetingsIdIndex = new ArrayList<Integer>(); 
+		for(String str : csvRows){
+			String rowSplit[] = str.split(",");
+			if(rowSplit[1].equals("M")){
+				meetingsIdIndex.add(Integer.parseInt(rowSplit[0]));
+			}
+		}
+		//populate index
 		this.meetingsIdIndex = meetingsIdIndex;
 	}
 
