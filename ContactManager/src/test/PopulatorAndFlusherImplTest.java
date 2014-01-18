@@ -32,6 +32,28 @@ public class PopulatorAndFlusherImplTest {
 	@Before
 	public void setUp() throws Exception {
 		paf = new PopulatorAndFlusherImpl();
+		pathToFile = "."+ File.separator +"contactsTest.txt";
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
+			//TODO write it all in the right format:
+			writer.println("0, M, HansGruber, Nakatomi Plaza at 9pm");
+			writer.println("0,C,Hans Gruber");
+			writer.println("1,C,John McClane");
+			writer.println("2,C,Tony");
+			writer.println("3,C,Fritz");
+			writer.println("4,C,Harry Ellis");
+			writer.println("5,C,Theo theDriver");
+			writer.println("6,C,Holly Genero");
+			writer.println("7,C,Karl");
+			writer.println("8,C,Klaus");
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		paf.readFromFile(pathToFile);
 	}
 
 	/**
@@ -40,6 +62,9 @@ public class PopulatorAndFlusherImplTest {
 	@After
 	public void tearDown() throws Exception {
 		paf = null;
+		File file = new File(pathToFile);
+		file.delete();
+		
 	}
 
 
@@ -50,43 +75,20 @@ public class PopulatorAndFlusherImplTest {
 	@Test
 	public final void testReadFromFileReturnsAllRowsToCsvRows(){
 		//TODO pass this to before() and change to the right format
-		pathToFile = "."+ File.separator +"contactsTest.txt";
-		PrintWriter writer;
-		try {
-			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
-			writer.println("Nakatomi Plaza at 9pm");
-			writer.println("Hans Gruber");
-			writer.println("John McClane");
-			writer.println("Tony");
-			writer.println("Fritz");
-			writer.println("Harry Ellis");
-			writer.println("Theo theDriver");
-			writer.println("Holly Genero");
-			writer.println("Karl");
-			writer.println("Klaus");
-			writer.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		
 		List<String> expectedCsvRows = new ArrayList<String>();
-		expectedCsvRows.add("Nakatomi Plaza at 9pm");
-		expectedCsvRows.add("Hans Gruber");
-		expectedCsvRows.add("John McClane");
-		expectedCsvRows.add("Tony");
-		expectedCsvRows.add("Fritz");
-		expectedCsvRows.add("Harry Ellis");
-		expectedCsvRows.add("Theo theDriver");
-		expectedCsvRows.add("Holly Genero");
-		expectedCsvRows.add("Karl");
-		expectedCsvRows.add("Klaus");
+		expectedCsvRows.add("0, M, HansGruber, Nakatomi Plaza at 9pm");
+		expectedCsvRows.add("0,C,Hans Gruber");
+		expectedCsvRows.add("1,C,John McClane");
+		expectedCsvRows.add("2,C,Tony");
+		expectedCsvRows.add("3,C,Fritz");
+		expectedCsvRows.add("4,C,Harry Ellis");
+		expectedCsvRows.add("5,C,Theo theDriver");
+		expectedCsvRows.add("6,C,Holly Genero");
+		expectedCsvRows.add("7,C,Karl");
+		expectedCsvRows.add("8,C,Klaus");
 		List<String> returnedCsvRows = paf.readFromFile(pathToFile);
-		File file = new File(pathToFile);
-		file.delete();
+		
 		assertEquals("read from file not populating csvRows propperly", expectedCsvRows, returnedCsvRows);
 		assertEquals("csvRows is not being populated or getter is not working", expectedCsvRows, paf.getCsvRows());
 	}
@@ -115,9 +117,10 @@ public class PopulatorAndFlusherImplTest {
 	public final void testSetContactsIdIndex() {
 		//TODO extablish the txt file in before() to populate csvRows so these methods can access it :
 		List<Integer> expectedIdIndex = new ArrayList<Integer>();
-		for(int i = 0; i < 10; i++){
+		for(int i = 0; i < 9; i++){
 			expectedIdIndex.add(i);
 		}
+		paf.setContactsIdIndex(paf.getCsvRows());
 		assertEquals("", expectedIdIndex , paf.getContactsIdIndex());
 	}
 

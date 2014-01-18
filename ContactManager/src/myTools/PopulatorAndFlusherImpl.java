@@ -54,7 +54,15 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	/**
 	 * @param contactsIdIndex the contactsIdIndex to set
 	 */
-	public void setContactsIdIndex(List<Integer> contactsIdIndex) {
+	public void setContactsIdIndex(List<String> csvRows) {
+		List<Integer> contactsIdIndex = new ArrayList<Integer>(); 
+		for(String str : csvRows){
+			String rowSplit[] = str.split(",");
+			if(rowSplit[1].equals("C")){
+				contactsIdIndex.add(Integer.parseInt(rowSplit[0]));
+			}
+		}
+		//populate index
 		this.contactsIdIndex = contactsIdIndex;
 	}
 

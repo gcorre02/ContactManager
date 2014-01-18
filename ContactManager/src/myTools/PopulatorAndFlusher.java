@@ -50,10 +50,16 @@ public interface PopulatorAndFlusher {
 	 * @return csvRows list of rows in the textFile
 	 */
 	List<String> getCsvRows();
+	
 	/**
 	 * 
 	 * @return
 	 */
 	List<Integer> getContactsIdIndex();
+	/**
+	 * 
+	 * @param csvRows
+	 */
+	void setContactsIdIndex(List<String> csvRows);
 
 }
