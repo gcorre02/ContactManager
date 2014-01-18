@@ -131,7 +131,9 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	/**
 	 * @param futureMeetingsIdIndex the futureMeetingsIdIndex to set
 	 */
-	public void setFutureMeetingsIdIndex(List<Integer> futureMeetingsIdIndex) {
+	public void setFutureMeetingsIdIndex(Set<FutureMeeting> allFutureMeetings) {
+		List<Integer> futureMeetingsIdIndex = new ArrayList<Integer>();
+		
 		this.futureMeetingsIdIndex = futureMeetingsIdIndex;
 	}
 

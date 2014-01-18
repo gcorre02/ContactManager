@@ -83,5 +83,7 @@ public interface PopulatorAndFlusher {
 	List<Integer> getPastMeetingsIdIndex();
 	void setAllFutureMeetings(Set<Meeting> allMeetings);
 	Set<FutureMeeting> getAllFutureMeetings();
+	void setFutureMeetingsIdIndex(Set<FutureMeeting> allFutureMeetings);
+	List<Integer> getFutureMeetingsIdIndex();
 
 }

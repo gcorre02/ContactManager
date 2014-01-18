@@ -173,7 +173,10 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetFutureMeetingsIdIndex() {
-		fail("Not yet implemented"); // TODO
+		List<Integer> expectedIdIndex = new ArrayList<Integer>();
+		expectedIdIndex.add(0);
+		paf.setFutureMeetingsIdIndex(paf.getAllFutureMeetings());
+		assertEquals("Meeting IDs not being populated", expectedIdIndex , paf.getFutureMeetingsIdIndex());
 	}
 
 	/**
@@ -308,5 +311,13 @@ public class PopulatorAndFlusherImplTest {
 		}
 
 		assertEquals("getNtes() is not returning the notes from the assigned id meeting", expectedNotes, inputNotes);
+	}
+	
+	@Test
+	public final void testUpdateIndexAndSets(){
+		/*
+		 * takes the id and the item as arguments and updates accordingly. for now just overload the methods, but later i can write one method that updates them all
+		 */
+		fail("test not written yet");
 	}
 }
