@@ -40,9 +40,9 @@ public class PopulatorAndFlusherImplTest {
 		try {
 			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
 			//TODO write it all in the right format:
-			writer.println("0,M,HansGruber,Nakatomi Plaza at 9pm");
+			writer.println("0,M,HansGruber JohnMcClane,20140513,Nakatomi Plaza at 9pm");
 			writer.println("0,C,Hans Gruber");
-			writer.println("1,C,John McClane");
+			writer.println("1,C,John Mc Clane");
 			writer.println("2,C,Tony");
 			writer.println("3,C,Fritz");
 			writer.println("4,C,Harry Ellis");
@@ -170,7 +170,7 @@ public class PopulatorAndFlusherImplTest {
 
 		String[] expectedContacts = new String[9];
 		expectedContacts[0]="Hans Gruber";
-		expectedContacts[1]="John McClane";
+		expectedContacts[1]="John Mc Clane";
 		expectedContacts[2]="Tony";
 		expectedContacts[3]="Fritz";
 		expectedContacts[4]="Harry Ellis";
@@ -199,9 +199,10 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetAllMeetings() {
-		String[] expectedMeetings = new String[0];
-		expectedMeetings[0]="HansGruber";
-
+		String[] expectedMeetings = new String[2];
+		expectedMeetings[0]="Hans Gruber";
+		expectedMeetings[1]="John Mc Clane";
+		paf.setAllContacts(paf.getCsvRows());
 		paf.setAllMeetings(paf.getCsvRows());
 		Set<Meeting> inputMeetings = paf.getAllMeetings();
 
@@ -214,11 +215,12 @@ public class PopulatorAndFlusherImplTest {
 			while(contactIter.hasNext()){
 				Contact currentContact = contactIter.next();
 				contactName = currentContact.getName();
-				assertEquals("Set Meetings is not importing them propperly", expectedMeetings[current.getId()], contactName);
+				System.out.println(contactName);
+				assertEquals("Set Meetings is not importing them propperly", expectedMeetings[currentContact.getId()], contactName);
 				
 			}
 			
-		}
+		} 
 
 
 	}

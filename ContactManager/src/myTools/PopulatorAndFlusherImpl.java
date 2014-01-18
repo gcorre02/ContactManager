@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -240,13 +242,56 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		for(String str : csvRows){
 			String rowSplit[] = str.split(",");
 			if(rowSplit[1].equals("M")){
-				//TODO>need to collect the names into a List
-				allMeetings.add(new MeetingImpl((Integer.parseInt(rowSplit[0])),rowSplit[2]));
+				
+				DatesManager dm = new DatesManagerImpl();
+				Calendar date;
+				int year = Integer.parseInt(rowSplit[3].substring(0,4));
+				int month = Integer.parseInt(rowSplit[3].substring(4,6));
+				int day = Integer.parseInt(rowSplit[3].substring(6,8));
+				date = dm.generateCalendarItem(year, month, day);
+
+				//TODO>need to make this pass the test:
+				
+				String[] contactNames = rowSplit[2].split(" ");
+				Set<Contact> contactSet = new HashSet<Contact>();
+				for(String name : contactNames){
+					Contact newContact = getContact(name);
+					contactSet.add(newContact);
+				}
+				allMeetings.add(new MeetingImpl((Integer.parseInt(rowSplit[0])),date, contactSet));
 			}
 		}
 		//populate set
 		this.allMeetings = allMeetings;
 		
+	}
+
+	private Contact getContact(String name) {
+		char[] nameArray = name.toCharArray();
+		String finalName= "";
+		for(int i = 0; i < nameArray.length; i++){
+			if( Character.isUpperCase(nameArray[i])){
+				finalName = finalName + nameArray[i];
+				do{
+					finalName = finalName + nameArray[i+1];
+					i++;
+				}while((i+1)<nameArray.length && Character.isLowerCase(nameArray[i+1]));
+				if((i+1)<nameArray.length){
+					finalName = finalName+ " ";
+				}
+			}
+		}
+
+		Iterator<Contact> iter = allContacts.iterator();
+		while(iter.hasNext()){
+			Contact current = iter.next();
+			
+			if (current.getName().equals(finalName)){
+				
+				return current;
+			}
+		}
+		return null;
 	}
 
 }
