@@ -15,6 +15,7 @@ import java.util.Set;
 import contactmgmt.Contact;
 import contactmgmt.ContactImpl;
 import contactmgmt.Meeting;
+import contactmgmt.MeetingImpl;
 
 /**
  * @author Guilherme
@@ -231,6 +232,21 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 
 	private void setCsvRows(List<String> csvRows) {
 		this.csvRows = csvRows;
+	}
+
+	@Override
+	public void setAllMeetings(List<String> csvRows) {
+		Set<Meeting> allMeetings = new HashSet<Meeting>();
+		for(String str : csvRows){
+			String rowSplit[] = str.split(",");
+			if(rowSplit[1].equals("M")){
+				//TODO>need to collect the names into a List
+				allMeetings.add(new MeetingImpl((Integer.parseInt(rowSplit[0])),rowSplit[2]));
+			}
+		}
+		//populate set
+		this.allMeetings = allMeetings;
+		
 	}
 
 }

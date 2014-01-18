@@ -73,5 +73,7 @@ public interface PopulatorAndFlusher {
 	List<Integer> getMeetingsIdIndex();
 	void setAllContacts(List<String> csvRows);
 	Set<Contact> getAllContacts();
+	void setAllMeetings(List<String> csvRows);
+	Set<Meeting> getAllMeetings();
 
 }

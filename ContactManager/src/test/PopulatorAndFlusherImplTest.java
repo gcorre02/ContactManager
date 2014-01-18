@@ -67,18 +67,18 @@ public class PopulatorAndFlusherImplTest {
 		paf = null;
 		File file = new File(pathToFile);
 		file.delete();
-		
+
 	}
 
 
-//done tests
+	//done tests
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#readFromFile(java.lang.String)}.
 	 */
 	@Test
 	public final void testReadFromFileReturnsAllRowsToCsvRows(){
 		//TODO pass this to before() and change to the right format
-		
+
 		List<String> expectedCsvRows = new ArrayList<String>();
 		expectedCsvRows.add("0, M, HansGruber, Nakatomi Plaza at 9pm");
 		expectedCsvRows.add("0,C,Hans Gruber");
@@ -91,12 +91,12 @@ public class PopulatorAndFlusherImplTest {
 		expectedCsvRows.add("7,C,Karl");
 		expectedCsvRows.add("8,C,Klaus");
 		List<String> returnedCsvRows = paf.readFromFile(pathToFile);
-		
+
 		assertEquals("read from file not populating csvRows propperly", expectedCsvRows, returnedCsvRows);
 		assertEquals("csvRows is not being populated or getter is not working", expectedCsvRows, paf.getCsvRows());
 	}
 
-//TODO last tests
+	//TODO last tests
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#PopulateSetsAndIndexes(java.lang.String[])}.
 	 */
@@ -112,13 +112,13 @@ public class PopulatorAndFlusherImplTest {
 		fail("Not yet implemented"); // TODO
 	}
 
-//TODO current tests
+	//TODO current tests
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#setContactsIdIndex(java.util.List)}.
 	 */
 	@Test
 	public final void testSetContactsIdIndex() {
-		
+
 		List<Integer> expectedIdIndex = new ArrayList<Integer>();
 		for(int i = 0; i < 9; i++){
 			expectedIdIndex.add(i);
@@ -167,7 +167,7 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetAllContacts() {
-		
+
 		String[] expectedContacts = new String[9];
 		expectedContacts[0]="Hans Gruber";
 		expectedContacts[1]="John McClane";
@@ -178,20 +178,20 @@ public class PopulatorAndFlusherImplTest {
 		expectedContacts[6]="Holly Genero";
 		expectedContacts[7]="Karl";
 		expectedContacts[8]="Klaus";
-		
+
 		paf.setAllContacts(paf.getCsvRows());
 		Set<Contact> inputContacts = paf.getAllContacts();
-		
+
 		Iterator<Contact> iter = inputContacts.iterator();
-		
+
 		while(iter.hasNext()){
 			Contact current = iter.next();
 			assertEquals("Set contacts is not importing them propperly", expectedContacts[current.getId()],current.getName());
 		}
-		
-		//assertTrue(inputContacts.
-		
-		
+
+
+
+
 	}
 
 	/**
@@ -199,7 +199,28 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetAllMeetings() {
-		fail("Not yet implemented"); // TODO
+		String[] expectedMeetings = new String[0];
+		expectedMeetings[0]="HansGruber";
+
+		paf.setAllMeetings(paf.getCsvRows());
+		Set<Meeting> inputMeetings = paf.getAllMeetings();
+
+		Iterator<Meeting> iter = inputMeetings.iterator();
+		String contactName = "";
+		
+		while(iter.hasNext()){
+			Meeting current = iter.next();
+			Iterator<Contact> contactIter = current.getContacts().iterator();
+			while(contactIter.hasNext()){
+				Contact currentContact = contactIter.next();
+				contactName = currentContact.getName();
+				assertEquals("Set Meetings is not importing them propperly", expectedMeetings[current.getId()], contactName);
+				
+			}
+			
+		}
+
+
 	}
 
 	/**
