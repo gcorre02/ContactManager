@@ -123,7 +123,7 @@ public class PopulatorAndFlusherImplTest {
 		paf.setContactsIdIndex(paf.getCsvRows());
 		assertEquals("", expectedIdIndex , paf.getContactsIdIndex());
 	}
-
+	//TODO once everything has been written, try making the id the ref to the actual object so it can be called directly!!!
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#setMeetingsIdIndex(java.util.List)}.
 	 */

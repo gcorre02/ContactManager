@@ -100,6 +100,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	 * @param pastMeetingsIdIndex the pastMeetingsIdIndex to set
 	 */
 	public void setPastMeetingsIdIndex(List<Integer> pastMeetingsIdIndex) {
+		//TODO >needs to figure out if the meeting is in the past, easier if the objects are already created. so it just .getsId() !!
 		this.pastMeetingsIdIndex = pastMeetingsIdIndex;
 	}
 
