@@ -9,6 +9,7 @@ import java.util.Set;
 
 import contactmgmt.Contact;
 import contactmgmt.Meeting;
+import contactmgmt.PastMeeting;
 
 /**
  * @author Guilherme
@@ -75,5 +76,7 @@ public interface PopulatorAndFlusher {
 	Set<Contact> getAllContacts();
 	void setAllMeetings(List<String> csvRows);
 	Set<Meeting> getAllMeetings();
+	void setAllPastMeetings(Set<Meeting> allMeetings);
+	Set<PastMeeting> getAllPastMeetings();
 
 }

@@ -4,6 +4,8 @@
 package test;
 
 import static org.junit.Assert.*;
+import myTools.DatesManager;
+import myTools.DatesManagerImpl;
 import myTools.PopulatorAndFlusher;
 import myTools.PopulatorAndFlusherImpl;
 import contactmgmt.*;
@@ -14,6 +16,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -40,7 +43,9 @@ public class PopulatorAndFlusherImplTest {
 		try {
 			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
 			//TODO write it all in the right format:
-			writer.println("0,M,HansGruber JohnMcClane,20140513,Nakatomi Plaza at 9pm");
+			writer.println("0,M,HansGruber JohnMcClane,20140513");
+			writer.println("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
+			writer.println("2,M,HansGruber JohnMcClane,20130905");
 			writer.println("0,C,Hans Gruber");
 			writer.println("1,C,John Mc Clane");
 			writer.println("2,C,Tony");
@@ -79,10 +84,14 @@ public class PopulatorAndFlusherImplTest {
 	public final void testReadFromFileReturnsAllRowsToCsvRows(){
 		//TODO pass this to before() and change to the right format
 
+		
+		
 		List<String> expectedCsvRows = new ArrayList<String>();
-		expectedCsvRows.add("0, M, HansGruber, Nakatomi Plaza at 9pm");
+		expectedCsvRows.add("0,M,HansGruber JohnMcClane,20140513");
+		expectedCsvRows.add("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
+		expectedCsvRows.add("2,M,HansGruber JohnMcClane,20130905");
 		expectedCsvRows.add("0,C,Hans Gruber");
-		expectedCsvRows.add("1,C,John McClane");
+		expectedCsvRows.add("1,C,John Mc Clane");
 		expectedCsvRows.add("2,C,Tony");
 		expectedCsvRows.add("3,C,Fritz");
 		expectedCsvRows.add("4,C,Harry Ellis");
@@ -134,6 +143,7 @@ public class PopulatorAndFlusherImplTest {
 	public final void testSetMeetingsIdIndex() {
 		List<Integer> expectedIdIndex = new ArrayList<Integer>();
 		expectedIdIndex.add(0);
+		expectedIdIndex.add(1);
 		paf.setMeetingsIdIndex(paf.getCsvRows());
 		assertEquals("Meeting IDs not being populated", expectedIdIndex , paf.getMeetingsIdIndex());
 	}
@@ -215,7 +225,7 @@ public class PopulatorAndFlusherImplTest {
 			while(contactIter.hasNext()){
 				Contact currentContact = contactIter.next();
 				contactName = currentContact.getName();
-				System.out.println(contactName);
+				
 				assertEquals("Set Meetings is not importing them propperly", expectedMeetings[currentContact.getId()], contactName);
 				
 			}
@@ -230,7 +240,22 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetAllPastMeetings() {
-		fail("Not yet implemented"); // TODO
+
+		paf.setAllContacts(paf.getCsvRows());
+		paf.setAllMeetings(paf.getCsvRows());
+		paf.setAllPastMeetings(paf.getAllMeetings());
+		
+		Set<PastMeeting> inputMeetings = paf.getAllPastMeetings();
+
+		Iterator<PastMeeting> iter = inputMeetings.iterator();
+		Calendar inputDate;
+		DatesManager dm = new DatesManagerImpl();
+		
+		while(iter.hasNext()){
+			Meeting current = iter.next();
+			inputDate = current.getDate();
+			assertTrue("Set pastMeetings is not importing them propperly", dm.checkDateIsInThePast(inputDate));
+		} 
 	}
 
 	/**

@@ -16,8 +16,11 @@ import java.util.Set;
 
 import contactmgmt.Contact;
 import contactmgmt.ContactImpl;
+import contactmgmt.FutureMeeting;
 import contactmgmt.Meeting;
 import contactmgmt.MeetingImpl;
+import contactmgmt.PastMeeting;
+import contactmgmt.PastMeetingImpl;
 
 /**
  * @author Guilherme
@@ -32,9 +35,10 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	private List<String> contactsNameIndex= new ArrayList<String>();
 	private Set<Contact> allContacts = new HashSet<Contact>();
 	private Set<Meeting> allMeetings = new HashSet<Meeting>();
-	private Set<Meeting> allPastMeetings = new HashSet<Meeting>();
-	private Set<Meeting> allFutureMeetings = new HashSet<Meeting>();
+	private Set<PastMeeting> allPastMeetings = new HashSet<PastMeeting>();
+	private Set<FutureMeeting> allFutureMeetings = new HashSet<FutureMeeting>();
 	private List<String> csvRows;
+	private List<Integer> pastMeetingsWithNotesIndex = new ArrayList<Integer>();
 	
 	//TODO write constructor that calls all the populators
 
@@ -87,6 +91,9 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 			String rowSplit[] = str.split(",");
 			if(rowSplit[1].equals("M")){
 				meetingsIdIndex.add(Integer.parseInt(rowSplit[0]));
+				if(rowSplit.length == 4){
+					pastMeetingsWithNotesIndex.add(Integer.parseInt(rowSplit[0]));
+				}
 			}
 		}
 		//populate index
@@ -166,38 +173,53 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		return allMeetings;
 	}
 
-	/**
-	 * @param allMeetings the allMeetings to set
-	 */
-	public void setAllMeetings(Set<Meeting> allMeetings) {
-		this.allMeetings = allMeetings;
-	}
+	
+	
 
 	/**
 	 * @return the allPastMeetings
 	 */
-	public Set<Meeting> getAllPastMeetings() {
+	public Set<PastMeeting> getAllPastMeetings() {
 		return allPastMeetings;
 	}
 
 	/**
 	 * @param allPastMeetings the allPastMeetings to set
 	 */
-	public void setAllPastMeetings(Set<Meeting> allPastMeetings) {
+	public void setAllPastMeetings(Set<Meeting> allMeetings) {
+		DatesManager dm = new DatesManagerImpl();
+		Set<PastMeeting> allPastMeetings = new HashSet<PastMeeting>();
+		Iterator<Meeting> iter = allMeetings.iterator();
+		while(iter.hasNext()){
+			Meeting current = iter.next();
+			if(dm.checkDateIsInThePast(current.getDate())){
+				if (pastMeetingsWithNotesIndex .contains(current.getId())){  //TODO bool that checks csvRows for notes and returns true if so >> implies a change to the interface <<< so maybe do it at the populating id index phase : create a pastMeetingsWithNotesIndex//
+					String theNotes = getNotes(current.getId());//TODO write getNotes
+					allPastMeetings.add(new PastMeetingImpl(current.getId(), current.getDate(), current.getContacts(), theNotes));
+				}else{
+					allPastMeetings.add(new PastMeetingImpl(current.getId(), current.getDate(), current.getContacts()));
+				}
+			}
+		}
 		this.allPastMeetings = allPastMeetings;
+	}
+
+	private String getNotes(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/**
 	 * @return the allFutureMeetings
 	 */
-	public Set<Meeting> getAllFutureMeetings() {
+	public Set<FutureMeeting> getAllFutureMeetings() {
 		return allFutureMeetings;
 	}
 
 	/**
 	 * @param allFutureMeetings the allFutureMeetings to set
 	 */
-	public void setAllFutureMeetings(Set<Meeting> allFutureMeetings) {
+	public void setAllFutureMeetings(Set<FutureMeeting> allFutureMeetings) {
 		this.allFutureMeetings = allFutureMeetings;
 	}
 
@@ -235,9 +257,10 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	private void setCsvRows(List<String> csvRows) {
 		this.csvRows = csvRows;
 	}
-
+	
 	@Override
 	public void setAllMeetings(List<String> csvRows) {
+		//note : all contact names in the meeting rows are concatenated without spaces and spaces are used to separate each contact
 		Set<Meeting> allMeetings = new HashSet<Meeting>();
 		for(String str : csvRows){
 			String rowSplit[] = str.split(",");
