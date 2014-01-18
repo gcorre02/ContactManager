@@ -17,6 +17,7 @@ import java.util.Set;
 import contactmgmt.Contact;
 import contactmgmt.ContactImpl;
 import contactmgmt.FutureMeeting;
+import contactmgmt.FutureMeetingImpl;
 import contactmgmt.Meeting;
 import contactmgmt.MeetingImpl;
 import contactmgmt.PastMeeting;
@@ -39,7 +40,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	private Set<FutureMeeting> allFutureMeetings = new HashSet<FutureMeeting>();
 	private List<String> csvRows;
 	private List<Integer> pastMeetingsWithNotesIndex = new ArrayList<Integer>();
-	
+	//TODO need to write updaters! but this can be done just by calling the indexing and populating methods from outside the class 
 	//TODO write constructor that calls all the populators
 
 	/* (non-Javadoc)
@@ -331,7 +332,18 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 
 	@Override
 	public void setAllFutureMeetings(Set<Meeting> allMeetings) {
+		//TODO create a set method that populates all meetings in one go, recognizing if it is in the past or not and returns any meeting
+		//Instantiate datesmanager for date comparison
+		DatesManager dm = new DatesManagerImpl();
+		//
 		Set<FutureMeeting> futureMeetings = new HashSet<FutureMeeting>();
+		Iterator<Meeting> iter = allMeetings.iterator();
+		while(iter.hasNext()){
+			Meeting current = iter.next();
+			if(!dm.checkDateIsInThePast(current.getDate())){
+				futureMeetings.add(new FutureMeetingImpl(current));
+			}
+		}
 		this.allFutureMeetings = futureMeetings;
 	}
 

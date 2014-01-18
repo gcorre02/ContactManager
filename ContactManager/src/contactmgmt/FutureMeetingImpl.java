@@ -22,4 +22,8 @@ public class FutureMeetingImpl extends MeetingImpl implements FutureMeeting{
 		super(inputId, date, contacts);
 	}
 
+	public FutureMeetingImpl(Meeting current) {
+		super(current.getId(), current.getDate(), current.getContacts());
+	}
+
 }
