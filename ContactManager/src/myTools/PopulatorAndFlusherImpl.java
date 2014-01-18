@@ -91,7 +91,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 			String rowSplit[] = str.split(",");
 			if(rowSplit[1].equals("M")){
 				meetingsIdIndex.add(Integer.parseInt(rowSplit[0]));
-				if(rowSplit.length == 4){
+				if(rowSplit.length == 5){
 					pastMeetingsWithNotesIndex.add(Integer.parseInt(rowSplit[0]));
 				}
 			}
@@ -155,6 +155,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	 * @param allContacts the allContacts to set
 	 */
 	public void setAllContacts(List<String> csvRows) {
+		//TODO need to allow for notes for contacts, index 3 ? of the row ?
 		Set<Contact> allContacts = new HashSet<Contact>();
 		for(String str : csvRows){
 			String rowSplit[] = str.split(",");
@@ -193,7 +194,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		while(iter.hasNext()){
 			Meeting current = iter.next();
 			if(dm.checkDateIsInThePast(current.getDate())){
-				if (pastMeetingsWithNotesIndex .contains(current.getId())){  //TODO bool that checks csvRows for notes and returns true if so >> implies a change to the interface <<< so maybe do it at the populating id index phase : create a pastMeetingsWithNotesIndex//
+				if (pastMeetingsWithNotesIndex.contains(current.getId())){  //TODO bool that checks csvRows for notes and returns true if so >> implies a change to the interface <<< so maybe do it at the populating id index phase : create a pastMeetingsWithNotesIndex//
 					String theNotes = getNotes(current.getId());//TODO write getNotes
 					allPastMeetings.add(new PastMeetingImpl(current.getId(), current.getDate(), current.getContacts(), theNotes));
 				}else{
@@ -205,8 +206,18 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	}
 
 	private String getNotes(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String notes = "";
+		Iterator<String> iter = csvRows.iterator();
+		while(iter.hasNext()){
+			String current = iter.next();
+			String[] rows = current.split(",");
+			if(Integer.parseInt(rows[0])==id
+					&& rows[1].equals("M")){
+				notes = rows[4];
+			}
+		}
+		System.out.println(notes);
+		return notes;
 	}
 
 	/**

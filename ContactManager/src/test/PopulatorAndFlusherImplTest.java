@@ -144,6 +144,7 @@ public class PopulatorAndFlusherImplTest {
 		List<Integer> expectedIdIndex = new ArrayList<Integer>();
 		expectedIdIndex.add(0);
 		expectedIdIndex.add(1);
+		expectedIdIndex.add(2);
 		paf.setMeetingsIdIndex(paf.getCsvRows());
 		assertEquals("Meeting IDs not being populated", expectedIdIndex , paf.getMeetingsIdIndex());
 	}
@@ -265,5 +266,23 @@ public class PopulatorAndFlusherImplTest {
 	public final void testSetAllFutureMeetings() {
 		fail("Not yet implemented"); // TODO
 	}
-
+	
+	@Test 
+	public final void checkThatNotesHaveBeenAddedToThePastMeeting(){
+		paf.setAllContacts(paf.getCsvRows());
+		paf.setAllMeetings(paf.getCsvRows());
+		paf.setAllPastMeetings(paf.getAllMeetings());
+		String expectedNotes = "Nakatomi Plaza at 9pm";
+		Set<PastMeeting> inputMeetings = paf.getAllPastMeetings();
+		String inputNotes="";
+		Iterator<PastMeeting> iter = inputMeetings.iterator();
+		while(iter.hasNext()){
+			PastMeeting current = iter.next();
+			if(current.getId()==1){
+				inputNotes = current.getNotes();
+			}
+		}
+		
+		assertEquals("getNtes() is not returning the notes from the assigned id meeting", expectedNotes, inputNotes);
+	}
 }
