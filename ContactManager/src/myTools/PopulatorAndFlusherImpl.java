@@ -194,8 +194,9 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		while(iter.hasNext()){
 			Meeting current = iter.next();
 			if(dm.checkDateIsInThePast(current.getDate())){
-				if (pastMeetingsWithNotesIndex.contains(current.getId())){  //TODO bool that checks csvRows for notes and returns true if so >> implies a change to the interface <<< so maybe do it at the populating id index phase : create a pastMeetingsWithNotesIndex//
-					String theNotes = getNotes(current.getId());//TODO write getNotes
+				if (pastMeetingsWithNotesIndex.contains(current.getId())){  
+					
+					String theNotes = getNotes(current.getId());
 					allPastMeetings.add(new PastMeetingImpl(current.getId(), current.getDate(), current.getContacts(), theNotes));
 				}else{
 					allPastMeetings.add(new PastMeetingImpl(current.getId(), current.getDate(), current.getContacts()));
@@ -216,7 +217,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 				notes = rows[4];
 			}
 		}
-		System.out.println(notes);
+	
 		return notes;
 	}
 

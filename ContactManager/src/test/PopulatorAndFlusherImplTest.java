@@ -62,6 +62,11 @@ public class PopulatorAndFlusherImplTest {
 			e.printStackTrace();
 		}
 		paf.readFromFile(pathToFile);
+		paf.setAllContacts(paf.getCsvRows());
+		paf.setAllMeetings(paf.getCsvRows());
+	
+		paf.setMeetingsIdIndex(paf.getCsvRows());
+		paf.setAllPastMeetings(paf.getAllMeetings()); //TODO : investigate why this methid must be called after setMeetings IdIndex(kind of makes sense)
 	}
 
 	/**
@@ -213,8 +218,7 @@ public class PopulatorAndFlusherImplTest {
 		String[] expectedMeetings = new String[2];
 		expectedMeetings[0]="Hans Gruber";
 		expectedMeetings[1]="John Mc Clane";
-		paf.setAllContacts(paf.getCsvRows());
-		paf.setAllMeetings(paf.getCsvRows());
+		
 		Set<Meeting> inputMeetings = paf.getAllMeetings();
 
 		Iterator<Meeting> iter = inputMeetings.iterator();
@@ -242,9 +246,6 @@ public class PopulatorAndFlusherImplTest {
 	@Test
 	public final void testSetAllPastMeetings() {
 
-		paf.setAllContacts(paf.getCsvRows());
-		paf.setAllMeetings(paf.getCsvRows());
-		paf.setAllPastMeetings(paf.getAllMeetings());
 		
 		Set<PastMeeting> inputMeetings = paf.getAllPastMeetings();
 
@@ -269,9 +270,8 @@ public class PopulatorAndFlusherImplTest {
 	
 	@Test 
 	public final void checkThatNotesHaveBeenAddedToThePastMeeting(){
-		paf.setAllContacts(paf.getCsvRows());
-		paf.setAllMeetings(paf.getCsvRows());
-		paf.setAllPastMeetings(paf.getAllMeetings());
+	
+		
 		String expectedNotes = "Nakatomi Plaza at 9pm";
 		Set<PastMeeting> inputMeetings = paf.getAllPastMeetings();
 		String inputNotes="";
