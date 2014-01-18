@@ -6,6 +6,7 @@ package test;
 import static org.junit.Assert.*;
 import myTools.PopulatorAndFlusher;
 import myTools.PopulatorAndFlusherImpl;
+import contactmgmt.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,7 +14,9 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
@@ -164,7 +167,20 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetAllContacts() {
-		fail("Not yet implemented"); // TODO
+		Set<Contact> expectedContacts = new HashSet<Contact>();
+		expectedContacts.add(new ContactImpl(0,"Hans Gruber"));
+		expectedContacts.add(new ContactImpl(1,"John McClane"));
+		expectedContacts.add(new ContactImpl(2,"Tony"));
+		expectedContacts.add(new ContactImpl(3,"Fritz"));
+		expectedContacts.add(new ContactImpl(4,"Harry Ellis"));
+		expectedContacts.add(new ContactImpl(5,"Theo theDriver"));
+		expectedContacts.add(new ContactImpl(6,"Holly Genero"));
+		expectedContacts.add(new ContactImpl(7,"Karl"));
+		expectedContacts.add(new ContactImpl(8,"Klaus"));
+		paf.setAllContacts(paf.getCsvRows());
+		
+		assertEquals("Set contacts is not importing them propperly", expectedContacts,paf.getAllContacts());
+		
 	}
 
 	/**

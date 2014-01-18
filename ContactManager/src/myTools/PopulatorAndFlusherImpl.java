@@ -136,13 +136,15 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	 * @return the allContacts
 	 */
 	public Set<Contact> getAllContacts() {
+		//TODO start here tomorrow
 		return allContacts;
 	}
 
 	/**
 	 * @param allContacts the allContacts to set
 	 */
-	public void setAllContacts(Set<Contact> allContacts) {
+	public void setAllContacts(List<String> csvRows) {
+		Set<Contact> allContacts = new HashSet<Contact>();
 		this.allContacts = allContacts;
 	}
 
