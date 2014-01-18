@@ -133,7 +133,11 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	 */
 	public void setFutureMeetingsIdIndex(Set<FutureMeeting> allFutureMeetings) {
 		List<Integer> futureMeetingsIdIndex = new ArrayList<Integer>();
-		
+		Iterator<FutureMeeting> iter = allFutureMeetings.iterator();
+		while(iter.hasNext()){
+			FutureMeeting current = iter.next();
+			futureMeetingsIdIndex.add(current.getId());
+		}		
 		this.futureMeetingsIdIndex = futureMeetingsIdIndex;
 	}
 
@@ -144,12 +148,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		return contactsNameIndex;
 	}
 
-	/**
-	 * @param contactsNameIndex the contactsNameIndex to set
-	 */
-	public void setContactsNameIndex(List<String> contactsNameIndex) {
-		this.contactsNameIndex = contactsNameIndex;
-	}
+	
 
 	/**
 	 * @return the allContacts
@@ -349,4 +348,35 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		this.allFutureMeetings = futureMeetings;
 	}
 
+	
+	/**
+	 * @param contactsNameIndex the contactsNameIndex to set
+	 */
+	@Override
+	public void setContactsNameIndex(Set<Contact> allContacts) {
+		List<String> contactsNameIndex = new ArrayList<String>();
+		
+		Iterator<Contact> iter = allContacts.iterator();
+		while(iter.hasNext()){
+			Contact current = iter.next();
+			contactsNameIndex.add(current.getName());
+		}
+		this.contactsNameIndex = contactsNameIndex;
+	}
+	
+	public <T> void updateSet(T element, Set<T> elementCollection, List<T> index){
+		if(elementCollection.contains(element)){
+			elementCollection.remove(element);
+		} else{
+			elementCollection.add(element);
+		}
+	}
+	public void updateIndex(int id, List<Integer> anyList){
+		if(anyList.contains(id)){
+			anyList.remove(id);			
+		} else {
+			anyList.add(id);
+		}
+	}
+	
 }

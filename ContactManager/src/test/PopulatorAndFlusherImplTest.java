@@ -69,6 +69,9 @@ public class PopulatorAndFlusherImplTest {
 		paf.setMeetingsIdIndex(paf.getCsvRows());
 		paf.setAllPastMeetings(paf.getAllMeetings()); //TODO : investigate why this methid must be called after setMeetings IdIndex(kind of makes sense)
 		paf.setAllFutureMeetings(paf.getAllMeetings());
+		paf.setPastMeetingsIdIndex(paf.getAllPastMeetings());
+		paf.setFutureMeetingsIdIndex(paf.getAllFutureMeetings());
+
 	}
 
 	/**
@@ -164,7 +167,6 @@ public class PopulatorAndFlusherImplTest {
 		List<Integer> expectedIdIndex = new ArrayList<Integer>();
 		expectedIdIndex.add(1);
 		expectedIdIndex.add(2);
-		paf.setPastMeetingsIdIndex(paf.getAllPastMeetings());
 		assertEquals("Meeting IDs not being populated", expectedIdIndex , paf.getPastMeetingsIdIndex());
 	}
 
@@ -175,7 +177,6 @@ public class PopulatorAndFlusherImplTest {
 	public final void testSetFutureMeetingsIdIndex() {
 		List<Integer> expectedIdIndex = new ArrayList<Integer>();
 		expectedIdIndex.add(0);
-		paf.setFutureMeetingsIdIndex(paf.getAllFutureMeetings());
 		assertEquals("Meeting IDs not being populated", expectedIdIndex , paf.getFutureMeetingsIdIndex());
 	}
 
@@ -184,10 +185,24 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testSetContactsNameIndex() {
-		fail("Not yet implemented"); // TODO
+		paf.setContactsNameIndex(paf.getAllContacts());
+		String[] expectedContacts = new String[9];
+		expectedContacts[0]="Hans Gruber";
+		expectedContacts[1]="John Mc Clane";
+		expectedContacts[2]="Tony";
+		expectedContacts[3]="Fritz";
+		expectedContacts[4]="Harry Ellis";
+		expectedContacts[5]="Theo theDriver";
+		expectedContacts[6]="Holly Genero";
+		expectedContacts[7]="Karl";
+		expectedContacts[8]="Klaus";
+		paf.setContactsNameIndex(paf.getAllContacts());
+		List<String> inputContacts = paf.getContactsNameIndex();
+		assertTrue("Setcontacts name index not passing the names into index", inputContacts.contains(expectedContacts[5]));
+		
 	}
 
-	/**
+	/**1
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#setAllContacts(java.util.Set)}.
 	 */
 	@Test
@@ -313,8 +328,8 @@ public class PopulatorAndFlusherImplTest {
 		assertEquals("getNtes() is not returning the notes from the assigned id meeting", expectedNotes, inputNotes);
 	}
 	
-	@Test
-	public final void testUpdateIndexAndSets(){
+	
+	public final void testUpdateIndexAndSet(){
 		/*
 		 * takes the id and the item as arguments and updates accordingly. for now just overload the methods, but later i can write one method that updates them all
 		 */
