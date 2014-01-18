@@ -39,7 +39,7 @@ public interface PopulatorAndFlusher {
 	 * @param allContacts set of all contacts to be written to the file
 	 * @param pathToFile location of the file
 	 */
-	void  WriteToFile(Set<Meeting> allMeetings, Set<Contact> allContacts, String pathToFile);
+	void  writeToFile(String pathToFile);
 	
 	/**
 	 * 

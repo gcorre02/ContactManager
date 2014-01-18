@@ -53,10 +53,10 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	 * @see myTools.PopulatorAndFlusher#WriteToFile(java.util.Set, java.util.Set, java.lang.String)
 	 */
 	@Override
-	public void WriteToFile(Set<Meeting> allMeetings, Set<Contact> allContacts,
-			String pathToFile) {
-		// TODO Auto-generated method stub
-
+	public void writeToFile(String pathToFile) {
+		//pass the info to the file using a future, past, contact strucure
+		// TODO need to override toString in all the printable methods (dont need to pass Meeting, because all meetings are either future or past.)
+		// TODO need to add functionality for adding notes to contacts
 	}
 
 	/**

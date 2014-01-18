@@ -126,7 +126,34 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testWriteToFile() {
-		fail("Not yet implemented"); // TODO
+		
+		//empty the file :
+		File file = new File(pathToFile);
+		file.delete();
+		
+		//create array of expected values
+		List<String> expectedCsvRows = new ArrayList<String>();
+		expectedCsvRows.add("0,M,HansGruber JohnMcClane,20140513");
+		expectedCsvRows.add("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
+		expectedCsvRows.add("2,M,HansGruber JohnMcClane,20130905");
+		expectedCsvRows.add("0,C,Hans Gruber");
+		expectedCsvRows.add("1,C,John Mc Clane");
+		expectedCsvRows.add("2,C,Tony");
+		expectedCsvRows.add("3,C,Fritz");
+		expectedCsvRows.add("4,C,Harry Ellis");
+		expectedCsvRows.add("5,C,Theo theDriver");
+		expectedCsvRows.add("6,C,Holly Genero");
+		expectedCsvRows.add("7,C,Karl");
+		expectedCsvRows.add("8,C,Klaus");
+		
+		//dump to file:
+		paf.writeToFile(pathToFile);
+		
+		//populate array with file elements
+		List<String> inputRows = paf.readFromFile(pathToFile); 
+		
+		//Assert write works
+		assertEquals("Write operation not working : ", expectedCsvRows, inputRows);
 	}
 
 	//TODO current tests
