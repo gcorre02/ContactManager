@@ -131,6 +131,12 @@ public class ContactManagerImplTest {
 		//test
 		vm = new ValuesManagerImpl();
 		boolean assertResult = vm.checkIdExistsInList(futureMeetingId, paf.getFutureMeetingsIdIndex());
+		//debug
+		System.out.println(futureMeetingId);
+		System.out.println(paf.getFutureMeetingsIdIndex());
+		System.out.println(paf.getAllFutureMeetings());
+		//test
+		assertTrue("addFutureMeeting not adding the meeting to the contactManager DB", assertResult);
 	}
 
 

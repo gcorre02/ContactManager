@@ -10,13 +10,15 @@ import java.util.Set;
 
 import myTools.PopulatorAndFlusher;
 import myTools.PopulatorAndFlusherImpl;
+import myTools.ValuesManager;
+import myTools.ValuesManagerImpl;
 
 /**
  * @author Guilherme
  *
  */
 public class ContactManagerImpl implements ContactManager {
-	
+
 	/*
 	 * variables that might need declaring
 	private List<Integer> pastMeetingsIdIndex;
@@ -29,13 +31,13 @@ public class ContactManagerImpl implements ContactManager {
 	private Set<FutureMeeting> allFutureMeetings;
 	private List<String> csvRows;
 	private List<Integer> pastMeetingsWithNotesIndex;
-	
+
 	 */
-	
+
 	//declare inner variables:
 	private PopulatorAndFlusher paf;
 	private String pathToFile = "."+ File.separator +"contactsTest.txt";
-	
+
 	/**
 	 * 
 	 */
@@ -48,8 +50,14 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
-		// TODO Auto-generated method stub
-		return 0;
+		//generate unique id :
+		ValuesManager vm = new ValuesManagerImpl();
+		int returnId = vm.newIdGenerator(paf.getMeetingsIdIndex()); //<need to use the Meetings Index! //< need to update both the Meetings and the futureMeetings index too
+		//instantiate new FM
+		FutureMeeting newFMeeting = new FutureMeetingImpl(returnId,date,contacts);
+		//add the new future meeting to the collection
+		paf.updateSet(newFMeeting, paf.getAllFutureMeetings());
+		return returnId;
 	}
 
 	/* (non-Javadoc)
@@ -160,7 +168,7 @@ public class ContactManagerImpl implements ContactManager {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	//Debug Method
 	public PopulatorAndFlusher getPaf(){
 		return this.paf;
