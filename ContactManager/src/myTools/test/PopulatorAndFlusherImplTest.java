@@ -126,7 +126,7 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testWriteToFile() {
-		
+		//TODO : Review test problem
 		//empty the file :
 		File file = new File(pathToFile);
 		file.delete();
