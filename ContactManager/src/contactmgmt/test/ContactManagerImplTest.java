@@ -249,8 +249,8 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testGetFutureMeetingListContact() {
 		//debug
-		//debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingListContact>>>>>>>>>>>>>>>";
-		//System.out.println(debugStr);
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingListContact>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
 		//expected
 		List<FutureMeeting> expectedList = new ArrayList<FutureMeeting>();
 		Calendar expectedDate = new GregorianCalendar(2014,5,13);
@@ -271,15 +271,23 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetFutureMeetingListCalendar() {
-		fail("Not yet implemented"); // TODO
 		//test stub :
 		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetMeeting>>>>>>>>>>>>>>>";
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingCalendar>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
+		List<FutureMeeting> expectedList = new ArrayList<FutureMeeting>();
+		Calendar expectedDate = new GregorianCalendar(2014,5,13);
+		Set<Contact> expectedContacts = new HashSet<Contact>();
+		Calendar inputDate = expectedDate;
+		expectedContacts.add(new ContactImpl(0,"Hans Gruber"));
+		expectedContacts.add(new ContactImpl(1,"John Mc Clane"));
+		FutureMeeting expectedFutureMeeting = new FutureMeetingImpl(0,expectedDate,expectedContacts);
+		expectedList.add(expectedFutureMeeting);
 		//input
+		List<Meeting> inputList = cm.getFutureMeetingList(inputDate);
 		//test
-	}
+		assertEquals("",expectedList.get(0).getId(), inputList.get(0).getId());	}
 
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getPastMeetingList(contactmgmt.Contact)}.
@@ -287,6 +295,13 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testGetPastMeetingList() {
 		fail("Not yet implemented"); // TODO
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetPastMeetingList>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		//input
+		//test
 	}
 
 	/**
