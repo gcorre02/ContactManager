@@ -40,7 +40,7 @@ public class ContactManagerImplTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-	
+
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
@@ -91,7 +91,7 @@ public class ContactManagerImplTest {
 		assertTrue(cm instanceof ContactManagerImpl);
 	}
 	//TODO need a battery of tests for each process the Constructor implements!!
-	
+
 	@Test
 	public final void testContactManagerImplPopulatesSetsAndIndexes() {
 		fail("not written yet");
@@ -104,20 +104,20 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testVerifyAddFutureMeetingIdIsUnique() {
 		fail("Not yet implemented"); // TODO
-		
+
 		/*
 		 * @return the ID for the meeting
 		 * TODO implement myTools.checkIdExistsInList(int id, List<Integer> anyIntegerList)> mock interface for the test
 		 */
 	}
-	
+
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testVerifyAIllegalArgumentIsThrownAddFuture() {
 		fail("Not yet implemented"); // TODO
-		
+
 		/*
 		 * @throws IllegalArgumentException if the meeting is set for a time in the past,
 		 * or if any contact is unknown / non-existent
@@ -125,7 +125,7 @@ public class ContactManagerImplTest {
 		 * TODO implement myTools.checkIdExistsInList(int id, List<Integer> anyIntegerList)> mock interface for the test
 		 */
 	}
-	
+
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
 	 */
@@ -179,7 +179,21 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetFutureMeeting() {
-		fail("Not yet implemented"); // TODO
+		//TODO > what happens if an index for a past meeting is reuqired? initially null is fine, but later it could check if the index is part of meetings and not futureMeeting
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeeting>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		Calendar expectedDate = new GregorianCalendar(2014,5,13);
+		Set<Contact> expectedContacts = new HashSet<Contact>();
+		expectedContacts.add(new ContactImpl(1,"John Mc Clane"));
+		expectedContacts.add(new ContactImpl(0,"Hans Gruber"));
+		FutureMeeting expectedFutureMeeting = new FutureMeetingImpl(2,expectedDate,expectedContacts);
+		//input
+		FutureMeeting inputMeeting = cm.getFutureMeeting(0);
+		//test
+		assertEquals("",expectedFutureMeeting.toString(),inputMeeting.toString());
+		 
 	}
 
 	/**
