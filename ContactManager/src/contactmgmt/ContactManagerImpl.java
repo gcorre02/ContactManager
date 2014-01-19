@@ -212,7 +212,12 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void addMeetingNotes(int id, String text) {
-		// TODO Auto-generated method stub
+		PastMeeting meetingToAddNotes = getPastMeeting(id);
+		PastMeeting newMeeting = new PastMeetingImpl(meetingToAddNotes.getId(), meetingToAddNotes.getDate(), meetingToAddNotes.getContacts(), text);
+		paf.getAllPastMeetings().remove(meetingToAddNotes);
+		paf.getAllPastMeetings().add(newMeeting);
+		paf.getAllMeetings().remove(meetingToAddNotes);
+		paf.getAllMeetings().add(newMeeting);
 	}
 
 	/* (non-Javadoc)
