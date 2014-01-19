@@ -342,7 +342,7 @@ public class ContactManagerImplTest {
 		PastMeeting inputMeeting = (PastMeeting)cm.getMeeting(expectedPastMeetingId);
 		//test
 		assertEquals("add new past meeting is not adding the meeting as supposed",expectedPastMeeting.toString(), inputMeeting.toString());
-		
+
 	}
 
 	/**
@@ -350,14 +350,17 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testAddMeetingNotes() {
-		fail("Not yet implemented"); // TODO
 		//test stub :
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotes>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
+		String expectedMeetingString = "2,M,JohnMcClane HansGruber,20130905,top of Nakatomi Building";
 		//input
+		String inputNotes = "top of Nakatomi Building";
+		cm.addMeetingNotes(2, inputNotes);
 		//test
+		assertEquals("",expectedMeetingString.toString(), cm.getPastMeeting(2).toString());
 	}
 
 	/**
@@ -366,6 +369,13 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testAddNewContact() {
 		fail("Not yet implemented"); // TODO
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewContact>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		//input
+		//test
 	}
 
 	/**

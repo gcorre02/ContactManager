@@ -38,6 +38,7 @@ public class ContactManagerImpl implements ContactManager {
 
 	//declare inner variables:
 	private PopulatorAndFlusher paf;
+	private ValuesManager vm;
 	private String pathToFile = "."+ File.separator +"contactsTest.txt";
 
 	/**
@@ -195,11 +196,15 @@ public class ContactManagerImpl implements ContactManager {
 	 * @see contactmgmt.ContactManager#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)
 	 */
 	@Override
-	public void addNewPastMeeting(Set<Contact> contacts, Calendar date,
-			String text) {
-		// TODO Auto-generated method stub
-		// TODO need to make sure Meeting set is updated whenever other meetings are, same for meeting.
-
+	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
+		// TODO need to handle test for date in the future and unrecognized contacts (throwable)
+		vm = new ValuesManagerImpl();
+		int newId = vm.newIdGenerator(paf.getMeetingsIdIndex());
+		Meeting newMeeting = new PastMeetingImpl(newId, date, contacts, text);
+		paf.updateIndex(newId, paf.getMeetingsIdIndex());
+		paf.updateIndex(newId, paf.getPastMeetingsIdIndex());
+		paf.updateSet(newMeeting, paf.getAllMeetings());
+		paf.updateSet((PastMeeting)newMeeting, paf.getAllPastMeetings());
 	}
 
 	/* (non-Javadoc)
@@ -208,7 +213,6 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void addMeetingNotes(int id, String text) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
