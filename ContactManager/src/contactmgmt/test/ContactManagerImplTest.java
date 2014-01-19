@@ -315,7 +315,7 @@ public class ContactManagerImplTest {
 		List<PastMeeting> inputList = cm.getPastMeetingList(inputContact);
 		//test
 		assertEquals("",expectedList.get(1).getId(), inputList.get(1).getId());
-		
+
 	}
 
 	/**
@@ -323,14 +323,26 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testAddNewPastMeeting() {
-		fail("Not yet implemented"); // TODO
 		//test stub :
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeeting>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
+		vm = new ValuesManagerImpl();
+		Set<Contact> expectedContacts = new HashSet<Contact>();
+		expectedContacts.add(new ContactImpl(3, "Fritz"));
+		expectedContacts.add(new ContactImpl(15, "Sterling Archer"));
+		expectedContacts.add(new ContactImpl(12, "Barefoot Grub Patch"));
+		Calendar expectedDate = new GregorianCalendar(2014,11,15);
+		int expectedPastMeetingId = vm.newIdGenerator(paf.getMeetingsIdIndex());
+		String expectedNotes = "";
+		PastMeeting expectedPastMeeting = new PastMeetingImpl(expectedPastMeetingId, expectedDate, expectedContacts);
 		//input
+		cm.addNewPastMeeting(expectedContacts, expectedDate, expectedNotes);
+		PastMeeting inputMeeting = (PastMeeting)cm.getMeeting(expectedPastMeetingId);
 		//test
+		assertEquals("add new past meeting is not adding the meeting as supposed",expectedPastMeeting.toString(), inputMeeting.toString());
+		
 	}
 
 	/**
@@ -339,6 +351,13 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testAddMeetingNotes() {
 		fail("Not yet implemented"); // TODO
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotes>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		//input
+		//test
 	}
 
 	/**
