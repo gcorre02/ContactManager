@@ -102,8 +102,15 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public Meeting getMeeting(int id) {
-		// TODO Auto-generated method stub
-		// TODO need to handle how meetings with notes get stored in this set
+		// TODO need to handle how meetings with notes get stored in this set <<new test
+		Set<Meeting> MeetingCollection = paf.getAllMeetings();
+		Iterator<Meeting> iter = MeetingCollection.iterator();
+		while(iter.hasNext()){
+			Meeting current = iter.next();
+			if(current.getId() == id){
+				return current;
+			}
+		}
 		return null;
 	}
 

@@ -207,7 +207,7 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetMeeting() {
-		
+		//TODO need to overwrite a toString() under MeetingImpl() / < maybe just move the futureMeeting toString() to it. << make sure it handles notes accordingly (field exists, but only printed if populated)
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetMeeting>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -232,6 +232,13 @@ public class ContactManagerImplTest {
 		assertEquals("",thirdExpectedMeeting.toString(),thirdInputMeeting.toString());
 		
 		 
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getMeeting(int)}.
+	 */
+	@Test
+	public final void testGetMeetingWNotes() {
+		fail("Not yet implemented");
 	}
 
 	/**
