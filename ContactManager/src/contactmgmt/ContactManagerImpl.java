@@ -143,7 +143,7 @@ public class ContactManagerImpl implements ContactManager {
 		paf.printlist(outputList);
 		System.out.println(contact);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<debug getFutureMeetingList>>>>>>>>>>>>>>>>>>>>>");
-		*/
+		 */
 		//return
 		return outputList;
 	}
@@ -153,8 +153,17 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public List<Meeting> getFutureMeetingList(Calendar date) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Meeting> outputList = new ArrayList<Meeting>();
+		Set<FutureMeeting> inputSet = paf.getAllFutureMeetings();
+		Iterator<FutureMeeting> iter = inputSet.iterator();
+		while(iter.hasNext()){
+			FutureMeeting current = iter.next();
+			if(current.getDate().equals(date)){
+				outputList.add(current);
+			}
+		}
+		
+		return outputList;
 	}
 
 	/* (non-Javadoc)
