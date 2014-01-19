@@ -249,8 +249,8 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testGetFutureMeetingListContact() {
 		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingListContact>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
+		//debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingListContact>>>>>>>>>>>>>>>";
+		//System.out.println(debugStr);
 		//expected
 		List<FutureMeeting> expectedList = new ArrayList<FutureMeeting>();
 		Calendar expectedDate = new GregorianCalendar(2014,5,13);
@@ -263,7 +263,7 @@ public class ContactManagerImplTest {
 		//input
 		List<Meeting> inputList = cm.getFutureMeetingList(inputContact);
 		//test
-		assertEquals("",expectedList, inputList);
+		assertEquals("",expectedList.get(0).getId(), inputList.get(0).getId());
 	}
 
 	/**

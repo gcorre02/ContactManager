@@ -127,7 +127,7 @@ public class ContactManagerImpl implements ContactManager {
 		while(iter.hasNext()){
 			FutureMeeting current = iter.next();
 			//debug
-			paf.printSet(current.getContacts());
+			//paf.printSet(current.getContacts());
 			//
 			Iterator<Contact> cIter= current.getContacts().iterator();
 			while(cIter.hasNext()){
@@ -138,10 +138,12 @@ public class ContactManagerImpl implements ContactManager {
 			}
 		}
 		//debug
+		/*
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<debug getFutureMeetingList>>>>>>>>>>>>>>>>>>>>>");
 		paf.printlist(outputList);
 		System.out.println(contact);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<debug getFutureMeetingList>>>>>>>>>>>>>>>>>>>>>");
+		*/
 		//return
 		return outputList;
 	}
