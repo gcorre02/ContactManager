@@ -4,6 +4,7 @@
 package contactmgmt;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
@@ -119,8 +120,22 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Meeting> outputList = new ArrayList<Meeting>();
+		Set<FutureMeeting> inputSet = paf.getAllFutureMeetings();
+		Iterator<FutureMeeting> iter = inputSet.iterator();
+		while(iter.hasNext()){
+			FutureMeeting current = iter.next();
+			paf.printSet(current.getContacts());
+			if (current.getContacts().contains(contact)){
+				outputList.add(current);
+			}
+		}
+		//debug
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<debug getFutureMeetingList>>>>>>>>>>>>>>>>>>>>>");
+		paf.printlist(outputList);
+		System.out.println(contact);
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<debug getFutureMeetingList>>>>>>>>>>>>>>>>>>>>>");
+		return outputList;
 	}
 
 	/* (non-Javadoc)

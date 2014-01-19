@@ -10,9 +10,11 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import myTools.PopulatorAndFlusher;
@@ -97,7 +99,7 @@ public class ContactManagerImplTest {
 	public final void needToWriteTestsForAllExceptionHandlersIndependently(){
 		fail("needToWriteTestsForAllExceptionHandlersIndependently");
 	}
-	
+
 	@Test
 	public final void testContactManagerImplPopulatesSetsAndIndexes() {
 		fail("not written yet");
@@ -199,7 +201,7 @@ public class ContactManagerImplTest {
 		FutureMeeting inputMeeting = cm.getFutureMeeting(0);
 		//test
 		assertEquals("",expectedFutureMeeting.toString(),inputMeeting.toString());
-		 
+
 	}
 
 	/**
@@ -221,7 +223,7 @@ public class ContactManagerImplTest {
 		Meeting expectedMeeting = new MeetingImpl(2,expectedDate,expectedContacts);
 		Meeting expectedMeetingWNotes = new MeetingImpl(1,secondExpectedDate, expectedContacts);
 		Meeting thirdExpectedMeeting = new MeetingImpl(0,thirdExpectedDate,expectedContacts);
-	
+
 		//input
 		Meeting inputMeeting = cm.getMeeting(2);
 		Meeting secondInputMeeting = cm.getMeeting(1);
@@ -230,8 +232,8 @@ public class ContactManagerImplTest {
 		assertEquals("",expectedMeeting.toString(),inputMeeting.toString());
 		assertEquals("",expectedMeetingWNotes.toString(),secondInputMeeting.toString());
 		assertEquals("",thirdExpectedMeeting.toString(),thirdInputMeeting.toString());
-		
-		 
+
+
 	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getMeeting(int)}.
@@ -246,7 +248,22 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetFutureMeetingListContact() {
-		fail("Not yet implemented"); // TODO
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingListContact>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		List<FutureMeeting> expectedList = new ArrayList<FutureMeeting>();
+		Calendar expectedDate = new GregorianCalendar(2014,5,13);
+		Set<Contact> expectedContacts = new HashSet<Contact>();
+		Contact inputContact = new ContactImpl(0,"Hans Gruber");
+		expectedContacts.add(inputContact);
+		expectedContacts.add(new ContactImpl(1,"John Mc Clane"));
+		FutureMeeting expectedFutureMeeting = new FutureMeetingImpl(0,expectedDate,expectedContacts);
+		expectedList.add(expectedFutureMeeting);
+		//input
+		List<Meeting> inputList = cm.getFutureMeetingList(inputContact);
+		//test
+		assertEquals("",expectedList, inputList);
 	}
 
 	/**
@@ -255,6 +272,13 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testGetFutureMeetingListCalendar() {
 		fail("Not yet implemented"); // TODO
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetMeeting>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		//input
+		//test
 	}
 
 	/**
