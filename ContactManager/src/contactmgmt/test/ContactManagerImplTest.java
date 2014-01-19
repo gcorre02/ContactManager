@@ -74,6 +74,7 @@ public class ContactManagerImplTest {
 	public void tearDown() throws Exception {
 		//debug
 		paf.printSet(paf.getAllFutureMeetings());
+		paf.printSet(paf.getAllPastMeetings());
 		paf.printSet(paf.getAllContacts());
 		System.out.println(debugStr+"\n");
 		//tearDown
@@ -153,7 +154,24 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetPastMeeting() {
-		fail("Not yet implemented"); // TODO
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetPastMeeting>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		Calendar expectedDate = new GregorianCalendar(2013,9,5);
+		Calendar secondExpectedDate = new GregorianCalendar(2013,10,5);
+		Set<Contact> expectedContacts = new HashSet<Contact>();
+		expectedContacts.add(new ContactImpl(1,"John Mc Clane"));
+		expectedContacts.add(new ContactImpl(0,"Hans Gruber"));
+		String expectedNotes = "Nakatomi Plaza at 9pm";
+		PastMeeting expectedPastMeeting = new PastMeetingImpl(2,expectedDate,expectedContacts);
+		PastMeeting expectedPastMeetingWNotes = new PastMeetingImpl(1,secondExpectedDate, expectedContacts, expectedNotes);
+		//input
+		PastMeeting inputMeeting = cm.getPastMeeting(2);
+		PastMeeting secondInputMeeting = cm.getPastMeeting(1);
+		//test
+		assertEquals("",expectedPastMeeting,inputMeeting);
+		assertEquals("",expectedPastMeetingWNotes,secondInputMeeting);
 	}
 
 	/**
