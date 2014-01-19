@@ -34,6 +34,7 @@ public class ContactManagerImplTest {
 	String pathToFile = "."+ File.separator +"contactsTest.txt";
 	PopulatorAndFlusher paf;
 	ValuesManager vm;
+	String debugStr ="";
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -71,6 +72,11 @@ public class ContactManagerImplTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		//debug
+		paf.printSet(paf.getAllFutureMeetings());
+		paf.printSet(paf.getAllContacts());
+		System.out.println(debugStr+"\n");
+		//tearDown
 		cm = null;
 		File file = new File(pathToFile);
 		file.delete();
@@ -124,11 +130,17 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testAddFutureMeetingIsAdded() {
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testAddFutureMeetingIsAdded>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
 		//input variables
 		Set<Contact> inputContacts = new HashSet<Contact>();
-		Calendar inputDate = new GregorianCalendar(2014,12,15);
+		inputContacts.add(new ContactImpl(3, "Fritz"));
+		inputContacts.add(new ContactImpl(15, "Sterling Archer"));
+		inputContacts.add(new ContactImpl(12, "Barefoot Grub Patch"));
+		Calendar inputDate = new GregorianCalendar(2014,11,15);
 		int futureMeetingId = cm.addFutureMeeting(inputContacts, inputDate);
-		//test
+		//test setUp
 		vm = new ValuesManagerImpl();
 		boolean assertResult = vm.checkIdExistsInList(futureMeetingId, paf.getFutureMeetingsIdIndex());
 		//test

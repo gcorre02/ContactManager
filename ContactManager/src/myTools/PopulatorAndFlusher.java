@@ -83,5 +83,6 @@ public interface PopulatorAndFlusher {
 	List<String> getContactsNameIndex();
 	<T> boolean updateIndex(T inputId, List<T> contactsIdIndex);
 	<T> boolean updateSet(T element, Set<T> elementCollection);
-
+	<T> void printSet(Set<T> setToPrint);
+	<T> void printlist(List<T> listToPrint);
 }

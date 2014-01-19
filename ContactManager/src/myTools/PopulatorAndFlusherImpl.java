@@ -444,5 +444,17 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 			return true;
 		}
 	}
+	public <T> void printSet(Set<T> setToPrint){
+		Iterator<T> iter = setToPrint.iterator();
+		while(iter.hasNext()){
+			System.out.println(iter.next());
+		}
+	}
+	public <T> void printlist(List<T> listToPrint){
+		Iterator<T> iter = listToPrint.iterator();
+		while(iter.hasNext()){
+			System.out.println(iter.next());
+		}
+	}
 
 }
