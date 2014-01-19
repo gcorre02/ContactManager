@@ -85,7 +85,14 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public FutureMeeting getFutureMeeting(int id) {
-		// TODO Auto-generated method stub
+		Set<FutureMeeting> FutureMeetingCollection = paf.getAllFutureMeetings();
+		Iterator<FutureMeeting> iter = FutureMeetingCollection.iterator();
+		while(iter.hasNext()){
+			FutureMeeting current = iter.next();
+			if(current.getId() == id){
+				return current;
+			}
+		}
 		return null;
 	}
 

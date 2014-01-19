@@ -79,6 +79,8 @@ public class ContactManagerImplTest {
 		System.out.println(debugStr+"\n");
 		//tearDown
 		cm = null;
+		paf = null;
+		vm=null;
 		File file = new File(pathToFile);
 		file.delete();
 	}
@@ -91,7 +93,11 @@ public class ContactManagerImplTest {
 		assertTrue(cm instanceof ContactManagerImpl);
 	}
 	//TODO need a battery of tests for each process the Constructor implements!!
-
+	@Test
+	public final void needToWriteTestsForAllExceptionHandlersIndependently(){
+		fail("needToWriteTestsForAllExceptionHandlersIndependently");
+	}
+	
 	@Test
 	public final void testContactManagerImplPopulatesSetsAndIndexes() {
 		fail("not written yet");
@@ -186,9 +192,9 @@ public class ContactManagerImplTest {
 		//expected
 		Calendar expectedDate = new GregorianCalendar(2014,5,13);
 		Set<Contact> expectedContacts = new HashSet<Contact>();
-		expectedContacts.add(new ContactImpl(1,"John Mc Clane"));
 		expectedContacts.add(new ContactImpl(0,"Hans Gruber"));
-		FutureMeeting expectedFutureMeeting = new FutureMeetingImpl(2,expectedDate,expectedContacts);
+		expectedContacts.add(new ContactImpl(1,"John Mc Clane"));
+		FutureMeeting expectedFutureMeeting = new FutureMeetingImpl(0,expectedDate,expectedContacts);
 		//input
 		FutureMeeting inputMeeting = cm.getFutureMeeting(0);
 		//test
