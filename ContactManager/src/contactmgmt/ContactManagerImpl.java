@@ -33,7 +33,6 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	
 	//declare inner variables:
-	@SuppressWarnings("unused")
 	private PopulatorAndFlusher paf;
 	private String pathToFile = "."+ File.separator +"contactsTest.txt";
 	
@@ -161,5 +160,9 @@ public class ContactManagerImpl implements ContactManager {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	//Debug Method
+	public PopulatorAndFlusher getPaf(){
+		return this.paf;
+	}
 }

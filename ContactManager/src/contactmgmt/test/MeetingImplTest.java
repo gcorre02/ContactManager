@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test;
+package contactmgmt.test;
 
 import static org.junit.Assert.*;
 
@@ -16,26 +16,28 @@ import org.junit.Test;
 
 import contactmgmt.Contact;
 import contactmgmt.ContactImpl;
-import contactmgmt.FutureMeetingImpl;
 import contactmgmt.Meeting;
+import contactmgmt.MeetingImpl;
 
 /**
  * @author Guilherme
  *
  */
-public class FutureMeetingImplTest {
-
+public class MeetingImplTest {
 	
-	private Meeting fm;
+	private Meeting m;
 	private int inputId = 1;
 	private Set<Contact> inputContacts = new HashSet<Contact>();
 	private Calendar inputDate = new GregorianCalendar(2014,02,15);
 	Contact bruce = new ContactImpl(1, "Bruce Willis");
-	//inputContacts.add(bruce);
+
 	
 	private int expectedId = inputId;
 	private Set<Contact> expectedContacts = inputContacts;
 	private Calendar expectedDate = inputDate;
+	
+	
+	
 	
 	
 	/**
@@ -43,7 +45,7 @@ public class FutureMeetingImplTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		fm = new FutureMeetingImpl(inputId, inputDate, inputContacts);
+		m = new MeetingImpl(inputId, inputDate, inputContacts);
 	}
 
 	/**
@@ -51,40 +53,39 @@ public class FutureMeetingImplTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		fm = null;
-	}
-
-
-	/**
-	 * Test method for {@link contactmgmt.FutureMeetingImpl#FutureMeetingImpl()}.
-	 */
-	@Test
-	public final void testFutureMeetingImpl() {
-		assertTrue( fm instanceof FutureMeetingImpl);
+		m = null;
 	}
 
 	/**
-	 * Test method for {@link contactmgmt.FutureMeetingImpl#getId()}.
+	 * Test method for {@link contactmgmt.MeetingImpl#MeetingImpl()}.
 	 */
 	@Test
-	public final void testGetId() {
-		assertTrue("Id is not getting returned",expectedId == fm.getId());
+	public void testMeetingImpl() {
+		assertTrue( m instanceof MeetingImpl);
 	}
 
 	/**
-	 * Test method for {@link contactmgmt.FutureMeetingImpl#getDate()}.
+	 * Test method for {@link contactmgmt.MeetingImpl#getId()}.
 	 */
 	@Test
-	public final void testGetDate() {
-		assertEquals("FutureMeeting not returning date set-up",expectedDate, fm.getDate());
+	public void testGetId() {
+		assertEquals("Meeting not returning ID", expectedId, m.getId());
 	}
 
 	/**
-	 * Test method for {@link contactmgmt.FutureMeetingImpl#getContacts()}.
+	 * Test method for {@link contactmgmt.MeetingImpl#getDate()}.
 	 */
 	@Test
-	public final void testGetContacts() {
-		assertEquals("future meetings is not returning contacts propperly", expectedContacts, fm.getContacts());
+	public void testGetDate() {
+		assertEquals("Meeting not returning date/ or constructor not setting up date",expectedDate, m.getDate());
+	}
+
+	/**
+	 * Test method for {@link contactmgmt.MeetingImpl#getContacts()}.
+	 */
+	@Test
+	public void testGetContacts() {
+		assertEquals("Meeting not returning contacts or Contructor not instantiating them", expectedContacts, m.getContacts());
 	}
 
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test;
+package contactmgmt.test;
 
 import static org.junit.Assert.*;
 
@@ -10,25 +10,30 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
 
 import myTools.PopulatorAndFlusher;
-import myTools.PopulatorAndFlusherImpl;
+import myTools.ValuesManager;
+import myTools.ValuesManagerImpl;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import contactmgmt.ContactManager;
-import contactmgmt.ContactManagerImpl;
+import contactmgmt.*;
 
 /**
  * @author Guilherme
  *
  */
 public class ContactManagerImplTest {
-	ContactManager cm;
+	ContactManagerImpl cm;
 	String pathToFile = "."+ File.separator +"contactsTest.txt";
 	PopulatorAndFlusher paf;
+	ValuesManager vm;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -58,7 +63,7 @@ public class ContactManagerImplTest {
 			e.printStackTrace();
 		}
 		cm = new ContactManagerImpl();
-		paf = new PopulatorAndFlusherImpl(pathToFile);
+		paf = cm.getPaf();
 	}
 
 	/**
@@ -119,11 +124,13 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testAddFutureMeetingIsAdded() {
-		fail("Not yet implemented"); // TODO
-		
-		/*
-		 * TODO implement myTools.checkIdExistsInList(int id, List<Integer> anyIntegerList) > mock interface for the test
-		 */
+		//input variables
+		Set<Contact> inputContacts = new HashSet<Contact>();
+		Calendar inputDate = new GregorianCalendar(2014,12,15);
+		int futureMeetingId = cm.addFutureMeeting(inputContacts, inputDate);
+		//test
+		vm = new ValuesManagerImpl();
+		boolean assertResult = vm.checkIdExistsInList(futureMeetingId, paf.getFutureMeetingsIdIndex());
 	}
 
 

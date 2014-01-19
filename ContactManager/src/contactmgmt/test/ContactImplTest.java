@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test;
+package contactmgmt.test;
 
 import static org.junit.Assert.*;
 
