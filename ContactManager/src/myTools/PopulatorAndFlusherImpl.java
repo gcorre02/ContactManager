@@ -43,14 +43,14 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	private Set<FutureMeeting> allFutureMeetings = new HashSet<FutureMeeting>();
 	private List<String> csvRows;
 	private List<Integer> pastMeetingsWithNotesIndex = new ArrayList<Integer>();
-	//TODO need to write updaters! but this can be done just by calling the indexing and populating methods from outside the class 
-	//TODO write constructor that calls all the populators
-	
+	private boolean csvRowsIsNotEmpty = false;
+
+
 	public PopulatorAndFlusherImpl(String path){
 		csvRows = readFromFile(path);
 		populateSetsAndIndexes();
 	}
-	
+
 
 	/* (non-Javadoc)
 	 * @see myTools.PopulatorAndFlusher#WriteToFile(java.util.Set, java.util.Set, java.lang.String)
@@ -64,7 +64,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
-			
+
 			//iterate through each FM and write it in
 			Iterator<FutureMeeting> iterFm = allFutureMeetings.iterator();
 			while(iterFm.hasNext()){
@@ -91,7 +91,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		return contactsNameIndex;
 	}
 
-	
+
 
 	/**
 	 * @return the allContacts
@@ -222,8 +222,8 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		return allMeetings;
 	}
 
-	
-	
+
+
 
 	/**
 	 * @return the allPastMeetings
@@ -243,7 +243,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 			Meeting current = iter.next();
 			if(dm.checkDateIsInThePast(current.getDate())){
 				if (pastMeetingsWithNotesIndex.contains(current.getId())){  
-					
+
 					String theNotes = getNotes(current.getId());
 					allPastMeetings.add(new PastMeetingImpl(current.getId(), current.getDate(), current.getContacts(), theNotes));
 				}else{
@@ -265,7 +265,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 				notes = rows[4];
 			}
 		}
-	
+
 		return notes;
 	}
 
@@ -276,17 +276,18 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		return allFutureMeetings;
 	}
 
-	
+
 
 	@Override
 	public List<String> readFromFile(String pathToFile) {
 		List<String> rows = new ArrayList<String>();
-		
-	
+
+
 		File inputFile = new File(pathToFile);
 		if(inputFile.isFile()){
 			try{
 				rows = Files.readAllLines(inputFile.toPath(), Charset.defaultCharset());
+				csvRowsIsNotEmpty = true;
 			} catch (IOException e){
 				System.out.println("file doesn't read right");
 				rows.add("");
@@ -298,24 +299,24 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		return rows;
 	}
 
-	
+
 	private void populateSetsAndIndexes() {
 		// TODO called with constructor
-		
+
 		//calls all the methods charged with populating the fields
-		
-		setAllContacts(getCsvRows());
-		setAllMeetings(getCsvRows());
-		setMeetingsIdIndex(getCsvRows());
-		setAllPastMeetings(getAllMeetings()); //TODO : investigate why this methid must be called after setMeetings IdIndex(kind of makes sense)
-		setAllFutureMeetings(getAllMeetings());
-		setPastMeetingsIdIndex(getAllPastMeetings());
-		setFutureMeetingsIdIndex(getAllFutureMeetings());
-		setContactsIdIndex(getCsvRows());
-		setContactsNameIndex(getAllContacts());
-		
+		if(csvRowsIsNotEmpty){
+			setAllContacts(getCsvRows());
+			setAllMeetings(getCsvRows());
+			setMeetingsIdIndex(getCsvRows());
+			setAllPastMeetings(getAllMeetings()); //TODO : investigate why this methid must be called after setMeetings IdIndex(kind of makes sense)
+			setAllFutureMeetings(getAllMeetings());
+			setPastMeetingsIdIndex(getAllPastMeetings());
+			setFutureMeetingsIdIndex(getAllFutureMeetings());
+			setContactsIdIndex(getCsvRows());
+			setContactsNameIndex(getAllContacts());
+		}
 	}
-	
+
 	@Override
 	public List<String> getCsvRows() {
 		return csvRows;
@@ -324,7 +325,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	private void setCsvRows(List<String> csvRows) {
 		this.csvRows = csvRows;
 	}
-	
+
 	@Override
 	public void setAllMeetings(List<String> csvRows) {
 		//note : all contact names in the meeting rows are concatenated without spaces and spaces are used to separate each contact
@@ -332,7 +333,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		for(String str : csvRows){
 			String rowSplit[] = str.split(",");
 			if(rowSplit[1].equals("M")){
-				
+
 				DatesManager dm = new DatesManagerImpl();
 				Calendar date;
 				int year = Integer.parseInt(rowSplit[3].substring(0,4));
@@ -341,7 +342,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 				date = dm.generateCalendarItem(year, month, day);
 
 				//TODO>need to make this pass the test:
-				
+
 				String[] contactNames = rowSplit[2].split(" ");
 				Set<Contact> contactSet = new HashSet<Contact>();
 				for(String name : contactNames){
@@ -353,7 +354,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		}
 		//populate set
 		this.allMeetings = allMeetings;
-		
+
 	}
 
 	private Contact getContact(String name) {
@@ -375,9 +376,9 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		Iterator<Contact> iter = allContacts.iterator();
 		while(iter.hasNext()){
 			Contact current = iter.next();
-			
+
 			if (current.getName().equals(finalName)){
-				
+
 				return current;
 			}
 		}
@@ -401,14 +402,14 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		this.allFutureMeetings = futureMeetings;
 	}
 
-	
+
 	/**
 	 * @param contactsNameIndex the contactsNameIndex to set
 	 */
 	@Override
 	public void setContactsNameIndex(Set<Contact> allContacts) {
 		List<String> contactsNameIndex = new ArrayList<String>();
-		
+
 		Iterator<Contact> iter = allContacts.iterator();
 		while(iter.hasNext()){
 			Contact current = iter.next();
@@ -431,7 +432,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 			elementCollection.add(element);
 			return true;
 		}
-		
+
 	}
 	public <T>boolean updateIndex(T id,List<T> anyList){
 		//returns a bool that indicates whether it's been added or removed
@@ -443,5 +444,5 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 			return true;
 		}
 	}
-	
+
 }

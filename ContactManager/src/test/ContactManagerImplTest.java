@@ -5,6 +5,15 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+
+import myTools.PopulatorAndFlusher;
+import myTools.PopulatorAndFlusherImpl;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,12 +27,38 @@ import contactmgmt.ContactManagerImpl;
  */
 public class ContactManagerImplTest {
 	ContactManager cm;
+	String pathToFile = "."+ File.separator +"contactsTest.txt";
+	PopulatorAndFlusher paf;
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+	
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
+			//TODO write it all in the right format:
+			writer.println("0,M,HansGruber JohnMcClane,20140513");
+			writer.println("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
+			writer.println("2,M,HansGruber JohnMcClane,20130905");
+			writer.println("0,C,Hans Gruber");
+			writer.println("1,C,John Mc Clane");
+			writer.println("2,C,Tony");
+			writer.println("3,C,Fritz");
+			writer.println("4,C,Harry Ellis");
+			writer.println("5,C,Theo theDriver");
+			writer.println("6,C,Holly Genero");
+			writer.println("7,C,Karl");
+			writer.println("8,C,Klaus");
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		cm = new ContactManagerImpl();
+		paf = new PopulatorAndFlusherImpl(pathToFile);
 	}
 
 	/**
@@ -32,6 +67,8 @@ public class ContactManagerImplTest {
 	@After
 	public void tearDown() throws Exception {
 		cm = null;
+		File file = new File(pathToFile);
+		file.delete();
 	}
 
 	/**

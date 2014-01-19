@@ -3,30 +3,45 @@
  */
 package contactmgmt;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
+
+import myTools.PopulatorAndFlusher;
+import myTools.PopulatorAndFlusherImpl;
 
 /**
  * @author Guilherme
  *
  */
 public class ContactManagerImpl implements ContactManager {
+	
 	/*
-	 * Need the following classes to be called to help with the inner workings of this class
-	 * Researched the idea of declaring whole independent classes that would take care of handling the inner workings, which in turn would be easier to test, for example :
-	 * TODO write myTool checkContactNameIsUnique(Set<String> names)
-	 * TODO write myTool for id generation
-	 * TODO checkDateInThePast(Calendar date)
-	 * TODO checkIdIsInIntList(int id, List<Integer> ListOfIds)
+	 * variables that might need declaring
+	private List<Integer> pastMeetingsIdIndex;
+	private List<Integer> futureMeetingsIdIndex;
+	private List<Integer> contactsIdIndex;
+	private List<String> contactsNameIndex;
+	private Set<Contact> allContacts;
+	private Set<Meeting> allMeetings;
+	private Set<PastMeeting> allPastMeetings;
+	private Set<FutureMeeting> allFutureMeetings;
+	private List<String> csvRows;
+	private List<Integer> pastMeetingsWithNotesIndex;
+	
 	 */
 	
+	//declare inner variables:
+	@SuppressWarnings("unused")
+	private PopulatorAndFlusher paf;
+	private String pathToFile = "."+ File.separator +"contactsTest.txt";
 	
 	/**
 	 * 
 	 */
 	public ContactManagerImpl() {
-		// TODO Auto-generated constructor stub
+		paf = new PopulatorAndFlusherImpl(pathToFile);
 	}
 
 	/* (non-Javadoc)
