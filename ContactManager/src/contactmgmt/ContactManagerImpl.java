@@ -51,6 +51,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
+
 		//generate unique id :
 		ValuesManager vm = new ValuesManagerImpl();
 		int returnId = vm.newIdGenerator(paf.getMeetingsIdIndex()); //<need to use the Meetings Index! //< need to update both the Meetings and the futureMeetings index too
@@ -102,6 +103,7 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public Meeting getMeeting(int id) {
 		// TODO Auto-generated method stub
+		// TODO need to handle how meetings with notes get stored in this set
 		return null;
 	}
 
@@ -139,6 +141,7 @@ public class ContactManagerImpl implements ContactManager {
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date,
 			String text) {
 		// TODO Auto-generated method stub
+		// TODO need to make sure Meeting set is updated whenever other meetings are, same for meeting.
 
 	}
 

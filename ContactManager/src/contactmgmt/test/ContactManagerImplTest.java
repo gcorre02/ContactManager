@@ -185,7 +185,7 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetFutureMeeting() {
-		//TODO > what happens if an index for a past meeting is reuqired? initially null is fine, but later it could check if the index is part of meetings and not futureMeeting
+		//TODO > what happens if an index for a past meeting is requested? initially null is fine, but later it could check if the index is part of meetings and not futureMeeting << write new test for exception handling
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeeting>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -207,7 +207,31 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetMeeting() {
-		fail("Not yet implemented"); // TODO
+		
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetMeeting>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		Calendar expectedDate = new GregorianCalendar(2013,9,5);
+		Calendar secondExpectedDate = new GregorianCalendar(2013,10,5);
+		Calendar thirdExpectedDate = new GregorianCalendar(2014,5,13);
+		Set<Contact> expectedContacts = new HashSet<Contact>();
+		expectedContacts.add(new ContactImpl(1,"John Mc Clane"));
+		expectedContacts.add(new ContactImpl(0,"Hans Gruber"));
+		Meeting expectedMeeting = new MeetingImpl(2,expectedDate,expectedContacts);
+		Meeting expectedMeetingWNotes = new MeetingImpl(1,secondExpectedDate, expectedContacts);
+		Meeting thirdExpectedMeeting = new MeetingImpl(0,thirdExpectedDate,expectedContacts);
+	
+		//input
+		Meeting inputMeeting = cm.getMeeting(2);
+		Meeting secondInputMeeting = cm.getMeeting(1);
+		Meeting thirdInputMeeting = cm.getMeeting(0);
+		//test
+		assertEquals("",expectedMeeting.toString(),inputMeeting.toString());
+		assertEquals("",expectedMeetingWNotes.toString(),secondInputMeeting.toString());
+		assertEquals("",thirdExpectedMeeting.toString(),thirdInputMeeting.toString());
+		
+		 
 	}
 
 	/**
