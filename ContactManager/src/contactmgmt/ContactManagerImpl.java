@@ -171,8 +171,24 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public List<PastMeeting> getPastMeetingList(Contact contact) {
-		// TODO Auto-generated method stub
-		return null;
+		List<PastMeeting> outputList = new ArrayList<PastMeeting>();
+		Set<PastMeeting> inputSet = paf.getAllPastMeetings();
+		Iterator<PastMeeting> iter = inputSet.iterator();
+		while(iter.hasNext()){
+			PastMeeting current = iter.next();
+			//debug
+			//paf.printSet(current.getContacts());
+			//
+			Iterator<Contact> cIter= current.getContacts().iterator();
+			while(cIter.hasNext()){
+				Contact currentContact = cIter.next();
+				if(currentContact.toString().equals(contact.toString())){
+					outputList.add(current);
+				}
+			}
+		}
+	
+		return outputList;
 	}
 
 	/* (non-Javadoc)
