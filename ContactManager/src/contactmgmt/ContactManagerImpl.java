@@ -5,6 +5,7 @@ package contactmgmt;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -68,7 +69,14 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public PastMeeting getPastMeeting(int id) {
-		// TODO Auto-generated method stub
+		Set<PastMeeting> pastMeetingCollection = paf.getAllPastMeetings();
+		Iterator<PastMeeting> iter = pastMeetingCollection.iterator();
+		while(iter.hasNext()){
+			PastMeeting current = iter.next();
+			if(current.getId() == id){
+				return current;
+			}
+		}
 		return null;
 	}
 

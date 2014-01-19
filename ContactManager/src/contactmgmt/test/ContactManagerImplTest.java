@@ -170,8 +170,8 @@ public class ContactManagerImplTest {
 		PastMeeting inputMeeting = cm.getPastMeeting(2);
 		PastMeeting secondInputMeeting = cm.getPastMeeting(1);
 		//test
-		assertEquals("",expectedPastMeeting,inputMeeting);
-		assertEquals("",expectedPastMeetingWNotes,secondInputMeeting);
+		assertEquals("",expectedPastMeeting.toString(),inputMeeting.toString());
+		assertEquals("",expectedPastMeetingWNotes.toString(),secondInputMeeting.toString());
 	}
 
 	/**
