@@ -23,6 +23,7 @@ public class ContactImpl implements Contact {
 	public ContactImpl(int id, String name) {
 		this.id = id;
 		this.name = name;
+		this.notes = "";
 		// TODO Auto-generated constructor stub <<<< need to accept aliases!!
 	}
 
@@ -57,5 +58,15 @@ public class ContactImpl implements Contact {
 	public void addNotes(String note) {
 		this.notes = note;
 	}
+	
+	@Override
+	public String toString(){
+		String notes="";
+		if(getNotes().length()>0){
+			notes=","+getNotes();
+		}
+		return getId()+",C,"+ getName()+notes;
+	}
+
 
 }
