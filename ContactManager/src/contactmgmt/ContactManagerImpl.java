@@ -57,6 +57,9 @@ public class ContactManagerImpl implements ContactManager {
 		FutureMeeting newFMeeting = new FutureMeetingImpl(returnId,date,contacts);
 		//add the new future meeting to the collection
 		paf.updateSet(newFMeeting, paf.getAllFutureMeetings());
+		paf.updateSet(newFMeeting, paf.getAllMeetings());
+		paf.updateIndex(returnId, paf.getFutureMeetingsIdIndex());
+		paf.updateIndex(returnId, paf.getMeetingsIdIndex());
 		return returnId;
 	}
 
