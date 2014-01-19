@@ -120,14 +120,21 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
+		//TODO : override equals under contact and meeting for easier comparison!
 		List<Meeting> outputList = new ArrayList<Meeting>();
 		Set<FutureMeeting> inputSet = paf.getAllFutureMeetings();
 		Iterator<FutureMeeting> iter = inputSet.iterator();
 		while(iter.hasNext()){
 			FutureMeeting current = iter.next();
+			//debug
 			paf.printSet(current.getContacts());
-			if (current.getContacts().contains(contact)){
-				outputList.add(current);
+			//
+			Iterator<Contact> cIter= current.getContacts().iterator();
+			while(cIter.hasNext()){
+				Contact currentContact = cIter.next();
+				if(currentContact.toString().equals(contact.toString())){
+					outputList.add(current);
+				}
 			}
 		}
 		//debug
@@ -135,6 +142,7 @@ public class ContactManagerImpl implements ContactManager {
 		paf.printlist(outputList);
 		System.out.println(contact);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<debug getFutureMeetingList>>>>>>>>>>>>>>>>>>>>>");
+		//return
 		return outputList;
 	}
 
