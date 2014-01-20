@@ -330,7 +330,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testAddMeetingNotesNullExceptionHandler() {
-		// TODO <Current>
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionNull>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -343,11 +342,12 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testAddMeetingNotesIllegealArgsExceptionExceptionHandler() {
+		// TODO <Current>
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionArgs>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//test
-		fail("Not implemented yet");
+		cm.addMeetingNotes(8, "discussed the blueprints for the nakatomi building construction");
 	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addMeetingNotes(int, java.lang.String)}.

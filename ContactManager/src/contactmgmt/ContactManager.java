@@ -96,8 +96,10 @@ public interface ContactManager {
 	 *
 	 * TODO <Important> implement this :This method is used when a future meeting takes place, and is
 	 * then converted to a past meeting (with notes).
-	 *
+	 * TODO <Important> how else does the Conversion to PastMeeting can work ?
 	 * It can be also used to add notes to a past meeting at a later date.
+	 *
+	 * TODO <Current>
 	 *
 	 * @param id the ID of the meeting
 	 * @param text messages to be added about the meeting.
