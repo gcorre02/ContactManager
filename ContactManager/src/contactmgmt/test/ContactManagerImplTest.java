@@ -331,7 +331,7 @@ public class ContactManagerImplTest {
 	@Test(expected = NullPointerException.class)
 	public final void testAddMeetingNotesNullExceptionHandler() {
 		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionNull>>>>>>>>>>>>>>>";
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesNull>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//test
 		String inputNotes = null;
@@ -342,9 +342,8 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testAddMeetingNotesIllegealArgsExceptionExceptionHandler() {
-		// TODO <Current>
 		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionArgs>>>>>>>>>>>>>>>";
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesArgs>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//test
 		cm.addMeetingNotes(8, "discussed the blueprints for the nakatomi building construction");
@@ -354,11 +353,12 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalStateException.class)
 	public final void testAddMeetingNotesIllegealIllegalStateException() {
+		// TODO <Current>
 		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionFuture>>>>>>>>>>>>>>>";
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesIllegalStateException>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//test
-		fail("Not implemented yet");
+		cm.addMeetingNotes(0, "ze germans are coming");
 	}
 
 	/**

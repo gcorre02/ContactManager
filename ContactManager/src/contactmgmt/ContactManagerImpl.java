@@ -210,12 +210,16 @@ public class ContactManagerImpl implements ContactManager {
 	 * @see contactmgmt.ContactManager#addMeetingNotes(int, java.lang.String)
 	 */
 	@Override
-	public void addMeetingNotes(int id, String text) throws NullPointerException{
+	public void addMeetingNotes(int id, String text) throws NullPointerException, IllegalArgumentException{
 		//TODO <Current>
 		//Exceptions
 		if(text == null){
 			System.out.println("Argument inputed evaluates to null: " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " w/ param: String note"); //<getMethodName() researched online. need to check if getClass() doesn't bring the performance down massively
 			throw new NullPointerException();
+		}
+		if(!paf.getPastMeetingsIdIndex().contains(id)){
+			System.out.println("Meeting requested is not a meeting at all : " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " w/ param: int id"); 
+			throw new IllegalArgumentException();
 		}
 		
 		//main
