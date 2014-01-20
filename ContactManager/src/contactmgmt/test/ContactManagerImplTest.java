@@ -156,7 +156,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetFutureMeeting() {
-		//TODO < Exception Handling >
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeeting>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -275,8 +274,13 @@ public class ContactManagerImplTest {
 		//input
 		List<PastMeeting> inputList = cm.getPastMeetingList(inputContact);
 		//test
-		//TODO : <Priority> need to correct the test so this allways works :
-		assertEquals("",expectedList.get(1).getId(), inputList.get(1).getId());
+		List<String> expectedListString = new ArrayList<String>();
+		expectedListString.add(expectedList.get(0).toString());
+		expectedListString.add(expectedList.get(1).toString());
+		List<String> inputListString = new ArrayList<String>();
+		inputListString.add(inputList.get(0).toString());
+		inputListString.add(inputList.get(1).toString());
+		assertTrue(expectedListString.containsAll(inputListString));
 		
 
 	}
@@ -348,7 +352,7 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetContactsIntArray() {
-		//TODO :<After Deliverable is Ready> review tests to see where assertArrayEquals works <<< need to investigate Collections.sort()
+		//TODO <After Deliverable is Ready> review tests to see where assertArrayEquals works <<< need to investigate Collections.sort()
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<getContactsIntArray>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);

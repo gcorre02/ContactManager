@@ -13,7 +13,7 @@ public interface ContactManager {
 	 * @param contacts a list of contacts that will participate in the meeting
 	 * @param date the date on which the meeting will take place
 	 * @return the ID for the meeting
-	 * @throws IllegalArgumentException if the meeting is set for a time in the past,
+	 * //TODO <Exception Handling> @throws IllegalArgumentException if the meeting is set for a time in the past,
 	 * or if any contact is unknown / non-existent
 	 */
 	int addFutureMeeting(Set<Contact> contacts, Calendar date);
@@ -22,7 +22,7 @@ public interface ContactManager {
 	 *
 	 * @param id the ID for the meeting
 	 * @return the meeting with the requested ID, or null if it there is none.
-	 * @throws IllegalArgumentException if there is a meeting with that ID happening in the future
+	 * //TODO <Exception Handling> @throws IllegalArgumentException if there is a meeting with that ID happening in the future
 	 */
 	PastMeeting getPastMeeting(int id);
 	/**
@@ -30,7 +30,7 @@ public interface ContactManager {
 	 *
 	 * @param id the ID for the meeting
 	 * @return the meeting with the requested ID, or null if it there is none.
-	 * @throws IllegalArgumentException if there is a meeting with that ID happening in the past
+	 * //TODO <Exception Handling> @throws IllegalArgumentException if there is a meeting with that ID happening in the past
 	 */
 	FutureMeeting getFutureMeeting(int id);
 	/**
@@ -49,7 +49,7 @@ public interface ContactManager {
 	 *
 	 * @param contact one of the user’s contacts
 	 * @return the list of future meeting(s) scheduled with this contact (maybe empty).
-	 * @throws IllegalArgumentException if the contact does not exist
+	 * //TODO <Exception Handling> @throws IllegalArgumentException if the contact does not exist
 	 */
 	List<Meeting> getFutureMeetingList(Contact contact);
 	/**
@@ -73,7 +73,7 @@ public interface ContactManager {
 	 *
 	 * @param contact one of the user’s contacts
 	 * @return the list of future meeting(s) scheduled with this contact (maybe empty).
-	 * @throws IllegalArgumentException if the contact does not exist
+	 * //TODO <Exception Handling> @throws IllegalArgumentException if the contact does not exist
 	 */
 	List<PastMeeting> getPastMeetingList(Contact contact);
 	/**
@@ -82,10 +82,10 @@ public interface ContactManager {
 	 * @param contacts a list of participants
 	 * @param date the date on which the meeting took place
 	 * @param text messages to be added about the meeting.
-	 * @throws IllegalArgumentException if the list of contacts is
+	 * //TODO <Exception Handling> @throws IllegalArgumentException if the list of contacts is
 	 * empty, or any of the contacts does not exist
-	 * @throws IllegalArgumentException if date inputed is in the future
-	 * @throws NullPointerException if any of the arguments is null
+	 * //TODO <Exception Handling> @throws IllegalArgumentException if date inputed is in the future
+	 * //TODO <Exception Handling> @throws NullPointerException if any of the arguments is null
 	 */
 	void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text);
 	/**
@@ -98,9 +98,9 @@ public interface ContactManager {
 	 *
 	 * @param id the ID of the meeting
 	 * @param text messages to be added about the meeting.
-	 * @throws IllegalArgumentException if the meeting does not exist
-	 * @throws IllegalStateException if the meeting is set for a date in the future
-	 * @throws NullPointerException if the notes are null
+	 * //TODO <Exception Handling> @throws IllegalArgumentException if the meeting does not exist
+	 * //TODO <Exception Handling> @throws IllegalStateException if the meeting is set for a date in the future
+	 * //TODO <Exception Handling> @throws NullPointerException if the notes are null
 	 */
 	void addMeetingNotes(int id, String text);
 	/**
@@ -108,7 +108,7 @@ public interface ContactManager {
 	 *
 	 * @param name the name of the contact.
 	 * @param notes notes to be added about the contact.
-	 * @throws NullPointerException if the name or the notes are null
+	 * //TODO <Exception Handling> @throws NullPointerException if the name or the notes are null
 	 */
 	void addNewContact(String name, String notes);
 	/**
@@ -116,7 +116,7 @@ public interface ContactManager {
 	 *
 	 * @param ids an arbitrary number of contact IDs
 	 * @return a list containing the contacts that correspond to the IDs.
-	 * @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
+	 * //TODO <Exception Handling> @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
 	 */
 	Set<Contact> getContacts(int... ids);
 	/**
@@ -124,7 +124,7 @@ public interface ContactManager {
 	 *
 	 * @param name the string to search for
 	 * @return a list with the contacts whose name contains that string.
-	 * @throws NullPointerException if the parameter is null
+	 * //TODO <Exception Handling> @throws NullPointerException if the parameter is null or if name isn't part of the index
 	 */
 	Set<Contact> getContacts(String name);
 	/**

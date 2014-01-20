@@ -121,7 +121,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
-		//TODO : <After Deliverable Is Ready> override equals under contact and meeting for easier comparison!
+		//TODO <After Deliverable Is Ready> override equals under contact and meeting for easier comparison!
 		List<Meeting> outputList = new ArrayList<Meeting>();
 		Set<FutureMeeting> inputSet = paf.getAllFutureMeetings();
 		Iterator<FutureMeeting> iter = inputSet.iterator();
@@ -197,7 +197,6 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
-		// TODO <Exception Handling> need to handle test for date in the future and unrecognized contacts (throwable)
 		vm = new ValuesManagerImpl();
 		int newId = vm.newIdGenerator(paf.getMeetingsIdIndex());
 		Meeting newMeeting = new PastMeetingImpl(newId, date, contacts, text);
@@ -256,7 +255,6 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public Set<Contact> getContacts(int... ids) {
-		// TODO <Exception Handling> write throws if name isn't part of the index
 		Set<Contact> returnContacts = new HashSet<Contact>();
 		Set<Contact> inputContacts = paf.getAllContacts();
 		List<Integer> idsContactInput = new ArrayList<Integer>();
@@ -278,7 +276,6 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public Set<Contact> getContacts(String name) {
-		// TODO <Exception Handling>  write throws if name isn't part of the index
 		
 		Set<Contact> returnContacts = new HashSet<Contact>();
 		Set<Contact> inputContacts = paf.getAllContacts();
