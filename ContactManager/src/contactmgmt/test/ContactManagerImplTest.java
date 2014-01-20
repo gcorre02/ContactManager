@@ -387,16 +387,19 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetContactsIntArray() {
-		fail("Not yet implemented"); // TODO
+		//TODO : review tests to see where assertArrayEquals works
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<getContactsIntArray>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
 		List<Contact> expectedContactList = new ArrayList<>();
 		expectedContactList.add(new ContactImpl(8,"Klaus"));
+		expectedContactList.add(new ContactImpl(5,"Theo theDriver"));
+		expectedContactList.add(new ContactImpl(3,"Fritz"));
 		//input
-		
+		List<Contact> inputContacts = new ArrayList<Contact>(cm.getContacts(3,5,8));
 		//test
+		assertArrayEquals(expectedContactList.toArray(), inputContacts.toArray());
 	}
 
 	/**
