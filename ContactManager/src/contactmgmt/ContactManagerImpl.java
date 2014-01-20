@@ -226,7 +226,7 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void addNewContact(String name, String notes) {
 		// TODO need to check if name is unique at this level
-
+		
 	}
 
 	/* (non-Javadoc)

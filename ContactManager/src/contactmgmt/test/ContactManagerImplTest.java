@@ -368,14 +368,20 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testAddNewContact() {
-		fail("Not yet implemented"); // TODO
+		// TODO need to check if calls to paf are directed through cm.getPaf() !!!!
 		//test stub :
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewContact>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
+		Contact expectedContact = new ContactImpl(9,"Basil Towers");
 		//input
+		cm.addNewContact("Basil Towers", "");
+		Set<Contact> inputContactSet = cm.getPaf().getAllContacts();
+		//Contact inputContact;
+		//Iterator<Contact>
 		//test
+		assertTrue("Meeting is not being added", inputContactSet.contains(expectedContact));
 	}
 
 	/**
@@ -384,6 +390,13 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testGetContactsIntArray() {
 		fail("Not yet implemented"); // TODO
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<getContactsIntArray>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		//input
+		//test
 	}
 
 	/**
