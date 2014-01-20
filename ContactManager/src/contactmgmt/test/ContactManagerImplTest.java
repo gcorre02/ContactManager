@@ -98,10 +98,6 @@ public class ContactManagerImplTest {
 	public final void testContactManagerImplIsInstantiatedCorrectly() {
 		assertTrue(cm instanceof ContactManagerImpl);
 	}
-	@Test
-	public final void needToWriteTestsForAllExceptionHandlersIndependently(){
-		fail("needToWriteTestsForAllExceptionHandlersIndependently");
-	}
 
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
@@ -281,7 +277,7 @@ public class ContactManagerImplTest {
 		inputListString.add(inputList.get(0).toString());
 		inputListString.add(inputList.get(1).toString());
 		assertTrue(expectedListString.containsAll(inputListString));
-		
+
 
 	}
 
@@ -328,6 +324,41 @@ public class ContactManagerImplTest {
 		cm.addMeetingNotes(2, inputNotes);
 		//test
 		assertEquals("",expectedMeetingString, cm.getPastMeeting(2).getNotes().toString());
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#addMeetingNotes(int, java.lang.String)}.
+	 */
+	@Test(expected = NullPointerException.class)
+	public final void testAddMeetingNotesNullExceptionHandler() {
+		// TODO <Current>
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionNull>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//test
+		String inputNotes = null;
+		cm.addMeetingNotes(2, inputNotes);
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#addMeetingNotes(int, java.lang.String)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testAddMeetingNotesIllegealArgsExceptionExceptionHandler() {
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionArgs>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//test
+		fail("Not implemented yet");
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#addMeetingNotes(int, java.lang.String)}.
+	 */
+	@Test(expected = IllegalStateException.class)
+	public final void testAddMeetingNotesIllegealIllegalStateException() {
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionFuture>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//test
+		fail("Not implemented yet");
 	}
 
 	/**
@@ -398,11 +429,33 @@ public class ContactManagerImplTest {
 			inputContactsString.add(current.toString());
 		}
 		//test
-		
-		assertTrue(inputContactsString.containsAll(expectedContactList));
-		
-	}
 
+		assertTrue(inputContactsString.containsAll(expectedContactList));
+
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getContacts(java.lang.String)}.
+	 */
+	@Test(expected = NullPointerException.class)
+	public final void testGetContactsStringExceptionHandler() {
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionNull>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//test
+		String name = null;
+		cm.getContacts(name);
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getContacts(java.lang.String)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testGetContactsStringIllegealArgsExceptionExceptionHandler() {
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionArgs>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//test
+		cm.getContacts("Jackson Rabbit");
+	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#flush()}.
 	 */
@@ -435,11 +488,11 @@ public class ContactManagerImplTest {
 		expectedCsvRows.add("15,C,Fritz Hansen");
 
 		//input
-		
-			//dump to file:
+
+		//dump to file:
 		cm.flush();
 
-			//populate array with file elements
+		//populate array with file elements
 		List<String> inputRows = cm.getPaf().getCsvRows();
 
 		/*
@@ -448,8 +501,8 @@ public class ContactManagerImplTest {
 		cm.getPaf().printlist(expectedCsvRows);
 		cm.getPaf().printlist(inputRows);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<compare expected and input>>>>>>>>>>>>>>>>>>>>>>>>>");
-		*/
-		
+		 */
+
 		//test
 		assertTrue("Write operation not working : ", expectedCsvRows.containsAll(inputRows));
 	}

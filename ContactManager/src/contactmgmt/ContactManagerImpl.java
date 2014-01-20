@@ -211,6 +211,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void addMeetingNotes(int id, String text) {
+		//TODO <Current>
 		PastMeeting meetingToAddNotes = getPastMeeting(id);
 		PastMeeting newMeeting = new PastMeetingImpl(meetingToAddNotes.getId(), meetingToAddNotes.getDate(), meetingToAddNotes.getContacts(), text);
 		paf.getAllPastMeetings().remove(meetingToAddNotes);
@@ -275,8 +276,19 @@ public class ContactManagerImpl implements ContactManager {
 	 * @see contactmgmt.ContactManager#getContacts(java.lang.String)
 	 */
 	@Override
-	public Set<Contact> getContacts(String name) {
+	public Set<Contact> getContacts(String name) throws NullPointerException, IllegalArgumentException{
+		//Exceptions
+		if(name == null){
+			System.out.println("Argument inputed evaluates to null: " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " w/ param: String Name"); //<getMethodName() researched online. need to check if getClass() doesn't bring the performance down massively
+			throw new NullPointerException();
+		}
+		vm = new ValuesManagerImpl();
+		if(vm.checkContactNameIsUnique(paf.getContactsNameIndex(), name)){
+			System.out.println("Argument inputed already in ContactsIndex: " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " w/ param: String Name"); 
+			throw new IllegalArgumentException();
+		}
 		
+		//main code
 		Set<Contact> returnContacts = new HashSet<Contact>();
 		Set<Contact> inputContacts = paf.getAllContacts();
 		Iterator<Contact> iter = inputContacts.iterator();
@@ -286,6 +298,7 @@ public class ContactManagerImpl implements ContactManager {
 				returnContacts.add(current);
 			}
 		}
+		
 		return returnContacts;
 	}
 

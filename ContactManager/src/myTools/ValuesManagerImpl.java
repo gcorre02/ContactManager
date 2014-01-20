@@ -38,6 +38,18 @@ public class ValuesManagerImpl implements ValuesManager {
 		}
 		return true;
 	}
+	/* (non-Javadoc)
+	 * @see myTools.ValuesManager#checkContactNameIsUnique(java.util.List, java.lang.String)
+	 */
+	@Override
+	public boolean checkContactNameIsUnique(List<String> names, String candidateName) {
+		for(String str : names){
+			if(str.equals(candidateName)){
+				return false;
+			}
+		}
+		return true;
+	}
 
 	/* (non-Javadoc)
 	 * @see myTools.ValuesManager#newIdGenerator(java.util.List)

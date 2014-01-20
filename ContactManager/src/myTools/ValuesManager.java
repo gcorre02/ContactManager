@@ -11,7 +11,7 @@ import java.util.Set;
  *
  */
 public interface ValuesManager {
-
+	//TODO <JavaDocs> review javaDocs for every method, test and impl.
 	/*List of methods needed :
 	 * 
 	 * checkIdExistsInList(int id, List<Integer> anyIntegerList) > mock interface for the test	ContactManagerImplTest.java	
@@ -66,6 +66,8 @@ public interface ValuesManager {
 	 * @param listName list identifier for debug
 	 */
 	void printList(List<Integer> inputIntegerList, String listName);
+
+	boolean checkContactNameIsUnique(List<String> names, String candidateName);
 
 
 }

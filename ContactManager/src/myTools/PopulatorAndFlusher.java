@@ -17,6 +17,7 @@ import contactmgmt.PastMeeting;
  *
  */
 public interface PopulatorAndFlusher {
+	//TODO <JavaDocs> review javaDocs for every method, test and impl.
 	/* 
 	 * will need all getters and setters for the private fields at impl 
 	 * 

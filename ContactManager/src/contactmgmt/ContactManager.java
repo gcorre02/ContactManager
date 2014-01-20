@@ -7,6 +7,9 @@ import java.util.Set;
  * A class to manage your contacts and meetings.
  */
 public interface ContactManager {
+	//TODO <After Deliverable is Ready> make sure outputCsv file can be read by a csvReader program
+	//TODO <After Deliverable is Ready> increase performance by accessing the file and not keeping it in memory all the time (check which version is faster : processing time vs ram weight)
+	//TODO <JavaDocs> review javaDocs for every method, test and impl.
 	/**
 	 * Add a new meeting to be held in the future.
 	 *
@@ -91,7 +94,7 @@ public interface ContactManager {
 	/**
 	 * Add notes to a meeting.
 	 *
-	 * This method is used when a future meeting takes place, and is
+	 * TODO <Important> implement this :This method is used when a future meeting takes place, and is
 	 * then converted to a past meeting (with notes).
 	 *
 	 * It can be also used to add notes to a past meeting at a later date.
@@ -124,7 +127,8 @@ public interface ContactManager {
 	 *
 	 * @param name the string to search for
 	 * @return a list with the contacts whose name contains that string.
-	 * //TODO <Exception Handling> @throws NullPointerException if the parameter is null or if name isn't part of the index
+	 * @throws NullPointerException if the parameter is null
+	 * @throws IllegalArgumentException if name isn't part of the index
 	 */
 	Set<Contact> getContacts(String name);
 	/**

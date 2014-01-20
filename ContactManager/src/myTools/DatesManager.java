@@ -10,7 +10,7 @@ import java.util.Calendar;
  *
  */
 public interface DatesManager {
-
+	//TODO <JavaDocs> review javaDocs for every method, test and impl.
 	/*
 	 *
 	 * generateCalendarItem() TODO <After Deliverable Is Ready> consider adding a range in time, not just a date// later
