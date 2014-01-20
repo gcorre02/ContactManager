@@ -223,7 +223,6 @@ public class ContactManagerImpl implements ContactManager {
 			System.out.println("Meeting requested is not a meeting at all : " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " w/ param: int id"); 
 			throw new IllegalArgumentException();
 		}
-		//TODO <Current>
 		dm = new DatesManagerImpl();
 		Meeting newMeetingToCheckDate = getMeeting(id);
 		if(!dm.checkDateIsInThePast(newMeetingToCheckDate.getDate())){
@@ -276,7 +275,18 @@ public class ContactManagerImpl implements ContactManager {
 	 * @see contactmgmt.ContactManager#getContacts(int[])
 	 */
 	@Override
-	public Set<Contact> getContacts(int... ids) {
+	public Set<Contact> getContacts(int... ids) throws IllegalArgumentException{
+		//exceptions
+		//TODO <Current> 	 * @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
+		vm = new ValuesManagerImpl();
+		for(int i : ids){
+			if(!vm.checkIdExistsInList(i, paf.getContactsIdIndex())){
+				System.out.println("Contact requested is not in the list : " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()); 
+				throw new IllegalArgumentException();
+			}
+		}
+		
+		//main
 		Set<Contact> returnContacts = new HashSet<Contact>();
 		Set<Contact> inputContacts = paf.getAllContacts();
 		List<Integer> idsContactInput = new ArrayList<Integer>();
