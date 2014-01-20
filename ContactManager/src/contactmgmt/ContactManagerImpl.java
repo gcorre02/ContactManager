@@ -244,9 +244,12 @@ public class ContactManagerImpl implements ContactManager {
 	 * @see contactmgmt.ContactManager#addNewContact(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void addNewContact(String name, String notes) {
+	public void addNewContact(String name, String notes) throws NullPointerException{
 		//Exceptions
 		//TODO <Current>
+		if(name == null|| notes == null){
+			throw new NullPointerException();
+		}
 		//checks if name is unique
 		String inputName;
 		if(paf.getContactsNameIndex().contains(name)){
