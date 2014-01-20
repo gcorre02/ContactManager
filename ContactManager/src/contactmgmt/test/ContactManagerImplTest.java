@@ -369,6 +369,7 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testAddNewContact() {
 		// TODO need to check if calls to paf are directed through cm.getPaf() !!!!
+		// TODO need to handle new notes added.
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewContact>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -387,12 +388,14 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testGetContactsIntArray() {
 		fail("Not yet implemented"); // TODO
-		//test stub :
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<getContactsIntArray>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
+		List<Contact> expectedContactList = new ArrayList<>();
+		expectedContactList.add(new ContactImpl(8,"Klaus"));
 		//input
+		
 		//test
 	}
 
@@ -401,7 +404,12 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetContactsString() {
-		fail("Not yet implemented"); // TODO
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<ContactManagerImpl>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		//input
+		//test
 	}
 
 	/**

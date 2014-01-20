@@ -244,6 +244,7 @@ public class ContactManagerImpl implements ContactManager {
 		List<Integer> contactsId = paf.getContactsIdIndex();
 		int newId = vm.newIdGenerator(contactsId);
 		Contact newContact = new ContactImpl(newId, inputName);
+		newContact.addNotes(notes);
 		//update all sets and indexes;
 		paf.updateSet(newContact, contacts);
 		paf.updateIndex(newId, contactsId);
