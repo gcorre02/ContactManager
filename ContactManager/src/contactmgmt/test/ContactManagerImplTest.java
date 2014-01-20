@@ -376,6 +376,20 @@ public class ContactManagerImplTest {
 		//test
 		assertTrue("Meeting is not being added", vm.checkIdExistsInList(9, inputIndex));
 	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewContact(java.lang.String, java.lang.String)}.
+	 */
+	@Test(expected = NullPointerException.class)
+	public final void testAddNewContactIllegalStringInput() {
+		// TODO <Current> 	 @throws NullPointerException if the name or the notes are null
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testAddNewContactIllegalStringInput>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//test
+		cm.addNewContact(null, "just some notes on the design of nakatomi's safe");
+		cm.addNewContact("Fritz", null);
+	}
+
 
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getContacts(int[])}.
@@ -410,8 +424,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testGetContactsIntArrayArgs() {
-		//TODO <Current>
-		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetContactsIntArrayArgs>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//test

@@ -245,6 +245,8 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void addNewContact(String name, String notes) {
+		//Exceptions
+		//TODO <Current>
 		//checks if name is unique
 		String inputName;
 		if(paf.getContactsNameIndex().contains(name)){
@@ -277,7 +279,6 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public Set<Contact> getContacts(int... ids) throws IllegalArgumentException{
 		//exceptions
-		//TODO <Current> 	 * @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
 		vm = new ValuesManagerImpl();
 		for(int i : ids){
 			if(!vm.checkIdExistsInList(i, paf.getContactsIdIndex())){
