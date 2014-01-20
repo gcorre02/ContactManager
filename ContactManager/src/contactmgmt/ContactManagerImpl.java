@@ -6,6 +6,7 @@ package contactmgmt;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -256,8 +257,20 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public Set<Contact> getContacts(int... ids) {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Contact> returnContacts = new HashSet<Contact>();
+		Set<Contact> inputContacts = paf.getAllContacts();
+		List<Integer> idsContactInput = new ArrayList<Integer>();
+		for (int i : ids){
+			idsContactInput.add(i);
+		}
+		Iterator<Contact> iter = inputContacts.iterator();
+		while(iter.hasNext()){
+			Contact current = iter.next();
+			if(idsContactInput.contains(current.getId())){
+				returnContacts.add(current);
+			}
+		}
+		return returnContacts;
 	}
 
 	/* (non-Javadoc)

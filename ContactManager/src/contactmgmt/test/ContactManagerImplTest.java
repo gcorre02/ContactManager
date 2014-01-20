@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -387,28 +388,36 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetContactsIntArray() {
-		//TODO : review tests to see where assertArrayEquals works
+		//TODO : review tests to see where assertArrayEquals works <<< need to investigate Collections.sort()
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<getContactsIntArray>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
-		List<Contact> expectedContactList = new ArrayList<>();
-		expectedContactList.add(new ContactImpl(8,"Klaus"));
-		expectedContactList.add(new ContactImpl(5,"Theo theDriver"));
-		expectedContactList.add(new ContactImpl(3,"Fritz"));
+		List<String> expectedContactList = new ArrayList<String>();
+		expectedContactList.add("3,C,Fritz");
+		expectedContactList.add("5,C,Theo theDriver");
+		expectedContactList.add("8,C,Klaus");
 		//input
+		List<String> inputContactsString = new ArrayList<String>();
 		List<Contact> inputContacts = new ArrayList<Contact>(cm.getContacts(3,5,8));
+		Iterator<Contact> iter = inputContacts.iterator();
+		while(iter.hasNext()){
+			Contact current = iter.next();
+			inputContactsString.add(current.toString());
+		}
 		//test
-		assertArrayEquals(expectedContactList.toArray(), inputContacts.toArray());
+		for(int i = 0; i < expectedContactList.toArray().length ; i++){
+			assertTrue(inputContactsString.containsAll(expectedContactList));
+		}
 	}
-
+	
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getContacts(java.lang.String)}.
 	 */
 	@Test
 	public final void testGetContactsString() {
 		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<ContactManagerImpl>>>>>>>>>>>>>>>";
+		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContacts>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
 		//input
@@ -421,6 +430,12 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testFlush() {
 		fail("Not yet implemented"); // TODO
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<flush>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		//input
+		//test
 	}
 
 }
