@@ -298,8 +298,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void flush() {
-		// TODO Auto-generated method stub
-
+		getPaf().writeToFile(pathToFile);
 	}
 
 	//Debug Method

@@ -63,7 +63,6 @@ public class ContactManagerImplTest {
 			writer.println("13,C,Fritz Lang");
 			writer.println("14,C,Johnny Fritz ");
 			writer.println("15,C,Fritz Hansen");
-			writer.println("3,C,Fritz");
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -105,12 +104,6 @@ public class ContactManagerImplTest {
 		fail("needToWriteTestsForAllExceptionHandlersIndependently");
 	}
 
-	@Test
-	public final void testContactManagerImplPopulatesSetsAndIndexes() {
-		fail("not written yet");
-		//TODO implement call to myTools.PopulateSetsAndIndexes(String pathToFile), for each list/set = PopulateSetsandIndexes.gettersAndSetters()
-		//TODO > mock interface for the test
-	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
 	 */
@@ -183,8 +176,8 @@ public class ContactManagerImplTest {
 		PastMeeting inputMeeting = cm.getPastMeeting(2);
 		PastMeeting secondInputMeeting = cm.getPastMeeting(1);
 		//test
-		assertEquals("",expectedPastMeeting.toString(),inputMeeting.toString());
-		assertEquals("",expectedPastMeetingWNotes.toString(),secondInputMeeting.toString());
+		assertEquals("",expectedPastMeeting.getId(),inputMeeting.getId());
+		assertEquals("",expectedPastMeetingWNotes.getId(),secondInputMeeting.getId());
 	}
 
 	/**
@@ -205,7 +198,7 @@ public class ContactManagerImplTest {
 		//input
 		FutureMeeting inputMeeting = cm.getFutureMeeting(0);
 		//test
-		assertEquals("",expectedFutureMeeting.toString(),inputMeeting.toString());
+		assertEquals("",expectedFutureMeeting.getId(),inputMeeting.getId());
 
 	}
 
@@ -234,9 +227,9 @@ public class ContactManagerImplTest {
 		Meeting secondInputMeeting = cm.getMeeting(1);
 		Meeting thirdInputMeeting = cm.getMeeting(0);
 		//test
-		assertEquals("",expectedMeeting.toString(),inputMeeting.toString());
-		assertEquals("",expectedMeetingWNotes.toString(),secondInputMeeting.toString());
-		assertEquals("",thirdExpectedMeeting.toString(),thirdInputMeeting.toString());
+		assertEquals("",expectedMeeting.getId(),inputMeeting.getId());
+		assertEquals("",expectedMeetingWNotes.getId(),secondInputMeeting.getId());
+		assertEquals("",thirdExpectedMeeting.getId(),thirdInputMeeting.getId());
 
 
 	}
@@ -360,12 +353,12 @@ public class ContactManagerImplTest {
 		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotes>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
-		String expectedMeetingString = "2,M,JohnMcClane HansGruber,20130905,top of Nakatomi Building";
+		String expectedMeetingString = "top of Nakatomi Building";
 		//input
 		String inputNotes = "top of Nakatomi Building";
 		cm.addMeetingNotes(2, inputNotes);
 		//test
-		assertEquals("",expectedMeetingString.toString(), cm.getPastMeeting(2).toString());
+		assertEquals("",expectedMeetingString, cm.getPastMeeting(2).getNotes().toString());
 	}
 
 	/**
@@ -438,9 +431,9 @@ public class ContactManagerImplTest {
 			inputContactsString.add(current.toString());
 		}
 		//test
-		for(int i = 0; i < expectedContactList.toArray().length ; i++){
-			assertTrue(inputContactsString.containsAll(expectedContactList));
-		}
+		
+		assertTrue(inputContactsString.containsAll(expectedContactList));
+		
 	}
 
 	/**
@@ -448,13 +441,50 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testFlush() {
-		fail("Not yet implemented"); // TODO
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<flush>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
+		//empty the file :
+		File file = new File(pathToFile);
+		file.delete();
+
+		//create array of expected values
+		List<String> expectedCsvRows = new ArrayList<String>();
+		expectedCsvRows.add("0,M,HansGruber JohnMcClane,20140513");
+		expectedCsvRows.add("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
+		expectedCsvRows.add("2,M,HansGruber JohnMcClane,20130905");
+		expectedCsvRows.add("0,C,Hans Gruber");
+		expectedCsvRows.add("1,C,John Mc Clane");
+		expectedCsvRows.add("2,C,Tony");
+		expectedCsvRows.add("3,C,Fritz");		
+		expectedCsvRows.add("4,C,Harry Ellis");
+		expectedCsvRows.add("5,C,Theo theDriver");
+		expectedCsvRows.add("6,C,Holly Genero");
+		expectedCsvRows.add("7,C,Karl");
+		expectedCsvRows.add("8,C,Klaus");
+		expectedCsvRows.add("13,C,Fritz Lang");
+		expectedCsvRows.add("14,C,Johnny Fritz ");
+		expectedCsvRows.add("15,C,Fritz Hansen");
+
 		//input
+		
+			//dump to file:
+		cm.flush();
+
+			//populate array with file elements
+		List<String> inputRows = cm.getPaf().getCsvRows();
+
+		/*
+		//debug
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<compare expected and input>>>>>>>>>>>>>>>>>>>>>>>>>");
+		paf.printlist(expectedCsvRows);
+		paf.printlist(inputRows);
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<compare expected and input>>>>>>>>>>>>>>>>>>>>>>>>>");
+		*/
+		
 		//test
+		assertTrue("Write operation not working : ", expectedCsvRows.containsAll(inputRows));
 	}
 
 }
