@@ -410,7 +410,7 @@ public class ContactManagerImplTest {
 			assertTrue(inputContactsString.containsAll(expectedContactList));
 		}
 	}
-	
+
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getContacts(java.lang.String)}.
 	 */
@@ -420,8 +420,20 @@ public class ContactManagerImplTest {
 		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContacts>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
+		List<String> expectedContactList = new ArrayList<String>();
+		expectedContactList.add("3,C,Fritz");
 		//input
+		List<String> inputContactsString = new ArrayList<String>();
+		List<Contact> inputContacts = new ArrayList<Contact>(cm.getContacts("Fritz"));
+		Iterator<Contact> iter = inputContacts.iterator();
+		while(iter.hasNext()){
+			Contact current = iter.next();
+			inputContactsString.add(current.toString());
+		}
 		//test
+		for(int i = 0; i < expectedContactList.toArray().length ; i++){
+			assertTrue(inputContactsString.containsAll(expectedContactList));
+		}
 	}
 
 	/**

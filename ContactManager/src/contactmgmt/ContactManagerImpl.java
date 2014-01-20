@@ -257,6 +257,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public Set<Contact> getContacts(int... ids) {
+		// TODO write throws if name isn't part of the index
 		Set<Contact> returnContacts = new HashSet<Contact>();
 		Set<Contact> inputContacts = paf.getAllContacts();
 		List<Integer> idsContactInput = new ArrayList<Integer>();
@@ -278,7 +279,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public Set<Contact> getContacts(String name) {
-		// TODO Auto-generated method stub
+		// TODO write throws if name isn't part of the index
 		return null;
 	}
 
