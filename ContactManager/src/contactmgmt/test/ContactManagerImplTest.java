@@ -60,6 +60,10 @@ public class ContactManagerImplTest {
 			writer.println("6,C,Holly Genero");
 			writer.println("7,C,Karl");
 			writer.println("8,C,Klaus");
+			writer.println("13,C,Fritz Lang");
+			writer.println("14,C,Johnny Fritz ");
+			writer.println("15,C,Fritz Hansen");
+			writer.println("3,C,Fritz");
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -421,6 +425,9 @@ public class ContactManagerImplTest {
 		System.out.println(debugStr);
 		//expected
 		List<String> expectedContactList = new ArrayList<String>();
+		expectedContactList.add("13,C,Fritz Lang");
+		expectedContactList.add("14,C,Johnny Fritz ");
+		expectedContactList.add("15,C,Fritz Hansen");
 		expectedContactList.add("3,C,Fritz");
 		//input
 		List<String> inputContactsString = new ArrayList<String>();

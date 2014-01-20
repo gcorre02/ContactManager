@@ -280,7 +280,17 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public Set<Contact> getContacts(String name) {
 		// TODO write throws if name isn't part of the index
-		return null;
+		
+		Set<Contact> returnContacts = new HashSet<Contact>();
+		Set<Contact> inputContacts = paf.getAllContacts();
+		Iterator<Contact> iter = inputContacts.iterator();
+		while(iter.hasNext()){
+			Contact current = iter.next();
+			if(current.getName().contains(name)){
+				returnContacts.add(current);
+			}
+		}
+		return returnContacts;
 	}
 
 	/* (non-Javadoc)
