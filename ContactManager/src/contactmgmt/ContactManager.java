@@ -85,9 +85,10 @@ public interface ContactManager {
 	 * @param contacts a list of participants
 	 * @param date the date on which the meeting took place
 	 * @param text messages to be added about the meeting.
-	 * //TODO <Exception Handling> @throws IllegalArgumentException if the list of contacts is
+	 * TODO <Current>
+	 * @throws IllegalArgumentException if the list of contacts is
 	 * empty, or any of the contacts does not exist
-	 * //TODO <Exception Handling> @throws IllegalArgumentException if date inputed is in the future
+	 *  @throws IllegalArgumentException if date inputed is in the future
 	 * //TODO <Exception Handling> @throws NullPointerException if any of the arguments is null
 	 */
 	void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text);
@@ -112,7 +113,6 @@ public interface ContactManager {
 	 * @param name the name of the contact.
 	 * @param notes notes to be added about the contact.
 	 * @throws NullPointerException if the name or the notes are null
-	 * TODO <Current>
 	 */
 	void addNewContact(String name, String notes);
 	/**

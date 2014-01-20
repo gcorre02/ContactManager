@@ -307,6 +307,55 @@ public class ContactManagerImplTest {
 		assertEquals("add new past meeting is not adding the meeting as supposed",expectedPastMeeting.toString(), inputMeeting.toString());
 
 	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testaddNewPastMeetingEmptyContacts() {
+		// TODO <Current>
+		//input
+		Set<Contact> inputContacts = new HashSet<Contact>();
+		String text = "";
+		Calendar date = new GregorianCalendar();
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesIllegalStateException>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//test
+		cm.addNewPastMeeting(inputContacts, date, text);//empty contacts
+		
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testaddNewPastMeetingIllegal1oneoftheArgs() {
+		// TODO <Current>
+		//input
+		Set<Contact> secondInputContacts = new HashSet<Contact>();
+		String text = "";
+		Calendar date = new GregorianCalendar();
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesIllegalStateException>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//test
+		cm.addNewPastMeeting(secondInputContacts, date, text);//one of the contacts doesn't exist
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testaddNewPastMeetingIllegalArgsDateinFuture() {
+		// TODO <Current>
+		//input
+		Set<Contact> realInputContacts = new HashSet<Contact>();
+		String text = "";
+		Calendar dateInTheFuture = new GregorianCalendar();
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesIllegalStateException>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//test
+		cm.addNewPastMeeting(realInputContacts, dateInTheFuture, text);//date is in the future
+	}
 
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addMeetingNotes(int, java.lang.String)}.
@@ -381,7 +430,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testAddNewContactIllegalStringInput() {
-		// TODO <Current> 	 @throws NullPointerException if the name or the notes are null
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<testAddNewContactIllegalStringInput>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -418,7 +466,7 @@ public class ContactManagerImplTest {
 			assertTrue(inputContactsString.containsAll(expectedContactList));
 		}
 	}
-	
+
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getContacts(int[])}.
 	 */

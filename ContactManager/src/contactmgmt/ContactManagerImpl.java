@@ -200,6 +200,14 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
+		//exceptions 
+		//TODO <Current>
+		/*
+		 *  * @throws IllegalArgumentException if the list of contacts is
+		 * empty, or any of the contacts does not exist
+		 *  @throws IllegalArgumentException if date inputed is in the future
+		 */
+		//main
 		vm = new ValuesManagerImpl();
 		int newId = vm.newIdGenerator(paf.getMeetingsIdIndex());
 		Meeting newMeeting = new PastMeetingImpl(newId, date, contacts, text);
@@ -229,7 +237,7 @@ public class ContactManagerImpl implements ContactManager {
 			System.out.println("date of meeting requested to add notes is in the future : " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()); 
 			throw new IllegalStateException();
 		}
-	
+
 		//main
 		PastMeeting meetingToAddNotes = getPastMeeting(id);
 		PastMeeting newMeeting = new PastMeetingImpl(meetingToAddNotes.getId(), meetingToAddNotes.getDate(), meetingToAddNotes.getContacts(), text);
@@ -246,8 +254,8 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void addNewContact(String name, String notes) throws NullPointerException{
 		//Exceptions
-		//TODO <Current>
 		if(name == null|| notes == null){
+			System.out.println("either contact name or notes are null > " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()); 
 			throw new NullPointerException();
 		}
 		//checks if name is unique
@@ -289,7 +297,7 @@ public class ContactManagerImpl implements ContactManager {
 				throw new IllegalArgumentException();
 			}
 		}
-		
+
 		//main
 		Set<Contact> returnContacts = new HashSet<Contact>();
 		Set<Contact> inputContacts = paf.getAllContacts();
