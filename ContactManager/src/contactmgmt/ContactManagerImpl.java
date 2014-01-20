@@ -225,8 +225,29 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void addNewContact(String name, String notes) {
-		// TODO need to check if name is unique at this level
-		
+		//checks if name is unique
+		String inputName;
+		if(paf.getContactsNameIndex().contains(name)){
+			int diferentiator;
+			try{
+				diferentiator = Integer.parseInt(name.substring(name.length()-2,name.length()-1)) + 1;
+			} catch(NumberFormatException e){
+				diferentiator = 1;
+			}
+			inputName = name+diferentiator;
+		} else{
+			inputName = name;
+		}
+		//inputs
+		Set<Contact> contacts = paf.getAllContacts();
+		vm = new ValuesManagerImpl();
+		List<Integer> contactsId = paf.getContactsIdIndex();
+		int newId = vm.newIdGenerator(contactsId);
+		Contact newContact = new ContactImpl(newId, inputName);
+		//update all sets and indexes;
+		paf.updateSet(newContact, contacts);
+		paf.updateIndex(newId, contactsId);
+		paf.updateIndex(inputName, paf.getContactsNameIndex());
 	}
 
 	/* (non-Javadoc)

@@ -376,7 +376,7 @@ public class ContactManagerImplTest {
 		//expected
 		Contact expectedContact = new ContactImpl(9,"Basil Towers");
 		//input
-		cm.addNewContact("Basil Towers", "");
+		cm.addNewContact("Basil Towers", "Has a fawlty network");
 		Set<Contact> inputContactSet = cm.getPaf().getAllContacts();
 		//Contact inputContact;
 		//Iterator<Contact>
