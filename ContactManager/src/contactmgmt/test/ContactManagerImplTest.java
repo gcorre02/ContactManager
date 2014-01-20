@@ -47,7 +47,7 @@ public class ContactManagerImplTest {
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
-			//TODO write it all in the right format:
+			//Write stub file
 			writer.println("0,M,HansGruber JohnMcClane,20140513");
 			writer.println("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
 			writer.println("2,M,HansGruber JohnMcClane,20130905");
@@ -79,9 +79,9 @@ public class ContactManagerImplTest {
 	@After
 	public void tearDown() throws Exception {
 		//debug
-		paf.printSet(paf.getAllFutureMeetings());
-		paf.printSet(paf.getAllPastMeetings());
-		paf.printSet(paf.getAllContacts());
+		cm.getPaf().printSet(cm.getPaf().getAllFutureMeetings());
+		cm.getPaf().printSet(cm.getPaf().getAllPastMeetings());
+		cm.getPaf().printSet(cm.getPaf().getAllContacts());
 		System.out.println(debugStr+"\n");
 		//tearDown
 		cm = null;
@@ -98,38 +98,9 @@ public class ContactManagerImplTest {
 	public final void testContactManagerImplIsInstantiatedCorrectly() {
 		assertTrue(cm instanceof ContactManagerImpl);
 	}
-	//TODO need a battery of tests for each process the Constructor implements!!
 	@Test
 	public final void needToWriteTestsForAllExceptionHandlersIndependently(){
 		fail("needToWriteTestsForAllExceptionHandlersIndependently");
-	}
-
-	/**
-	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
-	 */
-	@Test
-	public final void testVerifyAddFutureMeetingIdIsUnique() {
-		fail("Not yet implemented"); // TODO
-
-		/*
-		 * @return the ID for the meeting
-		 * TODO implement myTools.checkIdExistsInList(int id, List<Integer> anyIntegerList)> mock interface for the test
-		 */
-	}
-
-	/**
-	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public final void testVerifyAIllegalArgumentIsThrownAddFuture() {
-		fail("Not yet implemented"); // TODO
-
-		/*
-		 * @throws IllegalArgumentException if the meeting is set for a time in the past,
-		 * or if any contact is unknown / non-existent
-		 * TODO implement myTools.checkDateIsInThePast(Calendar date)> mock interface for the test
-		 * TODO implement myTools.checkIdExistsInList(int id, List<Integer> anyIntegerList)> mock interface for the test
-		 */
 	}
 
 	/**
@@ -149,7 +120,7 @@ public class ContactManagerImplTest {
 		int futureMeetingId = cm.addFutureMeeting(inputContacts, inputDate);
 		//test setUp
 		vm = new ValuesManagerImpl();
-		boolean assertResult = vm.checkIdExistsInList(futureMeetingId, paf.getFutureMeetingsIdIndex());
+		boolean assertResult = vm.checkIdExistsInList(futureMeetingId, cm.getPaf().getFutureMeetingsIdIndex());
 		//test
 		assertTrue("addFutureMeeting not adding the meeting to the contactManager DB", assertResult);
 	}
@@ -185,7 +156,7 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetFutureMeeting() {
-		//TODO > what happens if an index for a past meeting is requested? initially null is fine, but later it could check if the index is part of meetings and not futureMeeting << write new test for exception handling
+		//TODO < Exception Handling >
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeeting>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -207,7 +178,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetMeeting() {
-		//TODO need to overwrite a toString() under MeetingImpl() / < maybe just move the futureMeeting toString() to it. << make sure it handles notes accordingly (field exists, but only printed if populated)
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetMeeting>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -232,13 +202,6 @@ public class ContactManagerImplTest {
 		assertEquals("",thirdExpectedMeeting.getId(),thirdInputMeeting.getId());
 
 
-	}
-	/**
-	 * Test method for {@link contactmgmt.ContactManagerImpl#getMeeting(int)}.
-	 */
-	@Test
-	public final void testGetMeetingWNotes() {
-		fail("Not yet implemented");
 	}
 
 	/**
@@ -312,7 +275,9 @@ public class ContactManagerImplTest {
 		//input
 		List<PastMeeting> inputList = cm.getPastMeetingList(inputContact);
 		//test
+		//TODO : <Priority> need to correct the test so this allways works :
 		assertEquals("",expectedList.get(1).getId(), inputList.get(1).getId());
+		
 
 	}
 
@@ -332,7 +297,7 @@ public class ContactManagerImplTest {
 		expectedContacts.add(new ContactImpl(15, "Sterling Archer"));
 		expectedContacts.add(new ContactImpl(12, "Barefoot Grub Patch"));
 		Calendar expectedDate = new GregorianCalendar(2014,11,15);
-		int expectedPastMeetingId = vm.newIdGenerator(paf.getMeetingsIdIndex());
+		int expectedPastMeetingId = vm.newIdGenerator(cm.getPaf().getMeetingsIdIndex());
 		String expectedNotes = "";
 		PastMeeting expectedPastMeeting = new PastMeetingImpl(expectedPastMeetingId, expectedDate, expectedContacts);
 		//input
@@ -366,13 +331,11 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testAddNewContact() {
-		// TODO need to check if calls to paf are directed through cm.getPaf() !!!!
-		// TODO need to handle new notes added.
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewContact>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
-		List<Integer> inputIndex = paf.getContactsIdIndex();
+		List<Integer> inputIndex = cm.getPaf().getContactsIdIndex();
 		vm = new ValuesManagerImpl();
 		//input
 		cm.addNewContact("Basil Towers", "Has a fawlty network");
@@ -385,7 +348,7 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetContactsIntArray() {
-		//TODO : review tests to see where assertArrayEquals works <<< need to investigate Collections.sort()
+		//TODO :<After Deliverable is Ready> review tests to see where assertArrayEquals works <<< need to investigate Collections.sort()
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<getContactsIntArray>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -478,8 +441,8 @@ public class ContactManagerImplTest {
 		/*
 		//debug
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<compare expected and input>>>>>>>>>>>>>>>>>>>>>>>>>");
-		paf.printlist(expectedCsvRows);
-		paf.printlist(inputRows);
+		cm.getPaf().printlist(expectedCsvRows);
+		cm.getPaf().printlist(inputRows);
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<compare expected and input>>>>>>>>>>>>>>>>>>>>>>>>>");
 		*/
 		

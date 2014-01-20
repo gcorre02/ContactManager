@@ -43,7 +43,7 @@ public class PopulatorAndFlusherImplTest {
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
-			//TODO write it all in the right format:
+			//write stub file
 			writer.println("0,M,HansGruber JohnMcClane,20140513");
 			writer.println("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
 			writer.println("2,M,HansGruber JohnMcClane,20130905");
@@ -97,9 +97,6 @@ public class PopulatorAndFlusherImplTest {
 	 */
 	@Test
 	public final void testReadFromFileReturnsAllRowsToCsvRows(){
-		//TODO pass this to before() and change to the right format
-
-
 
 		List<String> expectedCsvRows = new ArrayList<String>();
 		expectedCsvRows.add("0,M,HansGruber JohnMcClane,20140513");
@@ -120,13 +117,11 @@ public class PopulatorAndFlusherImplTest {
 		assertEquals("csvRows is not being populated or getter is not working", expectedCsvRows, paf.getCsvRows());
 	}
 
-	//TODO last tests
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#WriteToFile(java.util.Set, java.util.Set, java.lang.String)}.
 	 */
 	@Test
 	public final void testWriteToFile() {
-		//TODO : Review test problem
 		//empty the file :
 		File file = new File(pathToFile);
 		file.delete();
@@ -158,7 +153,6 @@ public class PopulatorAndFlusherImplTest {
 		assertTrue("Write operation not working : ", expectedCsvRows.containsAll(inputRows));
 	}
 
-	//TODO current tests
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#setContactsIdIndex(java.util.List)}.
 	 */
@@ -172,7 +166,7 @@ public class PopulatorAndFlusherImplTest {
 		paf.setContactsIdIndex(paf.getCsvRows());
 		assertEquals("", expectedIdIndex , paf.getContactsIdIndex());
 	}
-	//TODO once everything has been written, try making the id the ref to the actual object so it can be called directly!!!
+	//TODO <After Deliverable Is Ready>  try making the id the ref to the actual object so it can be called directly!!!
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#setMeetingsIdIndex(java.util.List)}.
 	 */

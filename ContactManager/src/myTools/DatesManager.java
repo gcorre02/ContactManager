@@ -12,9 +12,8 @@ import java.util.Calendar;
 public interface DatesManager {
 
 	/*
-	 * checkDateIsInThePast(Calendar date)	
 	 *
-	 * generateCalendarItem() < TODO consider adding a range in time, not just a date// later
+	 * generateCalendarItem() TODO <After Deliverable Is Ready> consider adding a range in time, not just a date// later
 	 * 
 	 */
 	
@@ -26,7 +25,7 @@ public interface DatesManager {
 	boolean checkDateIsInThePast(Calendar date);
 	
 	/**
-	 * transforms the int inputs into a calendar object of type GregorianCalendar. TODO review this method to return an actual interval in time, not a static one
+	 * transforms the int inputs into a calendar object of type GregorianCalendar. TODO <After Deliverable Is Ready>  review this method to return an actual interval in time, not a static one
 	 * @param year the year to add to the Calendar object
 	 * @param month the month to add to the Calendar object
 	 * @param day the day to add to the Calendar object

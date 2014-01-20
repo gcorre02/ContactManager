@@ -84,7 +84,6 @@ public class ValuesManagerImplTest {
 	 */
 	@Test
 	public final void testNewIdGeneratorFindsAMissingIdInTheMiddleOfTheList() {
-		//TODO if there is time should separate the tests.
 		List<Integer> inputIntegerList = new ArrayList<Integer>();
 		inputIntegerList.add(0);
 		inputIntegerList.add(8);
@@ -108,7 +107,6 @@ public class ValuesManagerImplTest {
 	 */
 	@Test
 	public final void testIdGeneratorReturnsIDForTheEndOFTheList() {
-		//TODO if there is time should separate the tests.
 		List<Integer> inputIntegerList = new ArrayList<Integer>();
 		inputIntegerList.add(0);
 		inputIntegerList.add(8);

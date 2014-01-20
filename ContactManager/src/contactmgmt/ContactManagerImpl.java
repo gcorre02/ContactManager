@@ -105,7 +105,6 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public Meeting getMeeting(int id) {
-		// TODO need to handle how meetings with notes get stored in this set <<new test
 		Set<Meeting> MeetingCollection = paf.getAllMeetings();
 		Iterator<Meeting> iter = MeetingCollection.iterator();
 		while(iter.hasNext()){
@@ -122,7 +121,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
-		//TODO : override equals under contact and meeting for easier comparison!
+		//TODO : <After Deliverable Is Ready> override equals under contact and meeting for easier comparison!
 		List<Meeting> outputList = new ArrayList<Meeting>();
 		Set<FutureMeeting> inputSet = paf.getAllFutureMeetings();
 		Iterator<FutureMeeting> iter = inputSet.iterator();
@@ -198,7 +197,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
-		// TODO need to handle test for date in the future and unrecognized contacts (throwable)
+		// TODO <Exception Handling> need to handle test for date in the future and unrecognized contacts (throwable)
 		vm = new ValuesManagerImpl();
 		int newId = vm.newIdGenerator(paf.getMeetingsIdIndex());
 		Meeting newMeeting = new PastMeetingImpl(newId, date, contacts, text);
@@ -257,7 +256,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public Set<Contact> getContacts(int... ids) {
-		// TODO write throws if name isn't part of the index
+		// TODO <Exception Handling> write throws if name isn't part of the index
 		Set<Contact> returnContacts = new HashSet<Contact>();
 		Set<Contact> inputContacts = paf.getAllContacts();
 		List<Integer> idsContactInput = new ArrayList<Integer>();
@@ -279,7 +278,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public Set<Contact> getContacts(String name) {
-		// TODO write throws if name isn't part of the index
+		// TODO <Exception Handling>  write throws if name isn't part of the index
 		
 		Set<Contact> returnContacts = new HashSet<Contact>();
 		Set<Contact> inputContacts = paf.getAllContacts();

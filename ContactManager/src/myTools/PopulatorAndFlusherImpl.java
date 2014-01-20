@@ -31,7 +31,6 @@ import contactmgmt.PastMeetingImpl;
  *
  */
 public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
-	// TODO try to make this a generic populator, where constructor inputs the type, to be done when everything is coded//
 	private List<Integer> meetingsIdIndex= new ArrayList<Integer>();
 	private List<Integer> pastMeetingsIdIndex= new ArrayList<Integer>();
 	private List<Integer> futureMeetingsIdIndex= new ArrayList<Integer>();
@@ -57,9 +56,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	 */
 	@Override
 	public void writeToFile(String pathToFile) {
-		//pass the info to the file using a future, past, contact strucure
-		// TODO need to override toString in all the printable methods (dont need to pass Meeting, because all meetings are either future or past.)
-		// TODO need to add functionality for adding notes to contacts
+		//pass the info to the file using a future, past, contact strucure:
 		//start the writer
 		PrintWriter writer;
 		try {
@@ -85,11 +82,9 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 			}
 			writer.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Can't access the file");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("File in an unaccessible encoding format");
 		}
 
 	}
@@ -195,7 +190,6 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	 * @return the allContacts
 	 */
 	public Set<Contact> getAllContacts() {
-		//TODO start here tomorrow
 		return allContacts;
 	}
 
@@ -203,7 +197,6 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	 * @param allContacts the allContacts to set
 	 */
 	public void setAllContacts(List<String> csvRows) {
-		//TODO need to allow for notes for contacts, index 3 ? of the row ?
 		Set<Contact> allContacts = new HashSet<Contact>();
 		for(String str : csvRows){
 			String rowSplit[] = str.split(",");
@@ -301,14 +294,12 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 
 
 	private void populateSetsAndIndexes() {
-		// TODO called with constructor
-
 		//calls all the methods charged with populating the fields
 		if(csvRowsIsNotEmpty){
 			setAllContacts(getCsvRows());
 			setAllMeetings(getCsvRows());
 			setMeetingsIdIndex(getCsvRows());
-			setAllPastMeetings(getAllMeetings()); //TODO : investigate why this methid must be called after setMeetings IdIndex(kind of makes sense)
+			setAllPastMeetings(getAllMeetings()); 
 			setAllFutureMeetings(getAllMeetings());
 			setPastMeetingsIdIndex(getAllPastMeetings());
 			setFutureMeetingsIdIndex(getAllFutureMeetings());
@@ -340,8 +331,6 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 				int month = Integer.parseInt(rowSplit[3].substring(4,6));
 				int day = Integer.parseInt(rowSplit[3].substring(6,8));
 				date = dm.generateCalendarItem(year, month, day);
-
-				//TODO>need to make this pass the test:
 
 				String[] contactNames = rowSplit[2].split(" ");
 				Set<Contact> contactSet = new HashSet<Contact>();
@@ -387,7 +376,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 
 	@Override
 	public void setAllFutureMeetings(Set<Meeting> allMeetings) {
-		//TODO create a set method that populates all meetings in one go, recognizing if it is in the past or not and returns any meeting
+		//TODO <After Deliverable Is Ready> create a set method that populates all meetings in one go, recognising if it is in the past or not and returns any meeting
 		//Instantiate datesmanager for date comparison
 		DatesManager dm = new DatesManagerImpl();
 		//

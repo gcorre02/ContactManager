@@ -13,7 +13,6 @@ public class ContactImpl implements Contact {
 	private String name;
 	private String notes;
 	
-	//TODO Override toString() 
 	
 	/**
 	 * @param name name of the contact <<< not unique
@@ -24,7 +23,6 @@ public class ContactImpl implements Contact {
 		this.id = id;
 		this.name = name;
 		this.notes = "";
-		// TODO Auto-generated constructor stub <<<< need to accept aliases!!
 	}
 
 	/* (non-Javadoc)
