@@ -312,7 +312,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testaddNewPastMeetingEmptyContacts() {
-		// TODO <Current>
 		//input
 		Set<Contact> inputContacts = new HashSet<Contact>();
 		String text = "";
@@ -329,9 +328,9 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testaddNewPastMeetingIllegal1oneoftheArgs() {
-		// TODO <Current>
 		//input
 		Set<Contact> secondInputContacts = new HashSet<Contact>();
+		//TODO <Current> populate with existent and non existent contacts
 		String text = "";
 		Calendar date = new GregorianCalendar();
 		//debug
@@ -345,7 +344,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testaddNewPastMeetingIllegalArgsDateinFuture() {
-		// TODO <Current>
 		//input
 		Set<Contact> realInputContacts = new HashSet<Contact>();
 		String text = "";
