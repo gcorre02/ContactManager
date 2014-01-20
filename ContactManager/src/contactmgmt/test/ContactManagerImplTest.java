@@ -369,19 +369,16 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testAddNewContact() {
 		// TODO need to check if calls to paf are directed through cm.getPaf() !!!!
-		//test stub :
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewContact>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
-		Contact expectedContact = new ContactImpl(9,"Basil Towers");
+		List<Integer> inputIndex = paf.getContactsIdIndex();
+		vm = new ValuesManagerImpl();
 		//input
 		cm.addNewContact("Basil Towers", "Has a fawlty network");
-		Set<Contact> inputContactSet = cm.getPaf().getAllContacts();
-		//Contact inputContact;
-		//Iterator<Contact>
 		//test
-		assertTrue("Meeting is not being added", inputContactSet.contains(expectedContact));
+		assertTrue("Meeting is not being added", vm.checkIdExistsInList(9, inputIndex));
 	}
 
 	/**
