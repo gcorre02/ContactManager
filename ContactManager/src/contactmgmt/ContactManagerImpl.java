@@ -11,6 +11,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import myTools.DatesManager;
+import myTools.DatesManagerImpl;
 import myTools.PopulatorAndFlusher;
 import myTools.PopulatorAndFlusherImpl;
 import myTools.ValuesManager;
@@ -40,6 +42,7 @@ public class ContactManagerImpl implements ContactManager {
 	//declare inner variables:
 	private PopulatorAndFlusher paf;
 	private ValuesManager vm;
+	private DatesManager dm;
 	private String pathToFile = "."+ File.separator +"contactsTest.txt";
 
 	/**
@@ -163,7 +166,7 @@ public class ContactManagerImpl implements ContactManager {
 				outputList.add(current);
 			}
 		}
-		
+
 		return outputList;
 	}
 
@@ -188,7 +191,7 @@ public class ContactManagerImpl implements ContactManager {
 				}
 			}
 		}
-	
+
 		return outputList;
 	}
 
@@ -211,20 +214,27 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void addMeetingNotes(int id, String text) throws NullPointerException, IllegalArgumentException{
-		//TODO <Current>
 		//Exceptions
 		if(text == null){
 			System.out.println("Argument inputed evaluates to null: " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " w/ param: String note"); //<getMethodName() researched online. need to check if getClass() doesn't bring the performance down massively
 			throw new NullPointerException();
 		}
-		if(!paf.getPastMeetingsIdIndex().contains(id)){
+		if(!paf.getMeetingsIdIndex().contains(id)){
 			System.out.println("Meeting requested is not a meeting at all : " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " w/ param: int id"); 
 			throw new IllegalArgumentException();
 		}
-		
+		//TODO <Current>
+		dm = new DatesManagerImpl();
+		Meeting newMeetingToCheckDate = getMeeting(id);
+		if(!dm.checkDateIsInThePast(newMeetingToCheckDate.getDate())){
+			System.out.println("date of meeting requested to add notes is in the future : " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()); 
+			throw new IllegalStateException();
+		}
+	
 		//main
 		PastMeeting meetingToAddNotes = getPastMeeting(id);
 		PastMeeting newMeeting = new PastMeetingImpl(meetingToAddNotes.getId(), meetingToAddNotes.getDate(), meetingToAddNotes.getContacts(), text);
+
 		paf.getAllPastMeetings().remove(meetingToAddNotes);
 		paf.getAllPastMeetings().add(newMeeting);
 		paf.getAllMeetings().remove(meetingToAddNotes);
@@ -298,7 +308,7 @@ public class ContactManagerImpl implements ContactManager {
 			System.out.println("Argument inputed already in ContactsIndex: " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " w/ param: String Name"); 
 			throw new IllegalArgumentException();
 		}
-		
+
 		//main code
 		Set<Contact> returnContacts = new HashSet<Contact>();
 		Set<Contact> inputContacts = paf.getAllContacts();
@@ -309,7 +319,7 @@ public class ContactManagerImpl implements ContactManager {
 				returnContacts.add(current);
 			}
 		}
-		
+
 		return returnContacts;
 	}
 

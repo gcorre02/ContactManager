@@ -353,7 +353,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalStateException.class)
 	public final void testAddMeetingNotesIllegealIllegalStateException() {
-		// TODO <Current>
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesIllegalStateException>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -405,7 +404,20 @@ public class ContactManagerImplTest {
 			assertTrue(inputContactsString.containsAll(expectedContactList));
 		}
 	}
-
+	
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getContacts(int[])}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testGetContactsIntArrayArgs() {
+		//TODO <Current>
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetContactsIntArrayArgs>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//test
+		//one of ids[] not correspond to real contact
+		cm.getContacts(99,1,2);
+	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getContacts(java.lang.String)}.
 	 */

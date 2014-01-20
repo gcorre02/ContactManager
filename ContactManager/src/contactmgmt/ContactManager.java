@@ -99,13 +99,11 @@ public interface ContactManager {
 	 * TODO <Important> how else does the Conversion to PastMeeting can work ?
 	 * It can be also used to add notes to a past meeting at a later date.
 	 *
-	 * TODO <Current>
-	 *
 	 * @param id the ID of the meeting
 	 * @param text messages to be added about the meeting.
-	 * //TODO <Exception Handling> @throws IllegalArgumentException if the meeting does not exist
-	 * //TODO <Exception Handling> @throws IllegalStateException if the meeting is set for a date in the future
-	 * //TODO <Exception Handling> @throws NullPointerException if the notes are null
+	 * @throws IllegalArgumentException if the meeting does not exist
+	 * @throws IllegalStateException if the meeting is set for a date in the future
+	 * @throws NullPointerException if the notes are null
 	 */
 	void addMeetingNotes(int id, String text);
 	/**
@@ -121,7 +119,8 @@ public interface ContactManager {
 	 *
 	 * @param ids an arbitrary number of contact IDs
 	 * @return a list containing the contacts that correspond to the IDs.
-	 * //TODO <Exception Handling> @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
+	 * @throws IllegalArgumentException if any of the IDs does not correspond to a real contact
+	 * TODO <Current>
 	 */
 	Set<Contact> getContacts(int... ids);
 	/**
