@@ -83,5 +83,14 @@ public class ContactImplTest {
 	public final void testAddNotes() {
 		assertEquals("ContactImpl not returning notes", expectedNotes , ci.getNotes());
 	}
+	/**
+	 * Test method for {@link contactmgmt.ContactImpl#equals(java.lang.Object)}.
+	 */
+	@Test
+	public final void testEquals() {
+		ContactImpl inputContact = new ContactImpl(1, "Jeremy Storm Baker");
+		ContactImpl expectedContact = new ContactImpl(1, "Jeremy Storm Baker");
+		assertEquals(inputContact, expectedContact);
+	}
 
 }
