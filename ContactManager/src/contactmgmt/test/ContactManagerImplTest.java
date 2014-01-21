@@ -63,6 +63,8 @@ public class ContactManagerImplTest {
 			writer.println("13,C,Fritz Lang");
 			writer.println("14,C,Johnny Fritz ");
 			writer.println("15,C,Fritz Hansen");
+			writer.println("16,C,Sterling Archer");
+			writer.println("12,C,Barefoot Grub Patch");
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -294,7 +296,7 @@ public class ContactManagerImplTest {
 		vm = new ValuesManagerImpl();
 		Set<Contact> expectedContacts = new HashSet<Contact>();
 		expectedContacts.add(new ContactImpl(3, "Fritz"));
-		expectedContacts.add(new ContactImpl(15, "Sterling Archer"));
+		expectedContacts.add(new ContactImpl(16, "Sterling Archer"));
 		expectedContacts.add(new ContactImpl(12, "Barefoot Grub Patch"));
 		Calendar expectedDate = new GregorianCalendar(2014,11,15);
 		int expectedPastMeetingId = vm.newIdGenerator(cm.getPaf().getMeetingsIdIndex());
@@ -317,7 +319,7 @@ public class ContactManagerImplTest {
 		String text = "";
 		Calendar date = new GregorianCalendar();
 		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesIllegalStateException>>>>>>>>>>>>>>>";
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingEmpty>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//test
 		cm.addNewPastMeeting(inputContacts, date, text);//empty contacts
@@ -334,7 +336,7 @@ public class ContactManagerImplTest {
 		String text = "";
 		Calendar date = new GregorianCalendar();
 		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesIllegalStateException>>>>>>>>>>>>>>>";
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingSomeError>>>>>>";
 		System.out.println(debugStr);
 		//test
 		cm.addNewPastMeeting(secondInputContacts, date, text);//one of the contacts doesn't exist
@@ -349,7 +351,7 @@ public class ContactManagerImplTest {
 		String text = "";
 		Calendar dateInTheFuture = new GregorianCalendar();
 		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesIllegalStateException>>>>>>>>>>>>>>>";
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingWrongDate>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//test
 		cm.addNewPastMeeting(realInputContacts, dateInTheFuture, text);//date is in the future
@@ -556,6 +558,8 @@ public class ContactManagerImplTest {
 		expectedCsvRows.add("13,C,Fritz Lang");
 		expectedCsvRows.add("14,C,Johnny Fritz ");
 		expectedCsvRows.add("15,C,Fritz Hansen");
+		expectedCsvRows.add("16,Sterling Archer");
+		expectedCsvRows.add("12,Barefoot Grub Patch");
 
 		//input
 

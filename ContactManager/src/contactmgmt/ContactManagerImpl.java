@@ -206,16 +206,19 @@ public class ContactManagerImpl implements ContactManager {
 		 * empty, or any of the contacts does not exist
 		 *  @throws IllegalArgumentException if date inputed is in the future
 		 */
+		
 		if(contacts.isEmpty()){
 			System.out.println("list of contacts is empty :  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()); 
 			throw new IllegalArgumentException();
 		}
 		vm = new ValuesManagerImpl();
-		if(!getPaf().getAllContacts().contains(contacts)){ //override .equals() 
-			//TODO <Current>
-			System.out.println("at least one of the contacts isn't in the list :  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()); 
+		if(!getPaf().getAllContacts().containsAll(contacts)){ //override .equals() 
+			//iterate contacts instead so it can be more accurate
+			System.out.println("at least one of the contacts isn't in the list :  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()+" thrown on contact : "+contacts.toString() + " <Doesn't match> "+ getPaf().getAllContacts().toString()); 
+		//			//TODO <Current> there is at least one string on one list that matches one on the other, keep counters
 			throw new IllegalArgumentException();
 		}
+		
 		//main
 		vm = new ValuesManagerImpl();
 		int newId = vm.newIdGenerator(paf.getMeetingsIdIndex());

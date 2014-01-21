@@ -65,6 +65,16 @@ public class ContactImpl implements Contact {
 		}
 		return getId()+",C,"+ getName()+notes;
 	}
-
+	@Override
+	public boolean equals(Object inputContact){
+		if(this.id == ((ContactImpl) inputContact).getId()){
+			if(this.name.equals(((ContactImpl) inputContact).getName())){
+				if(this.notes.equals(((ContactImpl) inputContact).getNotes())){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 }

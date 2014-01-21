@@ -89,4 +89,16 @@ public class MeetingImpl implements Meeting {
 		return this.getId()+ ",M," + contacts.substring(0,contacts.length()-1) +","+date+notes;
 		
 	}
+	@Override
+	public boolean equals(Object inputMeeting){
+		if(this.contacts.equals(((MeetingImpl) inputMeeting).getContacts())){
+			if(this.date.equals(((MeetingImpl) inputMeeting).getDate())){
+				if(this.id==((MeetingImpl) inputMeeting).getId()){
+						return true;
+				}
+			}
+		}
+		return false;
+		
+	}
 }
