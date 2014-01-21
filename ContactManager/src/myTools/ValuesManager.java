@@ -6,6 +6,8 @@ package myTools;
 import java.util.List;
 import java.util.Set;
 
+import contactmgmt.Contact;
+
 /**
  * @author Guilherme
  *
@@ -68,6 +70,8 @@ public interface ValuesManager {
 	void printList(List<Integer> inputIntegerList, String listName);
 
 	boolean checkContactNameIsUnique(List<String> names, String candidateName);
+
+	boolean compareSetsContains(Set<Contact> inputContactSet, Set<Contact> expectedContactSet);
 
 
 }
