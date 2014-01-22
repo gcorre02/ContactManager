@@ -317,13 +317,15 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testaddNewPastMeetingEmptyContacts() {
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingEmpty>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
 		//input
 		Set<Contact> inputContacts = new HashSet<Contact>();
 		String text = "";
 		Calendar date = new GregorianCalendar();
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingEmpty>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//test
 		cm.addNewPastMeeting(inputContacts, date, text);//empty contacts
 
@@ -338,7 +340,7 @@ public class ContactManagerImplTest {
 		inputContacts.add(new ContactImpl(1,"Guybrush Threepwood"));
 		inputContacts.add(new ContactImpl(8,"Klaus"));
 		inputContacts.add(new ContactImpl(2,"Tony"));
-		//TODO <Current> 
+
 		String text = "";
 		Calendar date = new GregorianCalendar();
 		//debug
@@ -346,6 +348,29 @@ public class ContactManagerImplTest {
 		System.out.println(debugStr);
 		//test
 		cm.addNewPastMeeting(inputContacts, date, text);//one of the contacts doesn't exist
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.
+	 */
+	@Test(expected = NullPointerException.class)
+	public final void testaddNewPastMeetingNull() {
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingNull>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		//input
+		Set<Contact> inputContacts = new HashSet<Contact>();
+		inputContacts.add(new ContactImpl(1,"Guybrush Threepwood"));
+		inputContacts.add(new ContactImpl(8,"Klaus"));
+		inputContacts.add(new ContactImpl(2,"Tony"));
+		String text = "";
+		Calendar date = new GregorianCalendar();
+		//test
+		cm.addNewPastMeeting(null, date, text);
+		cm.addNewPastMeeting(inputContacts, null, text);
+		cm.addNewPastMeeting(inputContacts, date, null);
+		//TODO <Current>
 	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.

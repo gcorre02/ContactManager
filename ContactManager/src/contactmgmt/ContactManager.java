@@ -87,8 +87,8 @@ public interface ContactManager {
 	 * @param text messages to be added about the meeting.
 	 * @throws IllegalArgumentException if the list of contacts is
 	 * empty, or any of the contacts does not exist
-	 * TODO <Current> <Exception Handling>@throws IllegalArgumentException if date inputed is in the future
-	 * //TODO <Exception Handling> @throws NullPointerException if any of the arguments is null
+	 * TODO <Exception Handling>@throws IllegalArgumentException if date inputed is in the future
+	 * //TODO <Current> <Exception Handling> @throws NullPointerException if any of the arguments is null
 	 */
 	void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text);
 	/**

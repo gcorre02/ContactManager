@@ -200,17 +200,17 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) throws IllegalArgumentException{
-		//exceptions 
-		/*
-		 *  * @throws IllegalArgumentException if the list of contacts is
-		 * empty, or any of the contacts does not exist
-		 *  @throws IllegalArgumentException if date inputed is in the future
-		 */
-		
+
+		if(contacts==null || date == null || text == null){
+			System.out.println("one of the params evaluates to null  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " Contacts: "+contacts+" date: "+date+" text: "+text); 
+			throw new NullPointerException();
+		}
 		if(contacts.isEmpty()){
 			System.out.println("list of contacts is empty :  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()); 
 			throw new IllegalArgumentException();
 		}
+		//TODO <Current>	@throws IllegalArgumentException if date inputed is in the future
+		
 		vm = new ValuesManagerImpl();
 		List<Contact> comparableInputContacts = new ArrayList<Contact>(contacts);
 		List<ContactImpl> comparableAllContacts = new ArrayList<ContactImpl>();
@@ -221,7 +221,6 @@ public class ContactManagerImpl implements ContactManager {
 			System.out.println("at least one of the contacts isn't in the list :  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()+" thrown on contact : "+comparableAllContacts.toString() + " <Doesn't match> "+ comparableInputContacts.toString()); 
 			throw new IllegalArgumentException();
 		}
-		//TODO <Current>
 		//main
 		vm = new ValuesManagerImpl();
 		int newId = vm.newIdGenerator(paf.getMeetingsIdIndex());
