@@ -93,6 +93,12 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public FutureMeeting getFutureMeeting(int id) {
 		//TODO <Current>
+		//exceptions
+		if(paf.getPastMeetingsIdIndex().contains(id)){
+			System.out.println("id requested belongs to a past Meeting  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " id provided :"  +id); 
+			throw new IllegalArgumentException();
+		}
+		//main
 		Set<FutureMeeting> FutureMeetingCollection = paf.getAllFutureMeetings();
 		Iterator<FutureMeeting> iter = FutureMeetingCollection.iterator();
 		while(iter.hasNext()){
