@@ -92,6 +92,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public FutureMeeting getFutureMeeting(int id) {
+		//TODO <Current>
 		Set<FutureMeeting> FutureMeetingCollection = paf.getAllFutureMeetings();
 		Iterator<FutureMeeting> iter = FutureMeetingCollection.iterator();
 		while(iter.hasNext()){
@@ -209,8 +210,11 @@ public class ContactManagerImpl implements ContactManager {
 			System.out.println("list of contacts is empty :  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()); 
 			throw new IllegalArgumentException();
 		}
-		//TODO <Current>	@throws IllegalArgumentException if date inputed is in the future
-		
+		dm = new DatesManagerImpl();
+		if(!dm.checkDateIsInThePast(date)){
+			System.out.println("date is in the future :  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()+" date is in the future : "+ date.toString()); 
+			throw new IllegalArgumentException();
+		}
 		vm = new ValuesManagerImpl();
 		List<Contact> comparableInputContacts = new ArrayList<Contact>(contacts);
 		List<ContactImpl> comparableAllContacts = new ArrayList<ContactImpl>();

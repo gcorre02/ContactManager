@@ -34,6 +34,7 @@ public interface ContactManager {
 	 * @param id the ID for the meeting
 	 * @return the meeting with the requested ID, or null if it there is none.
 	 * //TODO <Exception Handling> @throws IllegalArgumentException if there is a meeting with that ID happening in the past
+	 * TODO <Current>
 	 */
 	FutureMeeting getFutureMeeting(int id);
 	/**
@@ -87,8 +88,8 @@ public interface ContactManager {
 	 * @param text messages to be added about the meeting.
 	 * @throws IllegalArgumentException if the list of contacts is
 	 * empty, or any of the contacts does not exist
-	 * TODO <Exception Handling>@throws IllegalArgumentException if date inputed is in the future
-	 * //TODO <Current> <Exception Handling> @throws NullPointerException if any of the arguments is null
+	 * @throws IllegalArgumentException if date inputed is in the future
+	 * @throws NullPointerException if any of the arguments is null
 	 */
 	void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text);
 	/**

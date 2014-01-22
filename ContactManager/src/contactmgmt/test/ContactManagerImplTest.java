@@ -301,10 +301,10 @@ public class ContactManagerImplTest {
 		expectedContacts.add(new ContactImpl(3, "Fritz"));
 		expectedContacts.add(new ContactImpl(16, "Sterling Archer"));
 		expectedContacts.add(new ContactImpl(12, "Barefoot Grub Patch"));
-		Calendar expectedDate = new GregorianCalendar(2014,11,15);
+		Calendar expectedDate = new GregorianCalendar(2011,11,15);
 		int expectedPastMeetingId = vm.newIdGenerator(cm.getPaf().getMeetingsIdIndex());
-		String expectedNotes = "";
-		PastMeeting expectedPastMeeting = new PastMeetingImpl(expectedPastMeetingId, expectedDate, expectedContacts);
+		String expectedNotes = "watching too much tv";
+		PastMeeting expectedPastMeeting = new PastMeetingImpl(expectedPastMeetingId, expectedDate, expectedContacts, expectedNotes);
 		//input
 		cm.addNewPastMeeting(expectedContacts, expectedDate, expectedNotes);
 		PastMeeting inputMeeting = (PastMeeting)cm.getMeeting(expectedPastMeetingId);
@@ -370,7 +370,6 @@ public class ContactManagerImplTest {
 		cm.addNewPastMeeting(null, date, text);
 		cm.addNewPastMeeting(inputContacts, null, text);
 		cm.addNewPastMeeting(inputContacts, date, null);
-		//TODO <Current>
 	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.
@@ -391,8 +390,26 @@ public class ContactManagerImplTest {
 		Calendar date = new GregorianCalendar(2015,10,4);
 		//test
 		cm.addNewPastMeeting(inputContacts, date, text);
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getFutureMeeting(int)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testGetFutureMeetingIdBelongsPastMeeting() {
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<getFutureMeetingIdBelongsPastMeeting>>>>>>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		
+		//input
+		int id = 2;
+		
+		//test
+		cm.getFutureMeeting(id);
 		//TODO <Current>
 	}
+
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.
 	 */
