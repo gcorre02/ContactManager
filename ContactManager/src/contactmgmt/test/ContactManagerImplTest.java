@@ -420,7 +420,7 @@ public class ContactManagerImplTest {
 		//expected
 		
 		//input
-		int id = 2;
+		int id = 0;
 		
 		//test
 		cm.getPastMeeting(id);
