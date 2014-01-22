@@ -57,7 +57,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
-
+		//TODO <Current> impl
 		//generate unique id :
 		ValuesManager vm = new ValuesManagerImpl();
 		int returnId = vm.newIdGenerator(paf.getMeetingsIdIndex()); //<need to use the Meetings Index! //< need to update both the Meetings and the futureMeetings index too
@@ -77,7 +77,6 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public PastMeeting getPastMeeting(int id) {
 		//Exception
-		//TODO <Current>
 		if(paf.getFutureMeetingsIdIndex().contains(id)){
 			System.out.println("id requested belongs to a future Meeting  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " id provided : "  +id); 
 			throw new IllegalArgumentException();

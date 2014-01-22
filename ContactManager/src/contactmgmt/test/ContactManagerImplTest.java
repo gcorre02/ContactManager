@@ -424,8 +424,25 @@ public class ContactManagerImplTest {
 		
 		//test
 		cm.getPastMeeting(id);
-		//TODO <Current>
 	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getPastMeeting(int)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testAddFutureMeetingDateIsInThePast() {
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<getPastMeetingIdBelongsPastMeeting>>>>>>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		
+		//input
+		Set<Contact> inputContacts = new HashSet<Contact>();
+		inputContacts.add(new ContactImpl(3,"Fritz"));
+		Calendar inputDate = new GregorianCalendar(2005,4,25);
+		//test
+		cm.addFutureMeeting(inputContacts, inputDate);
+	}
+
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.
 	 */
