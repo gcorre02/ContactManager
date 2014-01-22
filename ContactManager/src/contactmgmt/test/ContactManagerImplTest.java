@@ -334,15 +334,18 @@ public class ContactManagerImplTest {
 	@Test(expected = IllegalArgumentException.class)
 	public final void testaddNewPastMeetingIllegal1oneoftheArgs() {
 		//input
-		Set<Contact> secondInputContacts = new HashSet<Contact>();
-		//TODO <Current> populate with existent and non existent contacts
+		Set<Contact> inputContacts = new HashSet<Contact>();
+		inputContacts.add(new ContactImpl(1,"Guybrush Threepwood"));
+		inputContacts.add(new ContactImpl(8,"Klaus"));
+		inputContacts.add(new ContactImpl(2,"Tony"));
+		//TODO <Current> 
 		String text = "";
 		Calendar date = new GregorianCalendar();
 		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingSomeError>>>>>>";
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingSomeContactsDontExist>>>>>>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//test
-		cm.addNewPastMeeting(secondInputContacts, date, text);//one of the contacts doesn't exist
+		cm.addNewPastMeeting(inputContacts, date, text);//one of the contacts doesn't exist
 	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.
