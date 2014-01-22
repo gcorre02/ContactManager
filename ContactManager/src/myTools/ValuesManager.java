@@ -71,7 +71,6 @@ public interface ValuesManager {
 
 	boolean checkContactNameIsUnique(List<String> names, String candidateName);
 
-	boolean compareSetsContains(Set<Contact> inputContactSet, Set<Contact> expectedContactSet);
 
 
 }

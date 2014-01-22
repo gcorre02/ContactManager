@@ -91,6 +91,7 @@ public class ContactImplTest {
 		ContactImpl inputContact = new ContactImpl(1, "Jeremy Storm Baker");
 		ContactImpl expectedContact = new ContactImpl(1, "Jeremy Storm Baker");
 		assertEquals(inputContact, expectedContact);
+		//assertNotEquals(inputContact, expectedContact);
 	}
 
 }

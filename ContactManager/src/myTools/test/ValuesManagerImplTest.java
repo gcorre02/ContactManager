@@ -17,8 +17,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import contactmgmt.Contact;
-import contactmgmt.ContactImpl;
 
 /**
  * @author Guilherme
@@ -189,23 +187,6 @@ public class ValuesManagerImplTest {
 
 		assertEquals("organization doesnt match", expectedIntegerList, vm.reorganiseList(inputIntegerList) );
 		
-	}
-	/**
-	 * Test method for {@link myTools.ValuesManagerImpl#compareSetsContains(java.util.Set, java.util.Set)}.
-	 */
-	@Test
-	public final void testCompareSetsContains(){
-		//expected
-		Set<Contact> expectedContactSet = new HashSet<Contact>();
-		expectedContactSet.add(new ContactImpl(1,"Yan Mitsubishi"));
-		expectedContactSet.add(new ContactImpl(2,"Burt Reynolds"));
-		//input
-		
-		Set<Contact> inputContactSet = new HashSet<Contact>();
-		inputContactSet.add(new ContactImpl(1,"Yan Mitsubishi"));
-		inputContactSet.add(new ContactImpl(2,"Burt Reynolds"));
-		//test
-		assertTrue(vm.compareSetsContains(inputContactSet,expectedContactSet));
 	}
 	
 }

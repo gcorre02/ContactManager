@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import contactmgmt.Contact;
 
 /**
  * @author Guilherme
@@ -104,13 +103,5 @@ public class ValuesManagerImpl implements ValuesManager {
 		System.out.println("Ending printing of this list" + listName);
 
 	}
-
-	@Override
-	public boolean compareSetsContains(Set<Contact> inputContactSet,
-			Set<Contact> expectedContactSet) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 
 }

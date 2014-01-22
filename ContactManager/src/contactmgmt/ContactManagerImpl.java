@@ -212,13 +212,16 @@ public class ContactManagerImpl implements ContactManager {
 			throw new IllegalArgumentException();
 		}
 		vm = new ValuesManagerImpl();
-		if(!getPaf().getAllContacts().containsAll(contacts)){ //override .equals() 
-			//iterate contacts instead so it can be more accurate
-			System.out.println("at least one of the contacts isn't in the list :  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()+" thrown on contact : "+contacts.toString() + " <Doesn't match> "+ getPaf().getAllContacts().toString()); 
-		//			//TODO <Current> there is at least one string on one list that matches one on the other, keep counters
+		List<Contact> comparableInputContacts = new ArrayList<Contact>(contacts);
+		List<ContactImpl> comparableAllContacts = new ArrayList<ContactImpl>();
+		for(Contact current : getPaf().getAllContacts()){
+			comparableAllContacts.add(new ContactImpl(current.getId(), current.getName()));
+		}
+		if(!comparableAllContacts.containsAll(comparableInputContacts)){ 
+			System.out.println("at least one of the contacts isn't in the list :  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()+" thrown on contact : "+comparableAllContacts.toString() + " <Doesn't match> "+ comparableInputContacts.toString()); 
 			throw new IllegalArgumentException();
 		}
-		
+		//TODO <Current>
 		//main
 		vm = new ValuesManagerImpl();
 		int newId = vm.newIdGenerator(paf.getMeetingsIdIndex());
