@@ -342,7 +342,7 @@ public class ContactManagerImplTest {
 		inputContacts.add(new ContactImpl(2,"Tony"));
 
 		String text = "";
-		Calendar date = new GregorianCalendar();
+		Calendar date = new GregorianCalendar(1995,3,12);
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingSomeContactsDontExist>>>>>>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -365,11 +365,32 @@ public class ContactManagerImplTest {
 		inputContacts.add(new ContactImpl(8,"Klaus"));
 		inputContacts.add(new ContactImpl(2,"Tony"));
 		String text = "";
-		Calendar date = new GregorianCalendar();
+		Calendar date = new GregorianCalendar(1988,12,23);
 		//test
 		cm.addNewPastMeeting(null, date, text);
 		cm.addNewPastMeeting(inputContacts, null, text);
 		cm.addNewPastMeeting(inputContacts, date, null);
+		//TODO <Current>
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testaddNewPastMeetingDateException() {
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingDateException>>>>>>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		//input
+		Set<Contact> inputContacts = new HashSet<Contact>();
+		inputContacts.add(new ContactImpl(1,"Guybrush Threepwood"));
+		inputContacts.add(new ContactImpl(8,"Klaus"));
+		inputContacts.add(new ContactImpl(2,"Tony"));
+		String text = "Some monkey island note";
+		Calendar date = new GregorianCalendar(2015,10,4);
+		//test
+		cm.addNewPastMeeting(inputContacts, date, text);
 		//TODO <Current>
 	}
 	/**
