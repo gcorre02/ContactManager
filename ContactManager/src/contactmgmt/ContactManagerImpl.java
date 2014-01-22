@@ -91,8 +91,7 @@ public class ContactManagerImpl implements ContactManager {
 	 * @see contactmgmt.ContactManager#getFutureMeeting(int)
 	 */
 	@Override
-	public FutureMeeting getFutureMeeting(int id) {
-		//TODO <Current>
+	public FutureMeeting getFutureMeeting(int id) throws IllegalArgumentException {
 		//exceptions
 		if(paf.getPastMeetingsIdIndex().contains(id)){
 			System.out.println("id requested belongs to a past Meeting  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " id provided :"  +id); 

@@ -407,9 +407,25 @@ public class ContactManagerImplTest {
 		
 		//test
 		cm.getFutureMeeting(id);
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getPastMeeting(int)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testGetPastMeetingIdBelongsPastMeeting() {
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<getPastMeetingIdBelongsPastMeeting>>>>>>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		
+		//input
+		int id = 2;
+		
+		//test
+		cm.getPastMeeting(id);
 		//TODO <Current>
 	}
-
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.
 	 */
