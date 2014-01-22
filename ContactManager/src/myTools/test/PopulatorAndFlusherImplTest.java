@@ -131,15 +131,15 @@ public class PopulatorAndFlusherImplTest {
 		expectedCsvRows.add("0,M,JohnMcClane HansGruber,20140513");
 		expectedCsvRows.add("1,M,JohnMcClane HansGruber,20131005,Nakatomi Plaza at 9pm");
 		expectedCsvRows.add("2,M,JohnMcClane HansGruber,20130905");
-		expectedCsvRows.add("4,C,Harry Ellis");
-		expectedCsvRows.add("8,C,Klaus");
-		expectedCsvRows.add("7,C,Karl");
-		expectedCsvRows.add("6,C,Holly Genero");
-		expectedCsvRows.add("1,C,John Mc Clane");
-		expectedCsvRows.add("3,C,Fritz");
 		expectedCsvRows.add("0,C,Hans Gruber");
-		expectedCsvRows.add("5,C,Theo theDriver");
+		expectedCsvRows.add("1,C,John Mc Clane");		
 		expectedCsvRows.add("2,C,Tony");
+		expectedCsvRows.add("3,C,Fritz");
+		expectedCsvRows.add("4,C,Harry Ellis");
+		expectedCsvRows.add("5,C,Theo theDriver");
+		expectedCsvRows.add("6,C,Holly Genero");
+		expectedCsvRows.add("7,C,Karl");
+		expectedCsvRows.add("8,C,Klaus");
 		
 		
 		//dump to file:
@@ -148,9 +148,19 @@ public class PopulatorAndFlusherImplTest {
 		//populate array with file elements
 		paf.readFromFile(pathToFile);
 		List<String> inputRows = paf.getCsvRows();
-		
+		//debug
+		System.out.println("<<<<<<<<<<<<<<<<<expected csv rows>>>>>>>>>>>>>>>>>");
+		paf.printlist(expectedCsvRows);
+		System.out.println("<<<<<<<<<<<<<<<<<input csv rows>>>>>>>>>>>>>>>>>");
+		paf.printlist(inputRows);
+		System.out.println("<<<<<<<<<<<<<<<<<end debug>>>>>>>>>>>>>>>>>");
+		//expected
+		PopulatorAndFlusher expectedPaf = new PopulatorAndFlusherImpl(pathToFile);
+		List<MeetingImpl> expectedMeetings = expectedPaf.setAllMeetings(expectedCsvRows);
+		//input
+		List<MeetingImpl> inputMeetings = paf.setAllMeetings(inputRows);
 		//Assert write works
-		assertTrue("Write operation not working : ", expectedCsvRows.containsAll(inputRows));
+		assertTrue("Write operation not working : ", expectedMeetings.containsAll(inputMeetings));
 	}
 
 	/**

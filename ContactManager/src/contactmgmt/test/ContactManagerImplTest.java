@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 import myTools.PopulatorAndFlusher;
+import myTools.PopulatorAndFlusherImpl;
 import myTools.ValuesManager;
 import myTools.ValuesManagerImpl;
 
@@ -60,11 +61,11 @@ public class ContactManagerImplTest {
 			writer.println("6,C,Holly Genero");
 			writer.println("7,C,Karl");
 			writer.println("8,C,Klaus");
+			writer.println("12,C,Barefoot Grub Patch");
 			writer.println("13,C,Fritz Lang");
 			writer.println("14,C,Johnny Fritz ");
 			writer.println("15,C,Fritz Hansen");
 			writer.println("16,C,Sterling Archer");
-			writer.println("12,C,Barefoot Grub Patch");
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -257,7 +258,7 @@ public class ContactManagerImplTest {
 		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetPastMeetingList>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
-		List<PastMeeting> expectedList = new ArrayList<PastMeeting>();
+		List<PastMeetingImpl> expectedList = new ArrayList<PastMeetingImpl>();
 		Calendar expectedDate = new GregorianCalendar(2013,9,05);
 		Calendar secondExpectedDate = new GregorianCalendar(2013,10,05);
 		Set<Contact> expectedContacts = new HashSet<Contact>();
@@ -265,21 +266,23 @@ public class ContactManagerImplTest {
 		expectedContacts.add(inputContact);
 		expectedContacts.add(new ContactImpl(1,"John Mc Clane"));
 		String expectedNotes = "Nakatomi Plaza at 9pm";
-		PastMeeting secondExpectedPastMeeting = new PastMeetingImpl(1,secondExpectedDate, expectedContacts,expectedNotes);
-		PastMeeting expectedPastMeeting = new PastMeetingImpl(2,expectedDate,expectedContacts);
+		PastMeetingImpl secondExpectedPastMeeting = new PastMeetingImpl(1,secondExpectedDate, expectedContacts,expectedNotes);
+		PastMeetingImpl expectedPastMeeting = new PastMeetingImpl(2,expectedDate,expectedContacts);
 		expectedList.add(expectedPastMeeting);
 		expectedList.add(secondExpectedPastMeeting);
 		//input
-		List<PastMeeting> inputList = cm.getPastMeetingList(inputContact);
+		List<PastMeetingImpl> inputList = new ArrayList<PastMeetingImpl>(); 
+		for(PastMeeting iter :	cm.getPastMeetingList(inputContact)){
+			inputList.add((PastMeetingImpl)iter);
+		}
+		//debug
+		vm = new ValuesManagerImpl();
+		System.out.println("<<<<<<<<<<<<<<<<<<inputList>>>>>>>>>>>>>>>>>>");
+		paf.printlist(inputList);
+		System.out.println("<<<<<<<<<<<<<<<<<<expectedList>>>>>>>>>>>>>>>>>>");
+		paf.printlist(expectedList);
 		//test
-		List<String> expectedListString = new ArrayList<String>();
-		expectedListString.add(expectedList.get(0).toString());
-		expectedListString.add(expectedList.get(1).toString());
-		List<String> inputListString = new ArrayList<String>();
-		inputListString.add(inputList.get(0).toString());
-		inputListString.add(inputList.get(1).toString());
-		assertTrue(expectedListString.containsAll(inputListString));
-
+		assertTrue(expectedList.containsAll(inputList));
 
 	}
 
@@ -323,7 +326,7 @@ public class ContactManagerImplTest {
 		System.out.println(debugStr);
 		//test
 		cm.addNewPastMeeting(inputContacts, date, text);//empty contacts
-		
+
 	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addNewPastMeeting(java.util.Set, java.util.Calendar, java.lang.String)}.
@@ -555,30 +558,33 @@ public class ContactManagerImplTest {
 		expectedCsvRows.add("6,C,Holly Genero");
 		expectedCsvRows.add("7,C,Karl");
 		expectedCsvRows.add("8,C,Klaus");
+		expectedCsvRows.add("12,Barefoot Grub Patch");
 		expectedCsvRows.add("13,C,Fritz Lang");
 		expectedCsvRows.add("14,C,Johnny Fritz ");
 		expectedCsvRows.add("15,C,Fritz Hansen");
 		expectedCsvRows.add("16,Sterling Archer");
-		expectedCsvRows.add("12,Barefoot Grub Patch");
 
-		//input
+
 
 		//dump to file:
 		cm.flush();
 
-		//populate array with file elements
-		List<String> inputRows = cm.getPaf().getCsvRows();
 
-		/*
+		//expected
+		PopulatorAndFlusher expectedPaf = new PopulatorAndFlusherImpl(pathToFile);
+		List<MeetingImpl> expectedMeetings = expectedPaf.setAllMeetings(expectedCsvRows);
+		//input
+		List<MeetingImpl> inputMeetings = paf.setAllMeetings(cm.getPaf().getCsvRows());
+
 		//debug
-		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<compare expected and input>>>>>>>>>>>>>>>>>>>>>>>>>");
-		cm.getPaf().printlist(expectedCsvRows);
-		cm.getPaf().printlist(inputRows);
-		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<compare expected and input>>>>>>>>>>>>>>>>>>>>>>>>>");
-		 */
+		System.out.println("<<<<<<<<<<<<<<<<<expected csv rows>>>>>>>>>>>>>>>>>");
+		paf.printlist(expectedMeetings);
+		System.out.println("<<<<<<<<<<<<<<<<<input csv rows>>>>>>>>>>>>>>>>>");
+		paf.printlist(inputMeetings);
+		System.out.println("<<<<<<<<<<<<<<<<<end debug>>>>>>>>>>>>>>>>>");
 
-		//test
-		assertTrue("Write operation not working : ", expectedCsvRows.containsAll(inputRows));
+		//Assert write works
+		assertTrue("Write operation not working : ", expectedMeetings.containsAll(inputMeetings));
 	}
 
 }

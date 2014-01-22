@@ -24,22 +24,22 @@ import contactmgmt.MeetingImpl;
  *
  */
 public class MeetingImplTest {
-	
+
 	private Meeting m;
 	private int inputId = 1;
 	private Set<Contact> inputContacts = new HashSet<Contact>();
 	private Calendar inputDate = new GregorianCalendar(2014,02,15);
 	Contact bruce = new ContactImpl(1, "Bruce Willis");
 
-	
+
 	private int expectedId = inputId;
 	private Set<Contact> expectedContacts = inputContacts;
 	private Calendar expectedDate = inputDate;
-	
-	
-	
-	
-	
+
+
+
+
+
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -86,6 +86,25 @@ public class MeetingImplTest {
 	@Test
 	public void testGetContacts() {
 		assertEquals("Meeting not returning contacts or Contructor not instantiating them", expectedContacts, m.getContacts());
+	}
+	@Test
+	public void testEquals() {
+		//input1
+		Calendar date1 = new GregorianCalendar(2013,13,25);
+		Set<Contact> contacts1 = new HashSet<Contact>();
+		contacts1.add(new ContactImpl(1,"Lord Byron"));
+		contacts1.add(new ContactImpl(2,"Lord Bacon"));
+		contacts1.add(new ContactImpl(3,"Lord Buster"));
+		Meeting m1 = new MeetingImpl(1,date1,contacts1);
+		//input2
+		Calendar date2 = new GregorianCalendar(2013,13,25);
+		Set<Contact> contacts2 = new HashSet<Contact>();
+		contacts2.add(new ContactImpl(1,"Lord Byron"));
+		contacts2.add(new ContactImpl(2,"Lord Bacon"));
+		contacts2.add(new ContactImpl(3,"Lord Buster"));
+		Meeting m2 = new MeetingImpl(1,date2,contacts2);
+		//test
+		assertEquals(m1,m2);
 	}
 
 }

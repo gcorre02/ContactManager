@@ -274,8 +274,6 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	@Override
 	public List<String> readFromFile(String pathToFile) {
 		List<String> rows = new ArrayList<String>();
-
-
 		File inputFile = new File(pathToFile);
 		if(inputFile.isFile()){
 			try{
@@ -318,7 +316,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	}
 
 	@Override
-	public void setAllMeetings(List<String> csvRows) {
+	public List<MeetingImpl> setAllMeetings(List<String> csvRows) {
 		//note : all contact names in the meeting rows are concatenated without spaces and spaces are used to separate each contact
 		Set<Meeting> allMeetings = new HashSet<Meeting>();
 		for(String str : csvRows){
@@ -343,6 +341,11 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		}
 		//populate set
 		this.allMeetings = allMeetings;
+		List<MeetingImpl> allMeetingsList = new ArrayList<MeetingImpl>();
+		for(Meeting current : allMeetings){
+			allMeetingsList.add((MeetingImpl)current);
+		}
+		return allMeetingsList;
 
 	}
 

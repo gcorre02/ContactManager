@@ -5,6 +5,11 @@ package contactmgmt.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -83,14 +88,30 @@ public class ContactImplTest {
 	public final void testAddNotes() {
 		assertEquals("ContactImpl not returning notes", expectedNotes , ci.getNotes());
 	}
-	/**
-	 * Test method for {@link contactmgmt.ContactImpl#equals(java.lang.Object)}.
-	 */
+	
 	@Test
 	public final void testEquals() {
 		ContactImpl inputContact = new ContactImpl(1, "Jeremy Storm Baker");
 		ContactImpl expectedContact = new ContactImpl(1, "Jeremy Storm Baker");
 		assertEquals(inputContact, expectedContact);
+		//assertNotEquals(inputContact, expectedContact);
+	}
+	@Test
+	public final void testEqualsSet() {
+		//set1
+		Set<ContactImpl> contactImplSet1 = new HashSet<ContactImpl>();
+		contactImplSet1.add(new ContactImpl(1, "Jeremy Storm Baker"));
+		contactImplSet1.add(new ContactImpl(2, "Sara Emil"));
+		contactImplSet1.add(new ContactImpl(3, "Johnny Cash"));
+		List<ContactImpl> comparableList1 = new ArrayList<ContactImpl>(contactImplSet1);
+		//set1
+		Set<ContactImpl> contactImplSet2 = new HashSet<ContactImpl>();
+		contactImplSet2.add(new ContactImpl(1, "Jeremy Storm Baker"));
+		contactImplSet2.add(new ContactImpl(2, "Sara Emil"));
+		contactImplSet2.add(new ContactImpl(3, "Johnny Cash"));
+		List<ContactImpl> comparableList2 = new ArrayList<ContactImpl>(contactImplSet2);
+		//test
+		assertTrue(comparableList1.containsAll(comparableList2));
 		//assertNotEquals(inputContact, expectedContact);
 	}
 

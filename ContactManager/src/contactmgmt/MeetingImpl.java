@@ -3,8 +3,11 @@
  */
 package contactmgmt;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,7 +20,7 @@ public class MeetingImpl implements Meeting {
 	private Calendar date;
 	private Set<Contact> contacts;
 	protected String notes;
- 
+
 	/**
 	 * @param contacts 
 	 * @param date 
@@ -54,7 +57,7 @@ public class MeetingImpl implements Meeting {
 	public Set<Contact> getContacts() {
 		return this.contacts;
 	}
-	
+
 	@Override
 	public String toString(){
 		Calendar meetingDate = this.getDate();
@@ -67,7 +70,7 @@ public class MeetingImpl implements Meeting {
 			day = "0"+day;
 		}
 		String date = ((Integer)meetingDate.get(Calendar.YEAR)).toString()+ month+ day;
-		
+
 		String contacts ="";// need to remove white spaces!
 		//concatenate contact names
 		Set<Contact> meetingContacts = this.getContacts();
@@ -84,21 +87,41 @@ public class MeetingImpl implements Meeting {
 		if(this.notes.length()>0){
 			notes=","+this.notes;
 		}
-		
+
 		//return
 		return this.getId()+ ",M," + contacts.substring(0,contacts.length()-1) +","+date+notes;
-		
+
 	}
 	@Override
 	public boolean equals(Object inputMeeting){
-		if(this.contacts.equals(((MeetingImpl) inputMeeting).getContacts())){
+		
+		//input meeting contacts set
+		Set<ContactImpl> overridenContacts = new HashSet<ContactImpl>();
+		Iterator<Contact> iter = ((MeetingImpl)inputMeeting).getContacts().iterator();
+		while(iter.hasNext()){
+			Contact current = iter.next();
+			overridenContacts.add((ContactImpl)current);
+		}
+		
+		//this meeting contacts set
+		Set<ContactImpl> thisContacts = new HashSet<ContactImpl>();
+		Iterator<Contact> thisIter = this.contacts.iterator();
+		while(thisIter.hasNext()){
+			Contact current = thisIter.next();
+			thisContacts.add((ContactImpl)current);
+		}
+		//convert to list so they can be compared
+		List<ContactImpl> thisContactsList = new ArrayList<ContactImpl>(thisContacts);
+		List<ContactImpl> overridenContactsList = new ArrayList<ContactImpl>(overridenContacts);
+		//main
+		if(thisContactsList.containsAll(overridenContactsList)){ 
 			if(this.date.equals(((MeetingImpl) inputMeeting).getDate())){
 				if(this.id==((MeetingImpl) inputMeeting).getId()){
-						return true;
+					return true;
 				}
 			}
 		}
 		return false;
-		
+
 	}
 }
