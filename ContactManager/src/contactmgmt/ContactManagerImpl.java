@@ -56,8 +56,14 @@ public class ContactManagerImpl implements ContactManager {
 	 * @see contactmgmt.ContactManager#addFutureMeeting(java.util.Set, java.util.Calendar)
 	 */
 	@Override
-	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
+	public int addFutureMeeting(Set<Contact> contacts, Calendar date) throws IllegalArgumentException {
 		//TODO <Current> impl
+		//exceptions
+		dm = new DatesManagerImpl();
+		if(dm.checkDateIsInThePast(date)){
+			System.out.println("date is in the past  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " date is in the past :  " + date.toString()); 
+			throw new IllegalArgumentException();
+		}
 		//generate unique id :
 		ValuesManager vm = new ValuesManagerImpl();
 		int returnId = vm.newIdGenerator(paf.getMeetingsIdIndex()); //<need to use the Meetings Index! //< need to update both the Meetings and the futureMeetings index too
