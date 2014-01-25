@@ -142,7 +142,6 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
 		//TODO <After Deliverable Is Ready> override equals under contact and meeting for easier comparison!
-		//TODO <Current> <Exception Handling> @throws IllegalArgumentException if the contact does not exist
 		//exception
 		vm = new ValuesManagerImpl();
 		if(vm.checkContactNameIsUnique(paf.getContactsNameIndex(), contact.getName())){
@@ -200,6 +199,13 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public List<PastMeeting> getPastMeetingList(Contact contact) {
+		//Exception
+		vm = new ValuesManagerImpl();
+		if(vm.checkContactNameIsUnique(paf.getContactsNameIndex(), contact.getName())){
+			System.out.println("contact requested does not exist  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " contact requested "  +contact.getName()); 
+			throw new IllegalArgumentException();
+		}
+		//main
 		List<PastMeeting> outputList = new ArrayList<PastMeeting>();
 		Set<PastMeeting> inputSet = paf.getAllPastMeetings();
 		Iterator<PastMeeting> iter = inputSet.iterator();

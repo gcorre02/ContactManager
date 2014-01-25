@@ -241,6 +241,21 @@ public class ContactManagerImplTest {
 		
 	}
 	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getPastMeetingList(contactmgmt.Contact)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testGetPastMeetingListExceptionContact() {
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingListContact>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		Contact contactInput = new ContactImpl(79, "Older Kimosabe");
+		//test
+		cm.getFutureMeetingList(contactInput);
+		//debug
+		
+	}
+	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getFutureMeetingList(java.util.Calendar)}.
 	 */
 	@Test

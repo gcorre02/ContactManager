@@ -53,8 +53,8 @@ public interface ContactManager {
 	 *
 	 * @param contact one of the user’s contacts
 	 * @return the list of future meeting(s) scheduled with this contact (maybe empty).
-	 * //TODO <Exception Handling> @throws IllegalArgumentException if the contact does not exist
-	 * <Current>
+	 * @throws IllegalArgumentException if the contact does not exist
+	 *
 	 */
 	List<Meeting> getFutureMeetingList(Contact contact);
 	/**
@@ -78,7 +78,7 @@ public interface ContactManager {
 	 *
 	 * @param contact one of the user’s contacts
 	 * @return the list of future meeting(s) scheduled with this contact (maybe empty).
-	 * //TODO <Exception Handling> @throws IllegalArgumentException if the contact does not exist
+	 * @throws IllegalArgumentException if the contact does not exist
 	 */
 	List<PastMeeting> getPastMeetingList(Contact contact);
 	/**
