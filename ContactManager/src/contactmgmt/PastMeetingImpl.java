@@ -31,7 +31,6 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting{
 	 */
 	public PastMeetingImpl(int inputId, Calendar date, Set<Contact> contacts) {
 		super(inputId, date, contacts);
-		this.notes = "";
 	}
 
 	/* (non-Javadoc)
@@ -40,6 +39,5 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting{
 	@Override
 	public String getNotes() {
 		return notes;
-	}
-	
+	}	
 }

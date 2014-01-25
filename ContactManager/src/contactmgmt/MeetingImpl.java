@@ -26,9 +26,16 @@ public class MeetingImpl implements Meeting {
 	 * @param contacts 
 	 * @param date 
 	 * @param inputId 
+	 * @throws IllegalArgumentException if contacts is empty
 	 * 
 	 */
 	public MeetingImpl(int inputId, Calendar date, Set<Contact> contacts) {
+		//Exception
+		if(contacts.isEmpty()){
+			System.out.println("Input number of contacts must be at least one.  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName()); 
+			throw new IllegalArgumentException();
+		}
+		//main
 		this.id = inputId;
 		this.date = date;
 		this.contacts = contacts;

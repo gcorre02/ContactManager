@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import contactmgmt.Contact;
+import contactmgmt.ContactImpl;
 import contactmgmt.Meeting;
 import contactmgmt.PastMeeting;
 import contactmgmt.PastMeetingImpl;
@@ -29,20 +30,27 @@ public class PastMeetingImplTest {
 	
 	private PastMeeting pm ;
 	private int inputId = 1;
-	private Set<Contact> inputContacts = new HashSet<Contact>();
-	private Calendar inputDate = new GregorianCalendar(2014,02,15);
-	private String inputNotes = new String("talked about how to tackle nakatomi plaza");
-	
-	private int expectedId = inputId;
-	private String expectedNotes = inputNotes;
-	private Set<Contact> expectedContacts = inputContacts;
-	private Calendar expectedDate = inputDate;
+	private Set<Contact> inputContacts;
+	private Calendar inputDate;
+	private String inputNotes;
+	int expectedId = inputId;
+	private String expectedNotes;
+	private Set<Contact> expectedContacts;
+	private Calendar expectedDate;
 	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		inputContacts = new HashSet<Contact>();
+		inputDate = new GregorianCalendar(2014,02,15);
+		inputNotes = new String("talked about how to tackle nakatomi plaza");
+		Contact bruce = new ContactImpl(1, "Bruce Willis");
+		inputContacts.add(bruce);
+		expectedNotes = inputNotes;
+		expectedContacts = inputContacts;
+		expectedDate = inputDate;
 		pm = new PastMeetingImpl(inputId, inputDate, inputContacts, inputNotes);
 	}
 
@@ -118,7 +126,7 @@ public class PastMeetingImplTest {
 		assertEquals("PastMeetingImpl Constructor not passing notes as empty string", meetingUnderTest.getNotes(), inputNotes);
 	}
 	
-	public Meeting returnPastMeeting(){
+	private Meeting returnPastMeeting(){
 		return pm;
 	}
 }

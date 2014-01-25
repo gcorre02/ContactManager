@@ -27,14 +27,11 @@ public class MeetingImplTest {
 
 	private Meeting m;
 	private int inputId = 1;
-	private Set<Contact> inputContacts = new HashSet<Contact>();
-	private Calendar inputDate = new GregorianCalendar(2014,02,15);
-	Contact bruce = new ContactImpl(1, "Bruce Willis");
-
-
-	private int expectedId = inputId;
-	private Set<Contact> expectedContacts = inputContacts;
-	private Calendar expectedDate = inputDate;
+	private Set<Contact> inputContacts;
+	private Calendar inputDate;
+	private int expectedId;
+	private Set<Contact> expectedContacts;
+	private Calendar expectedDate;
 
 
 
@@ -45,7 +42,15 @@ public class MeetingImplTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		inputContacts = new HashSet<Contact>();
+		Contact bruce = new ContactImpl(1, "Bruce Willis");
+		inputContacts.add(bruce);
+		inputDate = new GregorianCalendar(2014,02,15);
+		expectedId = inputId;
+		expectedContacts = inputContacts;
+		expectedDate = inputDate;
 		m = new MeetingImpl(inputId, inputDate, inputContacts);
+
 	}
 
 	/**
@@ -54,6 +59,10 @@ public class MeetingImplTest {
 	@After
 	public void tearDown() throws Exception {
 		m = null;
+		inputContacts = null;
+		inputDate = null;
+		expectedContacts = null;
+		expectedDate = null;
 	}
 
 	/**
