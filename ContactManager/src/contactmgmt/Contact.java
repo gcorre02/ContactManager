@@ -14,7 +14,6 @@ package contactmgmt;
  * not), and notes that the user may want to save about them.
  */
 public interface Contact {
-	//TODO <JavaDocs> review javaDocs for every method, test and impl.
 	/**
 	 * Returns the ID of the contact.
 	 *

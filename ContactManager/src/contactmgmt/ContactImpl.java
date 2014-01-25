@@ -77,7 +77,7 @@ public class ContactImpl implements Contact {
 	 */
 	@Override
 	public boolean equals(Object inputContact){
-		//every inputContact field needs casting because the overriden .equals only takes object (TODO <Important> i wonder if overloading is possible)
+		//every inputContact field needs casting because the overriden .equals only takes object, note: was having trouble trying to just overload it.
 		if(this.id == ((ContactImpl) inputContact).getId()){
 			if(this.name.equals(((ContactImpl) inputContact).getName())){
 				if(this.notes.equals(((ContactImpl) inputContact).getNotes())){

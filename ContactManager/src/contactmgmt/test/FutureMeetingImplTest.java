@@ -25,25 +25,27 @@ import contactmgmt.Meeting;
  */
 public class FutureMeetingImplTest {
 
-	
+
 	private Meeting fm;
-	private int inputId = 1;
-	private Set<Contact> inputContacts = new HashSet<Contact>();
-	private Calendar inputDate = new GregorianCalendar(2014,02,15);
-	Contact bruce = new ContactImpl(1, "Bruce Willis");
-	//inputContacts.add(bruce);
-	
-	private int expectedId = inputId;
-	private Set<Contact> expectedContacts = inputContacts;
-	private Calendar expectedDate = inputDate;
-	
+	int inputId = 1;
+	int expectedId = inputId;
+	Calendar inputDate = new GregorianCalendar(2014,02,15);
+	Set<Contact> inputContacts;
+	Set<Contact> expectedContacts;
+	Calendar expectedDate;
 	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		inputContacts = new HashSet<Contact>();
+		Contact bruce = new ContactImpl(1, "Bruce Willis");	
+		inputContacts.add(bruce);
+		expectedContacts = inputContacts;
+		expectedDate= inputDate;
 		fm = new FutureMeetingImpl(inputId, inputDate, inputContacts);
+
 	}
 
 	/**
@@ -52,6 +54,9 @@ public class FutureMeetingImplTest {
 	@After
 	public void tearDown() throws Exception {
 		fm = null;
+		inputContacts = null;
+		expectedContacts = null;
+		expectedDate = null;
 	}
 
 
