@@ -87,6 +87,9 @@ public class MeetingImplTest {
 	public void testGetContacts() {
 		assertEquals("Meeting not returning contacts or Contructor not instantiating them", expectedContacts, m.getContacts());
 	}
+	/**
+	 * Test method for {@link contactmgmt.MeetingImpl#equals()}.
+	 */
 	@Test
 	public void testEquals() {
 		//input1

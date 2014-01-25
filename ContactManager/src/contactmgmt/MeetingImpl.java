@@ -22,6 +22,7 @@ public class MeetingImpl implements Meeting {
 	protected String notes;
 
 	/**
+	 * Constructor for a general meeting object, it instantiates notes but has no retriever for them, it is so for better casting compatibility.
 	 * @param contacts 
 	 * @param date 
 	 * @param inputId 
@@ -57,9 +58,13 @@ public class MeetingImpl implements Meeting {
 	public Set<Contact> getContacts() {
 		return this.contacts;
 	}
-
+	/**
+	 * Overrides @see java.lang.Object#toString()
+	 * Restructures each value in the object in order to print it according to the format "id, M, [all contact names concatenated], date, notes"
+	 */
 	@Override
 	public String toString(){
+		//parses the dates values
 		Calendar meetingDate = this.getDate();
 		String month = ((Integer)meetingDate.get(Calendar.MONTH)).toString();
 		String day = ((Integer)meetingDate.get(Calendar.DAY_OF_MONTH)).toString();
@@ -71,8 +76,9 @@ public class MeetingImpl implements Meeting {
 		}
 		String date = ((Integer)meetingDate.get(Calendar.YEAR)).toString()+ month+ day;
 
-		String contacts ="";// need to remove white spaces!
 		//concatenate contact names
+		String contacts ="";
+		
 		Set<Contact> meetingContacts = this.getContacts();
 		Iterator<Contact> iter = meetingContacts.iterator();
 		while(iter.hasNext()){
@@ -83,6 +89,7 @@ public class MeetingImpl implements Meeting {
 			}
 			contacts = contacts + " ";
 		}
+		//only returns notes if the notes string is not empty, adds a comma.
 		String notes="";
 		if(this.notes.length()>0){
 			notes=","+this.notes;
@@ -92,6 +99,12 @@ public class MeetingImpl implements Meeting {
 		return this.getId()+ ",M," + contacts.substring(0,contacts.length()-1) +","+date+notes;
 
 	}
+	/**
+	 * 
+	 * Overrides @see java.lang.Object#equals(java.lang.Object)
+	 * @param inputMeeting the meeting object to compare the current meeting to
+	 * 
+	 */
 	@Override
 	public boolean equals(Object inputMeeting){
 		
@@ -113,6 +126,7 @@ public class MeetingImpl implements Meeting {
 		//convert to list so they can be compared
 		List<ContactImpl> thisContactsList = new ArrayList<ContactImpl>(thisContacts);
 		List<ContactImpl> overridenContactsList = new ArrayList<ContactImpl>(overridenContacts);
+		
 		//main
 		if(thisContactsList.containsAll(overridenContactsList)){ 
 			if(this.date.equals(((MeetingImpl) inputMeeting).getDate())){

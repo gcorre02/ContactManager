@@ -10,12 +10,11 @@ package contactmgmt;
 import java.util.Calendar;
 import java.util.Set;
 /**
- * A class to represent meetings
+ * A class to represent meetings.
  *
  * Meetings have unique IDs, scheduled date and a list of participating contacts
  */
 public interface Meeting {
-	//TODO <JavaDocs> review javaDocs for every method, test and impl.
 	/**
 	 * Returns the id of the meeting.
 	 *
