@@ -224,7 +224,22 @@ public class ContactManagerImplTest {
 		//test
 		assertEquals("",expectedList.get(0).getId(), inputList.get(0).getId());
 	}
-
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getFutureMeetingList(contactmgmt.Contact)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testGetFutureMeetingListExceptionContact() {
+		//TODO <Current> <Exception Handling> @throws IllegalArgumentException if the contact does not exist
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingListContact>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		Contact contactInput = new ContactImpl(79, "Kimosabe");
+		//test
+		cm.getFutureMeetingList(contactInput);
+		//debug
+		
+	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getFutureMeetingList(java.util.Calendar)}.
 	 */
@@ -401,10 +416,10 @@ public class ContactManagerImplTest {
 		debugStr = "<<<<<<<<<<<<<<<<<<<<getFutureMeetingIdBelongsPastMeeting>>>>>>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
-		
+
 		//input
 		int id = 2;
-		
+
 		//test
 		cm.getFutureMeeting(id);
 	}
@@ -418,10 +433,10 @@ public class ContactManagerImplTest {
 		debugStr = "<<<<<<<<<<<<<<<<<<<<getPastMeetingIdBelongsPastMeeting>>>>>>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
-		
+
 		//input
 		int id = 0;
-		
+
 		//test
 		cm.getPastMeeting(id);
 	}
@@ -434,7 +449,7 @@ public class ContactManagerImplTest {
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<getPastMeetingIdBelongsPastMeeting>>>>>>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
-		
+
 		//input
 		Set<Contact> inputContacts = new HashSet<Contact>();
 		inputContacts.add(new ContactImpl(3,"Fritz"));

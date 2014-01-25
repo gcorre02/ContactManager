@@ -57,7 +57,6 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) throws IllegalArgumentException {
-		//TODO <Current> impl
 		//exceptions
 		dm = new DatesManagerImpl();
 		if(dm.checkDateIsInThePast(date)){
@@ -143,6 +142,14 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
 		//TODO <After Deliverable Is Ready> override equals under contact and meeting for easier comparison!
+		//TODO <Current> <Exception Handling> @throws IllegalArgumentException if the contact does not exist
+		//exception
+		vm = new ValuesManagerImpl();
+		if(vm.checkContactNameIsUnique(paf.getContactsNameIndex(), contact.getName())){
+			System.out.println("contact requested does not exist  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " contact requested "  +contact.getName()); 
+			throw new IllegalArgumentException();
+		}
+		//main
 		List<Meeting> outputList = new ArrayList<Meeting>();
 		Set<FutureMeeting> inputSet = paf.getAllFutureMeetings();
 		Iterator<FutureMeeting> iter = inputSet.iterator();
