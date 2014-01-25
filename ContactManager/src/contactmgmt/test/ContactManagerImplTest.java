@@ -229,7 +229,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testGetFutureMeetingListExceptionContact() {
-		//TODO <Current> <Exception Handling> @throws IllegalArgumentException if the contact does not exist
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingListContact>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
@@ -237,8 +236,6 @@ public class ContactManagerImplTest {
 		Contact contactInput = new ContactImpl(79, "Kimosabe");
 		//test
 		cm.getFutureMeetingList(contactInput);
-		//debug
-		
 	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getPastMeetingList(contactmgmt.Contact)}.
@@ -252,7 +249,6 @@ public class ContactManagerImplTest {
 		Contact contactInput = new ContactImpl(79, "Older Kimosabe");
 		//test
 		cm.getFutureMeetingList(contactInput);
-		//debug
 		
 	}
 	/**
