@@ -101,6 +101,18 @@ public class ContactManagerImplTest {
 	public final void testContactManagerImplIsInstantiatedCorrectly() {
 		assertTrue(cm instanceof ContactManagerImpl);
 	}
+	
+	@Test
+	public final void checkThatCMcanStartUpWithoutAContactsFile(){
+		//does what it says on the tin
+		//setup
+		cm = null;
+		File file = new File(pathToFile);
+		file.delete();
+		//test
+		cm = new ContactManagerImpl();	
+		assertTrue(cm.getPaf().getAllMeetings().isEmpty());
+	}
 
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addFutureMeeting(java.util.Set, java.util.Calendar)}.
