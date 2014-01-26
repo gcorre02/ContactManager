@@ -382,12 +382,19 @@ public class ContactManagerImpl implements ContactManager {
 			throw new NullPointerException();
 		}
 		vm = new ValuesManagerImpl();
-		if(vm.checkContactNameIsUnique(paf.getContactsNameIndex(), name)){
-			//TODO <Important> make sure that jack gets all the contacts that contain jack, even if there 's none with just jack
+		
+		//need to check substring name against all contacts with the possible substring as part of it
+		boolean checkNameString = false;
+		for(String current : paf.getContactsNameIndex()){
+			if(current.contains(name)){
+				checkNameString = true;
+			}
+		}
+		if(!checkNameString){
 			System.out.println("Argument inputed is not part of ContactsIndex: " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " w/ param: String Name"); 
 			throw new IllegalArgumentException();
 		}
-
+		
 		//main code
 		Set<Contact> returnContacts = new HashSet<Contact>();
 		Set<Contact> inputContacts = paf.getAllContacts();
