@@ -28,8 +28,8 @@ public class DatesManagerImpl implements DatesManager {
 	 * @see myTools.DatesManager#generateCalendarItem(int, int, int)
 	 */
 	@Override
-	public Calendar generateCalendarItem(int year, int month, int day) {
-		Calendar date = new GregorianCalendar(year,month,day);
+	public Calendar generateCalendarItem(int year, int month, int day, int hour,int minute) {
+		Calendar date = new GregorianCalendar(year,month,day, hour, minute); 
 		return date;
 	}
 

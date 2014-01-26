@@ -328,7 +328,9 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 				int year = Integer.parseInt(rowSplit[3].substring(0,4));
 				int month = Integer.parseInt(rowSplit[3].substring(4,6));
 				int day = Integer.parseInt(rowSplit[3].substring(6,8));
-				date = dm.generateCalendarItem(year, month, day);
+				int hour = Integer.parseInt(rowSplit[3].substring(8,10));
+				int minute = Integer.parseInt(rowSplit[3].substring(10,12));
+				date = dm.generateCalendarItem(year, month, day,hour,minute);
 
 				String[] contactNames = rowSplit[2].split(" ");
 				Set<Contact> contactSet = new HashSet<Contact>();

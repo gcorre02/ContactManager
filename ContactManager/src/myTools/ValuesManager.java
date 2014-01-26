@@ -6,7 +6,6 @@ package myTools;
 import java.util.List;
 import java.util.Set;
 
-import contactmgmt.Contact;
 import contactmgmt.Meeting;
 
 /**

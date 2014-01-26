@@ -49,9 +49,9 @@ public class ContactManagerImplTest {
 		try {
 			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
 			//Write stub file
-			writer.println("0,M,HansGruber JohnMcClane,20140513");
-			writer.println("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
-			writer.println("2,M,HansGruber JohnMcClane,20130905");
+			writer.println("0,M,HansGruber JohnMcClane,201405130530");
+			writer.println("1,M,HansGruber JohnMcClane,201310050530,Nakatomi Plaza at 9pm");
+			writer.println("2,M,HansGruber JohnMcClane,201309050530");
 			writer.println("0,C,Hans Gruber");
 			writer.println("1,C,John Mc Clane");
 			writer.println("2,C,Tony");
@@ -274,7 +274,7 @@ public class ContactManagerImplTest {
 		System.out.println(debugStr);
 		//expected
 		List<FutureMeeting> expectedList = new ArrayList<FutureMeeting>();
-		Calendar expectedDate = new GregorianCalendar(2014,5,13);
+		Calendar expectedDate = new GregorianCalendar(2014,5,13,05,30);
 		Set<Contact> expectedContacts = new HashSet<Contact>();
 		Calendar inputDate = expectedDate;
 		expectedContacts.add(new ContactImpl(0,"Hans Gruber"));
@@ -297,8 +297,8 @@ public class ContactManagerImplTest {
 		System.out.println(debugStr);
 		//expected
 		List<PastMeetingImpl> expectedList = new ArrayList<PastMeetingImpl>();
-		Calendar expectedDate = new GregorianCalendar(2013,9,05);
-		Calendar secondExpectedDate = new GregorianCalendar(2013,10,05);
+		Calendar expectedDate = new GregorianCalendar(2013,9,05,05,30);
+		Calendar secondExpectedDate = new GregorianCalendar(2013,10,05,05,30);
 		Set<Contact> expectedContacts = new HashSet<Contact>();
 		Contact inputContact = new ContactImpl(0,"Hans Gruber");
 		expectedContacts.add(inputContact);
@@ -716,9 +716,9 @@ public class ContactManagerImplTest {
 
 		//create array of expected values
 		List<String> expectedCsvRows = new ArrayList<String>();
-		expectedCsvRows.add("0,M,HansGruber JohnMcClane,20140513");
-		expectedCsvRows.add("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
-		expectedCsvRows.add("2,M,HansGruber JohnMcClane,20130905");
+		expectedCsvRows.add("0,M,HansGruber JohnMcClane,201405130530");
+		expectedCsvRows.add("1,M,HansGruber JohnMcClane,201310050530,Nakatomi Plaza at 9pm");
+		expectedCsvRows.add("2,M,HansGruber JohnMcClane,201309050530");
 		expectedCsvRows.add("0,C,Hans Gruber");
 		expectedCsvRows.add("1,C,John Mc Clane");
 		expectedCsvRows.add("2,C,Tony");

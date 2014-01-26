@@ -60,8 +60,8 @@ public class DatesManagerImplTest {
 	 */
 	@Test
 	public final void testGenerateCalendarItem() {
-		Calendar expectedDate = new GregorianCalendar(2014,12,27);
-		assertEquals("Method is not returning a new calendar",expectedDate, dm.generateCalendarItem(2014, 12, 27));
+		Calendar expectedDate = new GregorianCalendar(2014,12,27,5,45);
+		assertEquals("Method is not returning a new calendar",expectedDate, dm.generateCalendarItem(2014, 12, 27,5,45));
 	}
 	@Test
 	public final void testCompareDatesReturnsTrueIfFirstDateComesBeforeSecondDate(){

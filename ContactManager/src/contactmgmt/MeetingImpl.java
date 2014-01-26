@@ -75,13 +75,21 @@ public class MeetingImpl implements Meeting {
 		Calendar meetingDate = this.getDate();
 		String month = ((Integer)meetingDate.get(Calendar.MONTH)).toString();
 		String day = ((Integer)meetingDate.get(Calendar.DAY_OF_MONTH)).toString();
+		String hour = ((Integer)meetingDate.get(Calendar.HOUR_OF_DAY)).toString();
+		String minute = ((Integer)meetingDate.get(Calendar.MINUTE)).toString();
 		if(month.length()==1){
 			month = "0"+month;
 		}
 		if(day.length()==1){
 			day = "0"+day;
 		}
-		String date = ((Integer)meetingDate.get(Calendar.YEAR)).toString()+ month+ day;
+		if(hour.length()==1){
+			hour = "0"+hour;
+		}
+		if(minute.length()==1){
+			minute = "0"+minute;
+		}
+		String date = ((Integer)meetingDate.get(Calendar.YEAR)).toString()+ month+ day+hour+minute;
 
 		//concatenate contact names
 		String contacts ="";

@@ -44,9 +44,9 @@ public class PopulatorAndFlusherImplTest {
 		try {
 			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
 			//write stub file
-			writer.println("0,M,HansGruber JohnMcClane,20140513");
-			writer.println("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
-			writer.println("2,M,HansGruber JohnMcClane,20130905");
+			writer.println("0,M,HansGruber JohnMcClane,201405130530");
+			writer.println("1,M,HansGruber JohnMcClane,201310050530,Nakatomi Plaza at 9pm");
+			writer.println("2,M,HansGruber JohnMcClane,201309050530");
 			writer.println("0,C,Hans Gruber");
 			writer.println("1,C,John Mc Clane");
 			writer.println("2,C,Tony");
@@ -99,9 +99,9 @@ public class PopulatorAndFlusherImplTest {
 	public final void testReadFromFileReturnsAllRowsToCsvRows(){
 
 		List<String> expectedCsvRows = new ArrayList<String>();
-		expectedCsvRows.add("0,M,HansGruber JohnMcClane,20140513");
-		expectedCsvRows.add("1,M,HansGruber JohnMcClane,20131005,Nakatomi Plaza at 9pm");
-		expectedCsvRows.add("2,M,HansGruber JohnMcClane,20130905");
+		expectedCsvRows.add("0,M,HansGruber JohnMcClane,201405130530");
+		expectedCsvRows.add("1,M,HansGruber JohnMcClane,201310050530,Nakatomi Plaza at 9pm");
+		expectedCsvRows.add("2,M,HansGruber JohnMcClane,201309050530");
 		expectedCsvRows.add("0,C,Hans Gruber");
 		expectedCsvRows.add("1,C,John Mc Clane");
 		expectedCsvRows.add("2,C,Tony");
@@ -128,9 +128,9 @@ public class PopulatorAndFlusherImplTest {
 		
 		//create array of expected values
 		List<String> expectedCsvRows = new ArrayList<String>();
-		expectedCsvRows.add("0,M,JohnMcClane HansGruber,20140513");
-		expectedCsvRows.add("1,M,JohnMcClane HansGruber,20131005,Nakatomi Plaza at 9pm");
-		expectedCsvRows.add("2,M,JohnMcClane HansGruber,20130905");
+		expectedCsvRows.add("0,M,JohnMcClane HansGruber,201405130530");
+		expectedCsvRows.add("1,M,JohnMcClane HansGruber,201310050530,Nakatomi Plaza at 9pm");
+		expectedCsvRows.add("2,M,JohnMcClane HansGruber,201309050530");
 		expectedCsvRows.add("0,C,Hans Gruber");
 		expectedCsvRows.add("1,C,John Mc Clane");		
 		expectedCsvRows.add("2,C,Tony");
@@ -325,7 +325,7 @@ public class PopulatorAndFlusherImplTest {
 
 		Iterator<FutureMeeting> iter = inputMeetings.iterator();
 
-		Calendar date = new GregorianCalendar(2014,05,13);
+		Calendar date = new GregorianCalendar(2014,05,13,05,30);
 		if(iter.hasNext()){
 			while(iter.hasNext()){
 				FutureMeeting current = iter.next();
