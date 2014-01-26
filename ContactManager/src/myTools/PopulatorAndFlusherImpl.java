@@ -384,7 +384,6 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 
 	@Override
 	public void setAllFutureMeetings(Set<Meeting> allMeetings) {
-		//TODO <After Deliverable Is Ready> create a set method that populates all meetings in one go, recognising if it is in the past or not and returns any meeting
 		//Instantiate datesmanager for date comparison
 		DatesManager dm = new DatesManagerImpl();
 		//

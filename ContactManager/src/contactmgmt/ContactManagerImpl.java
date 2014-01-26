@@ -141,7 +141,6 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
-		//TODO <After Deliverable Is Ready> override equals under contact and meeting for easier comparison!
 		//exception
 		vm = new ValuesManagerImpl();
 		if(vm.checkContactNameIsUnique(paf.getContactsNameIndex(), contact.getName())){

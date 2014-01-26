@@ -38,7 +38,7 @@ public class ContactManagerImplTest {
 	String pathToFile = "."+ File.separator +"contactsTest.csv";
 	PopulatorAndFlusher paf;
 	ValuesManager vm;
-	String debugStr ="";
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -84,11 +84,6 @@ public class ContactManagerImplTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		//debug
-		cm.getPaf().printSet(cm.getPaf().getAllFutureMeetings());
-		cm.getPaf().printSet(cm.getPaf().getAllPastMeetings());
-		cm.getPaf().printSet(cm.getPaf().getAllContacts());
-		System.out.println(debugStr+"\n");
 		//tearDown
 		cm = null;
 		paf = null;
@@ -122,9 +117,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testAddFutureMeetingIsAdded() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testAddFutureMeetingIsAdded>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//input variables
 		Set<Contact> inputContacts = new HashSet<Contact>();
 		inputContacts.add(new ContactImpl(3, "Fritz"));
@@ -145,9 +137,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetPastMeeting() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetPastMeeting>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		Calendar expectedDate = new GregorianCalendar(2013,9,5);
 		Calendar secondExpectedDate = new GregorianCalendar(2013,10,5);
@@ -170,9 +159,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetFutureMeeting() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeeting>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		Calendar expectedDate = new GregorianCalendar(2014,5,13);
 		Set<Contact> expectedContacts = new HashSet<Contact>();
@@ -191,9 +177,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetMeeting() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetMeeting>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		Calendar expectedDate = new GregorianCalendar(2013,9,5);
 		Calendar secondExpectedDate = new GregorianCalendar(2013,10,5);
@@ -222,9 +205,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetFutureMeetingListContact() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingListContact>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		List<FutureMeeting> expectedList = new ArrayList<FutureMeeting>();
 		Calendar expectedDate = new GregorianCalendar(2014,5,13);
@@ -244,9 +224,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testGetFutureMeetingListExceptionContact() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingListContact>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		Contact contactInput = new ContactImpl(79, "Kimosabe");
 		//test
@@ -257,9 +234,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testGetPastMeetingListExceptionContact() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingListContact>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		Contact contactInput = new ContactImpl(79, "Older Kimosabe");
 		//test
@@ -271,11 +245,7 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetFutureMeetingListCalendar() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingCalendar>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
-
+		
 		//expected
 		List<FutureMeeting> expectedList = new ArrayList<FutureMeeting>();
 		Calendar expectedDate = new GregorianCalendar(2014,5,13,05,30);
@@ -294,8 +264,7 @@ public class ContactManagerImplTest {
 
 		//input
 		List<Meeting> inputList = cm.getFutureMeetingList(inputDate);
-		//debug
-		System.out.println("sorted output list > " + inputList);
+		
 		//test
 		assertEquals("",expectedList.get(0).getId(), inputList.get(0).getId());
 		assertEquals("",expectedList.get(1).getId(), inputList.get(1).getId());
@@ -306,10 +275,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetPastMeetingList() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetPastMeetingList>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		List<PastMeetingImpl> expectedList = new ArrayList<PastMeetingImpl>();
 		Calendar expectedDate = new GregorianCalendar(2013,9,05,05,30);
@@ -328,12 +293,6 @@ public class ContactManagerImplTest {
 		for(PastMeeting iter :	cm.getPastMeetingList(inputContact)){
 			inputList.add((PastMeetingImpl)iter);
 		}
-		//debug
-		vm = new ValuesManagerImpl();
-		System.out.println("<<<<<<<<<<<<<<<<<<inputList>>>>>>>>>>>>>>>>>>");
-		paf.printlist(inputList);
-		System.out.println("<<<<<<<<<<<<<<<<<<expectedList>>>>>>>>>>>>>>>>>>");
-		paf.printlist(expectedList);
 		//test
 		assertTrue(expectedList.containsAll(inputList));
 
@@ -344,10 +303,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testAddNewPastMeeting() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeeting>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		vm = new ValuesManagerImpl();
 		Set<Contact> expectedContacts = new HashSet<Contact>();
@@ -370,10 +325,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testaddNewPastMeetingEmptyContacts() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingEmpty>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		//input
 		Set<Contact> inputContacts = new HashSet<Contact>();
@@ -396,9 +347,7 @@ public class ContactManagerImplTest {
 
 		String text = "";
 		Calendar date = new GregorianCalendar(1995,3,12);
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingSomeContactsDontExist>>>>>>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
+		
 		//test
 		cm.addNewPastMeeting(inputContacts, date, text);//one of the contacts doesn't exist
 	}
@@ -407,10 +356,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testaddNewPastMeetingNull() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingNull>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		//input
 		Set<Contact> inputContacts = new HashSet<Contact>();
@@ -429,10 +374,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testaddNewPastMeetingDateException() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingDateException>>>>>>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		//input
 		Set<Contact> inputContacts = new HashSet<Contact>();
@@ -449,10 +390,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testGetFutureMeetingIdBelongsPastMeeting() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<getFutureMeetingIdBelongsPastMeeting>>>>>>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 
 		//input
@@ -466,10 +403,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testGetPastMeetingIdBelongsPastMeeting() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<getPastMeetingIdBelongsPastMeeting>>>>>>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 
 		//input
@@ -483,11 +416,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testAddFutureMeetingDateIsInThePast() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<getPastMeetingIdBelongsPastMeeting>>>>>>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
-
 		//input
 		Set<Contact> inputContacts = new HashSet<Contact>();
 		inputContacts.add(new ContactImpl(3,"Fritz"));
@@ -500,11 +428,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testAddFutureMeetingContactUnknown() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<getPastMeetingIdBelongsPastMeeting>>>>>>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
-
 		//input
 		Set<Contact> inputContacts = new HashSet<Contact>();
 		inputContacts.add(new ContactImpl(34,"Jonah"));
@@ -517,11 +440,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testAddFutureMeetingContactsIsEmpty() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testAddFutureMeetingContactsIsEmpty>>>>>>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
-
 		//input
 		Set<Contact> inputContacts = new HashSet<Contact>();
 		Calendar inputDate = new GregorianCalendar(2015,4,25);
@@ -538,9 +456,6 @@ public class ContactManagerImplTest {
 		Set<Contact> realInputContacts = new HashSet<Contact>();
 		String text = "";
 		Calendar dateInTheFuture = new GregorianCalendar();
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewPastMeetingWrongDate>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//test
 		cm.addNewPastMeeting(realInputContacts, dateInTheFuture, text);//date is in the future
 	}
@@ -550,10 +465,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testAddMeetingNotes() {
-		//test stub :
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotes>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		String expectedMeetingString = "top of Nakatomi Building";
 		//input
@@ -567,9 +478,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testAddMeetingNotesNullExceptionHandler() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesNull>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//test
 		String inputNotes = null;
 		cm.addMeetingNotes(2, inputNotes);
@@ -579,9 +487,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testAddMeetingNotesIllegealArgsExceptionExceptionHandler() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesArgs>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//test
 		cm.addMeetingNotes(8, "discussed the blueprints for the nakatomi building construction");
 	}
@@ -590,9 +495,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalStateException.class)
 	public final void testAddMeetingNotesIllegealIllegalStateException() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addMeetingNotesIllegalStateException>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//test
 		cm.addMeetingNotes(0, "ze germans are coming");
 	}
@@ -602,9 +504,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testAddNewContact() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<addNewContact>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		List<Integer> inputIndex = cm.getPaf().getContactsIdIndex();
 		vm = new ValuesManagerImpl();
@@ -618,9 +517,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testAddNewContactIllegalStringInput() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testAddNewContactIllegalStringInput>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//test
 		cm.addNewContact(null, "just some notes on the design of nakatomi's safe");
 		cm.addNewContact("Fritz", null);
@@ -632,10 +528,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetContactsIntArray() {
-		//TODO <After Deliverable is Ready> review tests to see where assertArrayEquals works <<< need to investigate Collections.sort()
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<getContactsIntArray>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		List<String> expectedContactList = new ArrayList<String>();
 		expectedContactList.add("3,C,Fritz");
@@ -660,8 +552,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testGetContactsIntArrayArgs() {
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetContactsIntArrayArgs>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//test
 		//one of ids[] not correspond to real contact
 		cm.getContacts(99,1,2);
@@ -671,9 +561,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetContactsString() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetContactsString>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		List<String> expectedContactList = new ArrayList<String>();
 		expectedContactList.add("13,C,Fritz Lang");
@@ -698,9 +585,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testGetContactsShortNameDoesntExist() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetContactsShortNameDoesntExist>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		List<String> expectedContactList = new ArrayList<String>();
 		expectedContactList.add("31,C,Salamander Lang");
@@ -725,9 +609,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testGetContactsStringExceptionHandler() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionNull>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//test
 		String name = null;
 		cm.getContacts(name);
@@ -737,9 +618,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testGetContactsStringIllegealArgsExceptionExceptionHandler() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContactsExceptionArgs>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//test
 		cm.getContacts("Jackson Rabbit");
 	}
@@ -748,9 +626,6 @@ public class ContactManagerImplTest {
 	 */
 	@Test
 	public final void testFlush() {
-		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<flush>>>>>>>>>>>>>>>";
-		System.out.println(debugStr);
 		//expected
 		//empty the file :
 		File file = new File(pathToFile);
@@ -787,13 +662,6 @@ public class ContactManagerImplTest {
 		List<MeetingImpl> expectedMeetings = expectedPaf.setAllMeetings(expectedCsvRows);
 		//input
 		List<MeetingImpl> inputMeetings = paf.setAllMeetings(cm.getPaf().getCsvRows());
-
-		//debug
-		System.out.println("<<<<<<<<<<<<<<<<<expected csv rows>>>>>>>>>>>>>>>>>");
-		paf.printlist(expectedMeetings);
-		System.out.println("<<<<<<<<<<<<<<<<<input csv rows>>>>>>>>>>>>>>>>>");
-		paf.printlist(inputMeetings);
-		System.out.println("<<<<<<<<<<<<<<<<<end debug>>>>>>>>>>>>>>>>>");
 
 		//Assert write works
 		assertTrue("Write operation not working : ", expectedMeetings.containsAll(inputMeetings));

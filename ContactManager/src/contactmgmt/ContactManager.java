@@ -7,8 +7,6 @@ import java.util.Set;
  * A class to manage your contacts and meetings.
  */
 public interface ContactManager {
-	//TODO <After Deliverable is Ready> make sure outputCsv file can be read by a csvReader program
-	//TODO <After Deliverable is Ready> increase performance by accessing the file and not keeping it in memory all the time (check which version is faster : processing time vs ram weight)
 	/**
 	 * Add a new meeting to be held in the future.
 	 *

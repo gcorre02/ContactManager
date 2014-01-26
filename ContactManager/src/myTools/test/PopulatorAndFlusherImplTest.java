@@ -64,19 +64,6 @@ public class PopulatorAndFlusherImplTest {
 		}
 		paf = new PopulatorAndFlusherImpl(pathToFile);
 
-		/*		not having to write these methods at setup is the test for the constructor's behaviour
-		 * 	
-		 *		paf.setAllContacts(paf.getCsvRows());
-		 *		paf.setAllMeetings(paf.getCsvRows());
-		 *
-		 *		paf.setMeetingsIdIndex(paf.getCsvRows());
-		 *		paf.setAllPastMeetings(paf.getAllMeetings()); 
-		 *		paf.setAllFutureMeetings(paf.getAllMeetings());
-		 *		paf.setPastMeetingsIdIndex(paf.getAllPastMeetings());
-		 *		paf.setFutureMeetingsIdIndex(paf.getAllFutureMeetings());
-		 *		paf.setContactsIdIndex(paf.getCsvRows());
-		 *
-		 */
 	}
 
 	/**
@@ -148,12 +135,6 @@ public class PopulatorAndFlusherImplTest {
 		//populate array with file elements
 		paf.readFromFile(pathToFile);
 		List<String> inputRows = paf.getCsvRows();
-		//debug
-		System.out.println("<<<<<<<<<<<<<<<<<expected csv rows>>>>>>>>>>>>>>>>>");
-		paf.printlist(expectedCsvRows);
-		System.out.println("<<<<<<<<<<<<<<<<<input csv rows>>>>>>>>>>>>>>>>>");
-		paf.printlist(inputRows);
-		System.out.println("<<<<<<<<<<<<<<<<<end debug>>>>>>>>>>>>>>>>>");
 		//expected
 		PopulatorAndFlusher expectedPaf = new PopulatorAndFlusherImpl(pathToFile);
 		List<MeetingImpl> expectedMeetings = expectedPaf.setAllMeetings(expectedCsvRows);
@@ -176,7 +157,6 @@ public class PopulatorAndFlusherImplTest {
 		paf.setContactsIdIndex(paf.getCsvRows());
 		assertEquals("", expectedIdIndex , paf.getContactsIdIndex());
 	}
-	//TODO <After Deliverable Is Ready>  try making the id the ref to the actual object so it can be called directly!!!
 	/**
 	 * Test method for {@link myTools.PopulatorAndFlusherImpl#setMeetingsIdIndex(java.util.List)}.
 	 */

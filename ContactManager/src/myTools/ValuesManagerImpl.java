@@ -132,8 +132,9 @@ public class ValuesManagerImpl implements ValuesManager {
 		//return
 		return outputMeetings;
 	}
+	
 	/*
-	 * Recursive method that helps reorganise a set by date.
+	 * Private recursive method that helps reorganise a set by date.
 	 * 
 	 */
 	private List<Meeting> recursiveMeetingDateSort(Set<Meeting> inputMeetings, List<Meeting> outputMeetings){

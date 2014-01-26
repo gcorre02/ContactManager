@@ -12,7 +12,7 @@ import java.util.Calendar;
 public interface DatesManager {
 	/*
 	 *
-	 * generateCalendarItem() TODO <After Deliverable Is Ready> consider adding a range in time, not just a date// later
+	 * generateCalendarItem() 
 	 * 
 	 */
 	
@@ -25,7 +25,7 @@ public interface DatesManager {
 	
 	/**
 	 * 
-	 * transforms the int inputs into a calendar object of type GregorianCalendar. TODO <After Deliverable Is Ready>  review this method to return an actual interval in time, not a static one
+	 * transforms the int inputs into a calendar object of type GregorianCalendar. 
 	 * @param year the year to add to the Calendar object
 	 * @param month the month to add to the Calendar object
 	 * @param day the day to add to the Calendar object
