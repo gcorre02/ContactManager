@@ -58,7 +58,7 @@ public class ContactManagerImplTest {
 			writer.println("3,C,Fritz");
 			writer.println("4,C,Harry Ellis");
 			writer.println("5,C,Theo theDriver");
-			writer.println("6,C,Holly Genero");
+			writer.println("6,C,Holly Genero, the mother");
 			writer.println("7,C,Karl");
 			writer.println("8,C,Klaus");
 			writer.println("12,C,Barefoot Grub Patch");
@@ -737,7 +737,7 @@ public class ContactManagerImplTest {
 		expectedCsvRows.add("3,C,Fritz");		
 		expectedCsvRows.add("4,C,Harry Ellis");
 		expectedCsvRows.add("5,C,Theo theDriver");
-		expectedCsvRows.add("6,C,Holly Genero");
+		expectedCsvRows.add("6,C,Holly Genero, the mother");
 		expectedCsvRows.add("7,C,Karl");
 		expectedCsvRows.add("8,C,Klaus");
 		expectedCsvRows.add("12,Barefoot Grub Patch");
@@ -767,6 +767,11 @@ public class ContactManagerImplTest {
 
 		//Assert write works
 		assertTrue("Write operation not working : ", expectedMeetings.containsAll(inputMeetings));
+	}
+	@Test
+	public final void checkContactNotesArePassedToTheObject(){
+		Set<Contact> testContact = cm.getContacts(6);
+		assertEquals(testContact.toString(), "[6,C,Holly Genero, the mother]");
 	}
 
 }

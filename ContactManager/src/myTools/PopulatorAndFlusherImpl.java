@@ -201,7 +201,11 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		for(String str : csvRows){
 			String rowSplit[] = str.split(",");
 			if(rowSplit[1].equals("C")){
-				allContacts.add(new ContactImpl((Integer.parseInt(rowSplit[0])),rowSplit[2]));
+				if(rowSplit.length==3){
+					allContacts.add(new ContactImpl((Integer.parseInt(rowSplit[0])),rowSplit[2]));
+				} else {
+					allContacts.add(new ContactImpl((Integer.parseInt(rowSplit[0])),rowSplit[2], rowSplit[3]));
+				}
 			}
 		}
 		//populate set

@@ -24,21 +24,7 @@ import myTools.ValuesManagerImpl;
  */
 public class ContactManagerImpl implements ContactManager {
 
-	/*
-	 * variables that might need declaring
-	private List<Integer> pastMeetingsIdIndex;
-	private List<Integer> futureMeetingsIdIndex;
-	private List<Integer> contactsIdIndex;
-	private List<String> contactsNameIndex;
-	private Set<Contact> allContacts;
-	private Set<Meeting> allMeetings;
-	private Set<PastMeeting> allPastMeetings;
-	private Set<FutureMeeting> allFutureMeetings;
-	private List<String> csvRows;
-	private List<Integer> pastMeetingsWithNotesIndex;
-
-	 */
-
+	
 	//declare inner variables:
 	private PopulatorAndFlusher paf;
 	private ValuesManager vm;
@@ -215,7 +201,6 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public List<PastMeeting> getPastMeetingList(Contact contact) {
-		//TODO <Important> returned list must be sorted by date !
 		//Exception
 		vm = new ValuesManagerImpl();
 		if(vm.checkContactNameIsUnique(paf.getContactsNameIndex(), contact.getName())){

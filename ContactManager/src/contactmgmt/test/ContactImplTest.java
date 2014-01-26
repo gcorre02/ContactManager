@@ -46,7 +46,7 @@ public class ContactImplTest {
 	public void tearDown() throws Exception {
 		ci = null;
 	}
-	//TODO <Important> need to test contacts with notes, haven't done that yet
+
 	/**
 	 * Test method for {@link contactmgmt.ContactImpl#ContactImpl()}.
 	 */

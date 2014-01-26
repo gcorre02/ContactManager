@@ -24,6 +24,17 @@ public class ContactImpl implements Contact {
 		this.name = name;
 		this.notes = "";
 	}
+	/**
+	 * constructor for the object ContactImpl
+	 * @param name of the contact
+	 * @param id of the object
+	 * @param notes the notes associated with the contact
+	 */
+	public ContactImpl(int id, String name,String notes) {
+		this.id = id;
+		this.name = name;
+		this.notes = notes;
+	}
 
 	/* (non-Javadoc)
 	 * @see contactmgmt.Contact#getId()
