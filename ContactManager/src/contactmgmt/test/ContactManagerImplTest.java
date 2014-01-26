@@ -101,7 +101,7 @@ public class ContactManagerImplTest {
 	public final void testContactManagerImplIsInstantiatedCorrectly() {
 		assertTrue(cm instanceof ContactManagerImpl);
 	}
-	
+
 	@Test
 	public final void checkThatCMcanStartUpWithoutAContactsFile(){
 		//does what it says on the tin
@@ -135,7 +135,7 @@ public class ContactManagerImplTest {
 		//test
 		assertTrue("addFutureMeeting not adding the meeting to the contactManager DB", assertResult);
 	}
-	
+
 
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getPastMeeting(int)}.
@@ -261,7 +261,7 @@ public class ContactManagerImplTest {
 		Contact contactInput = new ContactImpl(79, "Older Kimosabe");
 		//test
 		cm.getFutureMeetingList(contactInput);
-		
+
 	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getFutureMeetingList(java.util.Calendar)}.
@@ -272,19 +272,31 @@ public class ContactManagerImplTest {
 		//debug
 		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetFutureMeetingCalendar>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
+
 		//expected
 		List<FutureMeeting> expectedList = new ArrayList<FutureMeeting>();
 		Calendar expectedDate = new GregorianCalendar(2014,5,13,05,30);
+		Calendar expectedDate1 = new GregorianCalendar(2014,5,13,9,23);
 		Set<Contact> expectedContacts = new HashSet<Contact>();
-		Calendar inputDate = expectedDate;
+		Calendar inputDate = new GregorianCalendar(2014,5,13);
 		expectedContacts.add(new ContactImpl(0,"Hans Gruber"));
 		expectedContacts.add(new ContactImpl(1,"John Mc Clane"));
 		FutureMeeting expectedFutureMeeting = new FutureMeetingImpl(0,expectedDate,expectedContacts);
 		expectedList.add(expectedFutureMeeting);
+
+		//add another future meeting with the same date
+		cm.addFutureMeeting(expectedContacts, expectedDate1);
+		FutureMeeting expectedFutureMeeting1 = new FutureMeetingImpl(3,expectedDate1,expectedContacts);
+		expectedList.add(expectedFutureMeeting1);
+
 		//input
 		List<Meeting> inputList = cm.getFutureMeetingList(inputDate);
+		//debug
+		System.out.println("sorted output list > " + inputList);
 		//test
-		assertEquals("",expectedList.get(0).getId(), inputList.get(0).getId());	}
+		assertEquals("",expectedList.get(0).getId(), inputList.get(0).getId());
+		assertEquals("",expectedList.get(1).getId(), inputList.get(1).getId());
+	}
 
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getPastMeetingList(contactmgmt.Contact)}.

@@ -114,12 +114,22 @@ public class ValuesManagerImpl implements ValuesManager {
 	@Override
 	public List<Meeting> sortMeetingsByDate(Set<Meeting> meetings) {
 		Set<Meeting> inputMeetings = new HashSet<Meeting>();
+		
+		//Maintain the integrity of the meetings set.
 		for(Meeting inputMeeting : meetings){
 			inputMeetings.add(inputMeeting);
 		}
-		List<Meeting> outputMeetings = new ArrayList<Meeting>();
-		outputMeetings = recursiveMeetingDateSort(inputMeetings, outputMeetings);
-		System.out.println(outputMeetings);
+		
+		//select and organize the meetings by date
+		List<Meeting> outputMeetings;
+		if(meetings.size()>1){
+			outputMeetings = new ArrayList<Meeting>();
+			outputMeetings = recursiveMeetingDateSort(inputMeetings, outputMeetings);
+		} else{
+			outputMeetings = new ArrayList<Meeting>(inputMeetings);
+		}
+		
+		//return
 		return outputMeetings;
 	}
 	/*

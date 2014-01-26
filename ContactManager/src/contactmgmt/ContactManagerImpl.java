@@ -156,7 +156,6 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
 		//TODO <After Deliverable Is Ready> override equals under contact and meeting for easier comparison!
-		//TODO <Important> returned list must be sorted by date !
 		//exception
 		vm = new ValuesManagerImpl();
 		if(vm.checkContactNameIsUnique(paf.getContactsNameIndex(), contact.getName())){
@@ -164,7 +163,7 @@ public class ContactManagerImpl implements ContactManager {
 			throw new IllegalArgumentException();
 		}
 		//main
-		List<Meeting> outputList = new ArrayList<Meeting>();
+		Set<Meeting> outputList = new HashSet<Meeting>();
 		Set<FutureMeeting> inputSet = paf.getAllFutureMeetings();
 		Iterator<FutureMeeting> iter = inputSet.iterator();
 		while(iter.hasNext()){
@@ -178,27 +177,37 @@ public class ContactManagerImpl implements ContactManager {
 				}
 			}
 		}
-		
-		return outputList;
+		List<Meeting> returnableOutputList = vm.sortMeetingsByDate(outputList);
+		return returnableOutputList ;
 	}
 
 	/* (non-Javadoc)
 	 * @see contactmgmt.ContactManager#getFutureMeetingList(java.util.Calendar)
 	 */
+	@SuppressWarnings("static-access")
 	@Override
 	public List<Meeting> getFutureMeetingList(Calendar date) {
-		//TODO <Important> returned list must be sorted by date !
-		List<Meeting> outputList = new ArrayList<Meeting>();
-		Set<FutureMeeting> inputSet = paf.getAllFutureMeetings();
+		//input values
+		vm = new ValuesManagerImpl();
+		Set<Meeting> outputList = new HashSet<Meeting>();
+		Set<FutureMeeting> inputSet= paf.getAllFutureMeetings();
+		
+		//select meetings with the date on the same day as input date
 		Iterator<FutureMeeting> iter = inputSet.iterator();
 		while(iter.hasNext()){
-			FutureMeeting current = iter.next();
-			if(current.getDate().equals(date)){
+			Meeting current = iter.next();
+			Calendar currentDate = current.getDate();
+			if(currentDate.YEAR==date.YEAR
+					&& currentDate.DAY_OF_MONTH == date.DAY_OF_MONTH
+					&& currentDate.MONTH==date.MONTH){
 				outputList.add(current);
 			}
 		}
-
-		return outputList;
+		
+		//sort values
+		List<Meeting> returnableOutputList = vm.sortMeetingsByDate(outputList);
+		
+		return returnableOutputList;
 	}
 
 	/* (non-Javadoc)
