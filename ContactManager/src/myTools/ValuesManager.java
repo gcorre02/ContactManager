@@ -6,13 +6,13 @@ package myTools;
 import java.util.List;
 import java.util.Set;
 
+import contactmgmt.Contact;
+
 /**
  * @author Guilherme
  *
  */
 public interface ValuesManager {
-	//TODO <JavaDocs> review javaDocs for every method, test and impl.
-	
 
 	/**
 	 * 
@@ -66,6 +66,11 @@ public interface ValuesManager {
 	 */
 	boolean checkContactNameIsUnique(List<String> names, String candidateName);
 
-
+	/**
+	 * 
+	 * @param contacts
+	 * @return
+	 */
+	List<Contact> sortContactsByDate(Set<Contact> contacts);
 
 }

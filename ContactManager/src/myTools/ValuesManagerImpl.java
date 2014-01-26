@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import contactmgmt.Contact;
+
 
 /**
  * @author Guilherme
@@ -102,6 +104,18 @@ public class ValuesManagerImpl implements ValuesManager {
 		}
 		System.out.println("Ending printing of this list" + listName);
 
+	}
+	/* (non-Javadoc)
+	 * @see myTools.ValuesManager#sortContactsByDate(java.util.Set)
+	 */
+	@Override
+	public List<Contact> sortContactsByDate(Set<Contact> contacts) {
+		Set<Contact> inputContacts = contacts;
+		List<Contact> outputContacts = new ArrayList<Contact>();
+		for(Contact current : inputContacts){
+			//TODO <Important> needs impl of dates manager and dates comparator
+		}
+		return outputContacts;
 	}
 
 }
