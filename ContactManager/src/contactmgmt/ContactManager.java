@@ -9,7 +9,6 @@ import java.util.Set;
 public interface ContactManager {
 	//TODO <After Deliverable is Ready> make sure outputCsv file can be read by a csvReader program
 	//TODO <After Deliverable is Ready> increase performance by accessing the file and not keeping it in memory all the time (check which version is faster : processing time vs ram weight)
-	//TODO <JavaDocs> review javaDocs for every method, test and impl.
 	/**
 	 * Add a new meeting to be held in the future.
 	 *

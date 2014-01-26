@@ -64,27 +64,105 @@ public interface PopulatorAndFlusher {
 	 * @param csvRows
 	 */
 	void setMeetingsIdIndex(List<String> csvRows);
+	
 	/**
 	 * 
 	 * @return
 	 */
 	List<Integer> getMeetingsIdIndex();
+	/**
+	 * 
+	 * @param csvRows
+	 */
 	void setAllContacts(List<String> csvRows);
+	/**
+	 * 
+	 * @return
+	 */
 	Set<Contact> getAllContacts();
+	/**
+	 * 
+	 * @param csvRows
+	 * @return
+	 */
 	List<MeetingImpl> setAllMeetings(List<String> csvRows);
+	/**
+	 * 
+	 * @return
+	 */
 	Set<Meeting> getAllMeetings();
+	/**
+	 * 
+	 * @param allMeetings
+	 */
 	void setAllPastMeetings(Set<Meeting> allMeetings);
+	/**
+	 * 
+	 * @return
+	 */
 	Set<PastMeeting> getAllPastMeetings();
+	/**
+	 * 
+	 * @param allPastMeetings
+	 */
 	void setPastMeetingsIdIndex(Set<PastMeeting> allPastMeetings);
+	/**
+	 * 
+	 * @return
+	 */
 	List<Integer> getPastMeetingsIdIndex();
+	/**
+	 * 	
+	 * @param allMeetings
+	 */
 	void setAllFutureMeetings(Set<Meeting> allMeetings);
+	/**
+	 * 
+	 * @return
+	 */
 	Set<FutureMeeting> getAllFutureMeetings();
+	/**
+	 * 
+	 * @param allFutureMeetings
+	 */
 	void setFutureMeetingsIdIndex(Set<FutureMeeting> allFutureMeetings);
+	/**
+	 * 
+	 * @return
+	 */
 	List<Integer> getFutureMeetingsIdIndex();
+	/**
+	 * 
+	 * @param allContacts
+	 */
 	void setContactsNameIndex(Set<Contact> allContacts);
+	/**
+	 * 
+	 * @return
+	 */
 	List<String> getContactsNameIndex();
+	/**
+	 * 
+	 * @param inputId
+	 * @param contactsIdIndex
+	 * @return
+	 */
 	<T> boolean updateIndex(T inputId, List<T> contactsIdIndex);
+	/**
+	 * 
+	 * @param element
+	 * @param elementCollection
+	 * @return
+	 */
 	<T> boolean updateSet(T element, Set<T> elementCollection);
+	/**
+	 * 
+	 * @param setToPrint
+	 */
 	<T> void printSet(Set<T> setToPrint);
+	/**
+	 * 
+	 * @param listToPrint
+	 */
 	<T> void printlist(List<T> listToPrint);
 }

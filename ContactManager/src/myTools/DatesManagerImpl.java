@@ -33,4 +33,10 @@ public class DatesManagerImpl implements DatesManager {
 		return date;
 	}
 
+	@Override
+	public boolean compareTwoDates(Calendar date1, Calendar date2) {
+		// TODO <Important> write this method
+		return false;
+	}
+
 }
