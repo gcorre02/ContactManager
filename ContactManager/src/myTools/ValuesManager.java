@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import contactmgmt.Contact;
+import contactmgmt.Meeting;
 
 /**
  * @author Guilherme
@@ -68,9 +69,9 @@ public interface ValuesManager {
 
 	/**
 	 * 
-	 * @param contacts
-	 * @return
+	 * @param meetings meetings set to reorder
+	 * @return a reordered list of the inputed meetings
 	 */
-	List<Contact> sortContactsByDate(Set<Contact> contacts);
+	List<Meeting> sortMeetingsByDate(Set<Meeting> meetings);
 
 }

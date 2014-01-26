@@ -4,10 +4,13 @@
 package myTools;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import contactmgmt.Contact;
+import contactmgmt.Meeting;
 
 
 /**
@@ -109,13 +112,45 @@ public class ValuesManagerImpl implements ValuesManager {
 	 * @see myTools.ValuesManager#sortContactsByDate(java.util.Set)
 	 */
 	@Override
-	public List<Contact> sortContactsByDate(Set<Contact> contacts) {
-		Set<Contact> inputContacts = contacts;
-		List<Contact> outputContacts = new ArrayList<Contact>();
-		for(Contact current : inputContacts){
-			//TODO <Important> needs impl of dates manager and dates comparator
+	public List<Meeting> sortMeetingsByDate(Set<Meeting> meetings) {
+		Set<Meeting> inputMeetings = new HashSet<Meeting>();
+		for(Meeting inputMeeting : meetings){
+			inputMeetings.add(inputMeeting);
 		}
-		return outputContacts;
+		List<Meeting> outputMeetings = new ArrayList<Meeting>();
+		outputMeetings = recursiveMeetingDateSort(inputMeetings, outputMeetings);
+		System.out.println(outputMeetings);
+		return outputMeetings;
 	}
-
+	/*
+	 * Recursive method that helps reorganise a set by date.
+	 * 
+	 */
+	private List<Meeting> recursiveMeetingDateSort(Set<Meeting> inputMeetings, List<Meeting> outputMeetings){
+		if(inputMeetings.isEmpty()){
+			return outputMeetings;
+		}
+		Calendar currentDate = new GregorianCalendar();
+		for(Meeting current : inputMeetings){
+			currentDate = current.getDate();
+			for(Meeting anotherMeeting : inputMeetings){
+				if(currentDate.after(anotherMeeting.getDate())){
+					currentDate = anotherMeeting.getDate();
+				}
+			}
+		}
+		for(Meeting m : inputMeetings){
+			if(m.getDate().equals(currentDate)){
+				outputMeetings.add(m);
+				Set<Meeting> nextInputMeetings = new HashSet<Meeting>();
+				for(Meeting f : inputMeetings){
+					nextInputMeetings.add(f);
+				}
+				nextInputMeetings.remove(m);
+				recursiveMeetingDateSort(nextInputMeetings, outputMeetings);
+			}
+		}
+		return outputMeetings;
+	}
+	
 }

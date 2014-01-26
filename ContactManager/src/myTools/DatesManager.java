@@ -35,7 +35,7 @@ public interface DatesManager {
 	Calendar generateCalendarItem(int year, int month, int day);
 	
 	/**
-	 * 
+	 * note: Calendar.before() already does this.
 	 * @param date1 first date to compare
 	 * @param date2 second date to compare
 	 * @return returns true if date1 comes before date2

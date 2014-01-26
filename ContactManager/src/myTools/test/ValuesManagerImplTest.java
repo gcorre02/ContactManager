@@ -6,6 +6,8 @@ package myTools.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +18,11 @@ import myTools.ValuesManagerImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import contactmgmt.Contact;
+import contactmgmt.ContactImpl;
+import contactmgmt.Meeting;
+import contactmgmt.MeetingImpl;
 
 
 /**
@@ -188,5 +195,32 @@ public class ValuesManagerImplTest {
 		assertEquals("organization doesnt match", expectedIntegerList, vm.reorganiseList(inputIntegerList) );
 		
 	}
-	
+	@Test
+	public final void checkMeetingsIsReorganized(){
+		//input
+		Set<Contact> inputContacts= new HashSet<Contact>();
+		inputContacts.add(new ContactImpl(1,"Alex Trebek"));
+		inputContacts.add(new ContactImpl(2,"Alex Trevalian"));
+		inputContacts.add(new ContactImpl(3,"Alexander Pain"));
+		Calendar date1 = new GregorianCalendar(2014,02,15,2,35);
+		Calendar date2 = new GregorianCalendar(2014,02,15,5,01);
+		Calendar date3 = new GregorianCalendar(2014,02,15,7,12);
+		MeetingImpl firstMeeting = new MeetingImpl(1, date1, inputContacts);
+		MeetingImpl secondMeeting = new MeetingImpl(2, date2, inputContacts);
+		MeetingImpl thirdMeeting = new MeetingImpl(3, date3, inputContacts);
+		Set<Meeting> actualMeetings = new HashSet<Meeting>();
+		actualMeetings.add(firstMeeting);
+		actualMeetings.add(secondMeeting);
+		actualMeetings.add(thirdMeeting);
+		Meeting[] actualMeetingsArray = new Meeting[3];
+		vm.sortMeetingsByDate(actualMeetings).toArray(actualMeetingsArray);
+		//expected
+		
+		MeetingImpl[] expectedMeetings = new MeetingImpl[3];
+		expectedMeetings[0]= firstMeeting;
+		expectedMeetings[1]= secondMeeting;
+		expectedMeetings[2]= thirdMeeting;
+		//test
+		assertArrayEquals(expectedMeetings, actualMeetingsArray);
+	}
 }
