@@ -76,9 +76,9 @@ public class ContactManagerImpl implements ContactManager {
 			System.out.println("at least one of the contacts is unknown  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " contacts inputed : " + contacts.toString()); 
 			throw new IllegalArgumentException();
 		}
-		
+
 		//generate unique id :
-		
+
 		int returnId = vm.newIdGenerator(paf.getMeetingsIdIndex()); //<need to use the Meetings Index! //< need to update both the Meetings and the futureMeetings index too
 		//instantiate new FM
 		FutureMeeting newFMeeting = new FutureMeetingImpl(returnId,date,contacts);
@@ -168,7 +168,7 @@ public class ContactManagerImpl implements ContactManager {
 		Iterator<FutureMeeting> iter = inputSet.iterator();
 		while(iter.hasNext()){
 			FutureMeeting current = iter.next();
-			
+
 			Iterator<Contact> cIter= current.getContacts().iterator();
 			while(cIter.hasNext()){
 				Contact currentContact = cIter.next();
@@ -191,7 +191,7 @@ public class ContactManagerImpl implements ContactManager {
 		vm = new ValuesManagerImpl();
 		Set<Meeting> outputList = new HashSet<Meeting>();
 		Set<FutureMeeting> inputSet= paf.getAllFutureMeetings();
-		
+
 		//select meetings with the date on the same day as input date
 		Iterator<FutureMeeting> iter = inputSet.iterator();
 		while(iter.hasNext()){
@@ -203,10 +203,10 @@ public class ContactManagerImpl implements ContactManager {
 				outputList.add(current);
 			}
 		}
-		
+
 		//sort values
 		List<Meeting> returnableOutputList = vm.sortMeetingsByDate(outputList);
-		
+
 		return returnableOutputList;
 	}
 
@@ -222,15 +222,13 @@ public class ContactManagerImpl implements ContactManager {
 			System.out.println("contact requested does not exist  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " contact requested "  +contact.getName()); 
 			throw new IllegalArgumentException();
 		}
+		
 		//main
-		List<PastMeeting> outputList = new ArrayList<PastMeeting>();
+		Set<Meeting> outputList = new HashSet<Meeting>();
 		Set<PastMeeting> inputSet = paf.getAllPastMeetings();
 		Iterator<PastMeeting> iter = inputSet.iterator();
 		while(iter.hasNext()){
 			PastMeeting current = iter.next();
-			//debug
-			//paf.printSet(current.getContacts());
-			//
 			Iterator<Contact> cIter= current.getContacts().iterator();
 			while(cIter.hasNext()){
 				Contact currentContact = cIter.next();
@@ -239,8 +237,16 @@ public class ContactManagerImpl implements ContactManager {
 				}
 			}
 		}
-
-		return outputList;
+		
+		//reorganizes outputList
+		List<Meeting> outputListToParse = vm.sortMeetingsByDate(outputList);
+		List<PastMeeting>outputListReorganized = new ArrayList<PastMeeting>();
+		for(Meeting current : outputListToParse){
+			outputListReorganized.add((PastMeeting)current);
+		}
+		
+		//return
+		return outputListReorganized;
 	}
 
 	/* (non-Javadoc)
