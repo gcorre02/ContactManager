@@ -66,6 +66,9 @@ public class ContactManagerImplTest {
 			writer.println("14,C,Johnny Fritz ");
 			writer.println("15,C,Fritz Hansen");
 			writer.println("16,C,Sterling Archer");
+			writer.println("31,C,Salamander Lang");
+			writer.println("32,C,Johnny Salamander ");
+			writer.println("33,C,Salamander Hansen");
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -669,7 +672,7 @@ public class ContactManagerImplTest {
 	@Test
 	public final void testGetContactsString() {
 		//debug
-		debugStr = "<<<<<<<<<<<<<<<<<<<<GetContacts>>>>>>>>>>>>>>>";
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetContactsString>>>>>>>>>>>>>>>";
 		System.out.println(debugStr);
 		//expected
 		List<String> expectedContactList = new ArrayList<String>();
@@ -680,6 +683,33 @@ public class ContactManagerImplTest {
 		//input
 		List<String> inputContactsString = new ArrayList<String>();
 		List<Contact> inputContacts = new ArrayList<Contact>(cm.getContacts("Fritz"));
+		Iterator<Contact> iter = inputContacts.iterator();
+		while(iter.hasNext()){
+			Contact current = iter.next();
+			inputContactsString.add(current.toString());
+		}
+		//test
+
+		assertTrue(inputContactsString.containsAll(expectedContactList));
+
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getContacts(java.lang.String)}.
+	 */
+	@Test
+	public final void testGetContactsShortNameDoesntExist() {
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testGetContactsShortNameDoesntExist>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+		//expected
+		List<String> expectedContactList = new ArrayList<String>();
+		expectedContactList.add("31,C,Salamander Lang");
+		expectedContactList.add("32,C,Johnny Salamander ");
+		expectedContactList.add("33,C,Salamander Hansen");
+		
+		//input
+		List<String> inputContactsString = new ArrayList<String>();
+		List<Contact> inputContacts = new ArrayList<Contact>(cm.getContacts("Salamander"));
 		Iterator<Contact> iter = inputContacts.iterator();
 		while(iter.hasNext()){
 			Contact current = iter.next();
