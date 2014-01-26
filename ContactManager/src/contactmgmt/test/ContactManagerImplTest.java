@@ -125,7 +125,7 @@ public class ContactManagerImplTest {
 		//input variables
 		Set<Contact> inputContacts = new HashSet<Contact>();
 		inputContacts.add(new ContactImpl(3, "Fritz"));
-		inputContacts.add(new ContactImpl(15, "Sterling Archer"));
+		inputContacts.add(new ContactImpl(16, "Sterling Archer"));
 		inputContacts.add(new ContactImpl(12, "Barefoot Grub Patch"));
 		Calendar inputDate = new GregorianCalendar(2014,11,15);
 		int futureMeetingId = cm.addFutureMeeting(inputContacts, inputDate);
@@ -135,7 +135,7 @@ public class ContactManagerImplTest {
 		//test
 		assertTrue("addFutureMeeting not adding the meeting to the contactManager DB", assertResult);
 	}
-
+	
 
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#getPastMeeting(int)}.
@@ -477,6 +477,39 @@ public class ContactManagerImplTest {
 		Set<Contact> inputContacts = new HashSet<Contact>();
 		inputContacts.add(new ContactImpl(3,"Fritz"));
 		Calendar inputDate = new GregorianCalendar(2005,4,25);
+		//test
+		cm.addFutureMeeting(inputContacts, inputDate);
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getPastMeeting(int)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testAddFutureMeetingContactUnknown() {
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<getPastMeetingIdBelongsPastMeeting>>>>>>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+
+		//input
+		Set<Contact> inputContacts = new HashSet<Contact>();
+		inputContacts.add(new ContactImpl(34,"Jonah"));
+		Calendar inputDate = new GregorianCalendar(2015,4,25);
+		//test
+		cm.addFutureMeeting(inputContacts, inputDate);
+	}
+	/**
+	 * Test method for {@link contactmgmt.ContactManagerImpl#getPastMeeting(int)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testAddFutureMeetingContactsIsEmpty() {
+		//test stub :
+		//debug
+		debugStr = "<<<<<<<<<<<<<<<<<<<<testAddFutureMeetingContactsIsEmpty>>>>>>>>>>>>>>>>>>>>";
+		System.out.println(debugStr);
+
+		//input
+		Set<Contact> inputContacts = new HashSet<Contact>();
+		Calendar inputDate = new GregorianCalendar(2015,4,25);
 		//test
 		cm.addFutureMeeting(inputContacts, inputDate);
 	}

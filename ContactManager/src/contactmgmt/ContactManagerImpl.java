@@ -57,14 +57,28 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) throws IllegalArgumentException {
+		ValuesManager vm = new ValuesManagerImpl();
 		//exceptions
 		dm = new DatesManagerImpl();
 		if(dm.checkDateIsInThePast(date)){
 			System.out.println("date is in the past  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " date is in the past :  " + date.toString()); 
 			throw new IllegalArgumentException();
 		}
+		List<ContactImpl> comparableContacts = new ArrayList<ContactImpl>();
+		for(Contact current : contacts){
+			comparableContacts.add((ContactImpl)current);
+		}
+		List<ContactImpl> allContacts = new ArrayList<ContactImpl>();
+		for(Contact current : getPaf().getAllContacts()){
+			allContacts.add((ContactImpl)current);
+		}
+		if(!allContacts.containsAll(comparableContacts)){
+			System.out.println("at least one of the contacts is unknown  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " contacts inputed : " + contacts.toString()); 
+			throw new IllegalArgumentException();
+		}
+		
 		//generate unique id :
-		ValuesManager vm = new ValuesManagerImpl();
+		
 		int returnId = vm.newIdGenerator(paf.getMeetingsIdIndex()); //<need to use the Meetings Index! //< need to update both the Meetings and the futureMeetings index too
 		//instantiate new FM
 		FutureMeeting newFMeeting = new FutureMeetingImpl(returnId,date,contacts);
@@ -142,6 +156,7 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
 		//TODO <After Deliverable Is Ready> override equals under contact and meeting for easier comparison!
+		//TODO <Important> returned list must be sorted by date !
 		//exception
 		vm = new ValuesManagerImpl();
 		if(vm.checkContactNameIsUnique(paf.getContactsNameIndex(), contact.getName())){
@@ -154,9 +169,7 @@ public class ContactManagerImpl implements ContactManager {
 		Iterator<FutureMeeting> iter = inputSet.iterator();
 		while(iter.hasNext()){
 			FutureMeeting current = iter.next();
-			//debug
-			//paf.printSet(current.getContacts());
-			//
+			
 			Iterator<Contact> cIter= current.getContacts().iterator();
 			while(cIter.hasNext()){
 				Contact currentContact = cIter.next();
@@ -165,14 +178,7 @@ public class ContactManagerImpl implements ContactManager {
 				}
 			}
 		}
-		//debug
-		/*
-		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<debug getFutureMeetingList>>>>>>>>>>>>>>>>>>>>>");
-		paf.printlist(outputList);
-		System.out.println(contact);
-		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<debug getFutureMeetingList>>>>>>>>>>>>>>>>>>>>>");
-		 */
-		//return
+		
 		return outputList;
 	}
 
@@ -181,6 +187,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public List<Meeting> getFutureMeetingList(Calendar date) {
+		//TODO <Important> returned list must be sorted by date !
 		List<Meeting> outputList = new ArrayList<Meeting>();
 		Set<FutureMeeting> inputSet = paf.getAllFutureMeetings();
 		Iterator<FutureMeeting> iter = inputSet.iterator();
@@ -199,6 +206,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public List<PastMeeting> getPastMeetingList(Contact contact) {
+		//TODO <Important> returned list must be sorted by date !
 		//Exception
 		vm = new ValuesManagerImpl();
 		if(vm.checkContactNameIsUnique(paf.getContactsNameIndex(), contact.getName())){
@@ -231,7 +239,7 @@ public class ContactManagerImpl implements ContactManager {
 	 */
 	@Override
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) throws IllegalArgumentException{
-
+		//Exceptions
 		if(contacts==null || date == null || text == null){
 			System.out.println("one of the params evaluates to null  " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " Contacts: "+contacts+" date: "+date+" text: "+text); 
 			throw new NullPointerException();
@@ -375,7 +383,8 @@ public class ContactManagerImpl implements ContactManager {
 		}
 		vm = new ValuesManagerImpl();
 		if(vm.checkContactNameIsUnique(paf.getContactsNameIndex(), name)){
-			System.out.println("Argument inputed already in ContactsIndex: " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " w/ param: String Name"); 
+			//TODO <Important> make sure that jack gets all the contacts that contain jack, even if there 's none with just jack
+			System.out.println("Argument inputed is not part of ContactsIndex: " + this.getClass().getName()+"."+ Thread.currentThread().getStackTrace()[1].getMethodName() + " w/ param: String Name"); 
 			throw new IllegalArgumentException();
 		}
 
