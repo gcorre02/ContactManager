@@ -12,16 +12,7 @@ import java.util.Set;
  */
 public interface ValuesManager {
 	//TODO <JavaDocs> review javaDocs for every method, test and impl.
-	/*List of methods needed :
-	 * 
-	 * checkIdExistsInList(int id, List<Integer> anyIntegerList) > mock interface for the test	ContactManagerImplTest.java	
-	 *
-	 * checkContactNameIsUnique(Set<String> names, String candidateName)	
-	 *
-	 *
-	 * int newIdGenerator (List<Integer> typeOfId )
-	 *
-	 */
+	
 
 	/**
 	 * 
@@ -66,7 +57,13 @@ public interface ValuesManager {
 	 * @param listName list identifier for debug
 	 */
 	void printList(List<Integer> inputIntegerList, String listName);
-
+	
+	/**
+	 * 
+	 * @param names list to check a single name against
+	 * @param candidateName name to be checked for uniqueness
+	 * @return true if candidateName isn't in the list
+	 */
 	boolean checkContactNameIsUnique(List<String> names, String candidateName);
 
 
