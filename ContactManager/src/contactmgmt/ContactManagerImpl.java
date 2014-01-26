@@ -29,7 +29,7 @@ public class ContactManagerImpl implements ContactManager {
 	private PopulatorAndFlusher paf;
 	private ValuesManager vm;
 	private DatesManager dm;
-	private String pathToFile = "."+ File.separator +"contactsTest.txt";
+	private String pathToFile = "."+ File.separator +"contactsTest.csv";
 
 	/**
 	 * 

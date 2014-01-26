@@ -35,7 +35,7 @@ import contactmgmt.*;
  */
 public class ContactManagerImplTest {
 	ContactManagerImpl cm;
-	String pathToFile = "."+ File.separator +"contactsTest.txt";
+	String pathToFile = "."+ File.separator +"contactsTest.csv";
 	PopulatorAndFlusher paf;
 	ValuesManager vm;
 	String debugStr ="";

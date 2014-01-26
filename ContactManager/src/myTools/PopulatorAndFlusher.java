@@ -21,7 +21,7 @@ public interface PopulatorAndFlusher {
 	
 	/**
 	 * Collects all lines in the file into one list sorted by the order of read lines.
-	 * @param pathToFile path of where the contacts.csv file is //TODO <Important> review csv file compatibility, check every reference to path reads .csv not .txt
+	 * @param pathToFile path of where the contacts.csv file is 
 	 * @return all lines from file in an array
 	 */
 	List<String> readFromFile(String pathToFile);

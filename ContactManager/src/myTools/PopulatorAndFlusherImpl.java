@@ -61,7 +61,6 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(pathToFile, Charset.defaultCharset().toString());
-
 			//iterate through each FM and write it in
 			Iterator<FutureMeeting> iterFm = allFutureMeetings.iterator();
 			while(iterFm.hasNext()){
