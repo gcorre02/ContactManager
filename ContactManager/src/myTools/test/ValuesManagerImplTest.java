@@ -212,15 +212,21 @@ public class ValuesManagerImplTest {
 		actualMeetings.add(firstMeeting);
 		actualMeetings.add(secondMeeting);
 		actualMeetings.add(thirdMeeting);
-		Meeting[] actualMeetingsArray = new Meeting[3];
-		vm.sortMeetingsByDate(actualMeetings).toArray(actualMeetingsArray);
+		List<MeetingImpl> actualMeetingsList =new ArrayList<MeetingImpl>();
+		List<Meeting> castableActualMeetings =  vm.sortMeetingsByDate(actualMeetings);
+		for(Meeting current : castableActualMeetings){
+			actualMeetingsList.add((MeetingImpl)current);
+		}
 		//expected
+		List<MeetingImpl> expectedMeetings = new ArrayList<MeetingImpl>();
+		expectedMeetings.add(firstMeeting);
+		expectedMeetings.add(secondMeeting);
+		expectedMeetings.add(thirdMeeting);
+		//debug
+		System.out.println("<<<<<<<<<<<<<ActualMeetings>>>>>>>>>>>\n"+actualMeetingsList.toString());
+		System.out.println("<<<<<<<<<<<<<ExpectedMeetings>>>>>>>>>>>\n"+expectedMeetings.toString());
 		
-		MeetingImpl[] expectedMeetings = new MeetingImpl[3];
-		expectedMeetings[0]= firstMeeting;
-		expectedMeetings[1]= secondMeeting;
-		expectedMeetings[2]= thirdMeeting;
 		//test
-		assertArrayEquals(expectedMeetings, actualMeetingsArray);
+		assertEquals(expectedMeetings, actualMeetingsList);
 	}
 }

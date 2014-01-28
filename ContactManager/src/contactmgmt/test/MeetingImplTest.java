@@ -102,14 +102,14 @@ public class MeetingImplTest {
 	@Test
 	public void testEquals() {
 		//input1
-		Calendar date1 = new GregorianCalendar(2013,13,25);
+		Calendar date1 = new GregorianCalendar(2013,11,25);
 		Set<Contact> contacts1 = new HashSet<Contact>();
 		contacts1.add(new ContactImpl(1,"Lord Byron"));
 		contacts1.add(new ContactImpl(2,"Lord Bacon"));
 		contacts1.add(new ContactImpl(3,"Lord Buster"));
 		Meeting m1 = new MeetingImpl(1,date1,contacts1);
 		//input2
-		Calendar date2 = new GregorianCalendar(2013,13,25);
+		Calendar date2 = new GregorianCalendar(2013,11,25);
 		Set<Contact> contacts2 = new HashSet<Contact>();
 		contacts2.add(new ContactImpl(1,"Lord Byron"));
 		contacts2.add(new ContactImpl(2,"Lord Bacon"));

@@ -128,7 +128,8 @@ public class ValuesManagerImpl implements ValuesManager {
 		} else{
 			outputMeetings = new ArrayList<Meeting>(inputMeetings);
 		}
-		
+		//correct recursion error TODO<important> not a solution!
+//		outputMeetings.remove(outputMeetings.get(outputMeetings.size()-1));
 		//return
 		return outputMeetings;
 	}
@@ -137,6 +138,7 @@ public class ValuesManagerImpl implements ValuesManager {
 	 * 
 	 */
 	private List<Meeting> recursiveMeetingDateSort(Set<Meeting> inputMeetings, List<Meeting> outputMeetings){
+		//TODO method repeating the last one! recurring!!
 		if(inputMeetings.isEmpty()){
 			return outputMeetings;
 		}
@@ -154,9 +156,11 @@ public class ValuesManagerImpl implements ValuesManager {
 				outputMeetings.add(m);
 				Set<Meeting> nextInputMeetings = new HashSet<Meeting>();
 				for(Meeting f : inputMeetings){
-					nextInputMeetings.add(f);
+					if(!f.equals(m)){
+						nextInputMeetings.add(f);
+					}
 				}
-				nextInputMeetings.remove(m);
+//				nextInputMeetings.remove(m);
 				recursiveMeetingDateSort(nextInputMeetings, outputMeetings);
 			}
 		}
