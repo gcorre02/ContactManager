@@ -222,9 +222,7 @@ public class ValuesManagerImplTest {
 		expectedMeetings.add(firstMeeting);
 		expectedMeetings.add(secondMeeting);
 		expectedMeetings.add(thirdMeeting);
-		//debug
-		System.out.println("<<<<<<<<<<<<<ActualMeetings>>>>>>>>>>>\n"+actualMeetingsList.toString());
-		System.out.println("<<<<<<<<<<<<<ExpectedMeetings>>>>>>>>>>>\n"+expectedMeetings.toString());
+		
 		
 		//test
 		assertEquals(expectedMeetings, actualMeetingsList);
