@@ -96,7 +96,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	}
 
 	/**
-	 * @param contactsIdIndex the contactsIdIndex to set
+	 * @param csvRows the array of strings to grab contacts ids from
 	 */
 	public void setContactsIdIndex(List<String> csvRows) {
 		List<Integer> contactsIdIndex = new ArrayList<Integer>(); 
@@ -118,7 +118,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	}
 
 	/**
-	 * @param meetingsIdIndex the meetingsIdIndex to set
+	 * @param csvRows the array of strings to grab meetings ids from
 	 */
 	@Override
 	public void setMeetingsIdIndex(List<String> csvRows) {
@@ -144,7 +144,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	}
 
 	/**
-	 * @param pastMeetingsIdIndex the pastMeetingsIdIndex to set
+	 * @param allPastMeetings the Set of pastMeetings to grab meetings ids from
 	 */
 	public void setPastMeetingsIdIndex(Set<PastMeeting> allPastMeetings) {
 		List<Integer> pastMeetingsIdIndex = new ArrayList<Integer>();
@@ -164,7 +164,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	}
 
 	/**
-	 * @param futureMeetingsIdIndex the futureMeetingsIdIndex to set
+	 * @param allFutureMeetings the set of futureMeetings to collect ids from.
 	 */
 	public void setFutureMeetingsIdIndex(Set<FutureMeeting> allFutureMeetings) {
 		List<Integer> futureMeetingsIdIndex = new ArrayList<Integer>();
@@ -193,7 +193,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	}
 
 	/**
-	 * @param allContacts the allContacts to set
+	 * @param csvRows the list of strings to grab all contacts from
 	 */
 	public void setAllContacts(List<String> csvRows) {
 		Set<Contact> allContacts = new HashSet<Contact>();
@@ -229,7 +229,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	}
 
 	/**
-	 * @param allPastMeetings the allPastMeetings to set
+	 * @param allMeetings the set of all Meetings to grab past Meetings from.
 	 */
 	public void setAllPastMeetings(Set<Meeting> allMeetings) {
 		DatesManager dm = new DatesManagerImpl();
@@ -400,7 +400,7 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 
 
 	/**
-	 * @param contactsNameIndex the contactsNameIndex to set
+	 * @param allContacts the set of contacts to grab names from.
 	 */
 	@Override
 	public void setContactsNameIndex(Set<Contact> allContacts) {
@@ -415,9 +415,8 @@ public class PopulatorAndFlusherImpl implements PopulatorAndFlusher {
 	}
 	/**
 	 * 
-	 * @param element
-	 * @param elementCollection
-	 * @param index
+	 * @param element the generic object to update the set with.
+	 * @param elementCollection the set of generic objects to add element to.
 	 * @return boolean that indicates whether it's been added or removed
 	 */
 	public <T> boolean updateSet(T element, Set<T> elementCollection){

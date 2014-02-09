@@ -66,7 +66,7 @@ public class MeetingImplTest {
 	}
 
 	/**
-	 * Test method for {@link contactmgmt.MeetingImpl#MeetingImpl()}.
+	 * Test method for {@link contactmgmt.MeetingImpl#MeetingImpl(int,java.util.Calendar,java.util.Set)}.
 	 */
 	@Test
 	public void testMeetingImpl() {
@@ -97,7 +97,7 @@ public class MeetingImplTest {
 		assertEquals("Meeting not returning contacts or Contructor not instantiating them", expectedContacts, m.getContacts());
 	}
 	/**
-	 * Test method for {@link contactmgmt.MeetingImpl#equals()}.
+	 * Test method for {@link contactmgmt.MeetingImpl#equals(java.lang.Object)}.
 	 */
 	@Test
 	public void testEquals() {

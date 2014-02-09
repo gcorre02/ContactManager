@@ -209,8 +209,8 @@ public class ValuesManagerImplTest {
 		MeetingImpl secondMeeting = new MeetingImpl(2, date2, inputContacts);
 		MeetingImpl thirdMeeting = new MeetingImpl(3, date3, inputContacts);
 		Set<Meeting> actualMeetings = new HashSet<Meeting>();
-		actualMeetings.add(firstMeeting);
 		actualMeetings.add(secondMeeting);
+		actualMeetings.add(firstMeeting);
 		actualMeetings.add(thirdMeeting);
 		List<MeetingImpl> actualMeetingsList =new ArrayList<MeetingImpl>();
 		List<Meeting> castableActualMeetings =  vm.sortMeetingsByDate(actualMeetings);
@@ -222,7 +222,7 @@ public class ValuesManagerImplTest {
 		expectedMeetings.add(firstMeeting);
 		expectedMeetings.add(secondMeeting);
 		expectedMeetings.add(thirdMeeting);
-		
+	
 		
 		//test
 		assertEquals(expectedMeetings, actualMeetingsList);

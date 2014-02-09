@@ -64,7 +64,7 @@ public class PastMeetingImplTest {
 
 
 	/**
-	 * Test method for {@link contactmgmt.PastMeetingImpl#PastMeetingImpl()}.
+	 * Test method for {@link contactmgmt.PastMeetingImpl#PastMeetingImpl(int,java.util.Calendar,java.util.Set,java.lang.String)}.
 	 */
 	@Test
 	public final void testPastMeetingImpl() {
@@ -72,7 +72,7 @@ public class PastMeetingImplTest {
 	}
 	
 	/**
-	 * Test method for {@link contactmgmt.PastMeetingImpl#PastMeetingImpl()}.
+	 * Test method for {@link contactmgmt.PastMeetingImpl#PastMeetingImpl(int,java.util.Calendar,java.util.Set,java.lang.String)}.
 	 */
 	@Test
 	public final void testPastMeetingImplWoutNotes() {

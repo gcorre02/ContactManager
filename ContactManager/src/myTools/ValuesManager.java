@@ -45,8 +45,8 @@ public interface ValuesManager {
 	
 	/**
 	 * 
-	 * @param anyIntegerList input array to reorganise 
-	 * @return this list reorganized
+	 * @param inputIntegerList input list to reorganise.
+	 * @return this list reorganized.
 	 * 
 	 */
 	List<Integer> reorganiseList(List<Integer> inputIntegerList);

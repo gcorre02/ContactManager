@@ -61,7 +61,7 @@ public class FutureMeetingImplTest {
 
 
 	/**
-	 * Test method for {@link contactmgmt.FutureMeetingImpl#FutureMeetingImpl()}.
+	 * Test method for {@link contactmgmt.FutureMeetingImpl#FutureMeetingImpl(int,java.util.Calendar,java.util.Set)}.
 	 */
 	@Test
 	public final void testFutureMeetingImpl() {

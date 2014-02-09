@@ -48,7 +48,7 @@ public class ContactImplTest {
 	}
 
 	/**
-	 * Test method for {@link contactmgmt.ContactImpl#ContactImpl()}.
+	 * Test method for {@link contactmgmt.ContactImpl#ContactImpl(int, java.lang.String)}.
 	 */
 	@Test
 	public final void testConstructor() {
