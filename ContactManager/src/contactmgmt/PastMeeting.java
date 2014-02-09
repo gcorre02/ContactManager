@@ -3,10 +3,7 @@
  */
 package contactmgmt;
 
-/**
- * @author Guilherme
- *
- */
+
 /**
  * 
  * A meeting that was held in the past.

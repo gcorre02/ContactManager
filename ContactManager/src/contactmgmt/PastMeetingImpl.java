@@ -9,6 +9,7 @@ import java.util.Set;
 /**
  * @author Guilherme
  *
+ *
  */
 public class PastMeetingImpl extends MeetingImpl implements PastMeeting{
 

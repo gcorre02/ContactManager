@@ -3,10 +3,7 @@
  */
 package contactmgmt;
 
-/**
- * @author Guilherme
- *
- */
+
 import java.util.Calendar;
 import java.util.Set;
 /**
