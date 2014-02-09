@@ -1,9 +1,1 @@
-*.class
-*[#]*
-build
-*.lock
-*.bin
-wrapper
 /bin
-/safe
-.*

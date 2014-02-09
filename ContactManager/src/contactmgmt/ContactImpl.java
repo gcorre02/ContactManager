@@ -8,7 +8,8 @@ package contactmgmt;
  *
  */
 public class ContactImpl implements Contact {
-
+	private static int hashcode;
+	private int individualHashCode;
 	private int id;
 	private String name;
 	private String notes;
@@ -20,6 +21,8 @@ public class ContactImpl implements Contact {
 	 * @param id of the object
 	 */
 	public ContactImpl(int id, String name) {
+		hashcode++;
+		individualHashCode = hashcode;
 		this.id = id;
 		this.name = name;
 		this.notes = "";
@@ -87,7 +90,10 @@ public class ContactImpl implements Contact {
 	 * @param inputContact the object of type ContactImpl being compared to.
 	 */
 	@Override
-	public boolean equals(Object inputContact){
+	public boolean equals(Object inputContact) throws IllegalArgumentException{
+		if(inputContact == null){
+			throw new IllegalArgumentException("Object being compared is null");
+		}
 		//every inputContact field needs casting because the overriden .equals only takes object, note: was having trouble trying to just overload it.
 		if(this.id == ((ContactImpl) inputContact).getId()){
 			if(this.name.equals(((ContactImpl) inputContact).getName())){
@@ -98,5 +104,12 @@ public class ContactImpl implements Contact {
 		}
 		return false;
 	}
+	
+	@Override
+	public int hashCode(){
+		return this.individualHashCode;
+		
+	}
+	
 
 }

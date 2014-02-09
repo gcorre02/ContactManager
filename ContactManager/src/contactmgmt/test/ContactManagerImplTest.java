@@ -363,7 +363,7 @@ public class ContactManagerImplTest {
 		inputContacts.add(new ContactImpl(8,"Klaus"));
 		inputContacts.add(new ContactImpl(2,"Tony"));
 		String text = "";
-		Calendar date = new GregorianCalendar(1988,12,23);
+		Calendar date = new GregorianCalendar(1988,11,23);
 		//test
 		cm.addNewPastMeeting(null, date, text);
 		cm.addNewPastMeeting(inputContacts, null, text);
@@ -471,7 +471,7 @@ public class ContactManagerImplTest {
 		String inputNotes = "top of Nakatomi Building";
 		cm.addMeetingNotes(2, inputNotes);
 		//test
-		assertEquals("",expectedMeetingString, cm.getPastMeeting(2).getNotes().toString());
+		assertEquals("",expectedMeetingString, cm.getPastMeeting(2).getNotes());
 	}
 	/**
 	 * Test method for {@link contactmgmt.ContactManagerImpl#addMeetingNotes(int, java.lang.String)}.

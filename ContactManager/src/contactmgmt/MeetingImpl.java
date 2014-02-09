@@ -15,7 +15,8 @@ import java.util.Set;
  *
  */
 public class MeetingImpl implements Meeting {
-
+	private static int hashcode;
+	private int individualHashCode;
 	private int id;
 	private Calendar date;
 	private Set<Contact> contacts;
@@ -36,6 +37,8 @@ public class MeetingImpl implements Meeting {
 			throw new IllegalArgumentException();
 		}
 		//main
+		hashcode++;
+		individualHashCode = hashcode;
 		this.id = inputId;
 		this.date = date;
 		this.contacts = contacts;
@@ -93,7 +96,7 @@ public class MeetingImpl implements Meeting {
 
 		//concatenate contact names
 		String contacts ="";
-		
+
 		Set<Contact> meetingContacts = this.getContacts();
 		Iterator<Contact> iter = meetingContacts.iterator();
 		while(iter.hasNext()){
@@ -121,7 +124,10 @@ public class MeetingImpl implements Meeting {
 	 * 
 	 */
 	@Override
-	public boolean equals(Object inputMeeting){
+	public boolean equals(Object inputMeeting) throws IllegalArgumentException{
+		if(inputMeeting == null){
+			throw new IllegalArgumentException("Object being compared is null");
+		}
 		
 		//input meeting contacts set
 		Set<ContactImpl> overridenContacts = new HashSet<ContactImpl>();
@@ -130,7 +136,7 @@ public class MeetingImpl implements Meeting {
 			Contact current = iter.next();
 			overridenContacts.add((ContactImpl)current);
 		}
-		
+
 		//this meeting contacts set
 		Set<ContactImpl> thisContacts = new HashSet<ContactImpl>();
 		Iterator<Contact> thisIter = this.contacts.iterator();
@@ -141,7 +147,7 @@ public class MeetingImpl implements Meeting {
 		//convert to list so they can be compared
 		List<ContactImpl> thisContactsList = new ArrayList<ContactImpl>(thisContacts);
 		List<ContactImpl> overridenContactsList = new ArrayList<ContactImpl>(overridenContacts);
-		
+
 		//main
 		if(thisContactsList.containsAll(overridenContactsList)){ 
 			if(this.date.equals(((MeetingImpl) inputMeeting).getDate())){
@@ -153,4 +159,10 @@ public class MeetingImpl implements Meeting {
 		return false;
 
 	}
+	@Override
+	public int hashCode(){
+		return this.individualHashCode;
+		
+	}
+
 }
